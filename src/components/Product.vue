@@ -81,6 +81,13 @@ export default {
     barcode: function(value) {
       if (value !== null) {
         this.update();
+      } else {
+        this.productName = "";
+        this.brands = "";
+        this.ingredientsText = "";
+        this.countriesTags = [];
+        this.images = {};
+        this.loaded = false;
       }
     }
   },

@@ -13,7 +13,7 @@
           <input class="ui input" style="width: 300px" placeholder="value" v-model="valueTagInput" />
         </div>
         <div class="ui hidden divider"></div>
-        <div v-if="!loading">
+        <div v-if="currentQuestion">
           <h3>{{ currentQuestion.question }}</h3>
           <div class="ui big label">{{ currentQuestion.value }}</div>
           <div class="ui divider hidden"></div>
@@ -30,10 +30,13 @@
           </div>
         </div>
         <div class="flex-center" v-else style="margin-top: 100px;">
-          <div class="loading-spinner">
+          <div class="loading-spinner" v-if="loading">
             <div class="loading-spinner-content">
               <div></div>
             </div>
+          </div>
+          <div v-if="noRemainingQuestion">
+            <h2>No questions remaining</h2>
           </div>
         </div>
       </div>
@@ -50,6 +53,8 @@ import subDomain from "../subdomain";
 import { ROBOTOFF_API_URL } from "../const";
 import { annotate as robotoffAnnotate } from "../robotoff";
 import Product from "../components/Product";
+
+const NO_QUESTION_LEFT = "NO_QUESTION_LEFT";
 
 const insightTypesNames = {
   label: "label",
@@ -77,7 +82,6 @@ export default {
       currentQuestionBarcode: null,
       currentQuestion: null,
       questionBuffer: [],
-      noRemainingQuestions: false,
       availableInsightTypes: availableInsightTypes,
       selectedInsightType: getRandomInsightType(),
       seenInsightIds: new Set(),
@@ -102,13 +106,21 @@ export default {
 
       this.valueTagTimeout = setTimeout(() => {
         this.valueTag = valueTagInput;
-      }, 2000);
+      }, 1000);
     },
     valueTag: function() {
-      if (this.valueTag.length > 0) {
-        this.currentQuestion = null;
-        this.questionBuffer = [];
-        this.loadQuestions();
+      this.currentQuestion = null;
+      this.questionBuffer = [];
+      this.loadQuestions();
+    },
+    currentQuestion: function() {
+      if (
+        this.currentQuestion !== null &&
+        this.currentQuestion !== NO_QUESTION_LEFT
+      ) {
+        this.currentQuestionBarcode = this.currentQuestion.barcode;
+      } else {
+        this.currentQuestionBarcode = null;
       }
     }
   },
@@ -130,17 +142,21 @@ export default {
     updateCurrentQuestion: function() {
       if (this.questionBuffer.length > 0) {
         this.currentQuestion = this.questionBuffer.shift();
-        this.currentQuestionBarcode = this.currentQuestion.barcode;
       } else {
-        window.console.error(
-          "question buffer is empty, cannot update current question!"
-        );
+        if (this.noRemainingQuestion) {
+          this.currentQuestion = null;
+        } else {
+          window.console.error(
+            "question buffer is empty, cannot update current question!"
+          );
+        }
       }
     },
     loadQuestions: function() {
+      const count = 3;
       const params = {
         lang: subDomain.languageCode,
-        count: 3,
+        count,
         insight_types: this.selectedInsightType
       };
 
@@ -154,15 +170,21 @@ export default {
         })
         .then(result => {
           if (result.data.questions.length == 0) {
-            this.noRemainingQuestions = true;
+            this.questionBuffer.push(NO_QUESTION_LEFT);
             return;
           }
+          let added = false;
           result.data.questions.forEach(q => {
             if (!this.seenInsightIds.has(q.insight_id)) {
               this.questionBuffer.push(q);
               this.seenInsightIds.add(q.insight_id);
+              added = true;
             }
           });
+          if (!added && result.data.questions.length < count) {
+            this.questionBuffer.push(NO_QUESTION_LEFT);
+            return;
+          }
           if (this.currentQuestion === null) {
             this.updateCurrentQuestion();
           }
@@ -171,7 +193,13 @@ export default {
   },
   computed: {
     loading: function() {
-      return this.currentQuestion == null;
+      return !this.noRemainingQuestion && this.currentQuestion == null;
+    },
+    noRemainingQuestion: function() {
+      return (
+        this.questionBuffer.length == 1 &&
+        this.questionBuffer[0] == NO_QUESTION_LEFT
+      );
     }
   },
   mounted() {
