@@ -135,25 +135,25 @@ export default {
       robotoffAnnotate(this.currentQuestion.insight_id, annotation);
       this.updateCurrentQuestion();
 
-      if (this.questionBuffer.length <= 2) {
+      if (!this.noRemainingQuestion && this.questionBuffer.length <= 2) {
         this.loadQuestions();
       }
     },
     updateCurrentQuestion: function() {
+      if (this.noRemainingQuestion) {
+        this.currentQuestion = null;
+        return;
+      }
       if (this.questionBuffer.length > 0) {
         this.currentQuestion = this.questionBuffer.shift();
       } else {
-        if (this.noRemainingQuestion) {
-          this.currentQuestion = null;
-        } else {
-          window.console.error(
-            "question buffer is empty, cannot update current question!"
-          );
-        }
+        window.console.error(
+          "question buffer is empty, cannot update current question!"
+        );
       }
     },
     loadQuestions: function() {
-      const count = 3;
+      const count = 10;
       const params = {
         lang: subDomain.languageCode,
         count,
@@ -170,19 +170,21 @@ export default {
         })
         .then(result => {
           if (result.data.questions.length == 0) {
-            this.questionBuffer.push(NO_QUESTION_LEFT);
+            if (!this.questionBuffer.includes(NO_QUESTION_LEFT)) {
+              this.questionBuffer.push(NO_QUESTION_LEFT);
+            }
             return;
           }
-          let added = false;
           result.data.questions.forEach(q => {
             if (!this.seenInsightIds.has(q.insight_id)) {
               this.questionBuffer.push(q);
               this.seenInsightIds.add(q.insight_id);
-              added = true;
             }
           });
-          if (!added && result.data.questions.length < count) {
-            this.questionBuffer.push(NO_QUESTION_LEFT);
+          if (result.data.questions.length < count) {
+            if (!this.questionBuffer.includes(NO_QUESTION_LEFT)) {
+              this.questionBuffer.push(NO_QUESTION_LEFT);
+            }
             return;
           }
           if (this.currentQuestion === null) {
@@ -198,7 +200,7 @@ export default {
     noRemainingQuestion: function() {
       return (
         this.questionBuffer.length == 1 &&
-        this.questionBuffer[0] == NO_QUESTION_LEFT
+        this.questionBuffer[0] === NO_QUESTION_LEFT
       );
     }
   },
