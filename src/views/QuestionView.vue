@@ -206,6 +206,12 @@ export default {
   },
   mounted() {
     this.loadQuestions();
+    const vm = this;
+    window.addEventListener("keyup", function(event) {
+      if (event.which === 75) vm.annotate(-1); // k
+      if (event.which === 78) vm.annotate(0); // n
+      if (event.which === 79) vm.annotate(1); // o
+    });
   }
 };
 </script>
