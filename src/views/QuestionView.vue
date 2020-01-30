@@ -1,16 +1,14 @@
 <template>
   <div class="ui grid stackable" style="margin-top: 20px;">
     <div class="eight wide column centered">
-      <div style="text-align: center">
-        <div>
-          <div
-            class="tag"
-            :class="{selected: insightType === selectedInsightType}"
-            v-for="insightType of availableInsightTypes"
-            :key="insightType"
-            @click="selectInsightType(insightType)"
-          >{{ insightType }}</div>
-        </div>
+      <div class="insight-column">
+        <div
+          class="tag"
+          :class="{selected: insightType === selectedInsightType}"
+          v-for="insightType of availableInsightTypes"
+          :key="insightType"
+          @click="selectInsightType(insightType)"
+        >{{ insightType }}</div>
         <div class="ui divider hidden"></div>
         <div v-if="!loading">
           <h3>{{ currentQuestion.question }}</h3>
@@ -212,5 +210,9 @@ button.annotate {
 .flex-center {
   display: flex;
   justify-content: center;
+}
+
+.insight-column {
+  text-align: center;
 }
 </style>
