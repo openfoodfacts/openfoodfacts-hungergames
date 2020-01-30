@@ -9,7 +9,10 @@
           :key="insightType"
           @click="selectInsightType(insightType)"
         >{{ insightType }}</div>
-        <div class="ui divider hidden"></div>
+        <div class="ui form">
+          <input class="ui input" style="width: 300px" placeholder="value" v-model="valueTagInput" />
+        </div>
+        <div class="ui hidden divider"></div>
         <div v-if="!loading">
           <h3>{{ currentQuestion.question }}</h3>
           <div class="ui big label">{{ currentQuestion.value }}</div>
@@ -68,6 +71,9 @@ export default {
   components: { Product },
   data: function() {
     return {
+      valueTag: "",
+      valueTagInput: "",
+      valueTagTimeout: null,
       currentQuestionBarcode: null,
       currentQuestion: null,
       questionBuffer: [],
@@ -82,6 +88,29 @@ export default {
         }
       }
     };
+  },
+  watch: {
+    valueTagInput: function() {
+      clearTimeout(this.valueTagTimeout);
+
+      if (this.valueTagInput.length == 0) {
+        this.valueTag = "";
+        return;
+      }
+
+      const valueTagInput = this.valueTagInput;
+
+      this.valueTagTimeout = setTimeout(() => {
+        this.valueTag = valueTagInput;
+      }, 2000);
+    },
+    valueTag: function() {
+      if (this.valueTag.length > 0) {
+        this.currentQuestion = null;
+        this.questionBuffer = [];
+        this.loadQuestions();
+      }
+    }
   },
   methods: {
     selectInsightType: function(insightType) {
@@ -109,13 +138,19 @@ export default {
       }
     },
     loadQuestions: function() {
+      const params = {
+        lang: subDomain.languageCode,
+        count: 3,
+        insight_types: this.selectedInsightType
+      };
+
+      if (this.valueTag) {
+        params.value_tag = this.valueTag;
+      }
+
       axios
         .get(`${ROBOTOFF_API_URL}/questions/random`, {
-          params: {
-            lang: subDomain.languageCode,
-            count: 3,
-            insight_types: this.selectedInsightType
-          }
+          params
         })
         .then(result => {
           if (result.data.questions.length == 0) {
