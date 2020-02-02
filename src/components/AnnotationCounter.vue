@@ -3,33 +3,65 @@
     <h3>Annotations</h3>
     <p>
       Remaining:
-      <strong>{{ remaining }}</strong>
+      <strong>{{ remainingCount }}</strong>
     </p>
     <p>
       Annotated:
-      <strong>{{ annotated }}</strong>
+      <strong>{{ annotatedCount }}</strong>
     </p>
+    <div class="ui divider" />
+    <h3>Last annotations</h3>
+    <div v-for="annotation in sortedLastAnnotations" :key="annotation.question.insight_id">
+      <a
+        target="_blank"
+        :href="getProductUrl(annotation.question.barcode)"
+      >{{ annotation.question.insight_type }}: {{ annotation.question.value }}</a>
+      <i v-if="annotation.annotation == 1" class="check green icon"></i>
+      <i v-else-if="annotation.annotation == -1" class="question icon"></i>
+      <i v-else-if="annotation.annotation == 0" class="times red icon"></i>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import { ROBOTOFF_API_URL } from "../const";
+import subDomain from "../subdomain";
 
 export default {
   name: "AnnotationCounter",
-  props: ["remaining"],
+  props: {
+    remainingCount: {
+      type: Number,
+      required: true
+    },
+    lastAnnotations: {
+      type: Array,
+      required: true
+    }
+  },
   data: function() {
     return {
       username: "raphael0202",
-      annotated: 0
+      annotatedCount: 0
     };
+  },
+  methods: {
+    getProductUrl: function(barcode) {
+      return `https://${subDomain.subDomain}.openfoodfacts.org/product/${barcode}`;
+    }
+  },
+  computed: {
+    sortedLastAnnotations: function() {
+      const lastAnnotations = this.lastAnnotations.slice();
+      return lastAnnotations.reverse();
+    }
   },
   mounted() {
     axios
       .get(`${ROBOTOFF_API_URL}/users/statistics/${this.username}`)
       .then(result => {
-        this.annotated = result.data.count.annotations;
+        this.annotatedCount = result.data.count.annotations;
       })
       .catch(error => window.console.log(error));
   }
@@ -39,5 +71,11 @@ export default {
 <style scoped>
 .main-column {
   padding: 1.5rem 1.5rem;
+  background-color: #686868;
+  color: #ffffff;
+}
+
+a {
+  color: #ffffff;
 }
 </style>

@@ -1,7 +1,10 @@
 <template>
   <div class="ui grid stackable">
     <div class="three wide column annotation-column">
-      <AnnotationCounter :remaining="remainingQuestionCount" />
+      <AnnotationCounter
+        :remainingCount="remainingQuestionCount"
+        :lastAnnotations="lastAnnotations"
+      />
     </div>
     <div class="five wide column centered">
       <div class="insight-column">
@@ -92,6 +95,7 @@ export default {
       currentQuestion: null,
       questionBuffer: [],
       remainingQuestionCount: 0,
+      lastAnnotations: [],
       availableInsightTypes: availableInsightTypes,
       selectedInsightType: getRandomInsightType(),
       seenInsightIds: new Set(),
@@ -112,7 +116,7 @@ export default {
         return;
       }
 
-      const valueTagInput = this.valueTagInput;
+      const valueTagInput = this.valueTagInput.toLowerCase();
 
       this.valueTagTimeout = setTimeout(() => {
         this.valueTag = valueTagInput;
@@ -135,6 +139,16 @@ export default {
     }
   },
   methods: {
+    updateLastAnnotations(question, annotation) {
+      this.lastAnnotations.push({
+        question,
+        annotation
+      });
+
+      if (this.lastAnnotations.length > 10) {
+        this.lastAnnotations.shift();
+      }
+    },
     selectInsightType: function(insightType) {
       this.selectedInsightType = insightType;
       this.currentQuestion = null;
@@ -143,6 +157,7 @@ export default {
     },
     annotate: function(annotation) {
       robotoffAnnotate(this.currentQuestion.insight_id, annotation);
+      this.updateLastAnnotations(this.currentQuestion, annotation);
       this.updateCurrentQuestion();
       this.remainingQuestionCount -= 1;
 
@@ -301,6 +316,5 @@ button.annotate {
 
 .annotation-column {
   background-color: #686868;
-  color: #ffffff;
 }
 </style>
