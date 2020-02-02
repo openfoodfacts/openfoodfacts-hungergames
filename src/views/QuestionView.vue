@@ -10,7 +10,12 @@
           @click="selectInsightType(insightType)"
         >{{ insightType }}</div>
         <div class="ui form">
-          <input class="ui input" style="width: 300px" placeholder="value" v-model="valueTagInput" />
+          <input
+            class="ui input"
+            style="width: 300px"
+            placeholder="value (fanta, en:organic,...)"
+            v-model="valueTagInput"
+          />
         </div>
         <div class="ui hidden divider"></div>
         <div v-if="currentQuestion">
