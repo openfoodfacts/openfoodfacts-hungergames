@@ -1,6 +1,9 @@
 <template>
-  <div class="ui grid stackable" style="margin-top: 20px;">
-    <div class="eight wide column centered">
+  <div class="ui grid stackable">
+    <div class="three wide column annotation-column">
+      <AnnotationCounter :remaining="remainingQuestionCount" />
+    </div>
+    <div class="five wide column centered">
       <div class="insight-column">
         <div
           class="tag"
@@ -46,7 +49,7 @@
         </div>
       </div>
     </div>
-    <div class="eight wide column centered">
+    <div class="six wide column centered">
       <Product :barcode="currentQuestionBarcode" />
     </div>
   </div>
@@ -58,6 +61,7 @@ import subDomain from "../subdomain";
 import { ROBOTOFF_API_URL } from "../const";
 import { annotate as robotoffAnnotate } from "../robotoff";
 import Product from "../components/Product";
+import AnnotationCounter from "../components/AnnotationCounter";
 
 const NO_QUESTION_LEFT = "NO_QUESTION_LEFT";
 
@@ -78,7 +82,7 @@ const getRandomInsightType = () =>
 
 export default {
   name: "QuestionView",
-  components: { Product },
+  components: { Product, AnnotationCounter },
   data: function() {
     return {
       valueTag: "",
@@ -87,6 +91,7 @@ export default {
       currentQuestionBarcode: null,
       currentQuestion: null,
       questionBuffer: [],
+      remainingQuestionCount: 0,
       availableInsightTypes: availableInsightTypes,
       selectedInsightType: getRandomInsightType(),
       seenInsightIds: new Set(),
@@ -139,6 +144,7 @@ export default {
     annotate: function(annotation) {
       robotoffAnnotate(this.currentQuestion.insight_id, annotation);
       this.updateCurrentQuestion();
+      this.remainingQuestionCount -= 1;
 
       if (!this.noRemainingQuestion && this.questionBuffer.length <= 2) {
         this.loadQuestions();
@@ -174,6 +180,7 @@ export default {
           params
         })
         .then(result => {
+          this.remainingQuestionCount = result.data.count;
           if (result.data.questions.length == 0) {
             if (!this.questionBuffer.includes(NO_QUESTION_LEFT)) {
               this.questionBuffer.push(NO_QUESTION_LEFT);
@@ -290,5 +297,10 @@ button.annotate {
 
 .insight-column {
   text-align: center;
+}
+
+.annotation-column {
+  background-color: #686868;
+  color: #ffffff;
 }
 </style>
