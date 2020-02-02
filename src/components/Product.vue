@@ -79,7 +79,7 @@ export default {
   },
   watch: {
     barcode: function(value) {
-      if (value !== null) {
+      if (value) {
         this.update();
       } else {
         this.productName = "";
@@ -136,7 +136,9 @@ export default {
     }
   },
   mounted() {
-    this.update();
+    if (this.barcode) {
+      this.update();
+    }
   }
 };
 </script>
