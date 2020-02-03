@@ -1,12 +1,5 @@
 <template>
   <div class="ui grid stackable">
-    <div class="three wide column annotation-column">
-      <AnnotationCounter
-        :remainingCount="remainingQuestionCount"
-        :lastAnnotations="lastAnnotations"
-        :sessionAnnotatedCount="sessionAnnotatedCount"
-      />
-    </div>
     <div class="five wide column centered">
       <div class="insight-column">
         <div
@@ -55,6 +48,13 @@
     </div>
     <div class="six wide column centered">
       <Product :barcode="currentQuestionBarcode" />
+    </div>
+    <div class="three wide column annotation-column">
+      <AnnotationCounter
+        :remainingCount="remainingQuestionCount"
+        :lastAnnotations="lastAnnotations"
+        :sessionAnnotatedCount="sessionAnnotatedCount"
+      />
     </div>
   </div>
 </template>
