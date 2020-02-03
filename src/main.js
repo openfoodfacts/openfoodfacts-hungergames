@@ -12,7 +12,7 @@ Vue.config.productionTip = false
 
 
 const routes = [
-  { path: '/', component: QuestionView },
+  { path: '/', redirect: '/questions' },
   { path: '/ingredients', component: IngredientsView },
   { path: '/questions', component: QuestionView },
 ];
