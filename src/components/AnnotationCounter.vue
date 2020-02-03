@@ -26,6 +26,7 @@
 <script>
 import axios from "axios";
 import { ROBOTOFF_API_URL } from "../const";
+import { getUsername } from "../off";
 import subDomain from "../subdomain";
 
 export default {
@@ -38,12 +39,16 @@ export default {
     lastAnnotations: {
       type: Array,
       required: true
+    },
+    sessionAnnotatedCount: {
+      type: Number,
+      required: true
     }
   },
   data: function() {
     return {
-      username: "raphael0202",
-      annotatedCount: 0
+      username: getUsername(),
+      historyAnnotatedCount: 0
     };
   },
   methods: {
@@ -55,15 +60,20 @@ export default {
     sortedLastAnnotations: function() {
       const lastAnnotations = this.lastAnnotations.slice();
       return lastAnnotations.reverse();
+    },
+    annotatedCount: function() {
+      return this.historyAnnotatedCount + this.sessionAnnotatedCount;
     }
   },
   mounted() {
-    axios
-      .get(`${ROBOTOFF_API_URL}/users/statistics/${this.username}`)
-      .then(result => {
-        this.annotatedCount = result.data.count.annotations;
-      })
-      .catch(error => window.console.log(error));
+    if (this.username.length) {
+      axios
+        .get(`${ROBOTOFF_API_URL}/users/statistics/${this.username}`)
+        .then(result => {
+          this.historyAnnotatedCount = result.data.count.annotations;
+        })
+        .catch(error => window.console.log(error));
+    }
   }
 };
 </script>

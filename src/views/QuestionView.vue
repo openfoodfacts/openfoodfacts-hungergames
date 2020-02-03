@@ -4,6 +4,7 @@
       <AnnotationCounter
         :remainingCount="remainingQuestionCount"
         :lastAnnotations="lastAnnotations"
+        :sessionAnnotatedCount="sessionAnnotatedCount"
       />
     </div>
     <div class="five wide column centered">
@@ -96,6 +97,7 @@ export default {
       questionBuffer: [],
       remainingQuestionCount: 0,
       lastAnnotations: [],
+      sessionAnnotatedCount: 0,
       availableInsightTypes: availableInsightTypes,
       selectedInsightType: getRandomInsightType(),
       seenInsightIds: new Set(),
@@ -160,6 +162,7 @@ export default {
       this.updateLastAnnotations(this.currentQuestion, annotation);
       this.updateCurrentQuestion();
       this.remainingQuestionCount -= 1;
+      this.sessionAnnotatedCount += 1;
 
       if (!this.noRemainingQuestion && this.questionBuffer.length <= 2) {
         this.loadQuestions();
