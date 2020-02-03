@@ -1,4 +1,10 @@
 import countries from './data/countries';
+import { localSettings } from "./settings";
+
+export const getLang = () => {
+    const settings = localSettings.fetch();
+    return settings.lang || "en";
+}
 
 export default (() => {
     const matches = /^https:\/\/((world|\w{2})(?:-(\w{2}))?)\.openfoodfacts\.org/.exec(

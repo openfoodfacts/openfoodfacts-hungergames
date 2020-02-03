@@ -61,7 +61,7 @@
 
 <script>
 import axios from "axios";
-import subDomain from "../subdomain";
+import { localSettings } from "../settings";
 import { ROBOTOFF_API_URL } from "../const";
 import { annotate as robotoffAnnotate } from "../robotoff";
 import Product from "../components/Product";
@@ -183,8 +183,9 @@ export default {
     },
     loadQuestions: function() {
       const count = 10;
+      const lang = localSettings.fetch().lang || "en";
       const params = {
-        lang: subDomain.languageCode,
+        lang,
         count,
         insight_types: this.selectedInsightType
       };
