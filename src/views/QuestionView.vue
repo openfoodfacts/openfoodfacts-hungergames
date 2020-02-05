@@ -12,11 +12,16 @@
         <div class="ui form">
           <input
             class="ui input"
-            style="width: 300px"
+            style="width: 300px; margin-top: 0.5rem;"
             placeholder="value (fanta, en:organic,...)"
             v-model="valueTagInput"
           />
+          <div class="ui toggle checkbox" style="margin-top: 0.5rem;">
+            <input v-model="sortByPopularity" type="checkbox" name="sortBy" />
+            <label>Sort by popularity</label>
+          </div>
         </div>
+        <div class="ui divider" />
         <div class="ui hidden divider"></div>
         <div v-if="currentQuestion">
           <h3>{{ currentQuestion.question }}</h3>
@@ -101,6 +106,7 @@ export default {
       availableInsightTypes: availableInsightTypes,
       selectedInsightType: getRandomInsightType(),
       seenInsightIds: new Set(),
+      sortByPopularity: false,
       imageZoomOptions: {
         toolbar: {
           rotateLeft: 1,
@@ -125,6 +131,11 @@ export default {
       }, 1000);
     },
     valueTag: function() {
+      this.currentQuestion = null;
+      this.questionBuffer = [];
+      this.loadQuestions();
+    },
+    sortByPopularity: function() {
       this.currentQuestion = null;
       this.questionBuffer = [];
       this.loadQuestions();
@@ -184,6 +195,8 @@ export default {
     loadQuestions: function() {
       const count = 10;
       const lang = localSettings.fetch().lang || "en";
+      const sortBy = this.sortByPopularity ? "popular" : "random";
+
       const params = {
         lang,
         count,
@@ -195,7 +208,7 @@ export default {
       }
 
       axios
-        .get(`${ROBOTOFF_API_URL}/questions/random`, {
+        .get(`${ROBOTOFF_API_URL}/questions/${sortBy}`, {
           params
         })
         .then(result => {
