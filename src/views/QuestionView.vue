@@ -72,6 +72,40 @@ import { annotate as robotoffAnnotate } from "../robotoff";
 import Product from "../components/Product";
 import AnnotationCounter from "../components/AnnotationCounter";
 
+const updateURLParam = (key, value) => {
+  const urlParams = new URLSearchParams(window.location.search);
+  urlParams.set(key, value);
+  const newRelativePathQuery =
+    window.location.pathname + "?" + urlParams.toString();
+  history.pushState(null, "", newRelativePathQuery);
+};
+
+const deleteURLParam = key => {
+  const urlParams = new URLSearchParams(window.location.search);
+
+  if (!urlParams.has(key)) {
+    return;
+  }
+
+  urlParams.delete(key);
+
+  const newRelativePathQuery =
+    window.location.pathname +
+    (urlParams.toString().length ? `?${urlParams.toString()}` : "");
+
+  history.pushState(null, "", newRelativePathQuery);
+};
+
+const getURLParam = key => {
+  const urlParams = new URLSearchParams(window.location.search);
+
+  if (!urlParams.has(key)) {
+    return "";
+  }
+
+  return urlParams.get(key);
+};
+
 const NO_QUESTION_LEFT = "NO_QUESTION_LEFT";
 
 const insightTypesNames = {
@@ -89,13 +123,23 @@ const getRandomInsightType = () =>
     Math.floor(randomInsightTypeChoices.length * Math.random())
   ];
 
+const getInitialInsightType = () => {
+  const urlParamValue = getURLParam("type");
+
+  if (urlParamValue.length) {
+    return urlParamValue;
+  }
+
+  return getRandomInsightType();
+};
+
 export default {
   name: "QuestionView",
   components: { Product, AnnotationCounter },
   data: function() {
     return {
-      valueTag: "",
-      valueTagInput: "",
+      valueTag: getURLParam("value_tag"),
+      valueTagInput: getURLParam("value_tag"),
       valueTagTimeout: null,
       currentQuestionBarcode: null,
       currentQuestion: null,
@@ -104,7 +148,7 @@ export default {
       lastAnnotations: [],
       sessionAnnotatedCount: 0,
       availableInsightTypes: availableInsightTypes,
-      selectedInsightType: getRandomInsightType(),
+      selectedInsightType: getInitialInsightType(),
       seenInsightIds: new Set(),
       sortByPopularity: false,
       imageZoomOptions: {
@@ -121,6 +165,7 @@ export default {
 
       if (this.valueTagInput.length == 0) {
         this.valueTag = "";
+        deleteURLParam("value_tag");
         return;
       }
 
@@ -128,6 +173,7 @@ export default {
 
       this.valueTagTimeout = setTimeout(() => {
         this.valueTag = valueTagInput;
+        updateURLParam("value_tag", valueTagInput);
       }, 1000);
     },
     valueTag: function() {
@@ -149,9 +195,15 @@ export default {
       } else {
         this.currentQuestionBarcode = null;
       }
+    },
+    selectedInsightType: function() {
+      this.updateInsightTypeUrlParam();
     }
   },
   methods: {
+    updateInsightTypeUrlParam() {
+      updateURLParam("type", this.selectedInsightType);
+    },
     updateLastAnnotations(question, annotation) {
       this.lastAnnotations.push({
         question,
@@ -249,6 +301,7 @@ export default {
     }
   },
   mounted() {
+    this.updateInsightTypeUrlParam();
     this.loadQuestions();
     const vm = this;
     window.addEventListener("keyup", function(event) {
