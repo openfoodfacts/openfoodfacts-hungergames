@@ -302,7 +302,6 @@ export default {
             if (!this.questionBuffer.includes(NO_QUESTION_LEFT)) {
               this.questionBuffer.push(NO_QUESTION_LEFT);
             }
-            return;
           }
           if (this.currentQuestion === null) {
             this.updateCurrentQuestion();
