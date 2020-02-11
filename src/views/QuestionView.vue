@@ -141,7 +141,6 @@ export default {
       valueTag: getURLParam("value_tag"),
       valueTagInput: getURLParam("value_tag"),
       valueTagTimeout: null,
-      currentQuestionBarcode: null,
       currentQuestion: null,
       questionBuffer: [],
       remainingQuestionCount: 0,
@@ -185,16 +184,6 @@ export default {
       this.currentQuestion = null;
       this.questionBuffer = [];
       this.loadQuestions();
-    },
-    currentQuestion: function() {
-      if (
-        this.currentQuestion !== null &&
-        this.currentQuestion !== NO_QUESTION_LEFT
-      ) {
-        this.currentQuestionBarcode = this.currentQuestion.barcode;
-      } else {
-        this.currentQuestionBarcode = null;
-      }
     },
     selectedInsightType: function() {
       this.updateInsightTypeUrlParam();
@@ -298,6 +287,16 @@ export default {
         this.questionBuffer.length == 1 &&
         this.questionBuffer[0] === NO_QUESTION_LEFT
       );
+    },
+    currentQuestionBarcode: function() {
+      if (
+        this.currentQuestion !== null &&
+        this.currentQuestion !== NO_QUESTION_LEFT
+      ) {
+        return this.currentQuestion.barcode;
+      } else {
+        return null;
+      }
     }
   },
   mounted() {
