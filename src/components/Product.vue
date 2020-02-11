@@ -35,7 +35,7 @@
 import axios from "axios";
 import { OFF_API_URL, OFF_IMAGE_URL } from "../const";
 import { countryMap } from "../countries";
-import subDomain from "../subdomain";
+import { getProductUrl, getProductEditUrl } from "../off";
 
 const BARCODE_REGEX = /(...)(...)(...)(.*)$/;
 const splitBarcode = barcode => {
@@ -113,13 +113,13 @@ export default {
       if (this.barcode === null) {
         return "";
       }
-      return `https://${subDomain.subDomain}.openfoodfacts.org/product/${this.barcode}`;
+      return getProductUrl(this.barcode);
     },
     productEditUrl: function() {
       if (this.barcode === null) {
         return "";
       }
-      return `https://${subDomain.subDomain}.openfoodfacts.org/cgi/product.pl?type=edit&code=${this.barcode}`;
+      return getProductEditUrl(this.barcode);
     },
     countries: function() {
       return this.countriesTags.map(c => countryMap[c]).join(", ");

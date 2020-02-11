@@ -13,3 +13,8 @@ export const localSettings = {
         this.save(settings);
     }
 }
+
+export const getLang = () => {
+    const settings = localSettings.fetch();
+    return settings.lang || "en";
+}

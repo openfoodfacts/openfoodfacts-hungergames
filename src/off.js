@@ -1,4 +1,4 @@
-
+import { getLang } from "./settings";
 
 export const getCookie = name => {
     const cookies = document.cookie.split(';').filter((item) => item.trim().startsWith(`${name}=`));
@@ -27,4 +27,14 @@ export const getUsername = () => {
         }
     });
     return username;
+}
+
+export const getProductUrl = barcode => {
+    const lang = getLang();
+    return `https://world-${lang}.openfoodfacts.org/product/${barcode}`;
+}
+
+export const getProductEditUrl = barcode => {
+    const lang = getLang();
+    return `https://world-${lang}.openfoodfacts.org/cgi/product.pl?type=edit&code=${barcode}`;
 }

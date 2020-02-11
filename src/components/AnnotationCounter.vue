@@ -27,7 +27,7 @@
 import axios from "axios";
 import { ROBOTOFF_API_URL } from "../const";
 import { getUsername } from "../off";
-import subDomain from "../subdomain";
+import { getProductUrl } from "../off";
 
 export default {
   name: "AnnotationCounter",
@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     getProductUrl: function(barcode) {
-      return `https://${subDomain.subDomain}.openfoodfacts.org/product/${barcode}`;
+      return getProductUrl(barcode);
     }
   },
   computed: {
