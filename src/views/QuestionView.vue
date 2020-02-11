@@ -25,7 +25,15 @@
         <div class="ui hidden divider"></div>
         <div v-if="currentQuestion">
           <h3>{{ currentQuestion.question }}</h3>
-          <div class="ui big label">{{ currentQuestion.value }}</div>
+          <a href target="_blank">
+            <div class="ui big label">
+              {{ currentQuestion.value }}
+              <i
+                style="margin-left: 0.5rem;"
+                class="external alternate icon small blue"
+              ></i>
+            </div>
+          </a>
           <div class="ui divider hidden"></div>
           <viewer :options="imageZoomOptions">
             <img
@@ -307,6 +315,18 @@ export default {
       } else {
         return null;
       }
+    },
+    valueTagQuestionsURL: function() {
+      if (
+        this.currentQuestion !== null &&
+        this.currentQuestion !== NO_QUESTION_LEFT
+      ) {
+        const urlParams = new URLSearchParams();
+        urlParams.append("type", this.insightType);
+        urlParams.append("value_tag", this.currentQuestion.value_tag);
+        return `/questions?${urlParams.toString}`;
+      }
+      return "";
     }
   },
   mounted() {
