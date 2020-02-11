@@ -133,6 +133,28 @@ const getInitialInsightType = () => {
   return getRandomInsightType();
 };
 
+const reformatTagMapping = {
+  " ": "-",
+  "'": "-",
+  à: "a",
+  â: "a",
+  é: "e",
+  è: "e",
+  ê: "e",
+  î: "i",
+  ô: "o",
+  û: "u",
+  ù: "u"
+};
+
+const reformatValueTag = value => {
+  let output = value.trim().toLowerCase();
+  for (const [search, replace] of Object.entries(reformatTagMapping)) {
+    output = output.replace(search, replace);
+  }
+  return output;
+};
+
 export default {
   name: "QuestionView",
   components: { Product, AnnotationCounter },
@@ -173,8 +195,8 @@ export default {
       const valueTagInput = this.valueTagInput.toLowerCase();
 
       this.valueTagTimeout = setTimeout(() => {
-        this.valueTag = valueTagInput;
-        updateURLParam("value_tag", valueTagInput);
+        this.valueTag = reformatValueTag(valueTagInput);
+        updateURLParam("value_tag", this.valueTag);
       }, 1000);
     },
     valueTag: function() {
