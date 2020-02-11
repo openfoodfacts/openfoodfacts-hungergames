@@ -150,6 +150,8 @@ export default {
       selectedInsightType: getInitialInsightType(),
       seenInsightIds: new Set(),
       sortByPopularity: false,
+      brandFilter: getURLParam("brand"),
+      countryFilter: getURLParam("country"),
       imageZoomOptions: {
         toolbar: {
           rotateLeft: 1,
@@ -246,6 +248,14 @@ export default {
 
       if (this.valueTag) {
         params.value_tag = this.valueTag;
+      }
+
+      if (this.brandFilter.length) {
+        params.brands = this.brandFilter;
+      }
+
+      if (this.countryFilter.length) {
+        params.country = this.countryFilter;
       }
 
       axios
