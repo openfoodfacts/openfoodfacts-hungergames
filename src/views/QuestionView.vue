@@ -25,15 +25,20 @@
         <div class="ui hidden divider"></div>
         <div v-if="currentQuestion">
           <h3>{{ currentQuestion.question }}</h3>
-          <a href target="_blank">
-            <div class="ui big label">
-              {{ currentQuestion.value }}
-              <i
-                style="margin-left: 0.5rem;"
-                class="external alternate icon small blue"
-              ></i>
-            </div>
-          </a>
+          <div v-if="valueTagQuestionsURL.length">
+            <router-link :to="valueTagQuestionsURL" target="_blank">
+              <div class="ui big label">
+                {{ currentQuestion.value }}
+                <i
+                  style="margin-left: 0.5rem;"
+                  class="external alternate icon small blue"
+                ></i>
+              </div>
+            </router-link>
+          </div>
+          <div v-else>
+            <div class="ui big label">{{ currentQuestion.value }}</div>
+          </div>
           <div class="ui divider hidden"></div>
           <viewer :options="imageZoomOptions">
             <img
@@ -340,12 +345,16 @@ export default {
     valueTagQuestionsURL: function() {
       if (
         this.currentQuestion !== null &&
-        this.currentQuestion !== NO_QUESTION_LEFT
+        this.currentQuestion !== NO_QUESTION_LEFT &&
+        this.selectedInsightType === "brand"
       ) {
         const urlParams = new URLSearchParams();
-        urlParams.append("type", this.insightType);
-        urlParams.append("value_tag", this.currentQuestion.value_tag);
-        return `/questions?${urlParams.toString}`;
+        urlParams.append("type", this.selectedInsightType);
+        urlParams.append(
+          "value_tag",
+          reformatValueTag(this.currentQuestion.value)
+        );
+        return `/questions?${urlParams.toString()}`;
       }
       return "";
     }
