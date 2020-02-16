@@ -158,7 +158,7 @@ const reformatTagMapping = {
 const reformatValueTag = value => {
   let output = value.trim().toLowerCase();
   for (const [search, replace] of Object.entries(reformatTagMapping)) {
-    output = output.replace(search, replace);
+    output = output.replace(new RegExp(search, "g"), replace);
   }
   return output;
 };
