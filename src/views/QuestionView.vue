@@ -42,6 +42,7 @@
           <div class="ui divider hidden"></div>
           <viewer :options="imageZoomOptions">
             <img
+              :class="[imageRotationClassName]"
               :src="currentQuestion.source_image_url"
               style="max-height: 300px; max-width: 300px;"
             />
@@ -183,6 +184,7 @@ export default {
       sessionAnnotatedCount: 0,
       availableInsightTypes: availableInsightTypes,
       selectedInsightType: getInitialInsightType(),
+      imageRotation: 0,
       seenInsightIds: new Set(),
       sortByPopularity: false,
       brandFilter: getURLParam("brand"),
@@ -227,6 +229,18 @@ export default {
     }
   },
   methods: {
+    rotateImage() {
+      window.console.log(this.imageRotation);
+      if (this.imageRotation === 0) {
+        this.imageRotation = 90;
+      } else if (this.imageRotation === 90) {
+        this.imageRotation = 180;
+      } else if (this.imageRotation === 180) {
+        this.imageRotation = 270;
+      } else if (this.imageRotation === 270) {
+        this.imageRotation = 0;
+      }
+    },
     updateInsightTypeUrlParam() {
       updateURLParam("type", this.selectedInsightType);
     },
@@ -323,6 +337,12 @@ export default {
     }
   },
   computed: {
+    imageRotationClassName: function() {
+      if (this.imageRotation === 90) return "rotate-90";
+      if (this.imageRotation === 180) return "rotate-180";
+      if (this.imageRotation === 270) return "rotate-270";
+      return "rotation-0";
+    },
     loading: function() {
       return !this.noRemainingQuestion && this.currentQuestion == null;
     },
@@ -365,9 +385,10 @@ export default {
     const vm = this;
     window.addEventListener("keyup", function(event) {
       if (event.target.nodeName == "BODY") {
-        if (event.which === 75) vm.annotate(-1); // k
-        if (event.which === 78) vm.annotate(0); // n
-        if (event.which === 79) vm.annotate(1); // o
+        if (event.key === "k") vm.annotate(-1);
+        if (event.key === "n") vm.annotate(0);
+        if (event.key === "o") vm.annotate(1);
+        if (event.key === "p") vm.rotateImage();
       }
     });
   }
@@ -447,5 +468,21 @@ button.annotate {
 
 .annotation-column {
   background-color: #686868;
+}
+
+.rotate-0 {
+  transform: none;
+}
+
+.rotate-90 {
+  transform: rotate(90deg);
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.rotate-270 {
+  transform: rotate(270deg);
 }
 </style>
