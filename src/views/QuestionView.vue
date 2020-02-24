@@ -150,15 +150,21 @@ const getInitialInsightType = () => {
 const reformatTagMapping = {
   " ": "-",
   "'": "-",
+  "&": "",
   à: "a",
   â: "a",
+  ä: "a",
   é: "e",
   è: "e",
   ê: "e",
+  ë: "e",
   î: "i",
+  ï: "i",
   ô: "o",
+  ö: "o",
   û: "u",
-  ù: "u"
+  ù: "u",
+  ü: "u"
 };
 
 const reformatValueTag = value => {
@@ -166,6 +172,7 @@ const reformatValueTag = value => {
   for (const [search, replace] of Object.entries(reformatTagMapping)) {
     output = output.replace(new RegExp(search, "g"), replace);
   }
+  output = output.replace(/-{2,}/g, "-");
   return output;
 };
 
