@@ -10,12 +10,14 @@
           @click="selectInsightType(insightType)"
         >{{ insightType }}</div>
         <div class="ui form">
-          <input
-            class="ui input"
-            style="width: 300px; margin-top: 0.5rem;"
-            placeholder="value (fanta, en:organic,...)"
-            v-model="valueTagInput"
-          />
+          <div class="ui icon input" id="value-tag-input">
+            <input
+              class="ui input"
+              placeholder="value (fanta, en:organic,...)"
+              v-model="valueTagInput"
+            />
+            <i @click="clearValueTagInput()" v-if="valueTagInput" class="times link icon"></i>
+          </div>
           <div class="ui toggle checkbox" style="margin-top: 0.5rem;">
             <input v-model="sortByPopularity" type="checkbox" name="sortBy" />
             <label>Sort by popularity</label>
@@ -236,6 +238,9 @@ export default {
     }
   },
   methods: {
+    clearValueTagInput() {
+      this.valueTagInput = "";
+    },
     rotateImage() {
       window.console.log(this.imageRotation);
       if (this.imageRotation === 0) {
@@ -403,6 +408,12 @@ export default {
 </script>
 
 <style scoped>
+#value-tag-input {
+  width: 300px;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .tag {
   background-color: #e8e8e8;
   display: inline-block;
