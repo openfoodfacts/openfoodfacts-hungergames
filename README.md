@@ -1,4 +1,6 @@
-# backoffice-front
+# Hunger Games
+
+One click annotator, built with vue.js.
 
 ## Project setup
 ```
