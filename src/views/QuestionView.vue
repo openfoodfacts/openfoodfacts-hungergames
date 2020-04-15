@@ -42,13 +42,14 @@
             <div class="ui big label">{{ currentQuestion.value }}</div>
           </div>
           <div class="ui divider hidden"></div>
-          <viewer :options="imageZoomOptions">
+          <viewer :options="imageZoomOptions" style="height: 300px">
             <img
               :class="[imageRotationClassName]"
-              :src="currentQuestion.source_image_url"
+              :src="currentQuestionImageUrl"
               style="max-height: 300px; max-width: 300px;"
             />
           </viewer>
+          <div class="ui divider hidden"></div>
           <div>
             <button class="ui button red annotate" @click="annotate(0)">No</button>
             <button class="ui button annotate" @click="annotate(-1)">Skip</button>
@@ -349,6 +350,13 @@ export default {
     }
   },
   computed: {
+    currentQuestionImageUrl: function() {
+      if (this.currentQuestion.source_image_url) {
+        return this.currentQuestion.source_image_url;
+      }
+
+      return "https://static.openfoodfacts.org/images/image-placeholder.png";
+    },
     imageRotationClassName: function() {
       if (this.imageRotation === 90) return "rotate-90";
       if (this.imageRotation === 180) return "rotate-180";
