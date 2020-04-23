@@ -51,9 +51,24 @@
           </viewer>
           <div class="ui divider hidden"></div>
           <div>
-            <button class="ui button red annotate" @click="annotate(0)">No</button>
-            <button class="ui button annotate" @click="annotate(-1)">Skip</button>
-            <button class="ui button green annotate" @click="annotate(1)">Yes</button>
+            <button
+              data-inverted
+              data-tooltip="Shortcut: n"
+              class="ui button red annotate"
+              @click="annotate(0)"
+            >No</button>
+            <button
+              data-inverted
+              data-tooltip="Shortcut: k"
+              class="ui button annotate"
+              @click="annotate(-1)"
+            >Skip</button>
+            <button
+              data-inverted
+              data-tooltip="Shortcut: y"
+              class="ui button green annotate"
+              @click="annotate(1)"
+            >Yes</button>
           </div>
         </div>
         <div class="flex-center" v-else style="margin-top: 100px;">
