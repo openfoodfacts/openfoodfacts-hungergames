@@ -274,11 +274,13 @@ export default {
       this.loadQuestions();
     },
     annotate: function(annotation) {
-      robotoffAnnotate(this.currentQuestion.insight_id, annotation);
-      this.updateLastAnnotations(this.currentQuestion, annotation);
+      if (annotation !== -1) {
+        robotoffAnnotate(this.currentQuestion.insight_id, annotation);
+        this.updateLastAnnotations(this.currentQuestion, annotation);
+        this.remainingQuestionCount -= 1;
+        this.sessionAnnotatedCount += 1;
+      }
       this.updateCurrentQuestion();
-      this.remainingQuestionCount -= 1;
-      this.sessionAnnotatedCount += 1;
 
       if (!this.noRemainingQuestion && this.questionBuffer.length <= 2) {
         this.loadQuestions();
