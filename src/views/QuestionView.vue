@@ -8,7 +8,7 @@
           v-for="insightType of availableInsightTypes"
           :key="insightType"
           @click="selectInsightType(insightType)"
-        >{{ insightType }}</div>
+        >{{ insightTypesNames[insightType] }}</div>
         <div class="ui form">
           <div class="ui icon input" id="value-tag-input">
             <input
@@ -147,7 +147,6 @@ const insightTypesNames = {
   product_weight: "product weight"
 };
 
-const availableInsightTypes = Object.keys(insightTypesNames);
 const randomInsightTypeChoices = ["label", "category", "brand"];
 
 const getRandomInsightType = () =>
@@ -207,7 +206,7 @@ export default {
       remainingQuestionCount: 0,
       lastAnnotations: [],
       sessionAnnotatedCount: 0,
-      availableInsightTypes: availableInsightTypes,
+      insightTypesNames: insightTypesNames,
       selectedInsightType: getInitialInsightType(),
       imageRotation: 0,
       seenInsightIds: new Set(),
@@ -367,6 +366,9 @@ export default {
     }
   },
   computed: {
+    availableInsightTypes: function() {
+      return Object.keys(insightTypesNames);
+    },
     currentQuestionImageUrl: function() {
       if (this.currentQuestion.source_image_url) {
         return this.currentQuestion.source_image_url;
