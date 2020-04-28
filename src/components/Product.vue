@@ -6,7 +6,10 @@
     <div class="ui divider"></div>
 
     <div v-if="imagesPreview.length > 0">
-      <viewer :images="imagesPreview" :options="imageZoomOptions">
+      <div class="ui basic segment">
+        <span @click="toggleLoadImage" class="borderless-button">{{ loadImageButtonText }}</span>
+      </div>
+      <viewer :images="imagesPreview" :options="imageZoomOptions" v-if="loadImage">
         <img
           :src="url"
           v-for="url in imagesPreview"
@@ -69,6 +72,7 @@ export default {
       countriesTags: [],
       images: {},
       loaded: false,
+      loadImage: true,
       imageZoomOptions: {
         toolbar: {
           rotateLeft: 1,
@@ -106,9 +110,16 @@ export default {
           this.images = product.images || {};
           this.loaded = true;
         });
+    },
+    toggleLoadImage: function() {
+      this.loadImage = !this.loadImage;
     }
   },
   computed: {
+    loadImageButtonText: function() {
+      if (this.loadImage) return "Hide images (faster loading)";
+      else return "Display images";
+    },
     productUrl: function() {
       if (this.barcode === null) {
         return "";
@@ -148,5 +159,14 @@ export default {
   max-width: 250px;
   max-height: 250px;
   margin: 0 3px;
+}
+
+.borderless-button {
+  color: #2185d0;
+  cursor: pointer;
+}
+
+.borderless-button:hover {
+  text-decoration: underline;
 }
 </style>
