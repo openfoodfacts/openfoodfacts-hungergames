@@ -65,7 +65,7 @@
             >Skip</button>
             <button
               data-inverted
-              data-tooltip="Shortcut: y"
+              data-tooltip="Shortcut: o"
               class="ui button green annotate"
               @click="annotate(1)"
             >Yes</button>
