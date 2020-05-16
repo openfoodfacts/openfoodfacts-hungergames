@@ -12,7 +12,7 @@
     "axios": "^0.19.1",
     "v-viewer": "^1.5.1",
     "vue": "^2.6.10",
-    "vue-router": "^3.1.5"
+    "vue-router": "^3.1.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",
