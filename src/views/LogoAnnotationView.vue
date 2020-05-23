@@ -9,8 +9,8 @@
           <div class="three wide column" v-for="logo in logos" :key="logo.id">
             <div
               class="ui fluid card ann-logo"
-              @click="selectLogo(logo)"
-              :class="`${page.active ? 'selected' : ''}`"
+              @click="toggleSelectLogo(logo)"
+              :class="`${logo.selected ? 'selected' : ''}`"
             >
               <div class="image">
                 <img width="100px" :src="logo.image.url" />
@@ -49,51 +49,31 @@ export default {
   },
   computed: {},
   methods: {
-    loadLogo: function() {
-      const params = {
-        count: 1
-      };
-
-      axios.get(`${ROBOTOFF_API_URL}/images/logos`, { params }).then(result => {
-        const logos = result.data.logos;
-
-        if (logos.length == 0) {
-          this.noLogoAvailable = true;
-        } else {
-          const logo = logos[0];
-          this.logos.push(transformLogo(logo));
-          this.loadSimilarLogos(logo.id);
-        }
+    loadLogos: function() {
+      axios.get(`${ROBOTOFF_API_URL}/ann/random?count=25`).then(({ data }) => {
+        const results = data.results;
+        axios
+          .all(
+            results.map(r =>
+              axios(`${ROBOTOFF_API_URL}/images/logos/${r.logo_id}`)
+            )
+          )
+          .then(responses => {
+            this.logos = results
+              .map((r, i) => ({
+                distance: r.distance,
+                ...responses[i].data
+              }))
+              .map(transformLogo);
+          });
       });
     },
-    loadSimilarLogos: function(logoId) {
-      axios
-        .get(`${ROBOTOFF_API_URL}/ann/${logoId}?count=25`)
-        .then(({ data }) => {
-          const results = data.results;
-          axios
-            .all(
-              results.map(r =>
-                axios(`${ROBOTOFF_API_URL}/images/logos/${r.logo_id}`)
-              )
-            )
-            .then(responses => {
-              const logos = results
-                .map((r, i) => ({
-                  distance: r.distance,
-                  ...responses[i].data
-                }))
-                .map(transformLogo);
-              this.logos = this.logos.concat(logos);
-            });
-        });
-    },
-    selectLogo: function(logo) {
-      logo.selected = true;
+    toggleSelectLogo: function(logo) {
+      logo.selected = !logo.selected;
     }
   },
   mounted() {
-    this.loadLogo();
+    this.loadLogos();
   }
 };
 </script>
@@ -104,6 +84,7 @@ export default {
 }
 
 .ann-logo.selected {
-  background-color: blue;
+  background-color: #4a5971;
+  color: #ffffff;
 }
 </style>
