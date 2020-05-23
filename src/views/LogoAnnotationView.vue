@@ -2,7 +2,29 @@
   <div class="ui container">
     <div>
       <h2>Logo annotations</h2>
-
+      <form class="ui form" v-on:submit.prevent="sendAnnotations">
+        <div class="three fields">
+          <div class="field">
+            <input type="text" name="value" placeholder="Value" v-model.trim="valueInput" />
+          </div>
+          <div class="field">
+            <select class="ui fluid dropdown" v-model="typeInput">
+              <option value>Type</option>
+              <option value="label">Label</option>
+              <option value="brand">Brand</option>
+              <option value="packager_code">Packager code</option>
+            </select>
+          </div>
+          <div class="field">
+            <button
+              type="submit"
+              class="ui button primary"
+              tabindex="0"
+              :class="{ disabled: !isValidAnnotation }"
+            >Submit</button>
+          </div>
+        </div>
+      </form>
       <div class="ui divider hidden" />
       <div v-if="logos">
         <div class="ui grid">
@@ -17,6 +39,9 @@
               </div>
               <div class="content">
                 <p v-if="logo.distance">Distance: {{ logo.distance }}</p>
+                <p
+                  v-if="logo.annotation_value"
+                >Annotation: {{ logo.annotation_value }} ({{ logo.annotation_type }})</p>
               </div>
             </div>
           </div>
@@ -44,10 +69,24 @@ export default {
   data: function() {
     return {
       logos: [],
-      noLogoAvailable: false
+      noLogoAvailable: false,
+      valueInput: "",
+      typeInput: ""
     };
   },
-  computed: {},
+  computed: {
+    isValidAnnotation: function() {
+      if (this.logos.length === 0) return false;
+      if (this.typeInput.length === 0) return false;
+      if (this.selectedLogos.length === 0) return false;
+      if (this.typeInput === "packager_code") return true;
+      if (this.valueInput.length === 0) return false;
+      return true;
+    },
+    selectedLogos: function() {
+      return this.logos.filter(l => l.selected === true);
+    }
+  },
   methods: {
     loadLogos: function() {
       axios.get(`${ROBOTOFF_API_URL}/ann/random?count=25`).then(({ data }) => {
@@ -69,7 +108,24 @@ export default {
       });
     },
     toggleSelectLogo: function(logo) {
+      if (logo.annotation_value) return;
       logo.selected = !logo.selected;
+    },
+    sendAnnotations: function() {
+      const params = {
+        annotations: this.selectedLogos.map(logo => ({
+          logo_id: logo.id,
+          value: this.valueInput,
+          type: this.typeInput
+        }))
+      };
+      axios
+        .post(`${ROBOTOFF_API_URL}/images/logos/annotate`, params)
+        .then(() => {
+          this.loadLogos();
+        });
+      this.valueInput = "";
+      this.typeInput = "";
     }
   },
   mounted() {
