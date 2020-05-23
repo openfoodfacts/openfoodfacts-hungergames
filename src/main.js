@@ -5,6 +5,7 @@ import App from './App.vue'
 import QuestionView from './views/QuestionView.vue'
 import SettingsView from './views/SettingsView.vue'
 import InsightListView from './views/InsightListView.vue'
+import LogoAnnotationView from './views/LogoAnnotationView.vue'
 import 'viewerjs/dist/viewer.css'
 
 Vue.use(VueRouter)
@@ -17,6 +18,7 @@ const routes = [
   { path: '/insights', component: InsightListView },
   { path: '/questions', component: QuestionView },
   { path: '/settings', component: SettingsView },
+  { path: '/logos', component: LogoAnnotationView },
 ];
 
 const router = new VueRouter({
