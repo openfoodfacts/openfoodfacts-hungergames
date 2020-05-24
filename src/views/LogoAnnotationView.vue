@@ -13,6 +13,7 @@
               <option value="label">Label</option>
               <option value="brand">Brand</option>
               <option value="packager_code">Packager code</option>
+              <option value="qr_code">QR code</option>
             </select>
           </div>
           <div class="field">
@@ -79,7 +80,8 @@ export default {
       if (this.logos.length === 0) return false;
       if (this.typeInput.length === 0) return false;
       if (this.selectedLogos.length === 0) return false;
-      if (this.typeInput === "packager_code") return true;
+      if (this.typeInput === "packager_code" || this.typeInput === "qr_code")
+        return true;
       if (this.valueInput.length === 0) return false;
       return true;
     },
@@ -112,10 +114,15 @@ export default {
       logo.selected = !logo.selected;
     },
     sendAnnotations: function() {
+      let value = this.valueInput.toLowerCase();
+
+      if (this.typeInput === "packager_code" || this.typeInput === "qr_code") {
+        value = "";
+      }
       const params = {
         annotations: this.selectedLogos.map(logo => ({
           logo_id: logo.id,
-          value: this.valueInput,
+          value: value,
           type: this.typeInput
         }))
       };
