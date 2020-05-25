@@ -35,6 +35,13 @@
               @click="toggleSelectLogo(logo)"
               :class="`${logo.selected ? 'selected' : ''}`"
             >
+              <div class="content">
+                <div class="right floated meta">
+                  <router-link :to="externalLogoURL(logo)" target="_blank">
+                    <i class="external alternate icon small blue"></i>
+                  </router-link>
+                </div>
+              </div>
               <div class="image">
                 <img width="100px" :src="logo.image.url" />
               </div>
@@ -55,6 +62,7 @@
 <script>
 import axios from "axios";
 import { ROBOTOFF_API_URL, OFF_IMAGE_URL } from "../const";
+import { getURLParam } from "../utils";
 
 const transformLogo = logo => {
   const imageUrl = `${OFF_IMAGE_URL}${logo.image.source_image}`;
@@ -72,7 +80,8 @@ export default {
       logos: [],
       noLogoAvailable: false,
       valueInput: "",
-      typeInput: ""
+      typeInput: "",
+      targetLogoId: getURLParam("logo_id")
     };
   },
   computed: {
@@ -91,7 +100,14 @@ export default {
   },
   methods: {
     loadLogos: function() {
-      axios.get(`${ROBOTOFF_API_URL}/ann/random?count=25`).then(({ data }) => {
+      const url =
+        this.targetLogoId.length > 0
+          ? `${ROBOTOFF_API_URL}/ann/${this.targetLogoId}`
+          : `${ROBOTOFF_API_URL}/ann/random`;
+      const params = {
+        count: 25
+      };
+      axios.get(url, { params }).then(({ data }) => {
         const results = data.results;
         axios
           .all(
@@ -133,6 +149,9 @@ export default {
         });
       this.valueInput = "";
       this.typeInput = "";
+    },
+    externalLogoURL: function(logo) {
+      return `/logos?logo_id=${logo.id}`;
     }
   },
   mounted() {
