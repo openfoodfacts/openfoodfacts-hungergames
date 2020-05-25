@@ -72,6 +72,12 @@ const transformLogo = logo => {
   return logo;
 };
 
+const getAnnCount = defaultValue => {
+  const count = getURLParam("count");
+  if (count.length == 0) return defaultValue;
+  return parseInt(count, 10) || defaultValue;
+};
+
 export default {
   name: "InsightListView",
   components: {},
@@ -81,7 +87,8 @@ export default {
       noLogoAvailable: false,
       valueInput: "",
       typeInput: "",
-      targetLogoId: getURLParam("logo_id")
+      targetLogoId: getURLParam("logo_id"),
+      annCount: getAnnCount(25)
     };
   },
   computed: {
@@ -105,7 +112,7 @@ export default {
           ? `${ROBOTOFF_API_URL}/ann/${this.targetLogoId}`
           : `${ROBOTOFF_API_URL}/ann/random`;
       const params = {
-        count: 25
+        count: this.annCount
       };
       axios.get(url, { params }).then(({ data }) => {
         const results = data.results;
