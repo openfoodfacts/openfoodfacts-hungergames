@@ -28,6 +28,14 @@
       </form>
       <div class="ui divider hidden" />
       <div v-if="logos">
+        <div>
+          <p>
+            <span @click="selectLogos(true)" class="borderless-button">Select all</span> /
+            <span @click="selectLogos(false)" class="borderless-button">Unselect all</span>
+          </p>
+        </div>
+        <div class="ui divider hidden" />
+
         <div class="ui grid">
           <div class="three wide column" v-for="logo in logos" :key="logo.id">
             <div
@@ -152,6 +160,7 @@ export default {
       axios
         .post(`${ROBOTOFF_API_URL}/images/logos/annotate`, params)
         .then(() => {
+          this.targetLogoId = "";
           this.loadLogos();
         });
       this.valueInput = "";
@@ -159,6 +168,12 @@ export default {
     },
     externalLogoURL: function(logo) {
       return `/logos?logo_id=${logo.id}`;
+    },
+    selectLogos: function(select) {
+      this.logos.forEach(logo => {
+        if (logo.annotation_value) return;
+        logo.selected = select;
+      });
     }
   },
   mounted() {
@@ -175,5 +190,14 @@ export default {
 .ann-logo.selected {
   background-color: #4a5971;
   color: #ffffff;
+}
+
+.borderless-button {
+  color: #2185d0;
+  cursor: pointer;
+}
+
+.borderless-button:hover {
+  text-decoration: underline;
 }
 </style>
