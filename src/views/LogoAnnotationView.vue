@@ -158,7 +158,9 @@ export default {
         }))
       };
       axios
-        .post(`${ROBOTOFF_API_URL}/images/logos/annotate`, params)
+        .post(`${ROBOTOFF_API_URL}/images/logos/annotate`, params, {
+          withCredentials: true
+        })
         .then(() => {
           this.targetLogoId = "";
           this.loadLogos();
