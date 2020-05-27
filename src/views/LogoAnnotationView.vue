@@ -44,6 +44,11 @@
               :class="`${logo.selected ? 'selected' : ''}`"
             >
               <div class="content">
+                <div class="left floated meta">
+                  <router-link :to="editLogoURL(logo)" target="_blank">
+                    <i class="edit icon"></i>
+                  </router-link>
+                </div>
                 <div class="right floated meta">
                   <router-link :to="externalLogoURL(logo)" target="_blank">
                     <i class="external alternate icon small blue"></i>
@@ -171,6 +176,9 @@ export default {
     externalLogoURL: function(logo) {
       return `/logos?logo_id=${logo.id}`;
     },
+    editLogoURL: function(logo) {
+      return `/logos/${logo.id}`;
+    },
     selectLogos: function(select) {
       this.logos.forEach(logo => {
         if (logo.annotation_value) return;
@@ -185,10 +193,6 @@ export default {
 </script>
 
 <style scoped>
-.ann-logo {
-  cursor: pointer;
-}
-
 .ann-logo.selected {
   background-color: #4a5971;
   color: #ffffff;
