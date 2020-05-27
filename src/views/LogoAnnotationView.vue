@@ -36,37 +36,7 @@
         </div>
         <div class="ui divider hidden" />
 
-        <div class="ui grid">
-          <div class="three wide column" v-for="logo in logos" :key="logo.id">
-            <div
-              class="ui fluid card ann-logo"
-              @click="toggleSelectLogo(logo)"
-              :class="`${logo.selected ? 'selected' : ''}`"
-            >
-              <div class="content">
-                <div class="left floated meta">
-                  <router-link :to="editLogoURL(logo)" target="_blank">
-                    <i class="edit icon"></i>
-                  </router-link>
-                </div>
-                <div class="right floated meta">
-                  <router-link :to="externalLogoURL(logo)" target="_blank">
-                    <i class="external alternate icon small blue"></i>
-                  </router-link>
-                </div>
-              </div>
-              <div class="image">
-                <img width="100px" :src="logo.image.url" />
-              </div>
-              <div class="content">
-                <p v-if="logo.distance">Distance: {{ logo.distance }}</p>
-                <p
-                  v-if="logo.annotation_value"
-                >Annotation: {{ logo.annotation_value }} ({{ logo.annotation_type }})</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <LogoCardGrid :logos="logos" v-on:toggle-select-logo="toggleSelectLogo" />
       </div>
     </div>
   </div>
@@ -75,6 +45,7 @@
 <script>
 import axios from "axios";
 import { ROBOTOFF_API_URL, OFF_IMAGE_URL } from "../const";
+import LogoCardGrid from "../components/LogoCardGrid";
 import { getURLParam } from "../utils";
 
 const transformLogo = logo => {
@@ -93,7 +64,7 @@ const getAnnCount = defaultValue => {
 
 export default {
   name: "InsightListView",
-  components: {},
+  components: { LogoCardGrid },
   data: function() {
     return {
       logos: [],
@@ -146,8 +117,9 @@ export default {
       });
     },
     toggleSelectLogo: function(logo) {
-      if (logo.annotation_value) return;
-      logo.selected = !logo.selected;
+      const logoId = logo.id;
+      const l = this.logos.filter(logo => logo.id === logoId)[0];
+      l.selected = !l.selected;
     },
     sendAnnotations: function() {
       let value = this.valueInput.toLowerCase();
@@ -173,12 +145,6 @@ export default {
       this.valueInput = "";
       this.typeInput = "";
     },
-    externalLogoURL: function(logo) {
-      return `/logos?logo_id=${logo.id}`;
-    },
-    editLogoURL: function(logo) {
-      return `/logos/${logo.id}`;
-    },
     selectLogos: function(select) {
       this.logos.forEach(logo => {
         if (logo.annotation_value) return;
@@ -193,11 +159,6 @@ export default {
 </script>
 
 <style scoped>
-.ann-logo.selected {
-  background-color: #4a5971;
-  color: #ffffff;
-}
-
 .borderless-button {
   color: #2185d0;
   cursor: pointer;
