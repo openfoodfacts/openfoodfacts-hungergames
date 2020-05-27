@@ -5,6 +5,7 @@ import App from './App.vue'
 import QuestionView from './views/QuestionView.vue'
 import SettingsView from './views/SettingsView.vue'
 import InsightListView from './views/InsightListView.vue'
+import LogoSearchView from './views/LogoSearchView.vue'
 import LogoAnnotationView from './views/LogoAnnotationView.vue'
 import LogoUpdateView from './views/LogoUpdateView.vue'
 import 'viewerjs/dist/viewer.css'
@@ -20,6 +21,7 @@ const routes = [
   { path: '/questions', component: QuestionView },
   { path: '/settings', component: SettingsView },
   { path: '/logos', component: LogoAnnotationView },
+  { path: '/logos/search', component: LogoSearchView },
   { path: '/logos/:id', component: LogoUpdateView },
 ];
 
