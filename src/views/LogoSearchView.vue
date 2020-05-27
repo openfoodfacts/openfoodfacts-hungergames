@@ -30,6 +30,7 @@
       </form>
       <div class="ui divider hidden" />
       <div v-if="logos.length">
+        <p>Number of results: {{ resultCount }}</p>
         <LogoCardGrid :logos="logos" :selectable="false" />
       </div>
       <div v-else>
@@ -62,6 +63,7 @@ export default {
       value: "",
       barcode: "",
       type: "",
+      resultCount: 0,
       count: 25
     };
   },
@@ -88,6 +90,7 @@ export default {
 
       axios.get(url, { params }).then(({ data }) => {
         this.logos = data.logos.map(transformLogo);
+        this.resultCount = data.count;
       });
     }
   },
