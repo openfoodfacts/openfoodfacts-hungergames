@@ -3,6 +3,7 @@
     <div>
       <h2>Logo Detail</h2>
       <p>Logo ID: {{ logoId }}</p>
+      <p>Barcode: {{ barcode }}</p>
       <p>
         <a :href="imageURL">Full Image</a>
       </p>
@@ -51,7 +52,8 @@ export default {
       annotationValue: "",
       annotationType: "",
       imageURL: "",
-      cropURL: ""
+      cropURL: "",
+      barcode: ""
     };
   },
   computed: {
@@ -68,6 +70,7 @@ export default {
           this.cropURL = getCropURL(data);
           this.annotationValue = data.annotation_value;
           this.annotationType = data.annotation_type;
+          this.barcode = data.image.barcode;
         });
     },
     updateLogo: function() {
