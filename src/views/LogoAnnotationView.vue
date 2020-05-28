@@ -95,9 +95,14 @@ export default {
         this.targetLogoId.length > 0
           ? `${ROBOTOFF_API_URL}/ann/${this.targetLogoId}`
           : `${ROBOTOFF_API_URL}/ann/random`;
+
       const params = {
         count: this.annCount
       };
+
+      const index = getURLParam("index");
+      if (index.length > 0) params.index = index;
+
       axios.get(url, { params }).then(({ data }) => {
         const results = data.results;
         axios
