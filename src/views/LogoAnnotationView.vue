@@ -94,7 +94,7 @@ export default {
       const url =
         this.targetLogoId.length > 0
           ? `${ROBOTOFF_API_URL}/ann/${this.targetLogoId}`
-          : `${ROBOTOFF_API_URL}/ann/random`;
+          : `${ROBOTOFF_API_URL}/ann`;
 
       const params = {
         count: this.annCount
