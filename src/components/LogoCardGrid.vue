@@ -5,7 +5,7 @@
         <div
           class="ui fluid card ann-logo"
           @click="toggleSelectLogo(logo)"
-          :class="`${logo.selected ? 'selected' : ''}`"
+          :class="{selected: logo.selected, annotated: logo.annotation_type }"
         >
           <div class="content">
             <div class="left floated meta">
@@ -70,6 +70,11 @@ export default {
 <style scoped>
 .ann-logo.selected {
   background-color: #4a5971;
+  color: #ffffff;
+}
+
+.ann-logo.annotated {
+  background-color: #a6a6a6;
   color: #ffffff;
 }
 </style>
