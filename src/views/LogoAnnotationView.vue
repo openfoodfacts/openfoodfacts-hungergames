@@ -80,7 +80,7 @@ export default {
       valueInput: "",
       typeInput: "",
       targetLogoId: getURLParam("logo_id"),
-      annCount: getAnnCount(25)
+      annCount: getAnnCount(100)
     };
   },
   computed: {
