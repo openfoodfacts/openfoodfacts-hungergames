@@ -35,8 +35,16 @@
           </p>
         </div>
         <div class="ui divider hidden" />
-
-        <LogoCardGrid :logos="logos" v-on:toggle-select-logo="toggleSelectLogo" />
+        <LogoCardGrid
+          v-if="selectedLogos.length > 0"
+          :logos="selectedLogos"
+          v-on:toggle-select-logo="toggleSelectLogo"
+        />
+        <LogoCardGrid
+          :logos="unselectedLogos"
+          v-on:toggle-select-logo="toggleSelectLogo"
+          v-if="unselectedLogos.length > 0"
+        />
       </div>
     </div>
   </div>
@@ -87,6 +95,9 @@ export default {
     },
     selectedLogos: function() {
       return this.logos.filter(l => l.selected === true);
+    },
+    unselectedLogos: function() {
+      return this.logos.filter(l => l.selected === false);
     }
   },
   methods: {
