@@ -74,7 +74,7 @@ export default {
 }
 
 .ann-logo.annotated {
-  background-color: #a6a6a6;
+  background-color: #797979;
   color: #ffffff;
 }
 </style>
