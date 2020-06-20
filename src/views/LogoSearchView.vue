@@ -17,6 +17,7 @@
               <option value="label">Label</option>
               <option value="brand">Brand</option>
               <option value="packager_code">Packager code</option>
+              <option value="packaging">Packaging</option>
               <option value="qr_code">QR code</option>
             </select>
           </div>
