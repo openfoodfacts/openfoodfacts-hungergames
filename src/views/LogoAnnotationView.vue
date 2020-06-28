@@ -15,6 +15,8 @@
               <option value="packager_code">Packager code</option>
               <option value="packaging">Packaging</option>
               <option value="qr_code">QR code</option>
+              <option value="category">Category</option>
+              <option value="nutrition_label">Nutrition label</option>
             </select>
           </div>
           <div class="field">
