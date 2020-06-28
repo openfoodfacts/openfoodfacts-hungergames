@@ -21,6 +21,7 @@
               <option value="brand">Brand</option>
               <option value="packager_code">Packager code</option>
               <option value="qr_code">QR code</option>
+              <option value="store">Store</option>
             </select>
           </div>
           <div class="field">
