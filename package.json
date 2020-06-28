@@ -10,6 +10,7 @@
   "dependencies": {
     "@yaireo/tagify": "^3.2.6",
     "axios": "^0.19.1",
+    "semantic-ui-vue": "^0.11.0",
     "v-viewer": "^1.5.1",
     "vue": "^2.6.10",
     "vue-router": "^3.3.4"

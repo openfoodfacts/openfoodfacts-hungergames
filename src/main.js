@@ -9,7 +9,9 @@ import LogoSearchView from './views/LogoSearchView.vue'
 import LogoAnnotationView from './views/LogoAnnotationView.vue'
 import LogoUpdateView from './views/LogoUpdateView.vue'
 import 'viewerjs/dist/viewer.css'
+import SuiVue from 'semantic-ui-vue'
 
+Vue.use(SuiVue)
 Vue.use(VueRouter)
 Vue.use(Viewer)
 Vue.config.productionTip = false
@@ -28,8 +30,6 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   routes,
-  linkActiveClass: "partial-active",
-  linkExactActiveClass: "active",
 });
 new Vue({
   router,
