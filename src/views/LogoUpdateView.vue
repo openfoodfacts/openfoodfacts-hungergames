@@ -20,7 +20,10 @@
               <option value="label">Label</option>
               <option value="brand">Brand</option>
               <option value="packager_code">Packager code</option>
+              <option value="packaging">Packaging</option>
               <option value="qr_code">QR code</option>
+              <option value="category">Category</option>
+              <option value="nutrition_label">Nutrition label</option>
               <option value="store">Store</option>
             </select>
           </div>
