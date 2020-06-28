@@ -124,16 +124,17 @@ export default {
       axios.get(url, { params }).then(({ data }) => {
         const results = data.results;
         axios
-          .all(
-            results.map(r =>
-              axios(`${ROBOTOFF_API_URL}/images/logos/${r.logo_id}`)
-            )
+          .get(
+            `${ROBOTOFF_API_URL}/images/logos?logo_ids=${results
+              .map(r => r.logo_id)
+              .join(",")}`
           )
-          .then(responses => {
+          .then(response => {
+            const logoData = response.data.logos;
             this.logos = results
-              .map((r, i) => ({
+              .map(r => ({
                 distance: r.distance,
-                ...responses[i].data
+                ...logoData.filter(l => l.id == r.logo_id)[0]
               }))
               .map(transformLogo);
           });
