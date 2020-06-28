@@ -9,18 +9,12 @@
             <router-link class="item" to="/logos">Logos</router-link>
 
             <sui-dropdown-divider />
-            <sui-dropdown-header>Personalize</sui-dropdown-header>
+            <sui-dropdown-header>Manage</sui-dropdown-header>
 
             <router-link class="item" to="/insights">Insights</router-link>
             <router-link class="item" to="/settings">Settings</router-link>
           </sui-dropdown-menu>
         </sui-dropdown>
-
-        <sui-menu-menu position="right">
-          <router-link class="item" to="/settings">
-            <sui-icon name="cog" />
-          </router-link>
-        </sui-menu-menu>
       </sui-menu>
     </div>
 
