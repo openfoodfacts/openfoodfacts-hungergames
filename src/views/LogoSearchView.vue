@@ -21,6 +21,7 @@
               <option value="qr_code">QR code</option>
               <option value="category">Category</option>
               <option value="nutrition_label">Nutrition label</option>
+              <option value="store">Store</option>
             </select>
           </div>
           <div class="field">
