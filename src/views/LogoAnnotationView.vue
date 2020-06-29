@@ -93,12 +93,10 @@ export default {
       if (this.typeInput.length === 0) return false;
       if (this.selectedLogos.length === 0) return false;
       if (
-        this.typeInput === "packager_code" ||
-        this.typeInput === "qr_code" ||
-        this.typeInput === "packaging"
+        this.valueInput.length === 0 &&
+        ["label", "brand", "category", "store"].includes(this.typeInput)
       )
-        return true;
-      if (this.valueInput.length === 0) return false;
+        return false;
       return true;
     },
     selectedLogos: function() {
