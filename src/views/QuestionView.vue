@@ -98,7 +98,7 @@
 
 <script>
 import axios from "axios";
-import { localSettings } from "../settings";
+import { getLang } from "../settings";
 import { ROBOTOFF_API_URL } from "../const";
 import { annotate as robotoffAnnotate } from "../robotoff";
 import Product from "../components/Product";
@@ -315,7 +315,7 @@ export default {
     },
     loadQuestions: function() {
       const count = 10;
-      const lang = localSettings.fetch().lang || "en";
+      const lang = getLang();
       const sortBy = this.sortByPopularity ? "popular" : "random";
 
       const params = {
