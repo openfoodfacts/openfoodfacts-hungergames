@@ -7,7 +7,6 @@
         <select v-model="$i18n.locale">
           <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
         </select>
-        <!-- <input placeholder="Language" v-model="lang" /> -->
         <button class="ui button primary" @click="saveLang">{{$t('label.save')}}</button>
       </div>
     </div>
@@ -16,16 +15,13 @@
 
 <script>
 import { localSettings } from "../settings";
+import messages from '../i18n/messages'
 
 export default {
   name: "SettingsView",
   props: [],
   data: function() {
-    return { langs: ['en', 'it'] }
-    // const settings = localSettings.fetch();
-    // return {
-    //   lang: settings.lang || "en"
-    // };
+    return { langs: Object.keys(messages) }
   },
   methods: {
     saveLang: function() {
