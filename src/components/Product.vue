@@ -1,8 +1,8 @@
 <template>
   <div v-if="loaded">
     <h3>{{ productName }}</h3>
-    <a target="_blank" :href="productUrl" class="ui button primary">View</a>
-    <a target="_blank" :href="productEditUrl" class="ui button">Edit</a>
+    <a target="_blank" :href="productUrl" class="ui button primary">{{$t('label.view')}}</a>
+    <a target="_blank" :href="productEditUrl" class="ui button">{{$t('label.edit')}}</a>
     <div class="ui divider"></div>
 
     <div v-if="imagesPreview.length > 0">
@@ -20,15 +20,15 @@
       <div class="ui divider"></div>
     </div>
     <p v-if="brands">
-      <strong>Brands :</strong>
+      <strong>{{$t('label.brands')}} :</strong>
       {{ brands }}
     </p>
     <p v-if="ingredientsText">
-      <strong>Ingredients:</strong>
+      <strong>{{$t('label.ingredients')}}:</strong>
       {{ ingredientsText }}
     </p>
     <p v-if="countries">
-      <strong>Countries:</strong>
+      <strong>{{$t('label.countries')}}:</strong>
       {{ countries }}
     </p>
   </div>
@@ -117,7 +117,7 @@ export default {
   },
   computed: {
     loadImageButtonText: function() {
-      if (this.loadImage) return "Hide images (faster loading)";
+      if (this.loadImage) return this.$t("label.hide_images");
       else return "Display images";
     },
     productUrl: function() {

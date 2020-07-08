@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueI18n from 'vue-i18n'
 import Viewer from 'v-viewer'
 import App from './App.vue'
 import QuestionView from './views/QuestionView.vue'
@@ -10,10 +11,13 @@ import LogoAnnotationView from './views/LogoAnnotationView.vue'
 import LogoUpdateView from './views/LogoUpdateView.vue'
 import 'viewerjs/dist/viewer.css'
 import SuiVue from 'semantic-ui-vue'
+import messages from './i18n/messages'
+import { getLang } from "./settings";
 
 Vue.use(SuiVue)
 Vue.use(VueRouter)
 Vue.use(Viewer)
+Vue.use(VueI18n)
 Vue.config.productionTip = false
 
 
@@ -31,7 +35,17 @@ const router = new VueRouter({
   mode: 'history',
   routes,
 });
+
+
+
+// Create VueI18n instance with options
+const i18n = new VueI18n({
+  locale: getLang(), // set locale
+  messages, // set locale messages
+})
+
 new Vue({
   router,
+  i18n,
   render: h => h(App)
 }).$mount('#app')

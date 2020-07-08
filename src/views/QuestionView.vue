@@ -8,19 +8,19 @@
           v-for="insightType of availableInsightTypes"
           :key="insightType"
           @click="selectInsightType(insightType)"
-        >{{ insightTypesNames[insightType] }}</div>
+        >{{ $t("label." + insightType) }}</div>
         <div class="ui form">
           <div class="ui icon input" id="value-tag-input">
             <input
               class="ui input"
-              placeholder="value (fanta, en:organic,...)"
+              :placeholder="$t('label.value_search')"
               v-model="valueTagInput"
             />
             <i @click="clearValueTagInput()" v-if="valueTagInput" class="times link icon"></i>
           </div>
           <div class="ui toggle checkbox" style="margin-top: 0.5rem;">
             <input v-model="sortByPopularity" type="checkbox" name="sortBy" />
-            <label>Sort by popularity</label>
+            <label>{{ $t("label.popularity_sort") }}</label>
           </div>
         </div>
         <div class="ui divider" />
@@ -56,19 +56,19 @@
               data-tooltip="Shortcut: n"
               class="ui button red annotate"
               @click="annotate(0)"
-            >No</button>
+            >{{$t('label.no')}}</button>
             <button
               data-inverted
               data-tooltip="Shortcut: k"
               class="ui button annotate"
               @click="annotate(-1)"
-            >Skip</button>
+            >{{$t('label.skip')}}</button>
             <button
               data-inverted
               data-tooltip="Shortcut: o"
               class="ui button green annotate"
               @click="annotate(1)"
-            >Yes</button>
+            >{{$t('label.yes')}}</button>
           </div>
         </div>
         <div class="flex-center" v-else style="margin-top: 100px;">
@@ -78,7 +78,7 @@
             </div>
           </div>
           <div v-if="noRemainingQuestion">
-            <h2>No questions remaining</h2>
+            <h2>{{$t('label.no_questions_remaining')}}</h2>
           </div>
         </div>
       </div>
