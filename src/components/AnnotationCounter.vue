@@ -1,16 +1,16 @@
 <template>
   <div class="main-column">
-    <h3>{{$t('label.annotations')}}</h3>
+    <h3>{{$t('questions.annotations')}}</h3>
     <p>
-      {{$t('label.remaining_annotations')}}
+      {{$t('questions.remaining_annotations')}}
       <strong>{{ remainingCount }}</strong>
     </p>
     <p>
-      {{$t('label.annotated_annotations')}}:
+      {{$t('questions.annotated_annotations')}}:
       <strong>{{ annotatedCount }}</strong>
     </p>
     <div class="ui divider" />
-    <h3>{{$t('label.last_annotations')}}</h3>
+    <h3>{{$t('questions.last_annotations')}}</h3>
     <div v-for="annotation in sortedLastAnnotations" :key="annotation.question.insight_id">
       <a
         target="_blank"

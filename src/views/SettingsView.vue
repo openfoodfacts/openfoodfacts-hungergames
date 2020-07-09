@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="ui container">
-      <h2>{{$t('label.settings')}}</h2>
+      <h2>{{$t('settings.settings')}}</h2>
       <div class="ui action input labeled">
-        <div class="ui label">{{$t('label.language')}}</div>
+        <div class="ui label">{{$t('settings.language')}}</div>
         <select v-model="selectedLang">
           <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
         </select>
-        <button class="ui button primary" @click="saveLang">{{$t('label.save')}}</button>
+        <button class="ui button primary" @click="saveLang">{{$t('settings.save')}}</button>
       </div>
     </div>
   </div>

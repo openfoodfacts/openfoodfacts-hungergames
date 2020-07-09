@@ -39,7 +39,7 @@
       </div>
       <div v-else>
         <p>
-          <strong>{{$t("logos.nofound")}}</strong>
+          <strong>{{$t("logos.no_found")}}</strong>
         </p>
       </div>
     </div>

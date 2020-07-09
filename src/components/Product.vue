@@ -1,8 +1,8 @@
 <template>
   <div v-if="loaded">
     <h3>{{ productName }}</h3>
-    <a target="_blank" :href="productUrl" class="ui button primary">{{$t('label.view')}}</a>
-    <a target="_blank" :href="productEditUrl" class="ui button">{{$t('label.edit')}}</a>
+    <a target="_blank" :href="productUrl" class="ui button primary">{{$t('questions.view')}}</a>
+    <a target="_blank" :href="productEditUrl" class="ui button">{{$t('questions.edit')}}</a>
     <div class="ui divider"></div>
 
     <div v-if="imagesPreview.length > 0">
@@ -20,15 +20,15 @@
       <div class="ui divider"></div>
     </div>
     <p v-if="brands">
-      <strong>{{$t('label.brands')}} :</strong>
+      <strong>{{$t('questions.brands')}} :</strong>
       {{ brands }}
     </p>
     <p v-if="ingredientsText">
-      <strong>{{$t('label.ingredients')}}:</strong>
+      <strong>{{$t('questions.ingredients')}}:</strong>
       {{ ingredientsText }}
     </p>
     <p v-if="countries">
-      <strong>{{$t('label.countries')}}:</strong>
+      <strong>{{$t('questions.countries')}}:</strong>
       {{ countries }}
     </p>
   </div>
@@ -117,8 +117,8 @@ export default {
   },
   computed: {
     loadImageButtonText: function() {
-      if (this.loadImage) return this.$t("label.hide_images");
-      else return this.$t("label.display_images");
+      if (this.loadImage) return this.$t("questions.hide_images");
+      else return this.$t("questions.display_images");
     },
     productUrl: function() {
       if (this.barcode === null) {

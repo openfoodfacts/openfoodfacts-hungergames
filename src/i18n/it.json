@@ -1,5 +1,5 @@
 {
-  "label": {
+  "questions": {
     "category": "categoria",
     "label": "etichetta",
     "brand": "marchio",
@@ -20,10 +20,7 @@
     "annotations": "Annotazioni",
     "last_annotations": "Annotazioni recenti",
     "remaining_annotations": "Rimanenti:",
-    "annotated_annotations": "Annotate",
-    "settings": "Impostazioni",
-    "language": "Lingua",
-    "save": "Salva"
+    "annotated_annotations": "Annotate"
   },
   "menu" : {
     "games": "Giochi",
@@ -31,7 +28,7 @@
     "logos": "Loghi",
     "manage": "Gestisci",
     "insights": "Approfondimenti",
-    "settings": "@:label.settings"
+    "settings": "@:settings.settings"
   },
   "insights" : {
     "insights": "Approfondimenti",
@@ -81,6 +78,12 @@
     "id": "ID Logo:",
     "barcode": "Codice a barre:",
     "full_image": "Immagine a grandezza naturale",
-    "update": "Aggiorna"
+    "update": "Aggiorna",
+    "no_found": "Nessun logo trovato"
+  },
+  "settings" : {
+    "settings": "Impostazioni",
+    "language": "Lingua",
+    "save": "Salva"
   }
 }
