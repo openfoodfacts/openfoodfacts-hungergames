@@ -3,6 +3,6 @@ import en from './en'
 
 
 export default {
-  en: en,
-  it: it
+  en,
+  it
 }

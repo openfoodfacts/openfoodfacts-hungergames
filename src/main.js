@@ -37,11 +37,10 @@ const router = new VueRouter({
 });
 
 
-
-// Create VueI18n instance with options
 const i18n = new VueI18n({
-  locale: getLang(), // set locale
-  messages, // set locale messages
+  locale: getLang(),
+  messages,
+  fallbackLocale: 'en'
 })
 
 new Vue({

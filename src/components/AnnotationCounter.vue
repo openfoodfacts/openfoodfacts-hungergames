@@ -2,7 +2,7 @@
   <div class="main-column">
     <h3>{{$t('label.annotations')}}</h3>
     <p>
-      {{$t('label.remaining_annotations')}}:
+      {{$t('label.remaining_annotations')}}
       <strong>{{ remainingCount }}</strong>
     </p>
     <p>

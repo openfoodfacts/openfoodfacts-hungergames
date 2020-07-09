@@ -118,7 +118,7 @@ export default {
   computed: {
     loadImageButtonText: function() {
       if (this.loadImage) return this.$t("label.hide_images");
-      else return "Display images";
+      else return this.$t("label.display_images");
     },
     productUrl: function() {
       if (this.barcode === null) {

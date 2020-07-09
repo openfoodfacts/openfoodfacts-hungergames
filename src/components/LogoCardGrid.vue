@@ -23,10 +23,10 @@
             <img width="100px" :src="logo.image.url" />
           </div>
           <div class="content">
-            <p v-if="logo.distance">Distance: {{ logo.distance.toFixed(1) }}</p>
+            <p v-if="logo.distance">{{$t("logos.distance")}} {{ logo.distance.toFixed(1) }}</p>
             <p
               v-if="logo.annotation_value"
-            >Annotation: {{ logo.annotation_value }} ({{ logo.annotation_type }})</p>
+            >{{$t("logos.annotation")}}{{ logo.annotation_value }} ({{ logo.annotation_type }})</p>
           </div>
         </div>
       </div>
