@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Viewer from 'v-viewer'
 import App from './App.vue'
 import QuestionView from './views/QuestionView.vue'
+import NutritionView from './views/NutritionView.vue'
 import SettingsView from './views/SettingsView.vue'
 import InsightListView from './views/InsightListView.vue'
 import LogoSearchView from './views/LogoSearchView.vue'
@@ -21,6 +22,7 @@ const routes = [
   { path: '/', redirect: '/questions' },
   { path: '/insights', component: InsightListView },
   { path: '/questions', component: QuestionView },
+  { path: '/nutritions', component: NutritionView },
   { path: '/settings', component: SettingsView },
   { path: '/logos', component: LogoAnnotationView },
   { path: '/logos/search', component: LogoSearchView },

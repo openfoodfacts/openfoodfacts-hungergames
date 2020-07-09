@@ -7,6 +7,7 @@
             <sui-dropdown-header>Games</sui-dropdown-header>
             <router-link class="item" to="/questions">Questions</router-link>
             <router-link class="item" to="/logos">Logos</router-link>
+            <router-link class="item" to="/nutritions">Nutritions</router-link>
 
             <sui-dropdown-divider />
             <sui-dropdown-header>Manage</sui-dropdown-header>
