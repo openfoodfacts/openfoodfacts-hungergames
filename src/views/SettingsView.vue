@@ -4,7 +4,7 @@
       <h2>{{$t('label.settings')}}</h2>
       <div class="ui action input labeled">
         <div class="ui label">{{$t('label.language')}}</div>
-        <select v-model="$i18n.locale">
+        <select v-model="selectedLang">
           <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
         </select>
         <button class="ui button primary" @click="saveLang">{{$t('label.save')}}</button>
@@ -21,10 +21,14 @@ export default {
   name: "SettingsView",
   props: [],
   data: function() {
-    return { langs: Object.keys(messages) }
+    return {
+      selectedLang: this.$i18n.locale,
+      langs: Object.keys(messages)
+    }
   },
   methods: {
     saveLang: function() {
+      this.$i18n.locale = this.selectedLang;
       localSettings.update("lang", this.$i18n.locale);
     }
   }
