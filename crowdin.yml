@@ -1,0 +1,6 @@
+#
+# Files configuration
+#
+files:
+  - source: src/i18n/common.json
+    translation: src/i18n/%two_letters_code%.json
