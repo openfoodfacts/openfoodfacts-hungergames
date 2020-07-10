@@ -31,10 +31,16 @@ export const getUsername = () => {
 
 export const getProductUrl = barcode => {
     const lang = getLang();
-    return `https://world-${lang}.openfoodfacts.org/product/${barcode}`;
+    if lang != "en":
+        return `https://world-${lang}.openfoodfacts.org/product/${barcode}`;
+    else:
+        return `https://world.openfoodfacts.org/product/${barcode}`;
 }
 
 export const getProductEditUrl = barcode => {
     const lang = getLang();
-    return `https://world-${lang}.openfoodfacts.org/cgi/product.pl?type=edit&code=${barcode}`;
+    if lang != "en":
+        return `https://world-${lang}.openfoodfacts.org/cgi/product.pl?type=edit&code=${barcode}`;
+    else:
+        return `https://world.openfoodfacts.org/cgi/product.pl?type=edit&code=${barcode}`;
 }
