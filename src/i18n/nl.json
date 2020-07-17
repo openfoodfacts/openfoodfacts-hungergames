@@ -32,7 +32,7 @@
   },
   "insights": {
     "insights": "Insights",
-    "barcode": "Streepjescode",
+    "barcode": "Barcode",
     "barcode_placeholder": "barcode",
     "value_tag": "Value tag",
     "value_placeholder": "ex: en:mueslis, bjorg,...",
@@ -86,6 +86,6 @@
   "settings": {
     "settings": "Instellingen",
     "language": "Taal",
-    "save": "Bewaar"
+    "save": "Opslaan"
   }
 }
