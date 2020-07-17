@@ -1,5 +1,5 @@
 {
-  "questions" : {
+  "questions": {
     "category": "category",
     "label": "label",
     "brand": "brand",
@@ -22,7 +22,7 @@
     "remaining_annotations": "Remaining:",
     "annotated_annotations": "Annotated"
   },
-  "menu" : {
+  "menu": {
     "games": "Games",
     "questions": "Questions",
     "logos": "Logos",
@@ -30,7 +30,7 @@
     "insights": "Insights",
     "settings": "@:settings.settings"
   },
-  "insights" : {
+  "insights": {
     "insights": "Insights",
     "barcode": "Barcode",
     "barcode_placeholder": "barcode",
@@ -79,9 +79,11 @@
     "barcode": "Barcode:",
     "full_image": "Full image",
     "update": "Update",
-    "no_found": "No logo found"
+    "no_found": "No logo found",
+    "search": "Search",
+    "number_of_results": "Number of results:"
   },
-  "settings" : {
+  "settings": {
     "settings": "Settings",
     "language": "Language",
     "save": "Save"
