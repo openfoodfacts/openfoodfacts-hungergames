@@ -1,10 +1,10 @@
 {
   "questions": {
-    "category": "kategorija",
-    "label": "oznaka",
-    "brand": "brend",
+    "category": "категорија",
+    "label": "label",
+    "brand": "бренд",
     "brands": "Брендови",
-    "ingredients": "Sastojci",
+    "ingredients": "Ingredients",
     "product_weight": "product weight",
     "popularity_sort": "Sort by popularity",
     "no": "Ne",
@@ -49,7 +49,7 @@
     "skipped": "Skipped (-1)",
     "rejected": "Rejected (0)",
     "accepted": "Accepted (1)",
-    "search": "Pretraži",
+    "search": "Search",
     "count": "Count",
     "id": "Id",
     "value": "Value",
@@ -69,7 +69,7 @@
     "label": "Oznaka",
     "brand": "Brend",
     "packager_code": "Packager code",
-    "packaging": "Ambalaža",
+    "packaging": "Packaging",
     "qr_code": "QR code",
     "category": "Kategorija",
     "nutrition_label": "Nutrition label",
@@ -80,11 +80,11 @@
     "full_image": "Full image",
     "update": "Update",
     "no_found": "No logo found",
-    "search": "Pretraži",
+    "search": "Search",
     "number_of_results": "Number of results:"
   },
   "settings": {
-    "settings": "Podešavanja",
+    "settings": "Settings",
     "language": "Jezik",
     "save": "Sačuvaj"
   }
