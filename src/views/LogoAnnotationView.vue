@@ -1,23 +1,23 @@
 <template>
   <div class="ui container">
     <div>
-      <h2>Logo annotations</h2>
+      <h2>{{$t("logos.annotations")}}</h2>
       <form class="ui form" v-on:submit.prevent="sendAnnotations">
         <div class="three fields">
           <div class="field">
-            <input type="text" name="value" placeholder="Value" v-model.trim="valueInput" />
+            <input type="text" name="value" :placeholder="$t('logos.value')" v-model.trim="valueInput" />
           </div>
           <div class="field">
             <select class="ui fluid dropdown" v-model="typeInput">
-              <option value>Type</option>
-              <option value="label">Label</option>
-              <option value="brand">Brand</option>
-              <option value="packager_code">Packager code</option>
-              <option value="packaging">Packaging</option>
-              <option value="qr_code">QR code</option>
-              <option value="category">Category</option>
-              <option value="nutrition_label">Nutrition label</option>
-              <option value="store">Store</option>
+              <option value>{{$t("logos.type")}}</option>
+              <option value="label">{{$t("logos.label")}}</option>
+              <option value="brand">{{$t("logos.brand")}}</option>
+              <option value="packager_code">{{$t("logos.packager_code")}}</option>
+              <option value="packaging">{{$t("logos.packaging")}}</option>
+              <option value="qr_code">{{$t("logos.qr_code")}}</option>
+              <option value="category">{{$t("logos.category")}}</option>
+              <option value="nutrition_label">{{$t("logos.nutrition_label")}}</option>
+              <option value="store">{{$t("logos.store")}}</option>
             </select>
           </div>
           <div class="field">
@@ -26,7 +26,7 @@
               class="ui button primary"
               tabindex="0"
               :class="{ disabled: !isValidAnnotation }"
-            >Submit</button>
+            >{{$t("logos.submit")}}</button>
           </div>
         </div>
       </form>
@@ -34,8 +34,8 @@
       <div v-if="logos">
         <div>
           <p>
-            <span @click="selectLogos(true)" class="borderless-button">Select all</span> /
-            <span @click="selectLogos(false)" class="borderless-button">Unselect all</span>
+            <span @click="selectLogos(true)" class="borderless-button">{{$t("logos.select_all")}}</span> /
+            <span @click="selectLogos(false)" class="borderless-button">{{$t("logos.unselect_all")}}</span>
           </p>
         </div>
         <div class="ui divider hidden" />

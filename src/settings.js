@@ -16,5 +16,5 @@ export const localSettings = {
 
 export const getLang = () => {
     const settings = localSettings.fetch();
-    return settings.lang || "en";
+    return settings.lang || (navigator.language || navigator.userLanguage).split('-')[0];
 }

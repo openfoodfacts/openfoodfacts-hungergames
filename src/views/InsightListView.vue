@@ -1,58 +1,58 @@
 <template>
   <div class="ui container">
     <div>
-      <h2>Insights</h2>
+      <h2>{{$t('insights.insights')}}</h2>
       <div class="ui form">
         <div class="fields">
           <div class="field">
-            <label>Barcode</label>
-            <input placeholder="Barcode" v-model="barcodeFilter" />
+            <label>{{$t('insights.barcode')}}</label>
+            <input :placeholder="$t('insights.barcode_placeholder')" v-model="barcodeFilter" />
           </div>
           <div class="field">
-            <label>Value tag</label>
-            <input type="text" placeholder="ex: en:mueslis, bjorg,..." v-model="valueTagFilter" />
+            <label>{{$t('insights.value_tag')}}</label>
+            <input type="text" :placeholder="$t('insights.value_placeholder')" v-model="valueTagFilter" />
           </div>
           <div class="field">
-            <label>Type</label>
+            <label>{{$t('insights.type')}}</label>
             <select class="ui search dropdown" v-model="insightTypeFilter">
-              <option value>All</option>
-              <option value="label">Label</option>
-              <option value="product_weight">Product weight</option>
-              <option value="category">Category</option>
-              <option value="expiration_date">Expiration date</option>
-              <option value="packager_code">Packager code</option>
+              <option value>{{$t('insights.all')}}</option>
+              <option value="label">{{$t('insights.label')}}</option>
+              <option value="product_weight">{{$t('insights.product_weight')}}</option>
+              <option value="category">{{$t('insights.category')}}</option>
+              <option value="expiration_date">{{$t('insights.expiration_date')}}</option>
+              <option value="packager_code">{{$t('insights.packager_code')}}</option>
             </select>
           </div>
           <div class="field">
-            <label>Annotated</label>
+            <label>{{$t('insights.annotated')}}</label>
             <select class="ui search dropdown" v-model="annotationFilter">
-              <option value>All</option>
-              <option value="-1">Skipped (-1)</option>
-              <option value="0">Rejected (0)</option>
-              <option value="1">Accepted (1)</option>
-              <option value="not_annotated">Not annotated</option>
+              <option value>{{$t('insights.all')}}</option>
+              <option value="-1">{{$t('insights.skipped')}}</option>
+              <option value="0">{{$t('insights.rejected')}}</option>
+              <option value="1">{{$t('insights.accepted')}}</option>
+              <option value="not_annotated">{{$t('insights.not_annotated')}}</option>
             </select>
           </div>
         </div>
-        <input class="ui submit button primary" type="submit" value="Search" @click="loadInsights" />
+        <input class="ui submit button primary" type="submit" :value="$t('insights.search')" @click="loadInsights" />
       </div>
       <div class="ui divider" />
       <p>
-        <strong>Count:</strong>
+        <strong>{{$t('insights.count')}}</strong>
         {{ resultCount }}
       </p>
     </div>
     <table class="ui celled table">
       <thead>
         <tr>
-          <th>Barcode</th>
-          <th>Id</th>
-          <th>Type</th>
-          <th>Value</th>
-          <th>Created at</th>
-          <th>Completed at</th>
-          <th>Annotation</th>
-          <th>Automatic</th>
+          <th>{{$t('insights.barcode')}}</th>
+          <th>{{$t('insights.id')}}</th>
+          <th>{{$t('insights.type')}}</th>
+          <th>{{$t('insights.value')}}</th>
+          <th>{{$t('insights.created_at')}}</th>
+          <th>{{$t('insights.completed_at')}}</th>
+          <th>{{$t('insights.annotation')}}</th>
+          <th>{{$t('insights.automatic')}}</th>
         </tr>
       </thead>
       <tbody>
