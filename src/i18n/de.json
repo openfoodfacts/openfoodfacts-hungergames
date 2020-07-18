@@ -35,7 +35,7 @@
     "barcode": "Strichcode",
     "barcode_placeholder": "Strichcode",
     "value_tag": "Wert-Kennzeichen",
-    "value_placeholder": "Bsp.: de:müesli, Bjorg,...",
+    "value_placeholder": "Bsp.: de:Müsli, Bjorg,...",
     "type": "Typ",
     "annotated": "Kommentiert",
     "annotation": "Anmerkung",
