@@ -20,7 +20,7 @@
     "annotations": "פירוט",
     "last_annotations": "הערות אחרונות",
     "remaining_annotations": "נותרו:",
-    "annotated_annotations": "Annotated"
+    "annotated_annotations": "נכתבו הערות"
   },
   "menu": {
     "games": "משחקים",
@@ -46,9 +46,9 @@
     "category": "קטגוריה",
     "expiration_date": "תאריך תפוגה",
     "packager_code": "קוד מפעל אריזה",
-    "skipped": "Skipped (-1)",
-    "rejected": "Rejected (0)",
-    "accepted": "Accepted (1)",
+    "skipped": "דולג (‎-1)",
+    "rejected": "נדחה (0)",
+    "accepted": "התקבל (1)",
     "search": "חיפוש",
     "count": "ספירה",
     "id": "מזהה",
@@ -59,7 +59,7 @@
   },
   "logos": {
     "annotation": "הערה: ",
-    "annotations": "Logo annotations",
+    "annotations": "הערות על הלוגו",
     "select_all": "לבחור הכול",
     "unselect_all": "ביטול בחירה",
     "distance": "מרחק:",
@@ -74,14 +74,14 @@
     "category": "קטגוריה",
     "nutrition_label": "תווית תזונתית",
     "store": "חנות",
-    "detail": "Logo detail",
+    "detail": "פרטים על הלוגו",
     "id": "מזהה לוגו:",
     "barcode": "ברקוד:",
     "full_image": "תמונה מלאה",
     "update": "עדכון",
     "no_found": "לא נמצא לוגו",
     "search": "חיפוש",
-    "number_of_results": "Number of results:"
+    "number_of_results": "מספר התוצאות:"
   },
   "settings": {
     "settings": "הגדרות",
