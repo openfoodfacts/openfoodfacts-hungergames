@@ -11,12 +11,12 @@
     "skip": "Ignorer",
     "yes": "Oui",
     "no_questions_remaining": "No questions remaining",
-    "countries": "Countries",
+    "countries": "Pays",
     "view": "Voir",
     "edit": "Modifier",
     "value_search": "Value (fanta, en:organic,...)",
     "hide_images": "Hide images (faster loading)",
-    "display_images": "Display images",
+    "display_images": "Afficher les images",
     "annotations": "Annotations",
     "last_annotations": "Dernière annotations",
     "remaining_annotations": "Restant :",
@@ -33,7 +33,7 @@
   "insights": {
     "insights": "Insights",
     "barcode": "Code barre",
-    "barcode_placeholder": "barcode",
+    "barcode_placeholder": "code-barres",
     "value_tag": "Value tag",
     "value_placeholder": "ex: en:mueslis, bjorg,...",
     "type": "Type",
@@ -44,7 +44,7 @@
     "label": "Label",
     "product_weight": "Poids du produit",
     "category": "Catégorie",
-    "expiration_date": "Expiration date",
+    "expiration_date": "Date d'expiration ",
     "packager_code": "Code emballeur",
     "skipped": "Skipped (-1)",
     "rejected": "Rejected (0)",
@@ -55,10 +55,10 @@
     "value": "Valeur",
     "created_at": "Created at",
     "completed_at": "Completed at",
-    "automatic": "Automatic"
+    "automatic": "Automatique"
   },
   "logos": {
-    "annotation": "Annotation: ",
+    "annotation": "Annotation : ",
     "annotations": "Logo annotations",
     "select_all": "Select all",
     "unselect_all": "Unselect all",
@@ -76,12 +76,12 @@
     "store": "Magasin",
     "detail": "Logo detail",
     "id": "Logo ID:",
-    "barcode": "Barcode:",
+    "barcode": "Code-barres :",
     "full_image": "Full image",
-    "update": "Update",
-    "no_found": "No logo found",
+    "update": "Mise à jour",
+    "no_found": "Aucun logo trouvé",
     "search": "Rechercher",
-    "number_of_results": "Number of results:"
+    "number_of_results": "Nombre de résultats :"
   },
   "settings": {
     "settings": "Paramètres",
