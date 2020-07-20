@@ -171,6 +171,10 @@ export default {
 </script>
 
 <style scoped>
+.pagination {
+  padding-inline-start: 0;
+  text-align: center;
+}
 .pagination-item {
   display: inline-block;
   list-style: none;
