@@ -71,7 +71,7 @@
             <i v-else-if="insight.annotation == -1" class="large grey question icon"></i>
           </td>
           <td data-label="Automatic">
-            <input type="checkbox" :checked="insight.automatic_processing" disabled />
+            <i v-if="insight.automatic_processing" class="large green checkmark icon"></i>
           </td>
         </tr>
       </tbody>
