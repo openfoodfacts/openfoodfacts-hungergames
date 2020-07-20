@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="ui grid">
-      <div class="three wide column" v-for="logo in logos" :key="logo.id">
+    <div class="ui stackable grid">
+      <div class="four wide column" v-for="logo in logos" :key="logo.id">
         <div
           class="ui fluid card ann-logo"
           @click="toggleSelectLogo(logo)"
