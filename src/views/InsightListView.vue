@@ -2,8 +2,8 @@
   <div class="ui container">
     <div>
       <h2>{{$t('insights.insights')}}</h2>
-      <div class="ui form">
-        <div class="fields">
+      <form class="ui stackable form">
+        <div class="two fields">
           <div class="field">
             <label>{{$t('insights.barcode')}}</label>
             <input :placeholder="$t('insights.barcode_placeholder')" v-model="barcodeFilter" />
@@ -12,6 +12,8 @@
             <label>{{$t('insights.value_tag')}}</label>
             <input type="text" :placeholder="$t('insights.value_placeholder')" v-model="valueTagFilter" />
           </div>
+        </div>
+        <div class="two fields">
           <div class="field">
             <label>{{$t('insights.type')}}</label>
             <select class="ui search dropdown" v-model="insightTypeFilter">
@@ -35,7 +37,7 @@
           </div>
         </div>
         <input class="ui submit button primary" type="submit" :value="$t('insights.search')" @click="loadInsights" />
-      </div>
+      </form>
       <div class="ui divider" />
       <p>
         <strong>{{$t('insights.count')}}</strong>
