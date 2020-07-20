@@ -1,14 +1,18 @@
 <template>
-  <div>
-    <div class="ui container">
+  <div class="ui stackable grid container">
+    <div class="five wide column">
       <h2>{{$t('settings.settings')}}</h2>
-      <div class="ui action input labeled">
-        <div class="ui label">{{$t('settings.language')}}</div>
-        <select v-model="selectedLang">
-          <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
-        </select>
+      <form class="ui form" v-on:submit.prevent="search">
+        <div class="field">
+          <div class="ui action input labeled">
+            <div class="ui label">{{$t('settings.language')}}</div>
+            <select v-model="selectedLang" class="ui fluid dropdown">
+              <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang.toUpperCase() }}</option>
+            </select>
+          </div>
+        </div>
         <button class="ui button primary" @click="saveLang">{{$t('settings.save')}}</button>
-      </div>
+      </form>
     </div>
   </div>
 </template>
