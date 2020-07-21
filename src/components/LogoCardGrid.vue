@@ -2,7 +2,7 @@
   <div>
     <div class="ui grid">
       <div
-        class="five wide mobile four wide tablet three wide computer column"
+        class="four wide mobile-landscape eight wide mobile four wide tablet three wide computer column"
         v-for="logo in logos"
         :key="logo.id"
       >
@@ -80,5 +80,13 @@ export default {
 .ann-logo.annotated {
   background-color: #797979;
   color: #ffffff;
+}
+
+@media only screen
+and (max-width: 767px)
+and (orientation: landscape) {
+  .ui.grid>[class*="four wide mobile-landscape"].column {
+    width: 25%!important;
+  }
 }
 </style>
