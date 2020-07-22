@@ -1,6 +1,6 @@
 <template>
   <ul class="pagination">
-    <li class="pagination-item" v-if="paginationLabels.first">
+    <li class="pagination-item mobile hidden" v-if="paginationLabels.first">
       <button
         @click="first"
         :disabled="hasFirst"
@@ -9,7 +9,7 @@
       ></button>
     </li>
 
-    <li class="pagination-item" v-if="paginationLabels.prev">
+    <li class="pagination-item mobile hidden" v-if="paginationLabels.prev">
       <button
         @click="prev"
         :disabled="hasFirst"
@@ -28,7 +28,7 @@
       >{{ page.label }}</button>
     </li>
 
-    <li v-if="paginationLabels.next" class="pagination-item">
+    <li v-if="paginationLabels.next" class="pagination-item mobile hidden">
       <button
         @click="next"
         :disabled="hasLast"
@@ -37,7 +37,7 @@
       ></button>
     </li>
 
-    <li v-if="paginationLabels.last" class="pagination-item">
+    <li v-if="paginationLabels.last" class="pagination-item mobile hidden">
       <button
         @click="last"
         :disabled="hasLast"
