@@ -24,7 +24,7 @@
             </div>
           </div>
           <div class="image">
-            <img width="100px" :src="logo.image.url" />
+            <img width="100px" loading="lazy" :src="logo.image.url" />
           </div>
           <div class="content">
             <p v-if="logo.distance">{{$t("logos.distance")}} {{ logo.distance.toFixed(1) }}</p>
