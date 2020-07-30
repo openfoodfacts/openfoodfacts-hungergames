@@ -72,7 +72,7 @@
                   name="public"
                   v-model="currentProductData[nutritiveValue.id]['visible']"
                 />
-                <label>Subscribe to weekly newsletter</label>
+                <label>{{ $t("nutrition.Absent") }}</label>
               </div>
             </li>
           </ul>
