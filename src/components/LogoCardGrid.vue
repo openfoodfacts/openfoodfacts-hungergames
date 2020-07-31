@@ -24,7 +24,7 @@
             </div>
           </div>
           <div class="image">
-            <img width="100px" loading="lazy" :src="logo.image.url" />
+            <img loading="lazy" :src="logo.image.url" />
           </div>
           <div class="content">
             <p v-if="logo.distance">{{$t("logos.distance")}} {{ logo.distance.toFixed(1) }}</p>
@@ -80,6 +80,15 @@ export default {
 .ann-logo.annotated {
   background-color: #797979;
   color: #ffffff;
+}
+
+.ui.card>.image {
+  display: flex;
+  justify-content: center;
+}
+
+.ui.card>.image>img {
+  max-width: 100%;
 }
 
 @media only screen
