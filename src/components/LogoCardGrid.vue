@@ -81,6 +81,9 @@ export default {
   background-color: #797979;
   color: #ffffff;
 }
+.ui.card {
+  height: 100%;
+}
 
 .ui.card>.actions {
   flex-grow: 0;
