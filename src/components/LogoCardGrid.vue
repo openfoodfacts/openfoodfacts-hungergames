@@ -19,7 +19,7 @@
             </div>
             <div class="right floated meta">
               <router-link :to="externalLogoURL(logo)" target="_blank">
-                <i class="external alternate icon small blue"></i>
+                <i class="external alternate icon blue"></i>
               </router-link>
             </div>
           </div>
