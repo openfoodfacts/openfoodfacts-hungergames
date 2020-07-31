@@ -11,7 +11,7 @@
           @click="toggleSelectLogo(logo)"
           :class="{selected: logo.selected, annotated: logo.annotation_type }"
         >
-          <div class="content">
+          <div class="content actions">
             <div class="left floated meta">
               <router-link :to="editLogoURL(logo)" target="_blank">
                 <i class="edit icon"></i>
@@ -23,10 +23,10 @@
               </router-link>
             </div>
           </div>
-          <div class="image">
+          <div class="content logo-image">
             <img loading="lazy" :src="logo.image.url" />
           </div>
-          <div class="content">
+          <div class="content distance">
             <p v-if="logo.distance">{{$t("logos.distance")}} {{ logo.distance.toFixed(1) }}</p>
             <p
               v-if="logo.annotation_value"
@@ -82,13 +82,23 @@ export default {
   color: #ffffff;
 }
 
-.ui.card>.image {
+.ui.card>.actions {
+  flex-grow: 0;
+}
+
+.ui.card>.logo-image {
   display: flex;
+  align-items: center;
+  flex-grow: 1;
   justify-content: center;
 }
 
-.ui.card>.image>img {
+.ui.card>.logo-image>img {
   max-width: 100%;
+}
+
+.ui.card>.distance {
+  flex-grow: 0;
 }
 
 @media only screen
