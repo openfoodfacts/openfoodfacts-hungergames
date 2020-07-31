@@ -2,8 +2,8 @@
   <div class="ui container">
     <div>
       <h2>{{$t('insights.insights')}}</h2>
-      <div class="ui form">
-        <div class="fields">
+      <form class="ui stackable form">
+        <div class="two fields">
           <div class="field">
             <label>{{$t('insights.barcode')}}</label>
             <input :placeholder="$t('insights.barcode_placeholder')" v-model="barcodeFilter" />
@@ -12,6 +12,8 @@
             <label>{{$t('insights.value_tag')}}</label>
             <input type="text" :placeholder="$t('insights.value_placeholder')" v-model="valueTagFilter" />
           </div>
+        </div>
+        <div class="two fields">
           <div class="field">
             <label>{{$t('insights.type')}}</label>
             <select class="ui search dropdown" v-model="insightTypeFilter">
@@ -35,7 +37,7 @@
           </div>
         </div>
         <input class="ui submit button primary" type="submit" :value="$t('insights.search')" @click="loadInsights" />
-      </div>
+      </form>
       <div class="ui divider" />
       <p>
         <strong>{{$t('insights.count')}}</strong>
@@ -43,7 +45,7 @@
       </p>
     </div>
     <table class="ui celled table">
-      <thead>
+      <thead class="mobile hidden">
         <tr>
           <th>{{$t('insights.barcode')}}</th>
           <th>{{$t('insights.id')}}</th>
@@ -57,19 +59,21 @@
       </thead>
       <tbody>
         <tr v-for="insight in insights" :key="insight.id">
-          <td data-label="Barcode">{{ insight.barcode }}</td>
-          <td data-label="Id">{{ insight.id }}</td>
-          <td data-label="Type">{{ insight.type }}</td>
-          <td data-label="Value">{{ insight.value || insight.value_tag }}</td>
-          <td data-label="Created at">{{ formatDatetime(insight.timestamp) }}</td>
-          <td data-label="Completed at">{{ formatDatetime(insight.completed_at) }}</td>
+          <td data-label="Barcode"><span class="mobile only list__label">{{$t('insights.barcode')}} </span>{{ insight.barcode }}</td>
+          <td data-label="Id"><span class="mobile only list__label">{{$t('insights.id')}} </span>{{ insight.id }}</td>
+          <td data-label="Type"><span class="mobile only list__label">{{$t('insights.type')}} </span>{{ insight.type }}</td>
+          <td data-label="Value"><span class="mobile only list__label">{{$t('insights.value')}} </span>{{ insight.value || insight.value_tag }}</td>
+          <td data-label="Created at"><span class="mobile only list__label">{{$t('insights.created_at')}} </span>{{ formatDatetime(insight.timestamp) }}</td>
+          <td data-label="Completed at"><span class="mobile only list__label">{{$t('insights.completed_at')}} </span>{{ formatDatetime(insight.completed_at) }}</td>
           <td data-label="Annotation">
+            <span class="mobile only list__label">{{$t('insights.annotation')}} </span>
             <i v-if="insight.annotation == 1" class="large green checkmark icon"></i>
             <i v-else-if="insight.annotation == 0" class="large red times icon"></i>
             <i v-else-if="insight.annotation == -1" class="large grey question icon"></i>
           </td>
           <td data-label="Automatic">
-            <input type="checkbox" :checked="insight.automatic_processing" disabled />
+            <span class="mobile only list__label">{{$t('insights.automatic')}} </span>
+            <i v-if="insight.automatic_processing" class="large green checkmark icon"></i>
           </td>
         </tr>
       </tbody>
@@ -157,3 +161,8 @@ export default {
   }
 };
 </script>
+<style>
+.list__label {
+  font-weight: bold;
+}
+</style>
