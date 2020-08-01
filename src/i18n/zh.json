@@ -52,7 +52,7 @@
     "search": "搜尋",
     "count": "Count",
     "id": "Id",
-    "value": "Value",
+    "value": "數值",
     "created_at": "Created at",
     "completed_at": "Completed at",
     "automatic": "Automatic"
@@ -63,7 +63,7 @@
     "select_all": "Select all",
     "unselect_all": "Unselect all",
     "distance": "Distance:",
-    "value": "Value",
+    "value": "數值",
     "submit": "Submit",
     "type": "Type",
     "label": "標籤",
