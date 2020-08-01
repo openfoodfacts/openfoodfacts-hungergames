@@ -32,7 +32,7 @@
   },
   "insights": {
     "insights": "Insights",
-    "barcode": "Barcode",
+    "barcode": "Streepjescode",
     "barcode_placeholder": "barcode",
     "value_tag": "Value tag",
     "value_placeholder": "ex: en:mueslis, bjorg,...",
