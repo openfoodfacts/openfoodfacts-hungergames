@@ -14,6 +14,7 @@
           :src="url"
           v-for="url in imagesPreview"
           :key="url"
+          loading="lazy"
           style="max-height: 200px; max-width: 200px; margin-right: 3px;"
         />
       </viewer>
