@@ -5,7 +5,7 @@
         <template v-for="item in menu">
           <sui-dropdown-header v-if="!item.to" :key="item.label">{{item.label}}</sui-dropdown-header>
           <sui-dropdown-divider v-if="!item.label" :key="item.label"/>
-          <router-link class="item" :to="item.to" :key="item.label" v-if="item.to">{{item.label}}</router-link>
+          <router-link active-class="active" class="item" :to="item.to" :key="item.label" v-if="item.to">{{item.label}}</router-link>
         </template>
       </sui-dropdown-menu>
     </sui-dropdown>
