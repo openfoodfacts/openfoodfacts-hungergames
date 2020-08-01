@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loaded">
+  <div v-if="loaded" class="product-card">
     <h3>{{ productName }}</h3>
     <a target="_blank" :href="productUrl" class="ui button primary">{{$t('questions.view')}}</a>
     <a target="_blank" :href="productEditUrl" class="ui button">{{$t('questions.edit')}}</a>
@@ -156,6 +156,13 @@ export default {
 </script>
 
 <style scoped>
+
+@media only screen and (max-width: 767px) {
+  .product-card {
+    text-align: center;
+  }
+}
+
 .product-image {
   max-width: 250px;
   max-height: 250px;
