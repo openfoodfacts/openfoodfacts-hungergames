@@ -28,6 +28,7 @@
     "logos": "Logos",
     "manage": "Manage",
     "insights": "Insights",
+    "nutritions": "Nutrition facts",
     "settings": "@:settings.settings"
   },
   "insights": {
@@ -83,9 +84,19 @@
     "search": "Search",
     "number_of_results": "Number of results:"
   },
+  "nutrition": {
+    "present": "Specified on product",
+    "absent": "Not specified on product",
+    "table": {
+
+      "ispresent": "Is present",
+      "value": "Value",
+      "unit": "Unit"
+    }
+  },
   "settings": {
     "settings": "Settings",
-    "language": "Languages",
+    "language": "Language",
     "save": "Save"
   }
 }

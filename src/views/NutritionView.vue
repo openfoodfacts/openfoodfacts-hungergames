@@ -1,6 +1,6 @@
 <template>
   <div class="ui grid stackable">
-    <div class="five wide column centered">
+    <div class="four wide column centered">
       <div class="insight-column">
         <div class="ui form">
           <div class="ui icon input" id="value-tag-input">
@@ -9,16 +9,12 @@
               placeholder="value (fanta, en:organic,...)"
               v-model="valueTagInput"
             />
-            <i
-              @click="clearValueTagInput()"
-              v-if="valueTagInput"
-              class="times link icon"
-            ></i>
+            <i @click="clearValueTagInput()" v-if="valueTagInput" class="times link icon"></i>
           </div>
           <!-- <div class="ui toggle checkbox" style="margin-top: 0.5rem;">
             <input v-model="sortByPopularity" type="checkbox" name="sortBy" />
             <label>Sort by popularity</label>
-          </div> -->
+          </div>-->
         </div>
         <div class="ui divider hidden"></div>
         <viewer :options="imageZoomOptions" style="height: 300px">
@@ -29,54 +25,48 @@
           max-width: 300px;"
           />
         </viewer>
-        <div class="ui divider hidden"></div>
-        <div>
-          <ul class="table">
-            <li
-              v-for="nutritiveValue in currentProductData"
-              :key="nutritiveValue.id"
-              v-bind:class="{ shadow: !nutritiveValue.visible }"
-              class="row"
-            >
-              <p class="cell">
-                {{ nutritiveValue.name }}
-              </p>
-              <div class="cell">
-                <div style="display:flex">
-                  <input
-                    v-model="currentProductData[nutritiveValue.id]['data']"
-                  />
-                  <select
-                    v-if="getNutrimentUnits(nutritiveValue.name).length > 1"
-                    v-model="currentProductData[nutritiveValue.id]['unit']"
-                  >
-                    <option disabled value="">
-                      unit
-                    </option>
-                    <option
-                      v-for="unit in getNutrimentUnits(nutritiveValue.name)"
-                      :key="unit"
-                      v-bind:value="unit"
-                    >
-                      {{ unit }}
-                    </option>
-                  </select>
-                  <span v-else>
-                    {{ getNutrimentUnits(nutritiveValue.name)[0] }}
-                  </span>
-                </div>
-              </div>
-              <div class="cell ui toggle checkbox">
-                <input
-                  type="checkbox"
-                  name="public"
-                  v-model="currentProductData[nutritiveValue.id]['visible']"
-                />
-                <label>{{ $t("nutrition.Absent") }}</label>
-              </div>
-            </li>
-          </ul>
-          <!-- <button
+      </div>
+    </div>
+    <div class="ten wide column centered">
+      <sui-table celled definition>
+        <sui-table-header>
+          <sui-table-header-cell />
+          <sui-table-header-cell>{{$t("nutrition.table.value")}}</sui-table-header-cell>
+          <sui-table-header-cell>{{$t("nutrition.table.ispresent")}}</sui-table-header-cell>
+        </sui-table-header>
+        <sui-table-row v-for="nutritiveValue in currentProductData" :key="nutritiveValue.id">
+          <sui-table-cell>{{ nutritiveValue.name }}</sui-table-cell>
+          <sui-table-cell style="display: flex">
+            <sui-input
+              :disabled="!nutritiveValue.visible"
+              style="flex-grow:1"
+              :error="isInvalid(currentProductData[nutritiveValue.id]['data'])"
+              v-model="currentProductData[nutritiveValue.id]['data']"
+            />
+
+            <sui-dropdown
+              :disabled="!nutritiveValue.visible"
+              style="min-width: 3rem"
+              selection
+              :placeholder="$t('nutrition.table.unit')"
+              v-if="getNutrimentUnits(nutritiveValue.name).length > 1"
+              v-model="currentProductData[nutritiveValue.id]['unit']"
+              :options="getNutrimentUnits(nutritiveValue.name)"
+              class="unit"
+            />
+
+            <span class="unit" v-else>{{ getNutrimentUnits(nutritiveValue.name)[0] }}</span>
+          </sui-table-cell>
+          <sui-table-cell>
+            <sui-checkbox
+              name="public"
+              :label="nutritiveValue.visible?$t('nutrition.present'):$t('nutrition.absent')"
+              v-model="currentProductData[nutritiveValue.id]['visible']"
+            />
+          </sui-table-cell>
+        </sui-table-row>
+      </sui-table>
+      <!-- <button
             data-inverted
             data-tooltip="Shortcut: n"
             class="ui button red annotate"
@@ -99,18 +89,16 @@
             @click="annotate(1)"
           >
             Yes
-          </button> -->
+      </button>-->
+    </div>
+    <div class="flex-center" style="margin-top: 100px;">
+      <div class="loading-spinner" v-if="loading">
+        <div class="loading-spinner-content">
+          <div></div>
         </div>
       </div>
-      <div class="flex-center" style="margin-top: 100px;">
-        <div class="loading-spinner" v-if="loading">
-          <div class="loading-spinner-content">
-            <div></div>
-          </div>
-        </div>
-        <div v-if="noRemainingQuestion">
-          <h2>No questions remaining</h2>
-        </div>
+      <div v-if="noRemainingQuestion">
+        <h2>No questions remaining</h2>
       </div>
     </div>
     <!-- <div class="six wide column centered">
@@ -122,7 +110,7 @@
         :lastAnnotations="lastAnnotations"
         :sessionAnnotatedCount="sessionAnnotatedCount"
       />
-    </div> -->
+    </div>-->
   </div>
 </template>
 
@@ -140,8 +128,7 @@ const getProducts = async (nbOfPages) => {
   const {
     data: { products },
   } = await axios(
-    `${OFF_URL}/state/photos-validated/state/nutrition-facts-to-be-completed/${randomPage}.json?fields=code,lang,image_nutrition_url,product_name
-          `
+    `${OFF_URL}/state/photos-validated/state/nutrition-facts-to-be-completed/${randomPage}.json?fields=code,lang,image_nutrition_url,product_name`
   );
   return products;
 };
@@ -149,8 +136,9 @@ const getProducts = async (nbOfPages) => {
 export default {
   name: "NutritionView",
   components: {},
-  data: function() {
+  data: function () {
     return {
+      valueTagInput: "",
       imageZoomOptions: {
         toolbar: {
           rotateLeft: 1,
@@ -163,7 +151,13 @@ export default {
     };
   },
   methods: {
-    addProducts: async function() {
+    isInvalid(value) {
+      return !value.match("^((<|>|<=|>=|~)*[0-9]+| *)$");
+    },
+    clearValueTagInput() {
+      this.valueTagInput = "";
+    },
+    addProducts: async function () {
       this.loading = true;
       const newProducts = await getProducts(20);
       this.productBuffer = this.productBuffer.concat(newProducts);
@@ -180,7 +174,7 @@ export default {
           id: nutriments[nutrimentName],
           name: nutrimentName,
           data: "",
-          unit: "",
+          unit: null,
           visible: true,
         };
       }
@@ -193,12 +187,15 @@ export default {
         case "Energy (kJ)":
           return ["kJ"];
         default:
-          return ["g", "mg"];
+          return [
+            { text: "g", value: "g" },
+            { text: "mg", value: "mg" },
+          ];
       }
     },
   },
   watch: {
-    productBuffer: function(newProductBuffer, oldProductBuffer) {
+    productBuffer: function (newProductBuffer, oldProductBuffer) {
       if (newProductBuffer.length <= 5 && !this.loading) {
         this.addProducts();
       }
@@ -212,7 +209,7 @@ export default {
       }
     },
   },
-  mounted: function() {
+  mounted: function () {
     this.addProducts();
   },
 };
@@ -222,13 +219,7 @@ export default {
 .shadow {
   opacity: 0.2;
 }
-.table {
-  display: table;
-}
-.row {
-  display: table-row;
-}
-.cell {
-  display: table-cell;
+.unit {
+  margin-left: 1rem;
 }
 </style>
