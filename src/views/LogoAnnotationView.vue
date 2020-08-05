@@ -55,15 +55,15 @@
 </template>
 
 <script>
-import axios from "axios";
-import { ROBOTOFF_API_URL, OFF_IMAGE_URL } from "../const";
+import robotoffService from "../robotoff";
+import { OFF_IMAGE_URL } from "../const";
 import LogoCardGrid from "../components/LogoCardGrid";
 import { getURLParam } from "../utils";
 
 const transformLogo = logo => {
-  const imageUrl = `${OFF_IMAGE_URL}${logo.image.source_image}`;
-  const [y_min, x_min, y_max, x_max] = logo.bounding_box;
-  logo.image.url = `${ROBOTOFF_API_URL}/images/crop?image_url=${imageUrl}&y_min=${y_min}&x_min=${x_min}&y_max=${y_max}&x_max=${x_max}`;
+  logo.image.url = robotoffService.getCroppedImageUrl(
+    `${OFF_IMAGE_URL}${logo.image.source_image}`, logo.bounding_box
+  )
   logo.selected = false;
   return logo;
 };
@@ -108,36 +108,23 @@ export default {
   },
   methods: {
     loadLogos: function() {
-      const url =
-        this.targetLogoId.length > 0
-          ? `${ROBOTOFF_API_URL}/ann/${this.targetLogoId}`
-          : `${ROBOTOFF_API_URL}/ann`;
 
-      const params = {
-        count: this.annCount
-      };
-
-      const index = getURLParam("index");
-      if (index.length > 0) params.index = index;
-
-      axios.get(url, { params }).then(({ data }) => {
-        const results = data.results;
-        axios
-          .get(
-            `${ROBOTOFF_API_URL}/images/logos?logo_ids=${results
-              .map(r => r.logo_id)
-              .join(",")}`
-          )
-          .then(response => {
-            const logoData = response.data.logos;
-            this.logos = results
-              .map(r => ({
-                distance: r.distance,
-                ...logoData.filter(l => l.id == r.logo_id)[0]
-              }))
-              .map(transformLogo);
-          });
-      });
+      robotoffService
+        .getLogoAnnotations(this.targetLogoId, getURLParam("index"), this.annCount)
+        .then(({ data }) => {
+          const results = data.results;
+          robotoffService
+            .getLogosImages(results.map(r => r.logo_id))
+            .then(response => {
+              const logoData = response.data.logos;
+              this.logos = results
+                .map(r => ({
+                  distance: r.distance,
+                  ...logoData.filter(l => l.id == r.logo_id)[0]
+                }))
+                .map(transformLogo);
+            });
+        });
     },
     toggleSelectLogo: function(logo) {
       const logoId = logo.id;
@@ -150,17 +137,13 @@ export default {
       if (this.typeInput === "packager_code" || this.typeInput === "qr_code") {
         value = "";
       }
-      const params = {
-        annotations: this.selectedLogos.map(logo => ({
-          logo_id: logo.id,
-          value: value,
-          type: this.typeInput
-        }))
-      };
-      axios
-        .post(`${ROBOTOFF_API_URL}/images/logos/annotate`, params, {
-          withCredentials: true
-        })
+      const annotations = this.selectedLogos.map(logo => ({
+        logo_id: logo.id,
+        value: value,
+        type: this.typeInput
+      }))
+      robotoffService
+        .annotateLogos(annotations)
         .then(() => {
           this.targetLogoId = "";
           this.loadLogos();

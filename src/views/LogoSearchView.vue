@@ -47,14 +47,15 @@
 </template>
 
 <script>
-import axios from "axios";
-import { ROBOTOFF_API_URL, OFF_IMAGE_URL } from "../const";
+import robotoffService from "../robotoff";
+import { OFF_IMAGE_URL } from "../const";
 import LogoCardGrid from "../components/LogoCardGrid";
 
 const transformLogo = logo => {
-  const imageUrl = `${OFF_IMAGE_URL}${logo.image.source_image}`;
-  const [y_min, x_min, y_max, x_max] = logo.bounding_box;
-  logo.image.url = `${ROBOTOFF_API_URL}/images/crop?image_url=${imageUrl}&y_min=${y_min}&x_min=${x_min}&y_max=${y_max}&x_max=${x_max}`;
+  logo.image.url = robotoffService.getCroppedImageUrl(
+    `${OFF_IMAGE_URL}${logo.image.source_image}`,
+    logo.bounding_box
+  )
   return logo;
 };
 
@@ -74,28 +75,12 @@ export default {
   computed: {},
   methods: {
     search: function() {
-      const url = `${ROBOTOFF_API_URL}/images/logos`;
-      const params = {
-        count: this.count,
-        annotated: 1
-      };
-
-      if (this.barcode) {
-        params.barcode = this.barcode;
-      }
-
-      if (this.value) {
-        params.value = this.value;
-      }
-
-      if (this.type) {
-        params.type = this.type;
-      }
-
-      axios.get(url, { params }).then(({ data }) => {
-        this.logos = data.logos.map(transformLogo);
-        this.resultCount = data.count;
-      });
+      robotoffService
+        .searchLogos(this.barcode, this.value, this.type, this.count)
+        .then(({ data }) => {
+          this.logos = data.logos.map(transformLogo);
+          this.resultCount = data.count;
+        });
     }
   },
   mounted() {

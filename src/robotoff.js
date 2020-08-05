@@ -15,14 +15,74 @@ export default {
     )
   },
 
-  questions(sortBy, insight_types, value_tag, brands, country, count=10) {
+  questions(sortBy, insightTypes, valueTag, brands, country, count=10) {
     const lang = getLang();
     return axios.get(
       `${ROBOTOFF_API_URL}/questions/${sortBy}`, {
         params : removeEmptyKeys({
-          count, lang, insight_types, value_tag, brands, country
+          count, lang, insight_types: insightTypes, value_tag: valueTag, brands, country
         })
       }
+    )
+  },
+
+  loadLogo(logoId) {
+    return axios.get(
+      `${ROBOTOFF_API_URL}/images/logos/${logoId}`
+    )
+  },
+
+  updateLogo(logoId, value, type) {
+    return axios.put(
+      `${ROBOTOFF_API_URL}/images/logos/${logoId}`, {
+        params : removeEmptyKeys({
+          withCredentials: true, value, type
+        })
+      }
+    )
+  },
+
+  searchLogos(barcode, value, type, count=25) {
+    return axios.get(
+      `${ROBOTOFF_API_URL}/images/logos`, {
+        params : removeEmptyKeys({
+          annotated: 1, barcode, value, type, count
+        })
+      }
+    )
+  },
+
+  getLogoAnnotations(logoId, index, count) {
+    const url = logoId.length > 0
+        ? `${ROBOTOFF_API_URL}/ann/${logoId}`
+        : `${ROBOTOFF_API_URL}/ann`;
+    return axios.get(
+      url, {
+        params : removeEmptyKeys({
+          index, count
+        })
+      }
+    )
+  },
+
+  annotateLogos(annotations) {
+    return axios.post(
+      `${ROBOTOFF_API_URL}/images/logos/annotate`, {
+        params : removeEmptyKeys({
+          withCredentials: true, annotations,
+        })
+      }
+    )
+  },
+
+  getCroppedImageUrl(imageUrl, boundingBox) {
+    const [y_min, x_min, y_max, x_max] = boundingBox;
+    return `${ROBOTOFF_API_URL}/images/crop?image_url=${imageUrl}&y_min=${y_min}&x_min=${x_min}&y_max=${y_max}&x_max=${x_max}`;
+  },
+
+  getLogosImages(logoIds) {
+    return axios.get(
+      `${ROBOTOFF_API_URL}/images/logos?logo_ids=${logoIds.join(",")}`
     )
   }
 }
