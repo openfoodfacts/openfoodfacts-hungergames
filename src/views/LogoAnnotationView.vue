@@ -108,7 +108,6 @@ export default {
   },
   methods: {
     loadLogos: function() {
-
       robotoffService
         .getLogoAnnotations(this.targetLogoId, getURLParam("index"), this.annCount)
         .then(({ data }) => {

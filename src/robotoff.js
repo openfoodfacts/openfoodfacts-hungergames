@@ -75,6 +75,22 @@ export default {
     )
   },
 
+  getInsights(barcode, insightTypes, valueTag, annotation, page, count=25) {
+    let annotated
+    if (annotation.length && annotation == "not_annotated") {
+      annotated = "0";
+    }
+    return axios.get(
+      `${ROBOTOFF_API_URL}/insights`, {
+        params : removeEmptyKeys({
+          barcode, insight_types: insightTypes,
+          value_tag: valueTag, annotation, page,
+          annotated, count
+        })
+      }
+    )
+  },
+
   getCroppedImageUrl(imageUrl, boundingBox) {
     const [y_min, x_min, y_max, x_max] = boundingBox;
     return `${ROBOTOFF_API_URL}/images/crop?image_url=${imageUrl}&y_min=${y_min}&x_min=${x_min}&y_max=${y_max}&x_max=${x_max}`;
