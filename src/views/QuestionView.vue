@@ -97,10 +97,7 @@
 </template>
 
 <script>
-import axios from "axios";
-import { getLang } from "../settings";
-import { ROBOTOFF_API_URL } from "../const";
-import { annotate as robotoffAnnotate } from "../robotoff";
+import robotoffService from "../robotoff";
 import Product from "../components/Product";
 import AnnotationCounter from "../components/AnnotationCounter";
 
@@ -289,7 +286,7 @@ export default {
     },
     annotate: function(annotation) {
       if (annotation !== -1) {
-        robotoffAnnotate(this.currentQuestion.insight_id, annotation);
+        robotoffService.annotate(this.currentQuestion.insight_id, annotation);
         this.updateLastAnnotations(this.currentQuestion, annotation);
         this.remainingQuestionCount -= 1;
         this.sessionAnnotatedCount += 1;
@@ -314,32 +311,14 @@ export default {
       }
     },
     loadQuestions: function() {
-      const count = 10;
-      const lang = getLang();
       const sortBy = this.sortByPopularity ? "popular" : "random";
-
-      const params = {
-        lang,
-        count,
-        insight_types: this.selectedInsightType
-      };
-
-      if (this.valueTag) {
-        params.value_tag = this.valueTag;
-      }
-
-      if (this.brandFilter.length) {
-        params.brands = this.brandFilter;
-      }
-
-      if (this.countryFilter.length) {
-        params.country = this.countryFilter;
-      }
-
-      axios
-        .get(`${ROBOTOFF_API_URL}/questions/${sortBy}`, {
-          params
-        })
+      const count = 10;
+      robotoffService
+        .questions(
+          sortBy, this.selectedInsightType,
+          this.valueTag, this.brandFilter,
+          this.countryFilter, count
+        )
         .then(result => {
           this.remainingQuestionCount = result.data.count;
           if (result.data.questions.length == 0) {
@@ -373,7 +352,6 @@ export default {
       if (this.currentQuestion.source_image_url) {
         return this.currentQuestion.source_image_url;
       }
-
       return "https://static.openfoodfacts.org/images/image-placeholder.png";
     },
     imageRotationClassName: function() {
