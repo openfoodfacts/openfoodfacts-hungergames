@@ -25,8 +25,7 @@
 
 <script>
 import robotoffService from "../robotoff";
-import { getUsername } from "../off";
-import { getProductUrl } from "../off";
+import offService from "../off";
 
 export default {
   name: "AnnotationCounter",
@@ -46,13 +45,13 @@ export default {
   },
   data: function() {
     return {
-      username: getUsername(),
+      username: offService.getUsername(),
       historyAnnotatedCount: 0
     };
   },
   methods: {
     getProductUrl: function(barcode) {
-      return getProductUrl(barcode);
+      return offService.getProductUrl(barcode);
     }
   },
   computed: {

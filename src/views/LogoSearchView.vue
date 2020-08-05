@@ -48,12 +48,12 @@
 
 <script>
 import robotoffService from "../robotoff";
-import { OFF_IMAGE_URL } from "../const";
+import offService from "../off";
 import LogoCardGrid from "../components/LogoCardGrid";
 
 const transformLogo = logo => {
   logo.image.url = robotoffService.getCroppedImageUrl(
-    `${OFF_IMAGE_URL}${logo.image.source_image}`,
+    offService.getImageUrl(logo.image.source_image),
     logo.bounding_box
   )
   return logo;

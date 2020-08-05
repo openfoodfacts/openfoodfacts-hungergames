@@ -38,9 +38,9 @@
 
 <script>
 import robotoffService from "../robotoff";
-import { OFF_IMAGE_URL } from "../const";
+import offService from "../off";
 
-const getImageURL = logo => `${OFF_IMAGE_URL}${logo.image.source_image}`;
+const getImageURL = logo => offService.getImageUrl(logo.image.source_image);
 
 const getCropURL = logo => {
   return robotoffService.getCroppedImageUrl(
