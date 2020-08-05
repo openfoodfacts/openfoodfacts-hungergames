@@ -24,8 +24,7 @@
 </template>
 
 <script>
-import axios from "axios";
-import { ROBOTOFF_API_URL } from "../const";
+import robotoffService from "../robotoff";
 import { getUsername } from "../off";
 import { getProductUrl } from "../off";
 
@@ -67,8 +66,8 @@ export default {
   },
   mounted() {
     if (this.username.length) {
-      axios
-        .get(`${ROBOTOFF_API_URL}/users/statistics/${this.username}`)
+      robotoffService
+        .getUserStatistics(this.username)
         .then(result => {
           this.historyAnnotatedCount = result.data.count.annotations;
         })
