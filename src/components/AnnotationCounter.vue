@@ -24,10 +24,8 @@
 </template>
 
 <script>
-import axios from "axios";
-import { ROBOTOFF_API_URL } from "../const";
-import { getUsername } from "../off";
-import { getProductUrl } from "../off";
+import robotoffService from "../robotoff";
+import offService from "../off";
 
 export default {
   name: "AnnotationCounter",
@@ -47,13 +45,13 @@ export default {
   },
   data: function() {
     return {
-      username: getUsername(),
+      username: offService.getUsername(),
       historyAnnotatedCount: 0
     };
   },
   methods: {
     getProductUrl: function(barcode) {
-      return getProductUrl(barcode);
+      return offService.getProductUrl(barcode);
     }
   },
   computed: {
@@ -67,8 +65,8 @@ export default {
   },
   mounted() {
     if (this.username.length) {
-      axios
-        .get(`${ROBOTOFF_API_URL}/users/statistics/${this.username}`)
+      robotoffService
+        .getUserStatistics(this.username)
         .then(result => {
           this.historyAnnotatedCount = result.data.count.annotations;
         })

@@ -85,8 +85,7 @@
 </template>
 
 <script>
-import axios from "axios";
-import { ROBOTOFF_API_URL } from "../const";
+import robotoffService from "../robotoff";
 import Pagination from "../components/Pagination";
 
 export default {
@@ -128,32 +127,15 @@ export default {
       this.loadInsights();
     },
     loadInsights: function() {
-      const params = {
-        page: this.currentPage,
-        count: this.pageSize
-      };
-
-      if (this.barcodeFilter.length) {
-        params.barcode = this.barcodeFilter;
-      }
-      if (this.insightTypeFilter.length) {
-        params.insight_types = this.insightTypeFilter;
-      }
-      if (this.valueTagFilter.length) {
-        params.value_tag = this.valueTagFilter;
-      }
-
-      if (this.annotationFilter.length) {
-        if (this.annotationFilter == "not_annotated") {
-          params.annotated = "0";
-        } else {
-          params.annotation = this.annotationFilter;
-        }
-      }
-      axios.get(`${ROBOTOFF_API_URL}/insights`, { params }).then(result => {
-        this.insights = result.data.insights;
-        this.resultCount = result.data.count;
-      });
+      robotoffService
+        .getInsights(
+          this.barcodeFilter, this.insightTypeFilter, this.valueTagFilter,
+          this.annotationFilter, this.currentPage, this.pageSize
+        )
+        .then(result => {
+          this.insights = result.data.insights;
+          this.resultCount = result.data.count;
+        });
     }
   },
   mounted() {
