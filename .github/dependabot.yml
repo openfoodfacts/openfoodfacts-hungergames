@@ -4,3 +4,6 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    commit_message:
+      prefix: "chore"
+      include: "scope"
