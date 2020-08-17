@@ -1,7 +1,9 @@
 <template>
-  <div class="loading-spinner" v-if="show">
-    <div class="loading-spinner-content">
-      <div></div>
+  <div class="loading-spinner-container" v-if="show">
+    <div class="loading-spinner">
+      <div class="loading-spinner-content">
+        <div></div>
+      </div>
     </div>
   </div>
 </template>
@@ -29,6 +31,11 @@ export default {
   100% {
     transform: rotate(360deg);
   }
+}
+.loading-spinner-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 .loading-spinner-content div {
   position: absolute;
