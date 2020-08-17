@@ -1,7 +1,8 @@
 <template>
   <div class="ui container">
-    <div>
-      <h2>{{$t("logos.annotations")}}</h2>
+    <h2>{{$t("logos.annotations")}}</h2>
+    <LoadingSpinner :show="logos.length== 0 && loading" />
+    <div v-if="logos.length > 0">
       <form class="ui form" v-on:submit.prevent="sendAnnotations">
         <div class="three fields">
           <div class="field">
@@ -21,7 +22,9 @@
             </select>
           </div>
           <div class="field">
+            <LoadingSpinner :size="'medium'" :centered="false" :show="logos.length > 0 && loading" />
             <button
+              v-if="!loading"
               type="submit"
               class="ui button primary"
               tabindex="0"
@@ -31,7 +34,7 @@
         </div>
       </form>
       <div class="ui divider hidden" />
-      <div v-if="logos">
+      <div v-if="logos.length > 0">
         <div>
           <p>
             <span @click="selectLogos(true)" class="borderless-button">{{$t("logos.select_all")}}</span> /
@@ -59,6 +62,8 @@ import robotoffService from "../robotoff";
 import offService from "../off";
 import LogoCardGrid from "../components/LogoCardGrid";
 import { getURLParam } from "../utils";
+import LoadingSpinner from "../components/LoadingSpinner";
+
 
 const transformLogo = logo => {
   logo.image.url = robotoffService.getCroppedImageUrl(
@@ -76,7 +81,7 @@ const getAnnCount = defaultValue => {
 
 export default {
   name: "InsightListView",
-  components: { LogoCardGrid },
+  components: { LogoCardGrid , LoadingSpinner },
   data: function() {
     return {
       logos: [],
@@ -84,7 +89,8 @@ export default {
       valueInput: "",
       typeInput: "",
       targetLogoId: getURLParam("logo_id"),
-      annCount: getAnnCount(100)
+      annCount: getAnnCount(100),
+      loading: false
     };
   },
   computed: {
@@ -108,6 +114,7 @@ export default {
   },
   methods: {
     loadLogos: function() {
+      this.loading = true;
       robotoffService
         .getLogoAnnotations(this.targetLogoId, getURLParam("index"), this.annCount)
         .then(({ data }) => {
@@ -115,6 +122,7 @@ export default {
           robotoffService
             .getLogosImages(results.map(r => r.logo_id))
             .then(response => {
+              this.loading = false;
               const logoData = response.data.logos;
               this.logos = results
                 .map(r => ({
@@ -122,8 +130,14 @@ export default {
                   ...logoData.filter(l => l.id == r.logo_id)[0]
                 }))
                 .map(transformLogo);
-            });
-        });
+            })
+            .catch(() => {
+              this.loading = false;
+            })
+        })
+        .catch (() => {
+          this.loading = false;
+        })
     },
     toggleSelectLogo: function(logo) {
       const logoId = logo.id;
@@ -141,12 +155,17 @@ export default {
         value: value,
         type: this.typeInput
       }))
+      this.loading = true;
       robotoffService
         .annotateLogos(annotations)
         .then(() => {
+          this.loading = false;
           this.targetLogoId = "";
           this.loadLogos();
-        });
+        })
+        .catch(() => {
+          this.loading = false;
+        })
       this.valueInput = "";
       this.typeInput = "";
     },

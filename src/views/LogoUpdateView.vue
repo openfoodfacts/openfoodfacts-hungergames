@@ -28,7 +28,8 @@
             </select>
           </div>
           <div class="field">
-            <button type="submit" class="ui button primary" tabindex="0">{{$t("logos.update")}}</button>
+            <LoadingSpinner :size="'medium'" :centered="false" :show="loading" />
+            <button v-if="!loading" type="submit" class="ui button primary" tabindex="0">{{$t("logos.update")}}</button>
           </div>
         </div>
       </form>
@@ -37,6 +38,7 @@
 </template>
 
 <script>
+import LoadingSpinner from "../components/LoadingSpinner";
 import robotoffService from "../robotoff";
 import offService from "../off";
 
@@ -50,14 +52,15 @@ const getCropURL = logo => {
 
 export default {
   name: "InsightListView",
-  components: {},
+  components: {LoadingSpinner},
   data: function() {
     return {
       annotationValue: "",
       annotationType: "",
       imageURL: "",
       cropURL: "",
-      barcode: ""
+      barcode: "",
+      loading: false
     };
   },
   computed: {
@@ -67,6 +70,7 @@ export default {
   },
   methods: {
     loadLogo: function() {
+      this.loading = true;
       robotoffService
         .loadLogo(this.logoId)
         .then(({ data }) => {
@@ -75,7 +79,11 @@ export default {
           this.annotationValue = data.annotation_value;
           this.annotationType = data.annotation_type;
           this.barcode = data.image.barcode;
-        });
+          this.loading = false;
+        })
+        .catch(() => {
+          this.loading = false;
+        })
     },
     updateLogo: function() {
       if (this.annotationType.length == 0) return;
@@ -86,11 +94,16 @@ export default {
       ) {
         value = "";
       }
+      this.loading = true;
       robotoffService
         .updateLogo(this.logoId, value, this.annotationType)
         .then(() => {
+          this.loading = false;
           window.console.log("Updated!");
-        });
+        })
+        .catch(() => {
+          this.loading = false;
+        })
     }
   },
   mounted() {

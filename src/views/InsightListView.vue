@@ -39,12 +39,13 @@
         <input class="ui submit button primary" type="submit" :value="$t('insights.search')" @click="loadInsights" />
       </form>
       <div class="ui divider" />
-      <p>
+      <p v-if="!loading">
         <strong>{{$t('insights.count')}}</strong>
         {{ resultCount }}
       </p>
     </div>
-    <table class="ui celled table">
+    <LoadingSpinner :show="loading" />
+    <table class="ui celled table" v-if="!loading">
       <thead class="mobile hidden">
         <tr>
           <th>{{$t('insights.barcode')}}</th>
@@ -87,10 +88,11 @@
 <script>
 import robotoffService from "../robotoff";
 import Pagination from "../components/Pagination";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 export default {
   name: "InsightListView",
-  components: { Pagination },
+  components: { Pagination, LoadingSpinner },
   data: function() {
     return {
       currentPage: 1,
@@ -100,7 +102,8 @@ export default {
       barcodeFilter: "",
       insightTypeFilter: "",
       annotationFilter: "",
-      valueTagFilter: ""
+      valueTagFilter: "",
+      loading: false
     };
   },
   computed: {
@@ -127,6 +130,7 @@ export default {
       this.loadInsights();
     },
     loadInsights: function() {
+      this.loading = true;
       robotoffService
         .getInsights(
           this.barcodeFilter, this.insightTypeFilter, this.valueTagFilter,
@@ -135,7 +139,11 @@ export default {
         .then(result => {
           this.insights = result.data.insights;
           this.resultCount = result.data.count;
-        });
+          this.loading = false
+        })
+        .catch(() => {
+          this.loading = false;
+        })
     }
   },
   mounted() {

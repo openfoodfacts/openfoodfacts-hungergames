@@ -33,11 +33,12 @@
         </div>
       </form>
       <div class="ui divider hidden" />
-      <div v-if="logos.length">
+      <LoadingSpinner :show="loading" />
+      <div v-if="!loading && logos.length > 0">
         <p>{{$t("logos.number_of_results")}} {{ resultCount }}</p>
         <LogoCardGrid :logos="logos" :selectable="false" />
       </div>
-      <div v-else>
+      <div v-if="!loading && logos.length == 0">
         <p>
           <strong>{{$t("logos.no_found")}}</strong>
         </p>
@@ -50,6 +51,8 @@
 import robotoffService from "../robotoff";
 import offService from "../off";
 import LogoCardGrid from "../components/LogoCardGrid";
+import LoadingSpinner from "../components/LoadingSpinner";
+
 
 const transformLogo = logo => {
   logo.image.url = robotoffService.getCroppedImageUrl(
@@ -61,7 +64,7 @@ const transformLogo = logo => {
 
 export default {
   name: "InsightListView",
-  components: { LogoCardGrid },
+  components: { LogoCardGrid , LoadingSpinner},
   data: function() {
     return {
       logos: [],
@@ -69,18 +72,24 @@ export default {
       barcode: "",
       type: "",
       resultCount: 0,
-      count: 25
+      count: 25,
+      loading: false
     };
   },
   computed: {},
   methods: {
     search: function() {
+      this.loading = true
       robotoffService
         .searchLogos(this.barcode, this.value, this.type, this.count)
         .then(({ data }) => {
           this.logos = data.logos.map(transformLogo);
           this.resultCount = data.count;
-        });
+          this.loading = false;
+        })
+        .catch(() => {
+          this.loading = false;
+        })
     }
   },
   mounted() {
