@@ -9,8 +9,7 @@
       </p>
       <img width="300px" :src="cropURL" />
       <div class="ui divider" />
-      <LoadingSpinner :show="loading" />
-      <form class="ui form" v-on:submit.prevent="updateLogo" v-if="!loading">
+      <form class="ui form" v-on:submit.prevent="updateLogo">
         <div class="three fields">
           <div class="field">
             <input type="text" name="value" :placeholder="$t('logos.value')" v-model.trim="annotationValue" />
@@ -29,7 +28,8 @@
             </select>
           </div>
           <div class="field">
-            <button type="submit" class="ui button primary" tabindex="0">{{$t("logos.update")}}</button>
+            <LoadingSpinner :size="'medium'" :centered="false" :show="loading" />
+            <button v-if="!loading" type="submit" class="ui button primary" tabindex="0">{{$t("logos.update")}}</button>
           </div>
         </div>
       </form>
