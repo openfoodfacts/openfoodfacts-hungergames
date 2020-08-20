@@ -143,6 +143,40 @@ export default {
     skipProduct() {
       this.productBuffer.shift();
     },
+    validate() {
+      const toDelete = Object.keys(this.currentProductData).filter(
+        (nutrimentId) => !this.currentProductData[nutrimentId].visible
+      );
+      const toFill = Object.keys(this.currentProductData)
+        .filter(
+          (nutrimentId) =>
+            this.currentProductData[nutrimentId] &&
+            this.currentProductData[nutrimentId].visible &&
+            this.currentProductData[nutrimentId].data &&
+            this.isInvalid(this.currentProductData[nutrimentId].data) &&
+            this.currentProductData[nutrimentId].data.length > 0
+        )
+        .map((nutrimentId) => ({
+          name: nutrimentId,
+          value: `${this.currentProductData[nutrimentId].data}${this
+            .currentProductData[nutrimentId].unit || ""}`,
+          quantity: this.currentProductData[nutrimentId].data,
+          unit: this.currentProductData[nutrimentId].unit,
+        }));
+
+      axios.post(
+        `${OFF_URL}/cgi/product_jqm2.pl?`,
+        new URLSearchParams(
+          `${toFill
+            .map((data) => `${data.name}=${data.quantity}&`)
+            .join("")}${toFill
+            .map((data) => (data.unit ? `${data.name}_unit=${data.unit}&` : ""))
+            .join("")}${toDelete.map((name) => `${name}=""&`).join("")}code=${
+            this.productBuffer[0]["code"]
+          }`
+        )
+      ); // The status of the response is not displayed so no need to wait the response
+    },
     resetProductData() {
       const data = {};
 
