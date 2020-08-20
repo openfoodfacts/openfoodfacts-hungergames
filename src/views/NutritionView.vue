@@ -51,30 +51,22 @@
           </sui-table-cell>
         </sui-table-row>
       </sui-table>
-      <!-- <button
-            data-inverted
-            data-tooltip="Shortcut: n"
-            class="ui button red annotate"
-            @click="annotate(0)"
-          >
-            No
-          </button>
-          <button
-            data-inverted
-            data-tooltip="Shortcut: k"
-            class="ui button annotate"
-            @click="annotate(-1)"
-          >
-            Skip
-          </button>
-          <button
-            data-inverted
-            data-tooltip="Shortcut: o"
-            class="ui button green annotate"
-            @click="annotate(1)"
-          >
-            Yes
-      </button>-->
+      <div>
+        <button
+          data-tooltip="Shortcut: k"
+          class="ui button annotate"
+          @click="skipProduct()"
+        >
+          {{ $t("nutrition.skip") }}
+        </button>
+        <button
+          data-tooltip="Shortcut: v"
+          class="ui button green annotate"
+          @click="validate()"
+        >
+          {{ $t("nutrition.validate") }}
+        </button>
+      </div>
     </div>
     <div class="flex-center" style="margin-top: 100px;">
       <div class="loading-spinner" v-if="loading">

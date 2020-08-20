@@ -86,9 +86,10 @@
   },
   "nutrition": {
     "present": "Specified on product",
-    "absent": "Not specified on product",
+    "absent": "Not specifi  ed on product",
+    "skip": "Skip",
+    "validate": "Validate",
     "table": {
-
       "ispresent": "Is present",
       "value": "Value",
       "unit": "Unit"
