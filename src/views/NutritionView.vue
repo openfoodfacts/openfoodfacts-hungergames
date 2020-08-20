@@ -222,6 +222,14 @@ export default {
   },
   mounted: function () {
     this.addProducts();
+
+    const vm = this;
+    window.addEventListener("keyup", function(event) {
+      if (event.target.nodeName == "BODY") {
+        if (event.key === "k") vm.skipProduct();
+        if (event.key === "v") vm.validate();
+      }
+    });
   },
 };
 </script>
