@@ -241,4 +241,7 @@ export default {
 .unit {
   margin-left: 1rem;
 }
+button.annotate {
+  padding: 2rem 2.5rem;
+}
 </style>
