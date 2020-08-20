@@ -2,21 +2,6 @@
   <div class="ui grid stackable">
     <div class="four wide column centered">
       <div class="insight-column">
-        <div class="ui form">
-          <div class="ui icon input" id="value-tag-input">
-            <input
-              class="ui input"
-              placeholder="value (fanta, en:organic,...)"
-              v-model="valueTagInput"
-            />
-            <i @click="clearValueTagInput()" v-if="valueTagInput" class="times link icon"></i>
-          </div>
-          <!-- <div class="ui toggle checkbox" style="margin-top: 0.5rem;">
-            <input v-model="sortByPopularity" type="checkbox" name="sortBy" />
-            <label>Sort by popularity</label>
-          </div>-->
-        </div>
-        <div class="ui divider hidden"></div>
         <viewer :options="imageZoomOptions" style="height: 300px">
           <img
             :class="[imageRotationClass]"
