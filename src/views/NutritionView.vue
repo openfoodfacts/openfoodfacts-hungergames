@@ -129,7 +129,7 @@ export default {
   },
   methods: {
     isInvalid(value) {
-      return !value.match("^((<|>|<=|>=|~)*[0-9]+| *)$");
+      return !value.match("^((<|>|<=|>=|~|.)*[0-9]+| *)$");
     },
     clearValueTagInput() {
       this.valueTagInput = "";
