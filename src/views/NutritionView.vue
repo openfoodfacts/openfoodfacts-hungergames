@@ -2,6 +2,14 @@
   <div class="ui grid stackable">
     <div class="four wide column centered">
       <div class="insight-column">
+        <h3>{{ productName }}</h3>
+        <a target="_blank" :href="productUrl" class="ui button primary">{{
+          $t("questions.view")
+        }}</a>
+        <a target="_blank" :href="productEditUrl" class="ui button">{{
+          $t("questions.edit")
+        }}</a>
+        <div class="ui divider"></div>
         <viewer :options="imageZoomOptions" style="height: 300px">
           <img
             :class="[imageRotationClass]"
@@ -96,6 +104,7 @@ import axios from "axios";
 // import { localSettings } from "../settings";
 import nutriments from "../data/nutritions";
 import { OFF_URL } from "../const";
+import { getProductUrl, getProductEditUrl } from "../off";
 // import { annotate as robotoffAnnotate } from "../robotoff";
 // import Product from "../components/Product";
 // import AnnotationCounter from "../components/AnnotationCounter";
@@ -126,6 +135,26 @@ export default {
       productBuffer: [],
       currentProductData: {},
     };
+  },
+  computed: {
+    productUrl: function() {
+      if (
+        this.productBuffer.length === 0 ||
+        this.productBuffer[0].code === null
+      ) {
+        return "";
+      }
+      return getProductUrl(this.productBuffer[0].code);
+    },
+    productEditUrl: function() {
+      if (
+        this.productBuffer.length === 0 ||
+        this.productBuffer[0].code === null
+      ) {
+        return "";
+      }
+      return getProductEditUrl(this.productBuffer[0].code);
+    },
   },
   methods: {
     isInvalid(value) {
