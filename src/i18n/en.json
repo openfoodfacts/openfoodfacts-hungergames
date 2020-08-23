@@ -86,7 +86,7 @@
   },
   "nutrition": {
     "present": "Specified on product",
-    "absent": "Not specifi  ed on product",
+    "absent": "Not specified on product",
     "skip": "Skip",
     "validate": "Validate",
     "table": {
