@@ -24,8 +24,12 @@
       <sui-table celled definition>
         <sui-table-header>
           <sui-table-header-cell />
-          <sui-table-header-cell>{{$t("nutrition.table.value")}}</sui-table-header-cell>
-          <sui-table-header-cell>{{$t("nutrition.table.ispresent")}}</sui-table-header-cell>
+          <sui-table-header-cell>{{
+            $t("nutrition.table.value")
+          }}</sui-table-header-cell>
+          <sui-table-header-cell>{{
+            $t("nutrition.table.ispresent")
+          }}</sui-table-header-cell>
         </sui-table-header>
         <sui-table-row
           v-for="nutritiveValue in currentProductData"
@@ -53,12 +57,18 @@
               class="unit"
             />
 
-            <span class="unit" v-else>{{ getNutrimentUnits(nutritiveValue.name)[0] }}</span>
+            <span class="unit" v-else>{{
+              getNutrimentUnits(nutritiveValue.name)[0]
+            }}</span>
           </sui-table-cell>
           <sui-table-cell>
             <sui-checkbox
               name="public"
-              :label="nutritiveValue.visible?$t('nutrition.present'):$t('nutrition.absent')"
+              :label="
+                nutritiveValue.visible
+                  ? $t('nutrition.present')
+                  : $t('nutrition.absent')
+              "
               v-model="currentProductData[nutritiveValue.id]['visible']"
             />
           </sui-table-cell>
@@ -127,7 +137,7 @@ const getProducts = async (nbOfPages) => {
 export default {
   name: "NutritionView",
   components: {},
-  data: function () {
+  data: function() {
     return {
       valueTagInput: "",
       imageZoomOptions: {
@@ -168,7 +178,7 @@ export default {
     clearValueTagInput() {
       this.valueTagInput = "";
     },
-    addProducts: async function () {
+    addProducts: async function() {
       this.loading = true;
       const newProducts = await getProducts(20);
       this.productBuffer = this.productBuffer.concat(newProducts);
@@ -240,7 +250,7 @@ export default {
     },
   },
   watch: {
-    productBuffer: function (newProductBuffer, oldProductBuffer) {
+    productBuffer: function(newProductBuffer, oldProductBuffer) {
       if (newProductBuffer.length <= 5 && !this.loading) {
         this.addProducts();
       }
@@ -254,7 +264,7 @@ export default {
       }
     },
   },
-  mounted: function () {
+  mounted: function() {
     this.addProducts();
 
     const vm = this;
