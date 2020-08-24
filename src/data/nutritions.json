@@ -1,12 +1,12 @@
 {
-    "Energy (kJ)": "nutriment_energy-kj",
-    "Energy (kCal)": "nutriment_energy-kcal",
-    "Fat": "nutriment_fat",
-    "Sat Fat": "nutriment_saturated-fat",
-    "Carbs": "nutriment_carbohydrates",
-    "Sugar": "nutriment_sugars",
-    "Proteins": "nutriment_proteins",
-    "Fibers": "nutriment_fiber",
-    "Salt": "nutriment_salt",
-    "Sodium": "nutriment_sodium"
+    "nutriment_energy-kj": null,
+    "nutriment_energy-kcal": null,
+    "nutriment_fat": "g",
+    "nutriment_saturated-fat": "g",
+    "nutriment_carbohydrates": "g",
+    "nutriment_sugars": "g",
+    "nutriment_proteins": "g",
+    "nutriment_fiber": "g",
+    "nutriment_salt": "g",
+    "nutriment_sodium": null
 }

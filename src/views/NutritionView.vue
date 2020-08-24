@@ -51,14 +51,14 @@
               style="min-width: 3rem"
               selection
               :placeholder="$t('nutrition.table.unit')"
-              v-if="getNutrimentUnits(nutritiveValue.name).length > 1"
+              v-if="getNutrimentUnits(nutritiveValue.id).length > 1"
               v-model="currentProductData[nutritiveValue.id]['unit']"
-              :options="getNutrimentUnits(nutritiveValue.name)"
+              :options="getNutrimentUnits(nutritiveValue.id)"
               class="unit"
             />
 
             <span class="unit" v-else>{{
-              getNutrimentUnits(nutritiveValue.name)[0]
+              getNutrimentUnits(nutritiveValue.id)[0]
             }}</span>
           </sui-table-cell>
           <sui-table-cell>
@@ -117,7 +117,7 @@
 <script>
 import axios from "axios";
 // import { localSettings } from "../settings";
-import nutriments from "../data/nutritions";
+import nutrimentsDefaultUnit from "../data/nutritions";
 import { OFF_URL } from "../const";
 import { getProductUrl, getProductEditUrl } from "../off";
 // import { annotate as robotoffAnnotate } from "../robotoff";
@@ -224,22 +224,21 @@ export default {
     resetProductData() {
       const data = {};
 
-      for (const nutrimentName of Object.keys(nutriments)) {
-        data[nutriments[nutrimentName]] = {
-          id: nutriments[nutrimentName],
-          name: nutrimentName,
+      for (const nutrimentId of Object.keys(nutrimentsDefaultUnit)) {
+        data[nutrimentId] = {
+          id: nutrimentId,
           data: "",
-          unit: null,
+          unit: nutrimentsDefaultUnit[nutrimentId],
           visible: true,
         };
       }
       this.currentProductData = data;
     },
-    getNutrimentUnits(nutrimentName) {
-      switch (nutrimentName) {
-        case "Energy (kCal)":
+    getNutrimentUnits(nutrimentId) {
+      switch (nutrimentId) {
+        case "nutriment_energy-kcal":
           return ["kcal"];
-        case "Energy (kJ)":
+        case "nutriment_energy-kj":
           return ["kJ"];
         default:
           return [
