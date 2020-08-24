@@ -27,8 +27,13 @@
           <sui-table-header-cell>{{$t("nutrition.table.value")}}</sui-table-header-cell>
           <sui-table-header-cell>{{$t("nutrition.table.ispresent")}}</sui-table-header-cell>
         </sui-table-header>
-        <sui-table-row v-for="nutritiveValue in currentProductData" :key="nutritiveValue.id">
-          <sui-table-cell>{{ nutritiveValue.name }}</sui-table-cell>
+        <sui-table-row
+          v-for="nutritiveValue in currentProductData"
+          :key="nutritiveValue.id"
+        >
+          <sui-table-cell>{{
+            $t(`nutrition.nutriments.${nutritiveValue.id}`)
+          }}</sui-table-cell>
           <sui-table-cell style="display: flex">
             <sui-input
               :disabled="!nutritiveValue.visible"
