@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loaded">
+  <div v-if="loaded" class="product-card">
     <h3>{{ productName }}</h3>
     <a target="_blank" :href="productUrl" class="ui button primary">{{$t('questions.view')}}</a>
     <a target="_blank" :href="productEditUrl" class="ui button">{{$t('questions.edit')}}</a>
@@ -14,6 +14,7 @@
           :src="url"
           v-for="url in imagesPreview"
           :key="url"
+          loading="lazy"
           style="max-height: 200px; max-width: 200px; margin-right: 3px;"
         />
       </viewer>
@@ -35,10 +36,8 @@
 </template>
 
 <script>
-import axios from "axios";
-import { OFF_API_URL, OFF_IMAGE_URL } from "../const";
 import { countryMap } from "../countries";
-import { getProductUrl, getProductEditUrl } from "../off";
+import offService from "../off";
 
 const BARCODE_REGEX = /(...)(...)(...)(.*)$/;
 const splitBarcode = barcode => {
@@ -58,7 +57,7 @@ const getImageRootURL = barcode => {
   if (splittedBarcode === null) {
     return null;
   }
-  return `${OFF_IMAGE_URL}/${splittedBarcode.join("/")}`;
+  return offService.getImageUrl(splittedBarcode.join("/"));
 };
 
 export default {
@@ -97,10 +96,8 @@ export default {
   },
   methods: {
     update: function() {
-      axios
-        .get(
-          `${OFF_API_URL}/product/${this.barcode}.json?fields=product_name,brands,ingredients_text,countries_tags,images`
-        )
+      offService
+        .getProduct(this.barcode)
         .then(result => {
           const product = result.data.product;
           this.productName = product.product_name || "";
@@ -124,13 +121,13 @@ export default {
       if (this.barcode === null) {
         return "";
       }
-      return getProductUrl(this.barcode);
+      return offService.getProductUrl(this.barcode);
     },
     productEditUrl: function() {
       if (this.barcode === null) {
         return "";
       }
-      return getProductEditUrl(this.barcode);
+      return offService.getProductEditUrl(this.barcode);
     },
     countries: function() {
       return this.countriesTags.map(c => countryMap[c]).join(", ");
@@ -155,6 +152,13 @@ export default {
 </script>
 
 <style scoped>
+
+@media only screen and (max-width: 767px) {
+  .product-card {
+    text-align: center;
+  }
+}
+
 .product-image {
   max-width: 250px;
   max-height: 250px;

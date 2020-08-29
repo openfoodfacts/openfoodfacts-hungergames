@@ -2,8 +2,8 @@
   <div class="ui container">
     <div>
       <h2>{{$t('insights.insights')}}</h2>
-      <div class="ui form">
-        <div class="fields">
+      <form class="ui stackable form">
+        <div class="two fields">
           <div class="field">
             <label>{{$t('insights.barcode')}}</label>
             <input :placeholder="$t('insights.barcode_placeholder')" v-model="barcodeFilter" />
@@ -12,6 +12,8 @@
             <label>{{$t('insights.value_tag')}}</label>
             <input type="text" :placeholder="$t('insights.value_placeholder')" v-model="valueTagFilter" />
           </div>
+        </div>
+        <div class="two fields">
           <div class="field">
             <label>{{$t('insights.type')}}</label>
             <select class="ui search dropdown" v-model="insightTypeFilter">
@@ -35,15 +37,16 @@
           </div>
         </div>
         <input class="ui submit button primary" type="submit" :value="$t('insights.search')" @click="loadInsights" />
-      </div>
+      </form>
       <div class="ui divider" />
-      <p>
+      <p v-if="!loading">
         <strong>{{$t('insights.count')}}</strong>
         {{ resultCount }}
       </p>
     </div>
-    <table class="ui celled table">
-      <thead>
+    <LoadingSpinner :show="loading" />
+    <table class="ui celled table" v-if="!loading">
+      <thead class="mobile hidden">
         <tr>
           <th>{{$t('insights.barcode')}}</th>
           <th>{{$t('insights.id')}}</th>
@@ -57,19 +60,21 @@
       </thead>
       <tbody>
         <tr v-for="insight in insights" :key="insight.id">
-          <td data-label="Barcode">{{ insight.barcode }}</td>
-          <td data-label="Id">{{ insight.id }}</td>
-          <td data-label="Type">{{ insight.type }}</td>
-          <td data-label="Value">{{ insight.value || insight.value_tag }}</td>
-          <td data-label="Created at">{{ formatDatetime(insight.timestamp) }}</td>
-          <td data-label="Completed at">{{ formatDatetime(insight.completed_at) }}</td>
+          <td data-label="Barcode"><span class="mobile only list__label">{{$t('insights.barcode')}} </span>{{ insight.barcode }}</td>
+          <td data-label="Id"><span class="mobile only list__label">{{$t('insights.id')}} </span>{{ insight.id }}</td>
+          <td data-label="Type"><span class="mobile only list__label">{{$t('insights.type')}} </span>{{ insight.type }}</td>
+          <td data-label="Value"><span class="mobile only list__label">{{$t('insights.value')}} </span>{{ insight.value || insight.value_tag }}</td>
+          <td data-label="Created at"><span class="mobile only list__label">{{$t('insights.created_at')}} </span>{{ formatDatetime(insight.timestamp) }}</td>
+          <td data-label="Completed at"><span class="mobile only list__label">{{$t('insights.completed_at')}} </span>{{ formatDatetime(insight.completed_at) }}</td>
           <td data-label="Annotation">
+            <span class="mobile only list__label">{{$t('insights.annotation')}} </span>
             <i v-if="insight.annotation == 1" class="large green checkmark icon"></i>
             <i v-else-if="insight.annotation == 0" class="large red times icon"></i>
             <i v-else-if="insight.annotation == -1" class="large grey question icon"></i>
           </td>
           <td data-label="Automatic">
-            <input type="checkbox" :checked="insight.automatic_processing" disabled />
+            <span class="mobile only list__label">{{$t('insights.automatic')}} </span>
+            <i v-if="insight.automatic_processing" class="large green checkmark icon"></i>
           </td>
         </tr>
       </tbody>
@@ -81,13 +86,13 @@
 </template>
 
 <script>
-import axios from "axios";
-import { ROBOTOFF_API_URL } from "../const";
+import robotoffService from "../robotoff";
 import Pagination from "../components/Pagination";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 export default {
   name: "InsightListView",
-  components: { Pagination },
+  components: { Pagination, LoadingSpinner },
   data: function() {
     return {
       currentPage: 1,
@@ -97,7 +102,8 @@ export default {
       barcodeFilter: "",
       insightTypeFilter: "",
       annotationFilter: "",
-      valueTagFilter: ""
+      valueTagFilter: "",
+      loading: false
     };
   },
   computed: {
@@ -124,32 +130,20 @@ export default {
       this.loadInsights();
     },
     loadInsights: function() {
-      const params = {
-        page: this.currentPage,
-        count: this.pageSize
-      };
-
-      if (this.barcodeFilter.length) {
-        params.barcode = this.barcodeFilter;
-      }
-      if (this.insightTypeFilter.length) {
-        params.insight_types = this.insightTypeFilter;
-      }
-      if (this.valueTagFilter.length) {
-        params.value_tag = this.valueTagFilter;
-      }
-
-      if (this.annotationFilter.length) {
-        if (this.annotationFilter == "not_annotated") {
-          params.annotated = "0";
-        } else {
-          params.annotation = this.annotationFilter;
-        }
-      }
-      axios.get(`${ROBOTOFF_API_URL}/insights`, { params }).then(result => {
-        this.insights = result.data.insights;
-        this.resultCount = result.data.count;
-      });
+      this.loading = true;
+      robotoffService
+        .getInsights(
+          this.barcodeFilter, this.insightTypeFilter, this.valueTagFilter,
+          this.annotationFilter, this.currentPage, this.pageSize
+        )
+        .then(result => {
+          this.insights = result.data.insights;
+          this.resultCount = result.data.count;
+          this.loading = false
+        })
+        .catch(() => {
+          this.loading = false;
+        })
     }
   },
   mounted() {
@@ -157,3 +151,8 @@ export default {
   }
 };
 </script>
+<style>
+.list__label {
+  font-weight: bold;
+}
+</style>

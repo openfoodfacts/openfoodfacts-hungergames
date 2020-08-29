@@ -33,11 +33,12 @@
         </div>
       </form>
       <div class="ui divider hidden" />
-      <div v-if="logos.length">
+      <LoadingSpinner :show="loading" />
+      <div v-if="!loading && logos.length > 0">
         <p>{{$t("logos.number_of_results")}} {{ resultCount }}</p>
         <LogoCardGrid :logos="logos" :selectable="false" />
       </div>
-      <div v-else>
+      <div v-if="!loading && logos.length == 0">
         <p>
           <strong>{{$t("logos.no_found")}}</strong>
         </p>
@@ -47,20 +48,23 @@
 </template>
 
 <script>
-import axios from "axios";
-import { ROBOTOFF_API_URL, OFF_IMAGE_URL } from "../const";
+import robotoffService from "../robotoff";
+import offService from "../off";
 import LogoCardGrid from "../components/LogoCardGrid";
+import LoadingSpinner from "../components/LoadingSpinner";
+
 
 const transformLogo = logo => {
-  const imageUrl = `${OFF_IMAGE_URL}${logo.image.source_image}`;
-  const [y_min, x_min, y_max, x_max] = logo.bounding_box;
-  logo.image.url = `${ROBOTOFF_API_URL}/images/crop?image_url=${imageUrl}&y_min=${y_min}&x_min=${x_min}&y_max=${y_max}&x_max=${x_max}`;
+  logo.image.url = robotoffService.getCroppedImageUrl(
+    offService.getImageUrl(logo.image.source_image),
+    logo.bounding_box
+  )
   return logo;
 };
 
 export default {
   name: "InsightListView",
-  components: { LogoCardGrid },
+  components: { LogoCardGrid , LoadingSpinner},
   data: function() {
     return {
       logos: [],
@@ -68,34 +72,24 @@ export default {
       barcode: "",
       type: "",
       resultCount: 0,
-      count: 25
+      count: 25,
+      loading: false
     };
   },
   computed: {},
   methods: {
     search: function() {
-      const url = `${ROBOTOFF_API_URL}/images/logos`;
-      const params = {
-        count: this.count,
-        annotated: 1
-      };
-
-      if (this.barcode) {
-        params.barcode = this.barcode;
-      }
-
-      if (this.value) {
-        params.value = this.value;
-      }
-
-      if (this.type) {
-        params.type = this.type;
-      }
-
-      axios.get(url, { params }).then(({ data }) => {
-        this.logos = data.logos.map(transformLogo);
-        this.resultCount = data.count;
-      });
+      this.loading = true
+      robotoffService
+        .searchLogos(this.barcode, this.value, this.type, this.count)
+        .then(({ data }) => {
+          this.logos = data.logos.map(transformLogo);
+          this.resultCount = data.count;
+          this.loading = false;
+        })
+        .catch(() => {
+          this.loading = false;
+        })
     }
   },
   mounted() {

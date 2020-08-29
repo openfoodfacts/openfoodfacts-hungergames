@@ -1,13 +1,17 @@
 <template>
   <div>
-    <div class="ui stackable grid">
-      <div class="four wide column" v-for="logo in logos" :key="logo.id">
+    <div class="ui grid">
+      <div
+        class="four wide mobile-landscape eight wide mobile four wide tablet three wide computer column"
+        v-for="logo in logos"
+        :key="logo.id"
+      >
         <div
           class="ui fluid card ann-logo"
           @click="toggleSelectLogo(logo)"
           :class="{selected: logo.selected, annotated: logo.annotation_type }"
         >
-          <div class="content">
+          <div class="content actions">
             <div class="left floated meta">
               <router-link :to="editLogoURL(logo)" target="_blank">
                 <i class="edit icon"></i>
@@ -15,14 +19,14 @@
             </div>
             <div class="right floated meta">
               <router-link :to="externalLogoURL(logo)" target="_blank">
-                <i class="external alternate icon small blue"></i>
+                <i class="external alternate icon blue"></i>
               </router-link>
             </div>
           </div>
-          <div class="image">
-            <img width="100px" :src="logo.image.url" />
+          <div class="content logo-image">
+            <img loading="lazy" :src="logo.image.url" />
           </div>
-          <div class="content">
+          <div class="content distance">
             <p v-if="logo.distance">{{$t("logos.distance")}} {{ logo.distance.toFixed(1) }}</p>
             <p
               v-if="logo.annotation_value"
@@ -76,5 +80,35 @@ export default {
 .ann-logo.annotated {
   background-color: #797979;
   color: #ffffff;
+}
+.ui.card {
+  height: 100%;
+}
+
+.ui.card>.actions {
+  flex-grow: 0;
+}
+
+.ui.card>.logo-image {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.ui.card>.logo-image>img {
+  max-width: 100%;
+}
+
+.ui.card>.distance {
+  flex-grow: 0;
+}
+
+@media only screen
+and (max-width: 767px)
+and (orientation: landscape) {
+  .ui.grid>[class*="four wide mobile-landscape"].column {
+    width: 25%!important;
+  }
 }
 </style>

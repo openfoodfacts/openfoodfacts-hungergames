@@ -72,11 +72,7 @@
           </div>
         </div>
         <div class="flex-center" v-else style="margin-top: 100px;">
-          <div class="loading-spinner" v-if="loading">
-            <div class="loading-spinner-content">
-              <div></div>
-            </div>
-          </div>
+          <LoadingSpinner :show="loading"/>
           <div v-if="noRemainingQuestion">
             <h2>{{$t('questions.no_questions_remaining')}}</h2>
           </div>
@@ -97,11 +93,10 @@
 </template>
 
 <script>
-import axios from "axios";
-import { getLang } from "../settings";
-import { ROBOTOFF_API_URL } from "../const";
-import { annotate as robotoffAnnotate } from "../robotoff";
+import robotoffService from "../robotoff";
 import Product from "../components/Product";
+import LoadingSpinner from "../components/LoadingSpinner";
+
 import AnnotationCounter from "../components/AnnotationCounter";
 
 const updateURLParam = (key, value) => {
@@ -195,7 +190,7 @@ const reformatValueTag = value => {
 
 export default {
   name: "QuestionView",
-  components: { Product, AnnotationCounter },
+  components: { Product, AnnotationCounter, LoadingSpinner },
   data: function() {
     return {
       valueTag: getURLParam("value_tag"),
@@ -289,7 +284,7 @@ export default {
     },
     annotate: function(annotation) {
       if (annotation !== -1) {
-        robotoffAnnotate(this.currentQuestion.insight_id, annotation);
+        robotoffService.annotate(this.currentQuestion.insight_id, annotation);
         this.updateLastAnnotations(this.currentQuestion, annotation);
         this.remainingQuestionCount -= 1;
         this.sessionAnnotatedCount += 1;
@@ -314,32 +309,14 @@ export default {
       }
     },
     loadQuestions: function() {
-      const count = 10;
-      const lang = getLang();
       const sortBy = this.sortByPopularity ? "popular" : "random";
-
-      const params = {
-        lang,
-        count,
-        insight_types: this.selectedInsightType
-      };
-
-      if (this.valueTag) {
-        params.value_tag = this.valueTag;
-      }
-
-      if (this.brandFilter.length) {
-        params.brands = this.brandFilter;
-      }
-
-      if (this.countryFilter.length) {
-        params.country = this.countryFilter;
-      }
-
-      axios
-        .get(`${ROBOTOFF_API_URL}/questions/${sortBy}`, {
-          params
-        })
+      const count = 10;
+      robotoffService
+        .questions(
+          sortBy, this.selectedInsightType,
+          this.valueTag, this.brandFilter,
+          this.countryFilter, count
+        )
         .then(result => {
           this.remainingQuestionCount = result.data.count;
           if (result.data.questions.length == 0) {
@@ -373,7 +350,6 @@ export default {
       if (this.currentQuestion.source_image_url) {
         return this.currentQuestion.source_image_url;
       }
-
       return "https://static.openfoodfacts.org/images/image-placeholder.png";
     },
     imageRotationClassName: function() {
@@ -459,47 +435,6 @@ export default {
 
 button.annotate {
   padding: 2rem 2.5rem;
-}
-
-@keyframes loading-spinner-content {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(180deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.loading-spinner-content div {
-  position: absolute;
-  animation: loading-spinner-content 1s linear infinite;
-  width: 80px;
-  height: 80px;
-  top: 10px;
-  left: 10px;
-  border-radius: 50%;
-  box-shadow: 0 4px 0 0 #1d3f72;
-  transform-origin: 40px 41px;
-}
-.loading-spinner {
-  width: 100px;
-  height: 100px;
-  display: inline-block;
-  overflow: hidden;
-  background: #fff;
-}
-.loading-spinner-content {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform: translateZ(0) scale(1);
-  backface-visibility: hidden;
-  transform-origin: 0 0; /* see note above */
-}
-.loading-spinner-content div {
-  box-sizing: content-box;
 }
 
 .flex-center {

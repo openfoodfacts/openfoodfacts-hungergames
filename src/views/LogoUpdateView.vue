@@ -28,7 +28,8 @@
             </select>
           </div>
           <div class="field">
-            <button type="submit" class="ui button primary" tabindex="0">{{$t("logos.update")}}</button>
+            <LoadingSpinner :size="'medium'" :centered="false" :show="loading" />
+            <button v-if="!loading" type="submit" class="ui button primary" tabindex="0">{{$t("logos.update")}}</button>
           </div>
         </div>
       </form>
@@ -37,27 +38,29 @@
 </template>
 
 <script>
-import axios from "axios";
-import { ROBOTOFF_API_URL, OFF_IMAGE_URL } from "../const";
+import LoadingSpinner from "../components/LoadingSpinner";
+import robotoffService from "../robotoff";
+import offService from "../off";
 
-const getImageURL = logo => `${OFF_IMAGE_URL}${logo.image.source_image}`;
+const getImageURL = logo => offService.getImageUrl(logo.image.source_image);
 
 const getCropURL = logo => {
-  const imageUrl = getImageURL(logo);
-  const [y_min, x_min, y_max, x_max] = logo.bounding_box;
-  return `${ROBOTOFF_API_URL}/images/crop?image_url=${imageUrl}&y_min=${y_min}&x_min=${x_min}&y_max=${y_max}&x_max=${x_max}`;
+  return robotoffService.getCroppedImageUrl(
+    getImageURL(logo), logo.bounding_box
+  )
 };
 
 export default {
   name: "InsightListView",
-  components: {},
+  components: {LoadingSpinner},
   data: function() {
     return {
       annotationValue: "",
       annotationType: "",
       imageURL: "",
       cropURL: "",
-      barcode: ""
+      barcode: "",
+      loading: false
     };
   },
   computed: {
@@ -67,19 +70,23 @@ export default {
   },
   methods: {
     loadLogo: function() {
-      axios
-        .get(`${ROBOTOFF_API_URL}/images/logos/${this.logoId}`)
+      this.loading = true;
+      robotoffService
+        .loadLogo(this.logoId)
         .then(({ data }) => {
           this.imageURL = getImageURL(data);
           this.cropURL = getCropURL(data);
           this.annotationValue = data.annotation_value;
           this.annotationType = data.annotation_type;
           this.barcode = data.image.barcode;
-        });
+          this.loading = false;
+        })
+        .catch(() => {
+          this.loading = false;
+        })
     },
     updateLogo: function() {
       if (this.annotationType.length == 0) return;
-
       let value = this.annotationValue.toLowerCase();
       if (
         this.annotationType === "packager_code" ||
@@ -87,17 +94,16 @@ export default {
       ) {
         value = "";
       }
-      const params = {
-        value: value,
-        type: this.annotationType
-      };
-      axios
-        .put(`${ROBOTOFF_API_URL}/images/logos/${this.logoId}`, params, {
-          withCredentials: true
-        })
+      this.loading = true;
+      robotoffService
+        .updateLogo(this.logoId, value, this.annotationType)
         .then(() => {
+          this.loading = false;
           window.console.log("Updated!");
-        });
+        })
+        .catch(() => {
+          this.loading = false;
+        })
     }
   },
   mounted() {
