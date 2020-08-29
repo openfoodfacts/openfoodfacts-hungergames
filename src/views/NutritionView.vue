@@ -1,7 +1,11 @@
 <template>
   <div class="ui grid stackable">
     <div class="four wide column centered">
-      <div class="insight-column">
+      <div v-if="bufferIsEmpty">
+        <p v-if="loading">Loading ...</p>
+        <p v-else>No remaining images</p>
+      </div>
+      <div v-else class="insight-column">
         <h3>{{ productName }}</h3>
         <a target="_blank" :href="productUrl" class="ui button primary">{{
           $t("questions.view")
@@ -91,16 +95,7 @@
         </button>
       </div>
     </div>
-    <div class="flex-center" style="margin-top: 100px;">
-      <div class="loading-spinner" v-if="loading">
-        <div class="loading-spinner-content">
-          <div></div>
-        </div>
-      </div>
-      <div v-if="noRemainingQuestion">
-        <h2>No questions remaining</h2>
-      </div>
-    </div>
+
     <!-- <div class="six wide column centered">
       <Product :barcode="currentQuestionBarcode" />
     </div>
@@ -169,6 +164,9 @@ export default {
         return "";
       }
       return getProductEditUrl(this.productBuffer[0].code);
+    },
+    bufferIsEmpty: function() {
+      return this.productBuffer.length === 0;
     },
   },
   methods: {
