@@ -114,7 +114,7 @@ import axios from "axios";
 // import { localSettings } from "../settings";
 import nutrimentsDefaultUnit from "../data/nutritions";
 import { OFF_URL } from "../const";
-import { getProductUrl, getProductEditUrl } from "../off";
+import offService from "../off";
 // import { annotate as robotoffAnnotate } from "../robotoff";
 // import Product from "../components/Product";
 // import AnnotationCounter from "../components/AnnotationCounter";
@@ -147,6 +147,15 @@ export default {
     };
   },
   computed: {
+    productName: function() {
+      if (
+        this.productBuffer.length === 0 ||
+        this.productBuffer[0].product_name === null
+      ) {
+        return "";
+      }
+      return this.productBuffer[0].product_name;
+    },
     productUrl: function() {
       if (
         this.productBuffer.length === 0 ||
@@ -154,7 +163,7 @@ export default {
       ) {
         return "";
       }
-      return getProductUrl(this.productBuffer[0].code);
+      return offService.getProductUrl(this.productBuffer[0].code);
     },
     productEditUrl: function() {
       if (
@@ -163,7 +172,7 @@ export default {
       ) {
         return "";
       }
-      return getProductEditUrl(this.productBuffer[0].code);
+      return offService.getProductEditUrl(this.productBuffer[0].code);
     },
     bufferIsEmpty: function() {
       return this.productBuffer.length === 0;
