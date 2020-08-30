@@ -27,23 +27,24 @@
         />
 
         <!-- saved links -->
-        <path
-          v-for="linkPath in memorizedLinks"
-          :d="linkPath"
-          :key="'savedLink-' + linkPath"
-          class="savedLink"
-        />
         <g
-          v-for="boxes in annotations.memorizedPaths"
-          :key="'saved Circle bos' + boxes[0]"
+          v-for="(neighbours, node) in annotations.memorizedGraph"
+          :key="'node-group-' + node"
         >
           <circle
-            v-for="path in boxes"
-            :key="'savedCenter-' + path"
-            :cx="getCenter(path).x"
-            :cy="getCenter(path).y"
+            :cx="getCenter(node).x"
+            :cy="getCenter(node).y"
             r="5"
             class="savedBoxesCenter"
+          />
+          <line
+            v-for="neighbour in neighbours"
+            :x1="getCenter(node).x"
+            :y1="getCenter(node).y"
+            :x2="getCenter(neighbour).x"
+            :y2="getCenter(neighbour).y"
+            :key="'savedLink-' + neighbour + '-' + node"
+            class="savedLink"
           />
         </g>
 
@@ -2518,7 +2519,7 @@ export default {
       annotations: {
         keyIsDown: false,
         currentPath: [],
-        memorizedPaths: [],
+        memorizedGraph: {},
         lastElement: { x: 0, y: 0 },
       },
       cursor: { x: 0, y: 0 },
@@ -2531,11 +2532,6 @@ export default {
       }
       return getPath(
         this.annotations.currentPath.map((path) => getCenter(path))
-      );
-    },
-    memorizedLinks: function() {
-      return this.annotations.memorizedPaths.map((links) =>
-        getPath(links.map((path) => getCenter(path)))
       );
     },
   },
@@ -2566,7 +2562,26 @@ export default {
         //we should stop making links
         this.annotations.keyIsDown = false;
 
-        this.annotations.memorizedPaths.push(this.annotations.currentPath);
+        //save graph
+        this.annotations.currentPath.forEach((path) => {
+          if (this.annotations.memorizedGraph[path] === undefined) {
+            this.annotations.memorizedGraph[path] = [];
+          }
+        });
+        this.annotations.currentPath.forEach((path, index) => {
+          if (index > 0) {
+            const otherPath = this.annotations.currentPath[index - 1];
+            const start = otherPath > path ? otherPath : path;
+            const end = otherPath <= path ? otherPath : path;
+
+            if (
+              !this.annotations.memorizedGraph[start].find((x) => x === end)
+            ) {
+              this.annotations.memorizedGraph[start].push(end);
+            }
+          }
+        });
+
         this.annotations.currentPath = [];
       }
     },
