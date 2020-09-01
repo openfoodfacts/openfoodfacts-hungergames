@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p>{{ this.m }}</p>
     <div class="imageContainer" @click="click('')">
       <img :src="urlImg" />
       <svg width="479" height="657" v-on:mousemove="moveAt">
@@ -11,7 +12,7 @@
           :key="path"
           @click.stop="click(path, $event)"
           v-on:mouseover="mouseover(path)"
-          v-bind:class="{ inVisible: !box.visible }"
+          v-bind:class="{ inVisible: !box.visible, toDelete: box.toDelete }"
           class="box"
         />
 
@@ -43,7 +44,16 @@
             :y1="getCenter(node).y"
             :x2="getCenter(neighbour).x"
             :y2="getCenter(neighbour).y"
-            :key="'savedLink-' + neighbour + '-' + node"
+            :key="
+              'savedLink-' +
+                getCenter(node).x +
+                '-' +
+                getCenter(node).y +
+                '-' +
+                getCenter(neighbour).x +
+                '-' +
+                getCenter(neighbour).y
+            "
             class="savedLink"
           />
         </g>
@@ -56,21 +66,36 @@
           :y2="`${annotations.lastElement.y}`"
           class="currentLink"
         />
+        <!-- groups -->
+        <path
+          v-for="(box, path) in convexHalls"
+          :d="path"
+          :key="path"
+          class="convexhall"
+        />
       </svg>
     </div>
+    <button v-on:click="nextStep">next</button>
   </div>
 </template>
 
 <script>
 // import axios from "axios";
-import { getBoxes, getCenter, getPath } from "../utils/tableAnotation.js";
+import {
+  getBoxes,
+  getCenter,
+  getPath,
+  getHullPaths,
+} from "../utils/tableAnotation.js";
 
 export default {
   name: "TableAnnotationView",
   components: {},
   data: function() {
     return {
+      m: "",
       loading: false,
+      currentState: 0,
       boxes: [],
       urlImg:
         "https://openfoodfacts.org/images/products/084/316/706/7253/2.jpg",
@@ -2522,6 +2547,7 @@ export default {
         memorizedGraph: {},
         lastElement: { x: 0, y: 0 },
       },
+      convexHalls: {},
       cursor: { x: 0, y: 0 },
     };
   },
@@ -2552,7 +2578,7 @@ export default {
     click: function(path, event) {
       // this.boxes[path].visible = !this.boxes[path].visible;
       if (!this.annotations.keyIsDown && path) {
-        //We are not making links
+        //We are now making links
         this.annotations.keyIsDown = true;
         this.annotations.currentPath = [path];
         this.annotations.lastElement = getCenter(path);
@@ -2601,6 +2627,7 @@ export default {
           this.annotations.currentPath.length - 1
         ] === path
       ) {
+        // The current box is the last one added -> so we remove it
         if (this.annotations.currentPath.length > 1) {
           this.annotations.currentPath.pop();
           this.annotations.lastElement = getCenter(
@@ -2612,6 +2639,28 @@ export default {
       } else if (!this.annotations.currentPath.find((x) => x === path)) {
         this.annotations.currentPath.push(path);
         this.annotations.lastElement = getCenter(path);
+      }
+    },
+    nextStep: function() {
+      this.click();
+      if (this.currentState === 0) {
+        //Create Cells
+        // this.boxes = {
+        //   ...this.boxes,
+        //   ...getHullPaths(this.annotations.memorizedGraph),
+        // };
+        this.convexHalls = getHullPaths(this.annotations.memorizedGraph);
+        if (Object.keys(this.convexHalls).length !== 0) {
+          // this.currentState += 1;
+          Object.keys(this.boxes).forEach((key) => {
+            this.boxes[key].toDelete = !Object.keys(
+              this.annotations.memorizedGraph
+            ).includes(key);
+          });
+          this.annotations.keyIsDown = false;
+          this.annotations.currentPath = [];
+          this.annotations.lastElement = { x: 0, y: 0 };
+        }
       }
     },
   },
@@ -2645,6 +2694,11 @@ export default {
   cursor: pointer;
 }
 
+.toDelete {
+  fill: red;
+  fill-opacity: 0.3;
+}
+
 .inVisible {
   stroke: red;
   fill: red;
@@ -2663,6 +2717,13 @@ export default {
 .savedBoxesCenter {
   pointer-events: none;
   stroke: black;
+  stroke-width: 5;
+  fill: none;
+}
+
+.convexhall {
+  pointer-events: none;
+  stroke: blue;
   stroke-width: 5;
   fill: none;
 }
