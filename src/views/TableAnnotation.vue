@@ -1,18 +1,16 @@
 <template>
   <div>
-    <p>{{ this.m }}</p>
+    <p>{{ this.messages[this.currentState] }}</p>
     <div class="imageContainer" @click="click('')">
       <img :src="urlImg" />
       <svg width="479" height="657" v-on:mousemove="moveAt">
         <path
           v-for="(box, boxKey) in boxes"
-          fill="transparent"
-          stroke="black"
           :d="box.path"
           :key="boxKey"
           @click.stop="click(boxKey, $event)"
           v-on:mouseover="mouseover(boxKey)"
-          v-bind:class="{ inVisible: !box.visible, toDelete: box.toDelete }"
+          v-bind:class="{ toDelete: box.toDelete }"
           class="box"
         />
 
@@ -79,12 +77,19 @@ import {
   getHullPaths,
 } from "../utils/tableAnotation.js";
 
+const messages = {
+  0: "Merci de regrouper entre eux les boites faisant parti d'une meme case du tableau",
+  1: "Si des boites rouges font parti du tableau, merci de les ajouter (vous pouvez selectionner une case seule)",
+  2: "Reliez entre elles les cellules d'une même ligne",
+  3: "Reliez entre elles les cellules d'une même colonne",
+};
+
 export default {
   name: "TableAnnotationView",
   components: {},
   data: function() {
     return {
-      m: "",
+      messages: messages,
       loading: false,
       currentState: 0,
       boxes: [],
@@ -2533,9 +2538,12 @@ export default {
         },
       ],
       annotations: {
+        annnotated: false,
         keyIsDown: false,
         currentPath: [],
         memorizedGraph: {},
+        timeAdded: {},
+        currentTime: 0,
         lastElement: { x: 0, y: 0 },
       },
       convexHalls: {},
@@ -2578,7 +2586,9 @@ export default {
         this.annotations.lastElement = getCenter(this.boxes[boxKey].points);
         this.cursor.x = event.offsetX;
         this.cursor.y = event.offsetY;
-      } else {
+      } else if (this.annotations.keyIsDown) {
+        this.annotations.annnotated = true;
+
         //we should stop making links
         this.annotations.keyIsDown = false;
 
@@ -2588,6 +2598,7 @@ export default {
         this.annotations.currentPath.forEach((boxKey) => {
           if (this.annotations.memorizedGraph[boxKey] === undefined) {
             this.annotations.memorizedGraph[boxKey] = [];
+            this.annotations.timeAdded[boxKey] = this.annotations.currentTime;
           }
         });
 
@@ -2605,7 +2616,7 @@ export default {
             }
           }
         });
-
+        this.annotations.currentTime = 0;
         this.annotations.currentPath = [];
       }
     },
@@ -2642,18 +2653,19 @@ export default {
     },
     nextStep: function() {
       this.click();
-      if (this.currentState === 0) {
-        //Create Cells
-        // this.boxes = {
-        //   ...this.boxes,
-        //   ...getHullPaths(this.annotations.memorizedGraph),
-        // };
+      if (
+        this.currentState === 0 ||
+        (this.annotations.annnotated && this.currentState === 1)
+      ) {
+        //Show cells created by goupin boxes
+        // can append if we click on next for the first time
+        // or if we were in the verification step and made modifications
+
         this.convexHalls = getHullPaths(
           this.annotations.memorizedGraph,
           this.boxes
         );
         if (Object.keys(this.convexHalls).length !== 0) {
-          // this.currentState += 1;
           Object.keys(this.boxes).forEach((key) => {
             this.boxes[key].toDelete = !Object.keys(
               this.annotations.memorizedGraph
@@ -2662,6 +2674,53 @@ export default {
           this.annotations.keyIsDown = false;
           this.annotations.currentPath = [];
           this.annotations.lastElement = { x: 0, y: 0 };
+          this.annotations.annnotated = false;
+          this.currentState = 1;
+        }
+      } else if (this.currentState === 1) {
+        // the association boxes -> cells is done by the key in convex hull
+        // since the key of a set is the concatenation of the boxes id contained in the cell
+
+        this.boxes = { ...this.convexHalls };
+        this.convexHalls = {};
+
+        this.annotations.memorizedGraph = {};
+        this.annotations.timeAdded = {};
+        this.annotations.currentTime = 0;
+
+        this.currentState = 2;
+        //Now we arr ready to select lines
+      } else if (this.currentState === 2) {
+        if (
+          Object.keys(this.boxes).length >
+          Object.keys(this.annotations.memorizedGraph).length
+        ) {
+          alert(
+            "Heu ... T''as laissé des cellules orphline. Si elles forment une ligne à elle seule, juste clique deux fois dessus."
+          );
+        } else {
+          this.saveLinesGraph = { ...this.annotations.memorizedGraph };
+          this.saveLinestimeAdded = { ...this.annotations.timeAdded };
+
+          this.annotations.memorizedGraph = {};
+          this.annotations.timeAdded = {};
+          this.annotations.currentTime = 0;
+
+          this.currentState = 3;
+        }
+      } else if (this.currentState === 3) {
+        if (
+          Object.keys(this.boxes).length >
+          Object.keys(this.annotations.memorizedGraph).length
+        ) {
+          alert(
+            "Heu ... T''as laissé des cellules orphline. Si elles forment une colonne à elle seule, juste clique deux fois dessus."
+          );
+        } else {
+          this.saveColonnesGraph = { ...this.annotations.memorizedGraph };
+          this.saveColonnestimeAdded = { ...this.annotations.timeAdded };
+
+          alert("Bravo, tu as fini cet images !!! ");
         }
       }
     },
@@ -2689,10 +2748,18 @@ export default {
   top: 0;
   left: 0;
 }
-.box:hover {
-  stroke: red;
-  fill: red;
+.box {
+  fill: blue;
   fill-opacity: 0.1;
+  stroke: blue;
+  stroke-width: 1;
+}
+
+.box:hover {
+  stroke: blue;
+  fill: blue;
+  stroke-width: 4;
+  fill-opacity: 0.5;
   cursor: pointer;
 }
 
@@ -2701,12 +2768,6 @@ export default {
   fill-opacity: 0.3;
 }
 
-.inVisible {
-  stroke: red;
-  fill: red;
-  fill-opacity: 0.2;
-  cursor: pointer;
-}
 .currentLink,
 .currentBoxesCenter {
   pointer-events: none;
