@@ -5,13 +5,13 @@
       <img :src="urlImg" />
       <svg width="479" height="657" v-on:mousemove="moveAt">
         <path
-          v-for="(box, path) in boxes"
+          v-for="(box, boxKey) in boxes"
           fill="transparent"
           stroke="black"
-          :d="path"
-          :key="path"
-          @click.stop="click(path, $event)"
-          v-on:mouseover="mouseover(path)"
+          :d="box.path"
+          :key="boxKey"
+          @click.stop="click(boxKey, $event)"
+          v-on:mouseover="mouseover(boxKey)"
           v-bind:class="{ inVisible: !box.visible, toDelete: box.toDelete }"
           class="box"
         />
@@ -19,41 +19,32 @@
         <!-- Links in creation -->
         <path v-if="currentLinks" :d="currentLinks" class="currentLink" />
         <circle
-          v-for="path in annotations.currentPath"
-          :key="'creationCenter-' + path"
-          :cx="getCenter(path).x"
-          :cy="getCenter(path).y"
+          v-for="key in annotations.currentPath"
+          :key="'creationCenter-' + key"
+          :cx="getCenter(boxes[key].points).x"
+          :cy="getCenter(boxes[key].points).y"
           r="5"
           class="currentBoxesCenter"
         />
 
         <!-- saved links -->
         <g
-          v-for="(neighbours, node) in annotations.memorizedGraph"
-          :key="'node-group-' + node"
+          v-for="(neighbours, nodeKey) in annotations.memorizedGraph"
+          :key="'node-group-' + nodeKey"
         >
           <circle
-            :cx="getCenter(node).x"
-            :cy="getCenter(node).y"
+            :cx="getCenter(boxes[nodeKey].points).x"
+            :cy="getCenter(boxes[nodeKey].points).y"
             r="5"
             class="savedBoxesCenter"
           />
           <line
-            v-for="neighbour in neighbours"
-            :x1="getCenter(node).x"
-            :y1="getCenter(node).y"
-            :x2="getCenter(neighbour).x"
-            :y2="getCenter(neighbour).y"
-            :key="
-              'savedLink-' +
-                getCenter(node).x +
-                '-' +
-                getCenter(node).y +
-                '-' +
-                getCenter(neighbour).x +
-                '-' +
-                getCenter(neighbour).y
-            "
+            v-for="neighbourKey in neighbours"
+            :x1="getCenter(boxes[nodeKey].points).x"
+            :y1="getCenter(boxes[nodeKey].points).y"
+            :x2="getCenter(boxes[neighbourKey].points).x"
+            :y2="getCenter(boxes[neighbourKey].points).y"
+            :key="'savedLink-' + nodeKey + ' - ' + neighbourKey"
             class="savedLink"
           />
         </g>
@@ -68,9 +59,9 @@
         />
         <!-- groups -->
         <path
-          v-for="(box, path) in convexHalls"
-          :d="path"
-          :key="path"
+          v-for="(group, groupId) in convexHalls"
+          :d="group.path"
+          :key="groupId"
           class="convexhall"
         />
       </svg>
@@ -84,7 +75,7 @@
 import {
   getBoxes,
   getCenter,
-  getPath,
+  points2Path,
   getHullPaths,
 } from "../utils/tableAnotation.js";
 
@@ -2556,14 +2547,17 @@ export default {
       if (this.annotations.currentPath.length < 1) {
         return "";
       }
-      return getPath(
-        this.annotations.currentPath.map((path) => getCenter(path))
+      return points2Path(
+        this.annotations.currentPath.map((boxKey) =>
+          getCenter(this.boxes[boxKey].points)
+        ),
+        false
       );
     },
   },
   methods: {
-    getCenter: function(path) {
-      return getCenter(path);
+    getCenter: function(points) {
+      return getCenter(points);
     },
     // loadOCR: async function() {
     //   this.loading = true;
@@ -2575,13 +2569,13 @@ export default {
     //   this.anotations = anotations;
     //   this.loading = false;
     // },
-    click: function(path, event) {
-      // this.boxes[path].visible = !this.boxes[path].visible;
-      if (!this.annotations.keyIsDown && path) {
+    click: function(boxKey, event) {
+      // this.boxes[boxKey].visible = !this.boxes[boxKey].visible;
+      if (!this.annotations.keyIsDown && boxKey) {
         //We are now making links
         this.annotations.keyIsDown = true;
-        this.annotations.currentPath = [path];
-        this.annotations.lastElement = getCenter(path);
+        this.annotations.currentPath = [boxKey];
+        this.annotations.lastElement = getCenter(this.boxes[boxKey].points);
         this.cursor.x = event.offsetX;
         this.cursor.y = event.offsetY;
       } else {
@@ -2589,16 +2583,20 @@ export default {
         this.annotations.keyIsDown = false;
 
         //save graph
-        this.annotations.currentPath.forEach((path) => {
-          if (this.annotations.memorizedGraph[path] === undefined) {
-            this.annotations.memorizedGraph[path] = [];
+
+        // be sure that each node is a key in dictionary
+        this.annotations.currentPath.forEach((boxKey) => {
+          if (this.annotations.memorizedGraph[boxKey] === undefined) {
+            this.annotations.memorizedGraph[boxKey] = [];
           }
         });
-        this.annotations.currentPath.forEach((path, index) => {
+
+        // fill dictionaly with lexicographic order
+        this.annotations.currentPath.forEach((boxKey, index) => {
           if (index > 0) {
-            const otherPath = this.annotations.currentPath[index - 1];
-            const start = otherPath > path ? otherPath : path;
-            const end = otherPath <= path ? otherPath : path;
+            const previousBoxKey = this.annotations.currentPath[index - 1];
+            const start = previousBoxKey > boxKey ? previousBoxKey : boxKey;
+            const end = previousBoxKey <= boxKey ? previousBoxKey : boxKey;
 
             if (
               !this.annotations.memorizedGraph[start].find((x) => x === end)
@@ -2618,27 +2616,28 @@ export default {
       this.cursor.x = event.offsetX;
       this.cursor.y = event.offsetY;
     },
-    mouseover: function(path) {
+    mouseover: function(boxKey) {
       if (!this.annotations.keyIsDown) {
         return null;
       }
       if (
         this.annotations.currentPath[
           this.annotations.currentPath.length - 1
-        ] === path
+        ] === boxKey
       ) {
         // The current box is the last one added -> so we remove it
         if (this.annotations.currentPath.length > 1) {
           this.annotations.currentPath.pop();
+          const lastBoxKey = this.annotations.currentPath[
+            this.annotations.currentPath.length - 1
+          ];
           this.annotations.lastElement = getCenter(
-            this.annotations.currentPath[
-              this.annotations.currentPath.length - 1
-            ]
+            this.boxes[lastBoxKey].points
           );
         }
-      } else if (!this.annotations.currentPath.find((x) => x === path)) {
-        this.annotations.currentPath.push(path);
-        this.annotations.lastElement = getCenter(path);
+      } else if (!this.annotations.currentPath.find((x) => x === boxKey)) {
+        this.annotations.currentPath.push(boxKey);
+        this.annotations.lastElement = getCenter(this.boxes[boxKey].points);
       }
     },
     nextStep: function() {
@@ -2649,7 +2648,10 @@ export default {
         //   ...this.boxes,
         //   ...getHullPaths(this.annotations.memorizedGraph),
         // };
-        this.convexHalls = getHullPaths(this.annotations.memorizedGraph);
+        this.convexHalls = getHullPaths(
+          this.annotations.memorizedGraph,
+          this.boxes
+        );
         if (Object.keys(this.convexHalls).length !== 0) {
           // this.currentState += 1;
           Object.keys(this.boxes).forEach((key) => {
