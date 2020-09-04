@@ -123,8 +123,11 @@ export const getHullPaths = (graph, boxes) => {
       (accumulateur, nodeId) => [...accumulateur, ...boxes[nodeId].points],
       []
     );
-    console.log(points.map(({ x, y }) => `${x}, ${y}  `)); // eslint-disable-line no-console
-    rep[points2Key(points)] = {
+    const componentKey = [...component2nodes[key]]
+      .sort((nodeId1, nodeId2) => (nodeId1 < nodeId2 ? 1 : -1))
+      .join("-");
+
+    rep[componentKey] = {
       // rep[points.join("//")] = {
       path: points2Path(getConvexPoints(points), true),
       points: points,
