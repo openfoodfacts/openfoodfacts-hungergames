@@ -96,8 +96,8 @@ import {
 } from "../utils/tableAnotation.js";
 
 const messages = {
-  0: "Merci de regrouper entre eux les boites faisant parti d'une meme case du tableau",
-  1: "Si des boites rouges font parti du tableau, merci de les ajouter (vous pouvez selectionner une case seule)",
+  0: "Merci de regrouper entre elles les boîtes faisant partie d'une même case du tableau",
+  1: "Si des boites rouges font partie du tableau, merci de les ajouter (vous pouvez sélectionner une case seule)",
   2: "Reliez entre elles les cellules d'une même ligne",
   3: "Reliez entre elles les cellules d'une même colonne",
 };
@@ -2752,7 +2752,7 @@ export default {
           this.saveColonnesGraph = { ...this.annotations.memorizedGraph };
           this.saveColonnestimeAdded = { ...this.annotations.timeAdded };
 
-          alert("Bravo, tu as fini cet images !!! ");
+          alert("Bravo, tu as fini cette image !!! ");
         }
       }
     },
