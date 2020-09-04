@@ -37,29 +37,31 @@
             r="5"
             class="savedBoxesCenter"
           />
-          <line
+          <g
             v-for="neighbourKey in neighbours"
-            :x1="getCenter(boxes[nodeKey].points).x"
-            :y1="getCenter(boxes[nodeKey].points).y"
-            :x2="getCenter(boxes[neighbourKey].points).x"
-            :y2="getCenter(boxes[neighbourKey].points).y"
-            :key="'help-' + nodeKey + ' - ' + neighbourKey"
-            @click.stop="clickLink(nodeKey, neighbourKey)"
-            v-bind:class="{
-              noPointerEvent: keyIsDown,
-              youWantToDelete: !keyIsDown,
-            }"
-            class="helpLink"
-          />
-          <line
-            v-for="neighbourKey in neighbours"
-            :x1="getCenter(boxes[nodeKey].points).x"
-            :y1="getCenter(boxes[nodeKey].points).y"
-            :x2="getCenter(boxes[neighbourKey].points).x"
-            :y2="getCenter(boxes[neighbourKey].points).y"
             :key="'savedLink-' + nodeKey + ' - ' + neighbourKey"
-            class="savedLink"
-          />
+          >
+            <line
+              :x1="getCenter(boxes[nodeKey].points).x"
+              :y1="getCenter(boxes[nodeKey].points).y"
+              :x2="getCenter(boxes[neighbourKey].points).x"
+              :y2="getCenter(boxes[neighbourKey].points).y"
+              @click.stop="clickLink(nodeKey, neighbourKey)"
+              v-bind:class="{
+                noPointerEvent: keyIsDown,
+                youWantToDelete: !keyIsDown,
+              }"
+              class="helpLink"
+            />
+            <!-- the first link is biger in order to be easier to select (for deleting link interface) -->
+            <line
+              :x1="getCenter(boxes[nodeKey].points).x"
+              :y1="getCenter(boxes[nodeKey].points).y"
+              :x2="getCenter(boxes[neighbourKey].points).x"
+              :y2="getCenter(boxes[neighbourKey].points).y"
+              class="savedLink"
+            />
+          </g>
         </g>
 
         <line
