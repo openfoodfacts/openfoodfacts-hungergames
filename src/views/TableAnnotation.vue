@@ -75,6 +75,7 @@ import {
   getCenter,
   points2Path,
   getHullPaths,
+  sortKeys,
 } from "../utils/tableAnotation.js";
 
 const messages = {
@@ -2606,8 +2607,7 @@ export default {
         this.annotations.currentPath.forEach((boxKey, index) => {
           if (index > 0) {
             const previousBoxKey = this.annotations.currentPath[index - 1];
-            const start = previousBoxKey > boxKey ? previousBoxKey : boxKey;
-            const end = previousBoxKey <= boxKey ? previousBoxKey : boxKey;
+            const [start, end] = sortKeys(boxKey, previousBoxKey);
 
             if (
               !this.annotations.memorizedGraph[start].find((x) => x === end)

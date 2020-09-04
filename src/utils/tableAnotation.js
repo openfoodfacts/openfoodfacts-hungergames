@@ -138,3 +138,9 @@ export const getHullPaths = (graph, boxes) => {
 
   return rep;
 };
+
+export const sortKeys = (node1Key, node2Key) => {
+  const start = node2Key > node1Key ? node2Key : node1Key;
+  const end = node2Key <= node1Key ? node2Key : node1Key;
+  return [start, end];
+};
