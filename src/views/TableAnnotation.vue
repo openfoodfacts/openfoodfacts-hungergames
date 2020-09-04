@@ -1,6 +1,7 @@
 <template>
   <div>
     <p>{{ this.messages[this.currentState] }}</p>
+    <p>{{ this.annotations.keyIsDown }}</p>
     <div class="imageContainer" @click="click('')">
       <img :src="urlImg" />
       <svg width="479" height="657" v-on:mousemove="moveAt">
@@ -35,6 +36,20 @@
             :cy="getCenter(boxes[nodeKey].points).y"
             r="5"
             class="savedBoxesCenter"
+          />
+          <line
+            v-for="neighbourKey in neighbours"
+            :x1="getCenter(boxes[nodeKey].points).x"
+            :y1="getCenter(boxes[nodeKey].points).y"
+            :x2="getCenter(boxes[neighbourKey].points).x"
+            :y2="getCenter(boxes[neighbourKey].points).y"
+            :key="'help-' + nodeKey + ' - ' + neighbourKey"
+            @click.stop="clickLink(nodeKey, neighbourKey)"
+            v-bind:class="{
+              noPointerEvent: keyIsDown,
+              youWantToDelete: !keyIsDown,
+            }"
+            class="helpLink"
           />
           <line
             v-for="neighbourKey in neighbours"
@@ -2563,6 +2578,9 @@ export default {
         false
       );
     },
+    keyIsDown: function() {
+      return this.annotations.keyIsDown;
+    },
   },
   methods: {
     getCenter: function(points) {
@@ -2578,6 +2596,18 @@ export default {
     //   this.anotations = anotations;
     //   this.loading = false;
     // },
+    clickLink: function(node1, node2) {
+      if (!this.annotations.keyIsDown) {
+        const [start, end] = sortKeys(node1, node2);
+
+        this.annotations.memorizedGraph = {
+          ...this.annotations.memorizedGraph,
+          [start]: this.annotations.memorizedGraph[start].filter(
+            (x) => x !== end
+          ),
+        };
+      }
+    },
     click: function(boxKey, event) {
       // this.boxes[boxKey].visible = !this.boxes[boxKey].visible;
       if (!this.annotations.keyIsDown && boxKey) {
@@ -2782,6 +2812,22 @@ export default {
   stroke: black;
   stroke-width: 5;
   fill: none;
+}
+
+.youWantToDelete {
+  stroke: transparent;
+  stroke-width: 15;
+}
+.youWantToDelete:hover {
+  cursor: pointer;
+}
+.youWantToDelete:hover + line {
+  stroke: red;
+  stroke-dasharray: 5, 5;
+}
+
+.noPointerEvent {
+  pointer-events: none;
 }
 
 .convexhall {
