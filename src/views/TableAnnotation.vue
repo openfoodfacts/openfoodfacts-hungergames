@@ -1,7 +1,20 @@
 <template>
-  <div>
-    <p>{{ this.messages[this.currentState] }}</p>
-    <p>{{ this.annotations.keyIsDown }}</p>
+  <div class="app">
+    <div class="states">
+      <div
+        v-for="(xxx, index) in messages"
+        :key="index"
+        v-bind:class="{
+          doneState: index < currentState,
+          currentState: index == currentState,
+        }"
+      >
+        <span>
+          {{ index }}
+        </span>
+      </div>
+    </div>
+    <p class="explanations">{{ this.messages[this.currentState] }}</p>
     <div class="imageContainer" @click="click('')">
       <img :src="urlImg" />
       <svg width="479" height="657" v-on:mousemove="moveAt">
@@ -80,8 +93,18 @@
           class="convexhall"
         />
       </svg>
+
+      <div class="actions">
+        <button v-on:click="skip">skip</button>
+        <button v-on:click="nextStep">
+          {{
+            this.annotations.annnotated && this.currentState === 1
+              ? "update"
+              : "next"
+          }}
+        </button>
+      </div>
     </div>
-    <button v-on:click="nextStep">next</button>
   </div>
 </template>
 
@@ -2588,6 +2611,10 @@ export default {
     getCenter: function(points) {
       return getCenter(points);
     },
+    skip: function() {
+      //TODO
+      return null;
+    },
     // loadOCR: async function() {
     //   this.loading = true;
     //   const {
@@ -2721,7 +2748,7 @@ export default {
         this.annotations.currentTime = 0;
 
         this.currentState = 2;
-        //Now we arr ready to select lines
+        //Now we are ready to select lines
       } else if (this.currentState === 2) {
         if (
           Object.keys(this.boxes).length >
@@ -2770,6 +2797,10 @@ export default {
 </script>
 
 <style scoped>
+.app {
+  text-align: center;
+}
+
 .imageContainer {
   position: relative;
   display: inline-block;
@@ -2837,5 +2868,53 @@ export default {
   stroke: blue;
   stroke-width: 5;
   fill: none;
+}
+
+.states {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 0.5rem;
+}
+.states div {
+  flex-grow: 1;
+  height: 2rem;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 2rem;
+  text-align: center;
+  transition: color 0.2s, background-color 0.2s;
+  background-color: lightgrey;
+  color: black;
+}
+
+.states .currentState {
+  background-color: #1769aa;
+  color: white;
+}
+.states .doneState {
+  background-color: #2196f3;
+  color: white;
+}
+
+.explanations {
+  font-size: 1.3rem;
+}
+.actions {
+  display: flex;
+  justify-content: stretch;
+}
+.actions button {
+  flex-grow: 1;
+  padding: 1rem;
+  font-size: 1.7rem;
+  border: 0;
+  color: white;
+}
+
+.actions button:first-child {
+  background-color: red;
+}
+.actions button:last-child {
+  background-color: green;
 }
 </style>
