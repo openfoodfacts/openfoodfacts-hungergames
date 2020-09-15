@@ -31,6 +31,9 @@
             <p
               v-if="logo.annotation_value"
             >{{$t("logos.annotation")}}{{ logo.annotation_value }} ({{ logo.annotation_type }})</p>
+            <p
+              v-else-if="logo.annotation_type"
+            >{{$t("logos.annotation")}}({{ logo.annotation_type }})</p>
           </div>
         </div>
       </div>
