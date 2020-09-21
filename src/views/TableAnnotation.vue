@@ -19,11 +19,11 @@
       <img :src="urlImg" />
       <svg width="479" height="657" v-on:mousemove="moveAt">
         <path
-          v-for="(box, boxKey) in boxes"
+          v-for="box in visibleBoxes"
           :d="box.path"
-          :key="boxKey"
-          @click.stop="click(boxKey, $event)"
-          v-on:mouseover="mouseover(boxKey)"
+          :key="box.id"
+          @click.stop="click(box.id, $event)"
+          v-on:mouseover="mouseover(box.id)"
           v-bind:class="{ toDelete: box.toDelete }"
           class="box"
         />
@@ -77,6 +77,33 @@
           </g>
         </g>
 
+        <!-- saved lines-->
+        <g v-if="showSavedLines">
+          <g
+            v-for="(line, lineId) in savedLines"
+            :key="'saved-line-' + lineId"
+            class="validatedGroup"
+          >
+            <path :d="line.path" />
+            <text :x="line.center.x" :y="line.center.y">
+              {{ "line : " + lineId }}
+            </text>
+          </g>
+        </g>
+        <!-- saved columns-->
+        <g v-if="showSavedColumns">
+          <g
+            v-for="(column, columnId) in savedColumns"
+            :key="'saved-column-' + columnId"
+            class="validatedGroup"
+          >
+            <path :d="column.path" />
+            <text :x="column.center.x" :y="column.center.y">
+              {{ "column : " + columnId }}
+            </text>
+          </g>
+        </g>
+
         <line
           v-if="annotations.keyIsDown"
           :x1="`${cursor.x}`"
@@ -116,6 +143,7 @@ import {
   points2Path,
   getHullPaths,
   sortKeys,
+  getConvexPoints,
 } from "../utils/tableAnotation.js";
 
 const messages = {
@@ -2589,6 +2617,10 @@ export default {
       },
       convexHalls: {},
       cursor: { x: 0, y: 0 },
+      lineIterator: 0,
+      savedLines: {},
+      columnIterator: 0,
+      savedColumns: {},
     };
   },
   computed: {
@@ -2605,6 +2637,17 @@ export default {
     },
     keyIsDown: function() {
       return this.annotations.keyIsDown;
+    },
+    visibleBoxes: function() {
+      return Object.keys(this.boxes)
+        .filter((key) => this.boxes[key].visible)
+        .map((key) => this.boxes[key]);
+    },
+    showSavedLines: function() {
+      return this.currentState === 2;
+    },
+    showSavedColumns: function() {
+      return this.currentState === 2;
     },
   },
   methods: {
@@ -2741,45 +2784,94 @@ export default {
         // since the key of a set is the concatenation of the boxes id contained in the cell
 
         this.boxes = { ...this.convexHalls };
+        // Object.keys(this.boxes).forEach((key) => {
+        //   this.boxes[key] = {...this.boxes[key], visible: true, };
+        // });
         this.convexHalls = {};
 
         this.annotations.memorizedGraph = {};
         this.annotations.timeAdded = {};
         this.annotations.currentTime = 0;
+        this.savedLines = {};
+        this.lineIterator = 0;
 
         this.currentState = 2;
         //Now we are ready to select lines
       } else if (this.currentState === 2) {
-        if (
-          Object.keys(this.boxes).length >
-          Object.keys(this.annotations.memorizedGraph).length
-        ) {
-          alert(
-            "Heu ... T''as laissé des cellules orphline. Si elles forment une ligne à elle seule, juste clique deux fois dessus."
-          );
+        if (Object.keys(this.annotations.memorizedGraph).length === 0) {
+          if (
+            Object.keys(this.boxes).findIndex(
+              (key) => this.boxes[key].visible
+            ) < 0
+          ) {
+            this.currentState = 3;
+
+            this.columnIterator = 0;
+            this.savedColumns = {};
+
+            Object.keys(this.savedLines).forEach((lineKey) =>
+              this.savedLines[lineKey].keys.forEach((nodeId) => {
+                this.boxes[nodeId].visible = true;
+              })
+            );
+          } else {
+            alert(
+              "Tu n'as rien sélectionné, je ne peux donc pas ajouter de nouvelle ligne"
+            );
+          }
         } else {
-          this.saveLinesGraph = { ...this.annotations.memorizedGraph };
-          this.saveLinestimeAdded = { ...this.annotations.timeAdded };
+          const points = Object.keys(this.annotations.memorizedGraph).reduce(
+            (accumulateur, nodeId) => [
+              ...accumulateur,
+              ...this.boxes[nodeId].points,
+            ],
+            []
+          );
 
+          const keys = Object.keys(this.annotations.memorizedGraph);
+          this.savedLines[this.lineIterator] = {
+            keys: [...keys],
+            path: points2Path(getConvexPoints(points), true),
+            center: getCenter(points),
+          };
+          keys.forEach((key) => {
+            this.boxes[key].visible = false;
+          });
+
+          this.lineIterator += 1;
           this.annotations.memorizedGraph = {};
-          this.annotations.timeAdded = {};
-          this.annotations.currentTime = 0;
-
-          this.currentState = 3;
         }
       } else if (this.currentState === 3) {
-        if (
-          Object.keys(this.boxes).length >
-          Object.keys(this.annotations.memorizedGraph).length
-        ) {
-          alert(
-            "Heu ... T''as laissé des cellules orphline. Si elles forment une colonne à elle seule, juste clique deux fois dessus."
-          );
+        if (Object.keys(this.annotations.memorizedGraph).length === 0) {
+          if (
+            Object.keys(this.boxes).findIndex(
+              (key) => this.boxes[key].visible
+            ) < 0
+          ) {
+            alert("Fini"); //TODO envoyer un requete post
+          } else {
+            alert(
+              "Tu n'as rien sélectionné, je ne peux donc pas ajouter de nouvelle colonne"
+            );
+          }
         } else {
-          this.saveColonnesGraph = { ...this.annotations.memorizedGraph };
-          this.saveColonnestimeAdded = { ...this.annotations.timeAdded };
-
-          alert("Bravo, tu as fini cet images !!! ");
+          const points = Object.keys(this.annotations.memorizedGraph).reduce(
+            (accumulateur, nodeId) => [
+              ...accumulateur,
+              ...this.boxes[nodeId].points,
+            ],
+            []
+          );
+          this.savedColumns[this.columnIterator] = {
+            keys: [...Object.keys(this.annotations.memorizedGraph)],
+            path: points2Path(getConvexPoints(points), true),
+            center: getCenter(points),
+          };
+          Object.keys(this.annotations.memorizedGraph).forEach((key) => {
+            this.boxes[key].visible = false;
+          });
+          this.columnIterator += 1;
+          this.annotations.memorizedGraph = {};
         }
       }
     },
@@ -2870,6 +2962,20 @@ export default {
   fill: none;
 }
 
+.validatedGroup {
+  pointer-events: none;
+  stroke: green;
+  stroke-width: 5;
+  fill: green;
+  fill-opacity: 0.2;
+}
+.validatedGroup text {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  fill: white;
+  fill-opacity: 1;
+  stroke: none;
+}
 .states {
   display: flex;
   justify-content: space-evenly;

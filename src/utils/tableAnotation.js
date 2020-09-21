@@ -60,6 +60,7 @@ export const getBoxes = (textAnnotations) => {
   textAnnotations.forEach((box, boxIndex) => {
     if (boxIndex > 0) {
       rep[points2Key(box.boundingPoly.vertices)] = {
+        id: points2Key(box.boundingPoly.vertices),
         boxIndex: boxIndex,
         points: box.boundingPoly.vertices,
         path: points2Path(box.boundingPoly.vertices, true),
@@ -133,6 +134,7 @@ export const getHullPaths = (graph, boxes) => {
       points: points,
       text: "",
       visible: true,
+      id: componentKey,
     };
   });
 
