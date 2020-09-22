@@ -17,7 +17,13 @@
     <p class="explanations">{{ this.messages[this.currentState] }}</p>
     <div class="imageContainer" @click="click('')">
       <img :src="urlImg" />
-      <svg width="479" height="657" v-on:mousemove="moveAt">
+      <svg
+        width="479"
+        height="657"
+        v-on:mousemove="moveAt"
+        @mouseup.stop="stopDragging"
+        @mouseleave.stop="stopDragging"
+      >
         <path
           v-for="box in visibleBoxes"
           :d="box.path"
@@ -119,6 +125,31 @@
           :key="groupId"
           class="convexhall"
         />
+
+        <!-- cropping rectangle -->
+
+        <g v-if="showCorppingRectangle" class="croppingRectangle">
+          <path
+            :d="
+              `M ${cropRectangle.start.x} ${cropRectangle.start.y} L
+          ${cropRectangle.start.x} ${cropRectangle.end.y} L
+          ${cropRectangle.end.x} ${cropRectangle.end.y} L ${cropRectangle.end.x}
+          ${cropRectangle.start.y} Z`
+            "
+          />
+          <circle
+            :cx="cropRectangle.start.x"
+            :cy="cropRectangle.start.y"
+            r="10"
+            @mousedown.stop="startDraggingStart"
+          />
+          <circle
+            :cx="cropRectangle.end.x"
+            :cy="cropRectangle.end.y"
+            r="10"
+            @mousedown.stop="startDraggingEnd"
+          />
+        </g>
       </svg>
 
       <div class="actions">
@@ -160,7 +191,7 @@ export default {
     return {
       messages: messages,
       loading: false,
-      currentState: 0,
+      currentState: -1,
       boxes: [],
       urlImg:
         "https://openfoodfacts.org/images/products/084/316/706/7253/2.jpg",
@@ -2615,6 +2646,18 @@ export default {
         currentTime: 0,
         lastElement: { x: 0, y: 0 },
       },
+      cropRectangle: {
+        start: {
+          x: 10,
+          y: 10,
+        },
+        end: {
+          //TODO replace by image size
+          x: 100,
+          y: 100,
+        },
+        currentlyDragged: null,
+      },
       convexHalls: {},
       cursor: { x: 0, y: 0 },
       lineIterator: 0,
@@ -2648,6 +2691,9 @@ export default {
     },
     showSavedColumns: function() {
       return this.currentState === 2;
+    },
+    showCorppingRectangle: function() {
+      return this.currentState === -1;
     },
   },
   methods: {
@@ -2723,11 +2769,33 @@ export default {
       }
     },
     moveAt: function(event) {
-      if (!this.annotations.keyIsDown) {
-        return null;
+      if (this.annotations.keyIsDown) {
+        this.cursor.x = event.offsetX;
+        this.cursor.y = event.offsetY;
       }
-      this.cursor.x = event.offsetX;
-      this.cursor.y = event.offsetY;
+      if (
+        this.currentState === -1 &&
+        this.cropRectangle.currentlyDragged === "end"
+      ) {
+        this.cropRectangle.end.x = event.offsetX;
+        this.cropRectangle.end.y = event.offsetY;
+      }
+      if (
+        this.currentState === -1 &&
+        this.cropRectangle.currentlyDragged === "start"
+      ) {
+        this.cropRectangle.start.x = event.offsetX;
+        this.cropRectangle.start.y = event.offsetY;
+      }
+    },
+    stopDragging: function() {
+      this.cropRectangle.currentlyDragged = null;
+    },
+    startDraggingStart: function() {
+      this.cropRectangle.currentlyDragged = "start";
+    },
+    startDraggingEnd: function() {
+      this.cropRectangle.currentlyDragged = "end";
     },
     mouseover: function(boxKey) {
       if (!this.annotations.keyIsDown) {
@@ -3022,5 +3090,16 @@ export default {
 }
 .actions button:last-child {
   background-color: green;
+}
+
+.croppingRectangle path {
+  stroke: black;
+  stroke-width: 5;
+  fill: none;
+}
+
+.croppingRectangle circle {
+  stroke: black;
+  stroke-width: 5;
 }
 </style>
