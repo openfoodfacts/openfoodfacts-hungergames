@@ -2694,7 +2694,7 @@ export default {
       return this.currentState === 2;
     },
     showSavedColumns: function() {
-      return this.currentState === 2;
+      return this.currentState === 3;
     },
     showCorppingRectangle: function() {
       return this.currentState === -1;
