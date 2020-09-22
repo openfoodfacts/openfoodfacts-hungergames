@@ -2837,6 +2837,12 @@ export default {
     },
     nextStep: function() {
       this.click();
+      if (this.currentState === -1) {
+        Object.keys(this.boxes).forEach((key) => {
+          this.boxes[key].visible = !this.boxes[key].toDelete;
+        });
+        this.currentState = 0;
+      }
       if (
         this.currentState === 0 ||
         (this.annotations.annnotated && this.currentState === 1)
