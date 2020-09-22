@@ -146,3 +146,22 @@ export const sortKeys = (node1Key, node2Key) => {
   const end = node2Key <= node1Key ? node2Key : node1Key;
   return [start, end];
 };
+
+export const isInRectangle = (x1, y1, x2, y2, points) => {
+  const Xmin = Math.min(x1, x2);
+  const Ymin = Math.min(y1, y2);
+  const Xmax = Math.max(x1, x2);
+  const Ymax = Math.max(y1, y2);
+
+  for (let i = 0; i < points.length; i++) {
+    if (
+      points[i].x > Xmax ||
+      points[i].x < Xmin ||
+      points[i].y > Ymax ||
+      points[i].y < Ymin
+    ) {
+      return false;
+    }
+  }
+  return true;
+};

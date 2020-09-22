@@ -28,9 +28,12 @@
           v-for="box in visibleBoxes"
           :d="box.path"
           :key="box.id"
-          @click.stop="click(box.id, $event)"
-          v-on:mouseover="mouseover(box.id)"
-          v-bind:class="{ toDelete: box.toDelete }"
+          @click.stop="currentState >= 0 && click(box.id, $event)"
+          v-on:mouseover="currentState >= 0 && mouseover(box.id)"
+          v-bind:class="{
+            toDelete: box.toDelete,
+            selectable: currentState >= 0,
+          }"
           class="box"
         />
 
@@ -175,6 +178,7 @@ import {
   getHullPaths,
   sortKeys,
   getConvexPoints,
+  isInRectangle,
 } from "../utils/tableAnotation.js";
 
 const messages = {
@@ -2790,6 +2794,16 @@ export default {
     },
     stopDragging: function() {
       this.cropRectangle.currentlyDragged = null;
+
+      Object.keys(this.boxes).forEach((key) => {
+        this.boxes[key].toDelete = !isInRectangle(
+          this.cropRectangle.start.x,
+          this.cropRectangle.start.y,
+          this.cropRectangle.end.x,
+          this.cropRectangle.end.y,
+          this.boxes[key].points
+        );
+      });
     },
     startDraggingStart: function() {
       this.cropRectangle.currentlyDragged = "start";
@@ -2978,7 +2992,7 @@ export default {
   stroke-width: 1;
 }
 
-.box:hover {
+.selectable:hover {
   stroke: blue;
   fill: blue;
   stroke-width: 4;
