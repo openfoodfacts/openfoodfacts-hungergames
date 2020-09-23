@@ -182,6 +182,7 @@ import {
 } from "../utils/tableAnotation.js";
 
 const messages = {
+  "-1": "Déplacer le rectangle pour le faire contenir le tableau",
   0: "Merci de regrouper entre elles les boîtes faisant partie d'une même case du tableau",
   1: "Si des boites rouges font partie du tableau, merci de les ajouter (vous pouvez sélectionner une case seule)",
   2: "Reliez entre elles les cellules d'une même ligne",
@@ -3121,5 +3122,6 @@ export default {
 .croppingRectangle circle {
   stroke: black;
   stroke-width: 5;
+  cursor: pointer;
 }
 </style>
