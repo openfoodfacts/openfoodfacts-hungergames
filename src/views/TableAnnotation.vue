@@ -154,16 +154,13 @@
           />
         </g>
       </svg>
-
+      <div class="subActions">
+        <button v-on:click="previousStep">Prev</button>
+        <button v-on:click="nextStep">Next</button>
+      </div>
       <div class="actions">
         <button v-on:click="skip">skip</button>
-        <button v-on:click="nextStep">
-          {{
-            this.annotations.annnotated && this.currentState === 1
-              ? "update"
-              : "next"
-          }}
-        </button>
+        <button v-on:click="validate">validate</button>
       </div>
     </div>
   </div>
@@ -2667,6 +2664,7 @@ export default {
       savedLines: {},
       columnIterator: 0,
       savedColumns: {},
+      savedCellsGraph: {},
     };
   },
   computed: {
@@ -2700,6 +2698,9 @@ export default {
     },
   },
   methods: {
+    validate: function() {
+      //TODO transfor and send data
+    },
     getCenter: function(points) {
       return getCenter(points);
     },
@@ -2867,6 +2868,7 @@ export default {
       } else if (this.currentState === 1) {
         // the association boxes -> cells is done by the key in convex hull
         // since the key of a set is the concatenation of the boxes id contained in the cell
+        this.savedCellsGraph = { ...this.annotations.memorizedGraph };
 
         this.boxes = { ...this.convexHalls };
         // Object.keys(this.boxes).forEach((key) => {
@@ -2955,6 +2957,124 @@ export default {
           });
           this.columnIterator += 1;
           this.annotations.memorizedGraph = {};
+        }
+      }
+    },
+    previousStep: function() {
+      this.click();
+      if (this.currentState === 0) {
+        Object.keys(this.boxes).forEach((key) => {
+          this.boxes[key].visible = true;
+        });
+        this.stopDragging();
+        this.annotations.memorizedGraph = {};
+        this.annotations.keyIsDown = false;
+        this.annotations.currentPath = [];
+        this.annotations.lastElement = { x: 0, y: 0 };
+        this.annotations.annnotated = false;
+        this.currentState = -1;
+      } else if (this.currentState === 1) {
+        this.currentState = 0;
+        //reset current anotations
+
+        this.annotations.memorizedGraph = {};
+        this.annotations.keyIsDown = false;
+        this.annotations.currentPath = [];
+        this.annotations.lastElement = { x: 0, y: 0 };
+        this.annotations.annnotated = false;
+
+        //remove saved annotations
+        this.convexHalls = {};
+        Object.keys(this.boxes).forEach((key) => {
+          this.boxes[key].toDelete = false;
+        });
+      } else if (this.currentState === 2) {
+        if (Object.keys(this.annotations.memorizedGraph).length > 0) {
+          //remove currently made graph
+          this.annotations.memorizedGraph = {};
+        } else if (this.lineIterator > 0) {
+          // remove las saved line
+          this.lineIterator -= 1;
+
+          const lastLine = this.savedLines[this.lineIterator];
+
+          lastLine.keys.forEach((key) => {
+            this.boxes[key].visible = true;
+          });
+
+          delete this.savedLines[this.lineIterator];
+        } else {
+          // go back to cell selection
+
+          this.savedLines = {};
+          this.lineIterator = 0;
+          this.currentState = 1;
+
+          this.annotations.memorizedGraph = { ...this.savedCellsGraph };
+
+          // refind the OCR boxes
+          this.boxes = getBoxes(this.textAnnotations);
+          //remove what is outside of the cropped version
+          Object.keys(this.boxes).forEach((key) => {
+            this.boxes[key].visible = isInRectangle(
+              this.cropRectangle.start.x,
+              this.cropRectangle.start.y,
+              this.cropRectangle.end.x,
+              this.cropRectangle.end.y,
+              this.boxes[key].points
+            );
+          });
+
+          // put linked baxes as to be deleted
+          Object.keys(this.boxes).forEach((key) => {
+            this.boxes[key].toDelete = !Object.keys(
+              this.annotations.memorizedGraph
+            ).includes(key);
+          });
+
+          //get cells
+          this.convexHalls = getHullPaths(
+            this.annotations.memorizedGraph,
+            this.boxes
+          );
+
+          //reset annotations
+          this.annotations.keyIsDown = false;
+          this.annotations.currentPath = [];
+          this.annotations.lastElement = { x: 0, y: 0 };
+          this.annotations.annnotated = false;
+        }
+      } else if (this.currentState === 3) {
+        if (Object.keys(this.annotations.memorizedGraph).length > 0) {
+          //remove currently made graph
+          this.annotations.memorizedGraph = {};
+        } else if (this.columnIterator > 0) {
+          // remove las saved line
+          this.columnIterator -= 1;
+
+          const lastColumn = this.savedColumns[this.columnIterator];
+
+          lastColumn.keys.forEach((key) => {
+            this.boxes[key].visible = true;
+          });
+
+          delete this.savedColumns[this.columnIterator];
+        } else {
+          // go back to cell selection
+
+          this.savedColumns = {};
+          this.columnIterator = 0;
+          this.currentState = 2;
+          Object.keys(this.boxes).forEach((key) => {
+            this.boxes[key].visible = false;
+          });
+          this.annotations.memorizedGraph = {};
+
+          //reset annotations
+          this.annotations.keyIsDown = false;
+          this.annotations.currentPath = [];
+          this.annotations.lastElement = { x: 0, y: 0 };
+          this.annotations.annnotated = false;
         }
       }
     },
@@ -3088,16 +3208,31 @@ export default {
 .explanations {
   font-size: 1.3rem;
 }
-.actions {
+.actions,
+.subActions {
   display: flex;
   justify-content: stretch;
 }
-.actions button {
-  flex-grow: 1;
+
+.actions button,
+.subActions button {
   padding: 1rem;
   font-size: 1.7rem;
   border: 0;
+}
+.actions button {
   color: white;
+  flex-grow: 1;
+}
+
+.subActions button:hover {
+  background-color: lightgrey;
+  cursor: pointer;
+}
+
+.subActions {
+  margin-bottom: 1rem;
+  justify-content: space-between;
 }
 
 .actions button:first-child {
