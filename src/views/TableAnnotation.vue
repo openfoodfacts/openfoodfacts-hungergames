@@ -87,27 +87,31 @@
         </g>
 
         <!-- saved lines-->
-        <g v-if="showSavedLines">
+        <g v-if="showSavedLines" v-bind:class="{ unfill: canValidate }">
           <g
             v-for="(line, lineId) in savedLines"
             :key="'saved-line-' + lineId"
-            class="validatedGroup"
+            class="validatedGroup validatedLine"
           >
             <path :d="line.path" />
-            <text :x="line.center.x" :y="line.center.y">
+            <text v-if="canNotValidate" :x="line.center.x" :y="line.center.y">
               {{ "line : " + lineId }}
             </text>
           </g>
         </g>
         <!-- saved columns-->
-        <g v-if="showSavedColumns">
+        <g v-if="showSavedColumns" v-bind:class="{ unfill: canValidate }">
           <g
             v-for="(column, columnId) in savedColumns"
             :key="'saved-column-' + columnId"
-            class="validatedGroup"
+            class="validatedGroup validatedColumn"
           >
             <path :d="column.path" />
-            <text :x="column.center.x" :y="column.center.y">
+            <text
+              v-if="canNotValidate"
+              :x="column.center.x"
+              :y="column.center.y"
+            >
               {{ "column : " + columnId }}
             </text>
           </g>
@@ -160,7 +164,12 @@
       </div>
       <div class="actions">
         <button v-on:click="skip">skip</button>
-        <button v-on:click="validate">validate</button>
+        <button
+          v-on:click="canValidate && validate"
+          :class="{ canValidate: canValidate, disabled: !canValidate }"
+        >
+          validate
+        </button>
       </div>
     </div>
   </div>
@@ -2688,10 +2697,16 @@ export default {
         .map((key) => this.boxes[key]);
     },
     showSavedLines: function() {
-      return this.currentState === 2;
+      return this.currentState === 2 || this.currentState === 4;
     },
     showSavedColumns: function() {
-      return this.currentState === 3;
+      return this.currentState === 3 || this.currentState === 4;
+    },
+    canValidate: function() {
+      return this.currentState === 4;
+    },
+    canNotValidate: function() {
+      return this.currentState !== 4;
     },
     showCorppingRectangle: function() {
       return this.currentState === -1;
@@ -2933,7 +2948,7 @@ export default {
               (key) => this.boxes[key].visible
             ) < 0
           ) {
-            alert("Fini"); //TODO envoyer un requete post
+            this.currentState = 4;
           } else {
             alert(
               "Tu n'as rien sélectionné, je ne peux donc pas ajouter de nouvelle colonne"
@@ -3167,11 +3182,23 @@ export default {
 
 .validatedGroup {
   pointer-events: none;
-  stroke: green;
   stroke-width: 5;
-  fill: green;
   fill-opacity: 0.2;
 }
+
+.validatedLine {
+  stroke: #aa00ff;
+  fill: #aa00ff;
+}
+
+.validatedColumn {
+  stroke: #4527a0;
+  fill: #4527a0;
+}
+.unfill .validatedGroup {
+  fill: none;
+}
+
 .validatedGroup text {
   font-size: 1.5rem;
   font-weight: bolder;
@@ -3238,8 +3265,12 @@ export default {
 .actions button:first-child {
   background-color: red;
 }
-.actions button:last-child {
+.actions .canValidate {
   background-color: green;
+  cursor: pointer;
+}
+.actions .disabled {
+  background-color: #a5d6a7;
 }
 
 .croppingRectangle path {
