@@ -2647,8 +2647,6 @@ export default {
         keyIsDown: false,
         currentPath: [],
         memorizedGraph: {},
-        timeAdded: {},
-        currentTime: 0,
         lastElement: { x: 0, y: 0 },
       },
       cropRectangle: {
@@ -2752,7 +2750,6 @@ export default {
         this.annotations.currentPath.forEach((boxKey) => {
           if (this.annotations.memorizedGraph[boxKey] === undefined) {
             this.annotations.memorizedGraph[boxKey] = [];
-            this.annotations.timeAdded[boxKey] = this.annotations.currentTime;
           }
         });
 
@@ -2769,7 +2766,6 @@ export default {
             }
           }
         });
-        this.annotations.currentTime = 0;
         this.annotations.currentPath = [];
       }
     },
@@ -2879,8 +2875,6 @@ export default {
         this.convexHalls = {};
 
         this.annotations.memorizedGraph = {};
-        this.annotations.timeAdded = {};
-        this.annotations.currentTime = 0;
         this.savedLines = {};
         this.lineIterator = 0;
 
