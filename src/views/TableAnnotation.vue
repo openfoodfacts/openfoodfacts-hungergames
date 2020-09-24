@@ -166,7 +166,7 @@
       <div class="actions">
         <button v-on:click="skip">skip</button>
         <button
-          v-on:click="canValidate && validate"
+          v-on:click="validate"
           :class="{ canValidate: canValidate, disabled: !canValidate }"
         >
           validate
@@ -179,6 +179,7 @@
 <script>
 // import axios from "axios";
 import {
+  points2Key,
   getBoxes,
   getCenter,
   points2Path,
@@ -2715,7 +2716,68 @@ export default {
   },
   methods: {
     validate: function() {
-      //TODO transfor and send data
+      if (!this.canValidate) {
+        return null;
+      }
+      //get ids of boxes concerned by lines and colmuns
+      const lines = {};
+      const columns = {};
+      const boxId2cellId = {};
+
+      Object.keys(this.savedLines).map((lineId) => {
+        this.savedLines[lineId].keys.forEach((cellId) => {
+          cellId.split("-").forEach((boxId) => {
+            if (lines[boxId] === undefined) {
+              lines[boxId] = [lineId];
+            } else {
+              lines[boxId] = [...lines[boxId], lineId];
+            }
+            if (boxId2cellId[boxId] === undefined) {
+              boxId2cellId[boxId] = cellId;
+            }
+          });
+        });
+      });
+
+      Object.keys(this.savedColumns).map((columnId) => {
+        this.savedColumns[columnId].keys.forEach((cellId) => {
+          cellId.split("-").forEach((boxId) => {
+            if (columns[boxId] === undefined) {
+              columns[boxId] = [columnId];
+            } else {
+              columns[boxId] = [...columns[boxId], columnId];
+            }
+            if (boxId2cellId[boxId] === undefined) {
+              boxId2cellId[boxId] = cellId;
+            }
+          });
+        });
+      });
+
+      const rep = {};
+
+      this.textAnnotations.forEach((annotation) => {
+        const key = points2Key(annotation.boundingPoly.vertices);
+        let lineIds;
+        let columnIds;
+        if (lines[key] === undefined) {
+          lineIds = [];
+        } else {
+          lineIds = lines[key];
+        }
+        if (columns[key] === undefined) {
+          columnIds = [];
+        } else {
+          columnIds = columns[key];
+        }
+
+        rep[key] = {
+          ...annotation,
+          row_index: lineIds,
+          column_index: columnIds,
+          cell_id: boxId2cellId[key] || null,
+        };
+      });
     },
     getCenter: function(points) {
       return getCenter(points);
