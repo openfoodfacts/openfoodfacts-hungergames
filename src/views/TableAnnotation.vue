@@ -160,16 +160,16 @@
         </g>
       </svg>
       <div class="subActions">
-        <button v-on:click="previousStep">Prev</button>
-        <button v-on:click="nextStep">Next</button>
+        <button v-on:click="previousStep">Prev (p)</button>
+        <button v-on:click="nextStep">Next (n)</button>
       </div>
       <div class="actions">
-        <button v-on:click="skip">skip</button>
+        <button v-on:click="skip">skip (k)</button>
         <button
           v-on:click="validate"
           :class="{ canValidate: canValidate, disabled: !canValidate }"
         >
-          validate
+          validate (v)
         </button>
       </div>
     </div>
@@ -3167,6 +3167,16 @@ export default {
   mounted: function() {
     // this.loadOCR();
     this.boxes = getBoxes(this.textAnnotations);
+
+    const vm = this;
+    window.addEventListener("keyup", function(event) {
+      if (event.target.nodeName == "BODY") {
+        if (event.key === "k") vm.skip();
+        if (event.key === "n") vm.nextStep();
+        if (event.key === "v") vm.validate();
+        if (event.key === "p") vm.previousStep();
+      }
+    });
   },
 };
 </script>
