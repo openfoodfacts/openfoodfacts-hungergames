@@ -1,19 +1,20 @@
 <template>
   <div class="app">
-    <div class="states">
+    <!-- <div class="states">
       <div
         v-for="(xxx, index) in messages"
         :key="index"
+        v-bind:index="index"
         v-bind:class="{
           doneState: index < currentState,
           currentState: index == currentState,
         }"
       >
         <span>
-          {{ index }}
+          {{ parseInt(index) + 1 }}
         </span>
       </div>
-    </div>
+    </div> -->
     <p class="explanations">{{ this.messages[this.currentState] }}</p>
     <div class="imageContainer" @click="click('')">
       <img :src="urlImg" />
