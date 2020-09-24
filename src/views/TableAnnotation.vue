@@ -3154,6 +3154,8 @@ export default {
           this.annotations.lastElement = { x: 0, y: 0 };
           this.annotations.annnotated = false;
         }
+      } else if (this.currentState === 4) {
+        this.currentState = 3;
       }
     },
   },
