@@ -96,7 +96,13 @@
             class="validatedGroup validatedLine"
           >
             <path :d="line.path" />
-            <text v-if="canNotValidate" :x="line.center.x" :y="line.center.y">
+            <text
+              v-if="canNotValidate"
+              :x="line.center.x"
+              :y="line.center.y"
+              dominant-baseline="middle"
+              text-anchor="middle"
+            >
               {{ "line : " + lineId }}
             </text>
           </g>
@@ -113,6 +119,8 @@
               v-if="canNotValidate"
               :x="column.center.x"
               :y="column.center.y"
+              dominant-baseline="middle"
+              text-anchor="middle"
             >
               {{ "column : " + columnId }}
             </text>
