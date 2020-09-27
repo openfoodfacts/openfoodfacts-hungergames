@@ -21,9 +21,10 @@
       <svg
         width="479"
         height="657"
-        v-on:mousemove="moveAt"
-        @mouseup.stop="stopDragging"
+        @mousemove="moveAt"
         @mouseleave.stop="stopDragging"
+        @mouseup.stop="stopDragging"
+        :class="{ desactivateListenersInside: isDraggingCropRectangle }"
       >
         <path
           v-for="box in visibleBoxes"
@@ -2713,6 +2714,9 @@ export default {
     showCorppingRectangle: function() {
       return this.currentState === -1;
     },
+    isDraggingCropRectangle: function() {
+      return !!this.cropRectangle.currentlyDragged;
+    },
   },
   methods: {
     validate: function() {
@@ -3358,5 +3362,9 @@ export default {
   stroke: black;
   stroke-width: 5;
   cursor: pointer;
+}
+
+.desactivateListenersInside * {
+  pointer-events: none;
 }
 </style>
