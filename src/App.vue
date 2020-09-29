@@ -1,9 +1,11 @@
 <template>
   <div>
+
     <Menu />
     <sui-segment attached="bottom">
       <router-view />
     </sui-segment>
+
   </div>
 </template>
 

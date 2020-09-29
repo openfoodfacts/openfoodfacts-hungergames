@@ -5,6 +5,8 @@ import Viewer from 'v-viewer'
 import './semantic-ui-utils/main.css'
 import App from './App.vue'
 import QuestionView from './views/QuestionView.vue'
+import NutritionView from './views/NutritionView.vue'
+import TableAnnotation from './views/TableAnnotation.vue'
 import SettingsView from './views/SettingsView.vue'
 import InsightListView from './views/InsightListView.vue'
 import LogoSearchView from './views/LogoSearchView.vue'
@@ -26,6 +28,8 @@ const routes = [
   { path: '/', redirect: '/questions' },
   { path: '/insights', component: InsightListView },
   { path: '/questions', component: QuestionView },
+  { path: '/nutritions', component: NutritionView },
+  { path: '/table', component: TableAnnotation },
   { path: '/settings', component: SettingsView },
   { path: '/logos', component: LogoAnnotationView },
   { path: '/logos/search', component: LogoSearchView },
