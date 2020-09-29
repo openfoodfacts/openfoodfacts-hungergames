@@ -55,12 +55,6 @@
           v-for="(neighbours, nodeKey) in annotations.memorizedGraph"
           :key="'node-group-' + nodeKey"
         >
-          <circle
-            :cx="getCenter(boxes[nodeKey].points).x"
-            :cy="getCenter(boxes[nodeKey].points).y"
-            r="5"
-            class="savedBoxesCenter"
-          />
           <g
             v-for="neighbourKey in neighbours"
             :key="'savedLink-' + nodeKey + ' - ' + neighbourKey"
@@ -86,6 +80,22 @@
               class="savedLink"
             />
           </g>
+          <circle
+            :cx="getCenter(boxes[nodeKey].points).x"
+            :cy="getCenter(boxes[nodeKey].points).y"
+            r="15"
+            @click.stop="clickNode(nodeKey)"
+            :class="{
+              youWantToDeleteBoxCenter: !keyIsDown,
+              noPointerEvent: keyIsDown,
+            }"
+          />
+          <circle
+            :cx="getCenter(boxes[nodeKey].points).x"
+            :cy="getCenter(boxes[nodeKey].points).y"
+            r="5"
+            class="savedBoxesCenter"
+          />
         </g>
 
         <!-- saved lines-->
@@ -451,10 +461,33 @@ export default {
 
         this.annotations.memorizedGraph = {
           ...this.annotations.memorizedGraph,
-          [start]: this.annotations.memorizedGraph[start].filter(
-            (x) => x !== end
-          ),
+          [start]: [
+            ...this.annotations.memorizedGraph[start].filter((x) => x !== end),
+          ],
         };
+      }
+    },
+    clickNode: function(nodeId) {
+      if (!this.annotations.keyIsDown) {
+        delete this.annotations.memorizedGraph[nodeId];
+        this.annotations.memorizedGraph = {
+          ...this.annotations.memorizedGraph,
+        };
+
+        Object.keys(this.annotations.memorizedGraph).forEach((key) => {
+          const index = this.annotations.memorizedGraph[key].findIndex(
+            (x) => x === nodeId
+          );
+          if (index >= 0) {
+            this.annotations.memorizedGraph = {
+              ...this.annotations.memorizedGraph,
+              [key]: [
+                ...this.annotations.memorizedGraph[key].slice(0, index),
+                ...this.annotations.memorizedGraph[key].slice(index + 1),
+              ],
+            };
+          }
+        });
       }
     },
     click: function(boxKey, event) {
@@ -897,6 +930,18 @@ export default {
   fill: none;
 }
 
+.youWantToDeleteBoxCenter:hover {
+  stroke: red;
+  stroke-width: 5;
+  stroke-dasharray: 5, 5;
+  fill: transparent;
+}
+.youWantToDeleteBoxCenter:hover {
+  cursor: pointer;
+}
+.youWantToDeleteBoxCenter:hover + circle {
+  stroke: transparent;
+}
 .youWantToDelete {
   stroke: transparent;
   stroke-width: 15;
