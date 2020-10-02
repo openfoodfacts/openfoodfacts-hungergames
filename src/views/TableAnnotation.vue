@@ -182,6 +182,30 @@
         <button v-on:click="previousStep">Prev (p)</button>
         <button v-on:click="nextStep">Next (n)</button>
       </div>
+
+      <div class="checkboxContainer">
+        <div class="ui checkbox">
+          <input
+            type="checkbox"
+            name="perfect-data"
+            id="perfect-data"
+            value="perfect-data"
+            v-model="dataQuality"
+          />
+          <label for="perfect-data">The text recognition is perfect</label>
+        </div>
+        <div class="ui checkbox">
+          <input
+            type="checkbox"
+            name="bad-data"
+            id="bad-data"
+            value="bad-data"
+            v-model="dataQuality"
+          />
+          <label for="bad-data">Some words are missing</label>
+        </div>
+      </div>
+
       <div class="actions">
         <button v-on:click="skip">skip (k)</button>
         <button
@@ -221,6 +245,7 @@ export default {
   components: {},
   data: function() {
     return {
+      dataQuality: [],
       messages: messages,
       loading: false,
       currentState: -1,
@@ -301,6 +326,16 @@ export default {
       if (!this.canValidate) {
         return null;
       }
+      if (this.dataQuality.length === 0) {
+        alert("Please give us your opinion on the text recognition");
+        return null;
+      }
+      if (this.dataQuality.length > 1) {
+        alert(
+          "Please select only one box for giving your opinion on text recognition"
+        );
+        return null;
+      }
       //get ids of boxes concerned by lines and colmuns
       const lines = {};
       const columns = {};
@@ -367,6 +402,7 @@ export default {
           `insight_id=${this.insightId}&annotation=1&data=${JSON.stringify({
             textAnnotations: rep,
             crop: this.cropRectangle,
+            dataQuality: this.dataQuality[0],
           })}`
         )
       );
@@ -401,6 +437,7 @@ export default {
       };
       img.src = this.urlImg;
 
+      this.dataQuality = [];
       this.currentState = -1;
       this.boxes = [];
       this.annotations = {
@@ -1027,10 +1064,18 @@ export default {
 }
 
 .actions button,
-.subActions button {
+.subActions button,
+.checkboxContainer .checkbox {
   padding: 1rem;
   font-size: 1.7rem;
   border: 0;
+}
+.checkboxContainer {
+  text-align: left;
+}
+
+.checkboxContainer label {
+  margin-bottom: 1.5rem;
 }
 .actions button {
   color: white;
