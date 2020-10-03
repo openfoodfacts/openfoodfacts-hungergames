@@ -322,6 +322,14 @@ export default {
     },
   },
   methods: {
+    isSaved: function(key, savingDict) {
+      for (let dicKey of Object.keys(savingDict)) {
+        if (savingDict[dicKey].keys.findIndex((x) => x === key) >= 0) {
+          return true;
+        }
+      }
+      return false;
+    },
     validate: function() {
       if (!this.canValidate) {
         return null;
@@ -682,7 +690,7 @@ export default {
         if (Object.keys(this.annotations.memorizedGraph).length === 0) {
           if (
             Object.keys(this.boxes).findIndex(
-              (key) => this.boxes[key].visible
+              (key) => !this.isSaved(key, this.savedLines)
             ) < 0
           ) {
             this.currentState = 3;
@@ -715,9 +723,6 @@ export default {
             path: points2Path(getConvexPoints(points), true),
             center: getCenter(points),
           };
-          keys.forEach((key) => {
-            this.boxes[key].visible = false;
-          });
 
           this.lineIterator += 1;
           this.annotations.memorizedGraph = {};
@@ -726,7 +731,7 @@ export default {
         if (Object.keys(this.annotations.memorizedGraph).length === 0) {
           if (
             Object.keys(this.boxes).findIndex(
-              (key) => this.boxes[key].visible
+              (key) => !this.isSaved(key, this.savedColumns)
             ) < 0
           ) {
             this.currentState = 4;
@@ -748,9 +753,7 @@ export default {
             path: points2Path(getConvexPoints(points), true),
             center: getCenter(points),
           };
-          Object.keys(this.annotations.memorizedGraph).forEach((key) => {
-            this.boxes[key].visible = false;
-          });
+
           this.columnIterator += 1;
           this.annotations.memorizedGraph = {};
         }
@@ -789,14 +792,8 @@ export default {
           //remove currently made graph
           this.annotations.memorizedGraph = {};
         } else if (this.lineIterator > 0) {
-          // remove las saved line
+          // remove last saved line
           this.lineIterator -= 1;
-
-          const lastLine = this.savedLines[this.lineIterator];
-
-          lastLine.keys.forEach((key) => {
-            this.boxes[key].visible = true;
-          });
 
           delete this.savedLines[this.lineIterator];
         } else {
@@ -821,7 +818,7 @@ export default {
             );
           });
 
-          // put linked baxes as to be deleted
+          // put linked boxes as to be deleted
           Object.keys(this.boxes).forEach((key) => {
             this.boxes[key].toDelete = !Object.keys(
               this.annotations.memorizedGraph
@@ -848,12 +845,6 @@ export default {
           // remove las saved line
           this.columnIterator -= 1;
 
-          const lastColumn = this.savedColumns[this.columnIterator];
-
-          lastColumn.keys.forEach((key) => {
-            this.boxes[key].visible = true;
-          });
-
           delete this.savedColumns[this.columnIterator];
         } else {
           // go back to cell selection
@@ -861,9 +852,7 @@ export default {
           this.savedColumns = {};
           this.columnIterator = 0;
           this.currentState = 2;
-          Object.keys(this.boxes).forEach((key) => {
-            this.boxes[key].visible = false;
-          });
+
           this.annotations.memorizedGraph = {};
 
           //reset annotations
