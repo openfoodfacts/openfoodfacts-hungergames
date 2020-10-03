@@ -330,6 +330,36 @@ export default {
       }
       return false;
     },
+    reset: function() {
+      this.dataQuality = [];
+      this.currentState = -1;
+      this.boxes = [];
+      this.annotations = {
+        annnotated: false,
+        keyIsDown: false,
+        currentPath: [],
+        memorizedGraph: {},
+        lastElement: { x: 0, y: 0 },
+      };
+      this.cropRectangle = {
+        start: {
+          x: 10,
+          y: 10,
+        },
+        end: {
+          x: this.imageWidth,
+          y: this.imageHeight,
+        },
+        currentlyDragged: null,
+      };
+      this.convexHalls = {};
+      this.cursor = { x: 0, y: 0 };
+      this.lineIterator = 0;
+      this.savedLines = {};
+      this.columnIterator = 0;
+      this.savedColumns = {};
+      this.savedCellsGraph = {};
+    },
     validate: function() {
       if (!this.canValidate) {
         return null;
@@ -442,37 +472,22 @@ export default {
       img.onload = function() {
         vm.imageHeight = img.height;
         vm.imageWidth = img.width;
+
+        vm.cropRectangle = {
+          start: {
+            x: 10,
+            y: 10,
+          },
+          end: {
+            x: img.imageWidth,
+            y: img.imageHeight,
+          },
+          currentlyDragged: null,
+        };
       };
       img.src = this.urlImg;
 
-      this.dataQuality = [];
-      this.currentState = -1;
-      this.boxes = [];
-      this.annotations = {
-        annnotated: false,
-        keyIsDown: false,
-        currentPath: [],
-        memorizedGraph: {},
-        lastElement: { x: 0, y: 0 },
-      };
-      this.cropRectangle = {
-        start: {
-          x: 0,
-          y: 0,
-        },
-        end: {
-          x: this.imageWidth,
-          y: this.imageHeight,
-        },
-        currentlyDragged: null,
-      };
-      this.convexHalls = {};
-      this.cursor = { x: 0, y: 0 };
-      this.lineIterator = 0;
-      this.savedLines = {};
-      this.columnIterator = 0;
-      this.savedColumns = {};
-      this.savedCellsGraph = {};
+      this.reset();
 
       return null;
     },
@@ -675,9 +690,6 @@ export default {
         this.savedCellsGraph = { ...this.annotations.memorizedGraph };
 
         this.boxes = { ...this.convexHalls };
-        // Object.keys(this.boxes).forEach((key) => {
-        //   this.boxes[key] = {...this.boxes[key], visible: true, };
-        // });
         this.convexHalls = {};
 
         this.annotations.memorizedGraph = {};
