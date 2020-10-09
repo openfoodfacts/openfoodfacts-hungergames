@@ -182,6 +182,30 @@
         <button v-on:click="previousStep">Prev (p)</button>
         <button v-on:click="nextStep">Next (n)</button>
       </div>
+
+      <div class="checkboxContainer">
+        <div class="ui checkbox">
+          <input
+            type="checkbox"
+            name="perfect-data"
+            id="perfect-data"
+            value="perfect-data"
+            v-model="dataQuality"
+          />
+          <label for="perfect-data">The text recognition is perfect</label>
+        </div>
+        <div class="ui checkbox">
+          <input
+            type="checkbox"
+            name="bad-data"
+            id="bad-data"
+            value="bad-data"
+            v-model="dataQuality"
+          />
+          <label for="bad-data">Some words are missing</label>
+        </div>
+      </div>
+
       <div class="actions">
         <button v-on:click="skip">skip (k)</button>
         <button
@@ -221,6 +245,7 @@ export default {
   components: {},
   data: function() {
     return {
+      dataQuality: [],
       messages: messages,
       loading: false,
       currentState: -1,
@@ -297,8 +322,56 @@ export default {
     },
   },
   methods: {
+    isSaved: function(key, savingDict) {
+      for (let dicKey of Object.keys(savingDict)) {
+        if (savingDict[dicKey].keys.findIndex((x) => x === key) >= 0) {
+          return true;
+        }
+      }
+      return false;
+    },
+    reset: function() {
+      this.dataQuality = [];
+      this.currentState = -1;
+      this.boxes = [];
+      this.annotations = {
+        annnotated: false,
+        keyIsDown: false,
+        currentPath: [],
+        memorizedGraph: {},
+        lastElement: { x: 0, y: 0 },
+      };
+      this.cropRectangle = {
+        start: {
+          x: 10,
+          y: 10,
+        },
+        end: {
+          x: this.imageWidth,
+          y: this.imageHeight,
+        },
+        currentlyDragged: null,
+      };
+      this.convexHalls = {};
+      this.cursor = { x: 0, y: 0 };
+      this.lineIterator = 0;
+      this.savedLines = {};
+      this.columnIterator = 0;
+      this.savedColumns = {};
+      this.savedCellsGraph = {};
+    },
     validate: function() {
       if (!this.canValidate) {
+        return null;
+      }
+      if (this.dataQuality.length === 0) {
+        alert("Please give us your opinion on the text recognition");
+        return null;
+      }
+      if (this.dataQuality.length > 1) {
+        alert(
+          "Please select only one box for giving your opinion on text recognition"
+        );
         return null;
       }
       //get ids of boxes concerned by lines and colmuns
@@ -367,6 +440,7 @@ export default {
           `insight_id=${this.insightId}&annotation=1&data=${JSON.stringify({
             textAnnotations: rep,
             crop: this.cropRectangle,
+            dataQuality: this.dataQuality[0],
           })}`
         )
       );
@@ -398,36 +472,22 @@ export default {
       img.onload = function() {
         vm.imageHeight = img.height;
         vm.imageWidth = img.width;
+
+        vm.cropRectangle = {
+          start: {
+            x: 10,
+            y: 10,
+          },
+          end: {
+            x: img.imageWidth,
+            y: img.imageHeight,
+          },
+          currentlyDragged: null,
+        };
       };
       img.src = this.urlImg;
 
-      this.currentState = -1;
-      this.boxes = [];
-      this.annotations = {
-        annnotated: false,
-        keyIsDown: false,
-        currentPath: [],
-        memorizedGraph: {},
-        lastElement: { x: 0, y: 0 },
-      };
-      this.cropRectangle = {
-        start: {
-          x: 0,
-          y: 0,
-        },
-        end: {
-          x: this.imageWidth,
-          y: this.imageHeight,
-        },
-        currentlyDragged: null,
-      };
-      this.convexHalls = {};
-      this.cursor = { x: 0, y: 0 };
-      this.lineIterator = 0;
-      this.savedLines = {};
-      this.columnIterator = 0;
-      this.savedColumns = {};
-      this.savedCellsGraph = {};
+      this.reset();
 
       return null;
     },
@@ -630,9 +690,6 @@ export default {
         this.savedCellsGraph = { ...this.annotations.memorizedGraph };
 
         this.boxes = { ...this.convexHalls };
-        // Object.keys(this.boxes).forEach((key) => {
-        //   this.boxes[key] = {...this.boxes[key], visible: true, };
-        // });
         this.convexHalls = {};
 
         this.annotations.memorizedGraph = {};
@@ -645,7 +702,7 @@ export default {
         if (Object.keys(this.annotations.memorizedGraph).length === 0) {
           if (
             Object.keys(this.boxes).findIndex(
-              (key) => this.boxes[key].visible
+              (key) => !this.isSaved(key, this.savedLines)
             ) < 0
           ) {
             this.currentState = 3;
@@ -678,9 +735,6 @@ export default {
             path: points2Path(getConvexPoints(points), true),
             center: getCenter(points),
           };
-          keys.forEach((key) => {
-            this.boxes[key].visible = false;
-          });
 
           this.lineIterator += 1;
           this.annotations.memorizedGraph = {};
@@ -689,7 +743,7 @@ export default {
         if (Object.keys(this.annotations.memorizedGraph).length === 0) {
           if (
             Object.keys(this.boxes).findIndex(
-              (key) => this.boxes[key].visible
+              (key) => !this.isSaved(key, this.savedColumns)
             ) < 0
           ) {
             this.currentState = 4;
@@ -711,9 +765,7 @@ export default {
             path: points2Path(getConvexPoints(points), true),
             center: getCenter(points),
           };
-          Object.keys(this.annotations.memorizedGraph).forEach((key) => {
-            this.boxes[key].visible = false;
-          });
+
           this.columnIterator += 1;
           this.annotations.memorizedGraph = {};
         }
@@ -752,14 +804,8 @@ export default {
           //remove currently made graph
           this.annotations.memorizedGraph = {};
         } else if (this.lineIterator > 0) {
-          // remove las saved line
+          // remove last saved line
           this.lineIterator -= 1;
-
-          const lastLine = this.savedLines[this.lineIterator];
-
-          lastLine.keys.forEach((key) => {
-            this.boxes[key].visible = true;
-          });
 
           delete this.savedLines[this.lineIterator];
         } else {
@@ -784,7 +830,7 @@ export default {
             );
           });
 
-          // put linked baxes as to be deleted
+          // put linked boxes as to be deleted
           Object.keys(this.boxes).forEach((key) => {
             this.boxes[key].toDelete = !Object.keys(
               this.annotations.memorizedGraph
@@ -811,12 +857,6 @@ export default {
           // remove las saved line
           this.columnIterator -= 1;
 
-          const lastColumn = this.savedColumns[this.columnIterator];
-
-          lastColumn.keys.forEach((key) => {
-            this.boxes[key].visible = true;
-          });
-
           delete this.savedColumns[this.columnIterator];
         } else {
           // go back to cell selection
@@ -824,9 +864,7 @@ export default {
           this.savedColumns = {};
           this.columnIterator = 0;
           this.currentState = 2;
-          Object.keys(this.boxes).forEach((key) => {
-            this.boxes[key].visible = false;
-          });
+
           this.annotations.memorizedGraph = {};
 
           //reset annotations
@@ -1027,10 +1065,18 @@ export default {
 }
 
 .actions button,
-.subActions button {
+.subActions button,
+.checkboxContainer .checkbox {
   padding: 1rem;
   font-size: 1.7rem;
   border: 0;
+}
+.checkboxContainer {
+  text-align: left;
+}
+
+.checkboxContainer label {
+  margin-bottom: 1.5rem;
 }
 .actions button {
   color: white;
