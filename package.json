@@ -14,7 +14,7 @@
     "v-viewer": "^1.5.1",
     "vue": "^2.6.12",
     "vue-i18n": "^8.21.0",
-    "vue-router": "^3.4.3"
+    "vue-router": "^3.4.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.6",
