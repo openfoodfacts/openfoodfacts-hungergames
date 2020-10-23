@@ -80,6 +80,13 @@
       </sui-table>
       <div>
         <button
+          data-tooltip="Shortcut: d"
+          class="ui button red annotate"
+          @click="deleteProduct()"
+        >
+          {{ $t("nutrition.delete") }}
+        </button>
+        <button
           data-tooltip="Shortcut: k"
           class="ui button annotate"
           @click="skipProduct()"
@@ -193,6 +200,20 @@ export default {
     },
     skipProduct() {
       this.productBuffer.shift();
+    },
+    deleteProduct() {
+      const imageUrl = this.productBuffer[0]["image_nutrition_url"];
+      const imageId = imageUrl
+        .split("/")
+        .pop()
+        .split(".")[0]; //get the first part of the image off/.../nutrition_fr.400.jpg => nutrition_fr
+
+      axios.post(
+        `${OFF_URL}/cgi/product_image_unselect.pl?`,
+        new URLSearchParams(`code=${this.productBuffer[0].code}&id=${imageId}`)
+      );
+
+      // this.productBuffer.shift();
     },
     validate() {
       const toDelete = Object.keys(this.currentProductData).filter(
