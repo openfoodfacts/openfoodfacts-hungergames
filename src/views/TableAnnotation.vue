@@ -348,8 +348,8 @@ export default {
           y: 10,
         },
         end: {
-          x: this.imageWidth,
-          y: this.imageHeight,
+          x: 50,
+          y: 50,
         },
         currentlyDragged: null,
       };
@@ -473,18 +473,6 @@ export default {
       img.onload = function() {
         vm.imageHeight = img.height;
         vm.imageWidth = img.width;
-
-        vm.cropRectangle = {
-          start: {
-            x: 10,
-            y: 10,
-          },
-          end: {
-            x: img.imageWidth,
-            y: img.imageHeight,
-          },
-          currentlyDragged: null,
-        };
       };
       img.src = this.urlImg;
 
@@ -927,6 +915,7 @@ export default {
 .imageContainer {
   position: relative;
   display: inline-block;
+  text-align: left;
 }
 
 .imageContainer svg {
