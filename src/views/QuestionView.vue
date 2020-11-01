@@ -4,11 +4,13 @@
       <div class="insight-column">
         <div
           class="tag"
-          :class="{selected: insightType === selectedInsightType}"
+          :class="{ selected: insightType === selectedInsightType }"
           v-for="insightType of availableInsightTypes"
           :key="insightType"
           @click="selectInsightType(insightType)"
-        >{{ $t("questions." + insightType) }}</div>
+        >
+          {{ $t("questions." + insightType) }}
+        </div>
         <div class="ui form">
           <div class="ui icon input" id="value-tag-input">
             <input
@@ -16,9 +18,13 @@
               :placeholder="$t('questions.value_search')"
               v-model="valueTagInput"
             />
-            <i @click="clearValueTagInput()" v-if="valueTagInput" class="times link icon"></i>
+            <i
+              @click="clearValueTagInput()"
+              v-if="valueTagInput"
+              class="times link icon"
+            ></i>
           </div>
-          <div class="ui toggle checkbox" style="margin-top: 0.5rem;">
+          <div class="ui toggle checkbox" style="margin-top: 0.5rem">
             <input v-model="sortByPopularity" type="checkbox" name="sortBy" />
             <label>{{ $t("questions.popularity_sort") }}</label>
           </div>
@@ -32,7 +38,7 @@
               <div class="ui big label">
                 {{ currentQuestion.value }}
                 <i
-                  style="margin-left: 0.5rem;"
+                  style="margin-left: 0.5rem"
                   class="external alternate icon small blue"
                 ></i>
               </div>
@@ -46,7 +52,7 @@
             <img
               :class="[imageRotationClassName]"
               :src="currentQuestionImageUrl"
-              style="max-height: 300px; max-width: 300px;"
+              style="max-height: 300px; max-width: 300px"
             />
           </viewer>
           <div class="ui divider hidden"></div>
@@ -56,25 +62,31 @@
               data-tooltip="Shortcut: n"
               class="ui button red annotate"
               @click="annotate(0)"
-            >{{$t('questions.no')}}</button>
+            >
+              {{ $t("questions.no") }}
+            </button>
             <button
               data-inverted
               data-tooltip="Shortcut: k"
               class="ui button annotate"
               @click="annotate(-1)"
-            >{{$t('questions.skip')}}</button>
+            >
+              {{ $t("questions.skip") }}
+            </button>
             <button
               data-inverted
               data-tooltip="Shortcut: o"
               class="ui button green annotate"
               @click="annotate(1)"
-            >{{$t('questions.yes')}}</button>
+            >
+              {{ $t("questions.yes") }}
+            </button>
           </div>
         </div>
-        <div class="flex-center" v-else style="margin-top: 100px;">
-          <LoadingSpinner :show="loading"/>
+        <div class="flex-center" v-else style="margin-top: 100px">
+          <LoadingSpinner :show="loading" />
           <div v-if="noRemainingQuestion">
-            <h2>{{$t('questions.no_questions_remaining')}}</h2>
+            <h2>{{ $t("questions.no_questions_remaining") }}</h2>
           </div>
         </div>
       </div>
@@ -107,7 +119,7 @@ const updateURLParam = (key, value) => {
   history.pushState(null, "", newRelativePathQuery);
 };
 
-const deleteURLParam = key => {
+const deleteURLParam = (key) => {
   const urlParams = new URLSearchParams(window.location.search);
 
   if (!urlParams.has(key)) {
@@ -123,7 +135,7 @@ const deleteURLParam = key => {
   history.pushState(null, "", newRelativePathQuery);
 };
 
-const getURLParam = key => {
+const getURLParam = (key) => {
   const urlParams = new URLSearchParams(window.location.search);
 
   if (!urlParams.has(key)) {
@@ -139,7 +151,7 @@ const insightTypesNames = {
   label: "label",
   category: "category",
   brand: "brand",
-  product_weight: "product weight"
+  product_weight: "product weight",
 };
 
 const randomInsightTypeChoices = ["label", "category", "brand"];
@@ -176,10 +188,10 @@ const reformatTagMapping = {
   ö: "o",
   û: "u",
   ù: "u",
-  ü: "u"
+  ü: "u",
 };
 
-const reformatValueTag = value => {
+const reformatValueTag = (value) => {
   let output = value.trim().toLowerCase();
   for (const [search, replace] of Object.entries(reformatTagMapping)) {
     output = output.replace(new RegExp(search, "g"), replace);
@@ -191,7 +203,7 @@ const reformatValueTag = value => {
 export default {
   name: "QuestionView",
   components: { Product, AnnotationCounter, LoadingSpinner },
-  data: function() {
+  data: function () {
     return {
       valueTag: getURLParam("value_tag"),
       valueTagInput: getURLParam("value_tag"),
@@ -211,13 +223,13 @@ export default {
       imageZoomOptions: {
         toolbar: {
           rotateLeft: 1,
-          rotateRight: 1
-        }
-      }
+          rotateRight: 1,
+        },
+      },
     };
   },
   watch: {
-    valueTagInput: function() {
+    valueTagInput: function () {
       clearTimeout(this.valueTagTimeout);
 
       if (this.valueTagInput.length == 0) {
@@ -233,19 +245,19 @@ export default {
         updateURLParam("value_tag", this.valueTag);
       }, 1000);
     },
-    valueTag: function() {
+    valueTag: function () {
       this.currentQuestion = null;
       this.questionBuffer = [];
       this.loadQuestions();
     },
-    sortByPopularity: function() {
+    sortByPopularity: function () {
       this.currentQuestion = null;
       this.questionBuffer = [];
       this.loadQuestions();
     },
-    selectedInsightType: function() {
+    selectedInsightType: function () {
       this.updateInsightTypeUrlParam();
-    }
+    },
   },
   methods: {
     clearValueTagInput() {
@@ -269,20 +281,20 @@ export default {
     updateLastAnnotations(question, annotation) {
       this.lastAnnotations.push({
         question,
-        annotation
+        annotation,
       });
 
       if (this.lastAnnotations.length > 10) {
         this.lastAnnotations.shift();
       }
     },
-    selectInsightType: function(insightType) {
+    selectInsightType: function (insightType) {
       this.selectedInsightType = insightType;
       this.currentQuestion = null;
       this.questionBuffer = [];
       this.loadQuestions();
     },
-    annotate: function(annotation) {
+    annotate: function (annotation) {
       if (annotation !== -1) {
         robotoffService.annotate(this.currentQuestion.insight_id, annotation);
         this.updateLastAnnotations(this.currentQuestion, annotation);
@@ -295,11 +307,8 @@ export default {
         this.loadQuestions();
       }
     },
-    updateCurrentQuestion: function() {
-      if (this.noRemainingQuestion) {
-        this.currentQuestion = null;
-        return;
-      }
+    updateCurrentQuestion: function () {
+      this.currentQuestion = null;
       if (this.questionBuffer.length > 0) {
         this.currentQuestion = this.questionBuffer.shift();
       } else {
@@ -308,16 +317,19 @@ export default {
         );
       }
     },
-    loadQuestions: function() {
+    loadQuestions: function () {
       const sortBy = this.sortByPopularity ? "popular" : "random";
       const count = 10;
       robotoffService
         .questions(
-          sortBy, this.selectedInsightType,
-          this.valueTag, this.brandFilter,
-          this.countryFilter, count
+          sortBy,
+          this.selectedInsightType,
+          this.valueTag,
+          this.brandFilter,
+          this.countryFilter !== "en:world" ? this.countryFilter : null,
+          count
         )
-        .then(result => {
+        .then((result) => {
           this.remainingQuestionCount = result.data.count;
           if (result.data.questions.length == 0) {
             if (!this.questionBuffer.includes(NO_QUESTION_LEFT)) {
@@ -325,7 +337,7 @@ export default {
             }
             return;
           }
-          result.data.questions.forEach(q => {
+          result.data.questions.forEach((q) => {
             if (!this.seenInsightIds.has(q.insight_id)) {
               this.questionBuffer.push(q);
               this.seenInsightIds.add(q.insight_id);
@@ -340,34 +352,34 @@ export default {
             this.updateCurrentQuestion();
           }
         });
-    }
+    },
   },
   computed: {
-    availableInsightTypes: function() {
+    availableInsightTypes: function () {
       return Object.keys(insightTypesNames);
     },
-    currentQuestionImageUrl: function() {
+    currentQuestionImageUrl: function () {
       if (this.currentQuestion.source_image_url) {
         return this.currentQuestion.source_image_url;
       }
       return "https://static.openfoodfacts.org/images/image-placeholder.png";
     },
-    imageRotationClassName: function() {
+    imageRotationClassName: function () {
       if (this.imageRotation === 90) return "rotate-90";
       if (this.imageRotation === 180) return "rotate-180";
       if (this.imageRotation === 270) return "rotate-270";
       return "rotation-0";
     },
-    loading: function() {
+    loading: function () {
       return !this.noRemainingQuestion && this.currentQuestion == null;
     },
-    noRemainingQuestion: function() {
+    noRemainingQuestion: function () {
       return (
         this.questionBuffer.length == 1 &&
         this.questionBuffer[0] === NO_QUESTION_LEFT
       );
     },
-    currentQuestionBarcode: function() {
+    currentQuestionBarcode: function () {
       if (
         this.currentQuestion !== null &&
         this.currentQuestion !== NO_QUESTION_LEFT
@@ -377,7 +389,7 @@ export default {
         return null;
       }
     },
-    valueTagQuestionsURL: function() {
+    valueTagQuestionsURL: function () {
       if (
         this.currentQuestion !== null &&
         this.currentQuestion !== NO_QUESTION_LEFT &&
@@ -392,13 +404,13 @@ export default {
         return `/questions?${urlParams.toString()}`;
       }
       return "";
-    }
+    },
   },
   mounted() {
     this.updateInsightTypeUrlParam();
     this.loadQuestions();
     const vm = this;
-    window.addEventListener("keyup", function(event) {
+    window.addEventListener("keyup", function (event) {
       if (event.target.nodeName == "BODY") {
         if (event.key === "k") vm.annotate(-1);
         if (event.key === "n") vm.annotate(0);
@@ -406,7 +418,7 @@ export default {
         if (event.key === "p") vm.rotateImage();
       }
     });
-  }
+  },
 };
 </script>
 
