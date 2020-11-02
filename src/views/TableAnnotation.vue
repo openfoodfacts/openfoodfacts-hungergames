@@ -1,219 +1,206 @@
 <template>
   <div class="app">
-    <!-- <div class="states">
-      <div
-        v-for="(xxx, index) in messages"
-        :key="index"
-        v-bind:index="index"
-        v-bind:class="{
-          doneState: index < currentState,
-          currentState: index == currentState,
-        }"
-      >
-        <span>
-          {{ parseInt(index) + 1 }}
-        </span>
-      </div>
-    </div> -->
-    <p class="explanations">{{ this.messages[this.currentState] }}</p>
-    <div class="imageContainer" @click="click('')">
-      <img :src="urlImg" />
-      <svg
-        :width="imageWidth"
-        :height="imageHeight"
-        @mousemove="moveAt"
-        @mouseleave.stop="stopDragging"
-        @mouseup.stop="stopDragging"
-        :class="{ desactivateListenersInside: isDraggingCropRectangle }"
-      >
-        <path
-          v-for="box in visibleBoxes"
-          :d="box.path"
-          :key="'box-' + box.id"
-          @click.stop="currentState >= 0 && click(box.id, $event)"
-          v-on:mouseover="currentState >= 0 && mouseover(box.id)"
-          v-bind:class="{
-            toDelete: box.toDelete,
-            selectable: currentState >= 0,
-          }"
-          class="box"
-        />
-
-        <!-- Links in creation -->
-        <path v-if="currentLinks" :d="currentLinks" class="currentLink" />
-        <circle
-          v-for="key in annotations.currentPath"
-          :key="'creationCenter-' + key"
-          :cx="getCenter(boxes[key].points).x"
-          :cy="getCenter(boxes[key].points).y"
-          r="5"
-          class="currentBoxesCenter"
-        />
-
-        <!-- saved links -->
-        <g
-          v-for="(neighbours, nodeKey) in annotations.memorizedGraph"
-          :key="'node-group-' + nodeKey"
+    <div class="scollable">
+      <p class="explanations">{{ this.messages[this.currentState] }}</p>
+      <div class="imageContainer" @click="click('')">
+        <img :src="urlImg" />
+        <svg
+          :width="imageWidth"
+          :height="imageHeight"
+          @mousemove="moveAt"
+          @mouseleave.stop="stopDragging"
+          @mouseup.stop="stopDragging"
+          :class="{ desactivateListenersInside: isDraggingCropRectangle }"
         >
-          <g
-            v-for="neighbourKey in neighbours"
-            :key="'savedLink-' + nodeKey + ' - ' + neighbourKey"
-          >
-            <line
-              :x1="getCenter(boxes[nodeKey].points).x"
-              :y1="getCenter(boxes[nodeKey].points).y"
-              :x2="getCenter(boxes[neighbourKey].points).x"
-              :y2="getCenter(boxes[neighbourKey].points).y"
-              @click.stop="clickLink(nodeKey, neighbourKey)"
-              v-bind:class="{
-                noPointerEvent: keyIsDown,
-                youWantToDelete: !keyIsDown,
-              }"
-              class="helpLink"
-            />
-            <!-- the first link is biger in order to be easier to select (for deleting link interface) -->
-            <line
-              :x1="getCenter(boxes[nodeKey].points).x"
-              :y1="getCenter(boxes[nodeKey].points).y"
-              :x2="getCenter(boxes[neighbourKey].points).x"
-              :y2="getCenter(boxes[neighbourKey].points).y"
-              class="savedLink"
-            />
-          </g>
-          <circle
-            :cx="getCenter(boxes[nodeKey].points).x"
-            :cy="getCenter(boxes[nodeKey].points).y"
-            r="15"
-            @click.stop="clickNode(nodeKey)"
-            :class="{
-              youWantToDeleteBoxCenter: !keyIsDown,
-              noPointerEvent: keyIsDown,
-            }"
-          />
-          <circle
-            :cx="getCenter(boxes[nodeKey].points).x"
-            :cy="getCenter(boxes[nodeKey].points).y"
-            r="5"
-            class="savedBoxesCenter"
-          />
-        </g>
-
-        <!-- saved lines-->
-        <g v-if="showSavedLines" v-bind:class="{ unfill: canValidate }">
-          <g
-            v-for="(line, lineId) in savedLines"
-            :key="'saved-line-' + lineId"
-            class="validatedGroup validatedLine"
-          >
-            <path :d="line.path" />
-            <text
-              v-if="canNotValidate"
-              :x="line.center.x"
-              :y="line.center.y"
-              dominant-baseline="middle"
-              text-anchor="middle"
-            >
-              {{ "line : " + lineId }}
-            </text>
-          </g>
-        </g>
-        <!-- saved columns-->
-        <g v-if="showSavedColumns" v-bind:class="{ unfill: canValidate }">
-          <g
-            v-for="(column, columnId) in savedColumns"
-            :key="'saved-column-' + columnId"
-            class="validatedGroup validatedColumn"
-          >
-            <path :d="column.path" />
-            <text
-              v-if="canNotValidate"
-              :x="column.center.x"
-              :y="column.center.y"
-              dominant-baseline="middle"
-              text-anchor="middle"
-            >
-              {{ "column : " + columnId }}
-            </text>
-          </g>
-        </g>
-
-        <line
-          v-if="annotations.keyIsDown"
-          :x1="`${cursor.x}`"
-          :y1="`${cursor.y}`"
-          :x2="`${annotations.lastElement.x}`"
-          :y2="`${annotations.lastElement.y}`"
-          class="currentLink"
-        />
-        <!-- groups -->
-        <path
-          v-for="(group, groupId) in convexHalls"
-          :d="group.path"
-          :key="'convexHalls-' + groupId"
-          class="convexhall"
-        />
-
-        <!-- cropping rectangle -->
-
-        <g v-if="showCorppingRectangle" class="croppingRectangle">
           <path
-            :d="
-              `M ${cropRectangle.start.x} ${cropRectangle.start.y} L
+            v-for="box in visibleBoxes"
+            :d="box.path"
+            :key="'box-' + box.id"
+            @click.stop="currentState >= 0 && click(box.id, $event)"
+            v-on:mouseover="currentState >= 0 && mouseover(box.id)"
+            v-bind:class="{
+              toDelete: box.toDelete,
+              selectable: currentState >= 0,
+            }"
+            class="box"
+          />
+
+          <!-- Links in creation -->
+          <path v-if="currentLinks" :d="currentLinks" class="currentLink" />
+          <circle
+            v-for="key in annotations.currentPath"
+            :key="'creationCenter-' + key"
+            :cx="getCenter(boxes[key].points).x"
+            :cy="getCenter(boxes[key].points).y"
+            r="5"
+            class="currentBoxesCenter"
+          />
+
+          <!-- saved links -->
+          <g
+            v-for="(neighbours, nodeKey) in annotations.memorizedGraph"
+            :key="'node-group-' + nodeKey"
+          >
+            <g
+              v-for="neighbourKey in neighbours"
+              :key="'savedLink-' + nodeKey + ' - ' + neighbourKey"
+            >
+              <line
+                :x1="getCenter(boxes[nodeKey].points).x"
+                :y1="getCenter(boxes[nodeKey].points).y"
+                :x2="getCenter(boxes[neighbourKey].points).x"
+                :y2="getCenter(boxes[neighbourKey].points).y"
+                @click.stop="clickLink(nodeKey, neighbourKey)"
+                v-bind:class="{
+                  noPointerEvent: keyIsDown,
+                  youWantToDelete: !keyIsDown,
+                }"
+                class="helpLink"
+              />
+              <!-- the first link is biger in order to be easier to select (for deleting link interface) -->
+              <line
+                :x1="getCenter(boxes[nodeKey].points).x"
+                :y1="getCenter(boxes[nodeKey].points).y"
+                :x2="getCenter(boxes[neighbourKey].points).x"
+                :y2="getCenter(boxes[neighbourKey].points).y"
+                class="savedLink"
+              />
+            </g>
+            <circle
+              :cx="getCenter(boxes[nodeKey].points).x"
+              :cy="getCenter(boxes[nodeKey].points).y"
+              r="15"
+              @click.stop="clickNode(nodeKey)"
+              :class="{
+                youWantToDeleteBoxCenter: !keyIsDown,
+                noPointerEvent: keyIsDown,
+              }"
+            />
+            <circle
+              :cx="getCenter(boxes[nodeKey].points).x"
+              :cy="getCenter(boxes[nodeKey].points).y"
+              r="5"
+              class="savedBoxesCenter"
+            />
+          </g>
+
+          <!-- saved lines-->
+          <g v-if="showSavedLines" v-bind:class="{ unfill: canValidate }">
+            <g
+              v-for="(line, lineId) in savedLines"
+              :key="'saved-line-' + lineId"
+              class="validatedGroup validatedLine"
+            >
+              <path :d="line.path" />
+              <text
+                v-if="canNotValidate"
+                :x="line.center.x"
+                :y="line.center.y"
+                dominant-baseline="middle"
+                text-anchor="middle"
+              >
+                {{ "line : " + lineId }}
+              </text>
+            </g>
+          </g>
+          <!-- saved columns-->
+          <g v-if="showSavedColumns" v-bind:class="{ unfill: canValidate }">
+            <g
+              v-for="(column, columnId) in savedColumns"
+              :key="'saved-column-' + columnId"
+              class="validatedGroup validatedColumn"
+            >
+              <path :d="column.path" />
+              <text
+                v-if="canNotValidate"
+                :x="column.center.x"
+                :y="column.center.y"
+                dominant-baseline="middle"
+                text-anchor="middle"
+              >
+                {{ "column : " + columnId }}
+              </text>
+            </g>
+          </g>
+
+          <line
+            v-if="annotations.keyIsDown"
+            :x1="`${cursor.x}`"
+            :y1="`${cursor.y}`"
+            :x2="`${annotations.lastElement.x}`"
+            :y2="`${annotations.lastElement.y}`"
+            class="currentLink"
+          />
+          <!-- groups -->
+          <path
+            v-for="(group, groupId) in convexHalls"
+            :d="group.path"
+            :key="'convexHalls-' + groupId"
+            class="convexhall"
+          />
+
+          <!-- cropping rectangle -->
+
+          <g v-if="showCorppingRectangle" class="croppingRectangle">
+            <path
+              :d="
+                `M ${cropRectangle.start.x} ${cropRectangle.start.y} L
           ${cropRectangle.start.x} ${cropRectangle.end.y} L
           ${cropRectangle.end.x} ${cropRectangle.end.y} L ${cropRectangle.end.x}
           ${cropRectangle.start.y} Z`
-            "
-          />
-          <circle
-            :cx="cropRectangle.start.x"
-            :cy="cropRectangle.start.y"
-            r="10"
-            @mousedown.stop="startDraggingStart"
-          />
-          <circle
-            :cx="cropRectangle.end.x"
-            :cy="cropRectangle.end.y"
-            r="10"
-            @mousedown.stop="startDraggingEnd"
-          />
-        </g>
-      </svg>
-      <div class="subActions">
-        <button v-on:click="previousStep">Prev (p)</button>
-        <button v-on:click="nextStep">Next (n)</button>
-      </div>
-
-      <div class="checkboxContainer">
-        <div class="ui checkbox">
-          <input
-            type="checkbox"
-            name="perfect-data"
-            id="perfect-data"
-            value="perfect-data"
-            v-model="dataQuality"
-          />
-          <label for="perfect-data">The text recognition is perfect</label>
+              "
+            />
+            <circle
+              :cx="cropRectangle.start.x"
+              :cy="cropRectangle.start.y"
+              r="10"
+              @mousedown.stop="startDraggingStart"
+            />
+            <circle
+              :cx="cropRectangle.end.x"
+              :cy="cropRectangle.end.y"
+              r="10"
+              @mousedown.stop="startDraggingEnd"
+            />
+          </g>
+        </svg>
+        <div class="subActions">
+          <button v-on:click="previousStep">Prev (p)</button>
+          <button v-on:click="nextStep">Next (n)</button>
         </div>
-        <div class="ui checkbox">
-          <input
-            type="checkbox"
-            name="bad-data"
-            id="bad-data"
-            value="bad-data"
-            v-model="dataQuality"
-          />
-          <label for="bad-data">Some words are missing</label>
-        </div>
-      </div>
 
-      <div class="actions">
-        <button v-on:click="skip">skip (k)</button>
-        <button
-          v-on:click="validate"
-          :class="{ canValidate: canValidate, disabled: !canValidate }"
-        >
-          validate (v)
-        </button>
+        <div class="checkboxContainer">
+          <div class="ui checkbox">
+            <input
+              type="checkbox"
+              name="perfect-data"
+              id="perfect-data"
+              value="perfect-data"
+              v-model="dataQuality"
+            />
+            <label for="perfect-data">The text recognition is perfect</label>
+          </div>
+          <div class="ui checkbox">
+            <input
+              type="checkbox"
+              name="bad-data"
+              id="bad-data"
+              value="bad-data"
+              v-model="dataQuality"
+            />
+            <label for="bad-data">Some words are missing</label>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button v-on:click="skip">skip (k)</button>
+          <button
+            v-on:click="validate"
+            :class="{ canValidate: canValidate, disabled: !canValidate }"
+          >
+            validate (v)
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -1098,16 +1085,22 @@ export default {
 .croppingRectangle path {
   stroke: black;
   stroke-width: 5;
-  fill: none;
+  fill: green;
+  fill-opacity: 0.5;
 }
 
 .croppingRectangle circle {
   stroke: black;
   stroke-width: 5;
+  fill: green;
   cursor: pointer;
 }
 
 .desactivateListenersInside * {
   pointer-events: none;
+}
+
+.scollable {
+  overflow: auto;
 }
 </style>
