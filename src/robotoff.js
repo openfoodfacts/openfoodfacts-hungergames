@@ -39,7 +39,7 @@ export default {
   updateLogo(logoId, value, type) {
     return axios.put(
       `${ROBOTOFF_API_URL}/images/logos/${logoId}`, {
-      removeEmptyKeys({
+      params: removeEmptyKeys({
         withCredentials: true, value, type
       })
     }
