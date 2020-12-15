@@ -36,7 +36,7 @@
             </select>
           </div>
         </div>
-        <input class="ui submit button primary" type="submit" :value="$t('insights.search')" @click="loadInsights" />
+        <input class="ui submit button primary" type="submit" :value="$t('insights.search')" @click.prevent="loadInsights" />
       </form>
       <div class="ui divider" />
       <p v-if="!loading">
