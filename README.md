@@ -20,6 +20,7 @@ Hunger Games is a series of mini-apps that let users contribute data to Open Foo
 npm install
 ```
 
+
 ### Compiles and hot-reloads for development
 ```
 npm run serve
