@@ -38,11 +38,9 @@ export default {
 
   updateLogo(logoId, value, type) {
     return axios.put(
-      `${ROBOTOFF_API_URL}/images/logos/${logoId}`, {
-      params: removeEmptyKeys({
+      `${ROBOTOFF_API_URL}/images/logos/${logoId}`, removeEmptyKeys({
         withCredentials: true, value, type
       })
-    }
     )
   },
 
@@ -71,11 +69,11 @@ export default {
 
   annotateLogos(annotations) {
     return axios.post(
-      `${ROBOTOFF_API_URL}/images/logos/annotate`, {
-      params: removeEmptyKeys({
-        withCredentials: true, annotations,
-      })
-    }
+      `${ROBOTOFF_API_URL}/images/logos/annotate`, removeEmptyKeys(
+        {
+          withCredentials: true, annotations,
+        }
+      )
     )
   },
 
