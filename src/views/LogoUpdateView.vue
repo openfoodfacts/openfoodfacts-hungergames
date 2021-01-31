@@ -25,6 +25,7 @@
               <option value="category">{{$t("logos.category")}}</option>
               <option value="nutrition_label">{{$t("logos.nutrition_label")}}</option>
               <option value="store">{{$t("logos.store")}}</option>
+              <option value="no_logo">{{$t("logos.no_logo")}}</option>
             </select>
           </div>
           <div class="field">
@@ -90,7 +91,8 @@ export default {
       let value = this.annotationValue.toLowerCase();
       if (
         this.annotationType === "packager_code" ||
-        this.annotationType === "qr_code"
+        this.annotationType === "qr_code" ||
+        this.annotationType === "no_logo"
       ) {
         value = "";
       }

@@ -19,6 +19,7 @@
               <option value="category">{{$t("logos.category")}}</option>
               <option value="nutrition_label">{{$t("logos.nutrition_label")}}</option>
               <option value="store">{{$t("logos.store")}}</option>
+              <option value="no_logo">{{$t("logos.no_logo")}}</option>
             </select>
           </div>
           <div class="field">
@@ -147,7 +148,7 @@ export default {
     sendAnnotations: function() {
       let value = this.valueInput.toLowerCase();
 
-      if (this.typeInput === "packager_code" || this.typeInput === "qr_code") {
+      if (this.typeInput === "packager_code" || this.typeInput === "qr_code" || this.typeInput === "no_logo") {
         value = "";
       }
       const annotations = this.selectedLogos.map(logo => ({
