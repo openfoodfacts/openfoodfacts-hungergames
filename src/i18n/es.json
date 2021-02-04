@@ -28,7 +28,7 @@
     "logos": "Logotipo",
     "manage": "Administrar",
     "insights": "Percepciones",
-    "settings": "@: settings.settings"
+    "settings": "@:settings.settings"
   },
   "insights": {
     "insights": "Percepciones",
