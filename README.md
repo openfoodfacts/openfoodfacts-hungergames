@@ -35,6 +35,7 @@ npm run build
 npm run lint
 ```
 ### Roadmap and deployment guide (in French)
+https://wiki.openfoodfacts.org/Hunger_Games
 https://docs.google.com/document/d/1k_llVzpOhx6hZZJydYgeywlRz9MX8iCb9THk4tzw0uw/edit#heading=h.8h7z9zl1zdcv
 
 
