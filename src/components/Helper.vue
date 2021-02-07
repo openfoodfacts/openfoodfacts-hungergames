@@ -16,11 +16,15 @@
           </p>
         </sui-modal-description>
       </sui-modal-content>
-      <sui-modal-actions>
+      <sui-segment aligned="right">
+        <sui-progress attached top :percent="50" color="green" />
+        <sui-button @click.native="decrease">prev</sui-button>
+        <sui-button @click.native="increase">next</sui-button>
+
         <sui-button positive @click.native="close">
           OK
         </sui-button>
-      </sui-modal-actions>
+      </sui-segment>
     </sui-modal>
   </div>
 </template>
