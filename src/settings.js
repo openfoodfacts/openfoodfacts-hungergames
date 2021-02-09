@@ -16,5 +16,13 @@ export const localSettings = {
 
 export const getLang = () => {
     const settings = localSettings.fetch();
-    return settings.lang || (navigator.language || navigator.userLanguage).split('-')[0];
+
+    const urlParams = new URLSearchParams(window.location.search)
+    const urlLanguage = urlParams.has("language") && urlParams.get("language")
+
+    return (
+        urlLanguage ||
+        settings.lang ||
+        (navigator.language || navigator.userLanguage).split('-')[0]
+    )
 }
