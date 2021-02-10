@@ -13,7 +13,7 @@
     "no_questions_remaining": "Ingen øvrige spørgsmål",
     "countries": "Lande",
     "view": "Vis",
-    "edit": "Rediger",
+    "edit": "Redigér",
     "value_search": "Værdi (fanta, en:organic,...)",
     "hide_images": "Skjul billeder (hurtigere indlæsning)",
     "display_images": "Vis billeder",
@@ -28,6 +28,7 @@
     "logos": "Logoer",
     "manage": "Håndtér",
     "insights": "Indblik",
+    "nutritions": "Ernæringsindhold",
     "settings": "@:settings.settings"
   },
   "insights": {

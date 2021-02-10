@@ -1,6 +1,6 @@
 {
   "questions": {
-    "category": "類別",
+    "category": "分類",
     "label": "標籤",
     "brand": "品牌",
     "brands": "品牌",
@@ -17,7 +17,7 @@
     "value_search": "Value (fanta, en:organic,...)",
     "hide_images": "Hide images (faster loading)",
     "display_images": "Display images",
-    "annotations": "3. Annotations",
+    "annotations": "Annotations",
     "last_annotations": "Last annotations",
     "remaining_annotations": "Remaining:",
     "annotated_annotations": "Annotated"
@@ -28,6 +28,7 @@
     "logos": "Logos",
     "manage": "Manage",
     "insights": "Insights",
+    "nutritions": "營養成分",
     "settings": "@:settings.settings"
   },
   "insights": {
@@ -52,7 +53,7 @@
     "search": "搜尋",
     "count": "Count",
     "id": "Id",
-    "value": "Value",
+    "value": "數值",
     "created_at": "Created at",
     "completed_at": "Completed at",
     "automatic": "Automatic"
@@ -63,13 +64,13 @@
     "select_all": "Select all",
     "unselect_all": "Unselect all",
     "distance": "Distance:",
-    "value": "Value",
+    "value": "數值",
     "submit": "Submit",
     "type": "Type",
     "label": "標籤",
     "brand": "品牌",
     "packager_code": "Packager code",
-    "packaging": "包裝套件",
+    "packaging": "包装",
     "qr_code": "QR code",
     "category": "分類",
     "nutrition_label": "Nutrition label",

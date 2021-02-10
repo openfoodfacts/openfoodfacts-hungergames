@@ -28,6 +28,7 @@
     "logos": "Logos",
     "manage": "Manage",
     "insights": "Insights",
+    "nutritions": "အာဟာရဆိုင်ရာအချက်အလက်များ",
     "settings": "@:settings.settings"
   },
   "insights": {
@@ -86,6 +87,6 @@
   "settings": {
     "settings": "အပြင်​အဆင်​များ",
     "language": "ဘာသာစကား",
-    "save": "Save"
+    "save": "သိမ်းဆည်းမည်"
   }
 }

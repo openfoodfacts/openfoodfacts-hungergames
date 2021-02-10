@@ -3,7 +3,7 @@
     "category": "category",
     "label": "label",
     "brand": "brand",
-    "brands": "Brands",
+    "brands": "Značky",
     "ingredients": "Ingrediencie",
     "product_weight": "product weight",
     "popularity_sort": "Sort by popularity",
@@ -28,6 +28,7 @@
     "logos": "Logos",
     "manage": "Manage",
     "insights": "Insights",
+    "nutritions": "Nutrition facts",
     "settings": "@:settings.settings"
   },
   "insights": {
@@ -69,7 +70,7 @@
     "label": "Štítok",
     "brand": "Značka",
     "packager_code": "Packager code",
-    "packaging": "Packaging",
+    "packaging": "Balenie",
     "qr_code": "QR code",
     "category": "Kategória",
     "nutrition_label": "Nutrition label",

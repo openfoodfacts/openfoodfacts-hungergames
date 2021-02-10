@@ -25,9 +25,10 @@
   "menu": {
     "games": "Игри",
     "questions": "Въпроси",
-    "logos": "Лога",
+    "logos": "Logos",
     "manage": "Manage",
     "insights": "Insights",
+    "nutritions": "Хранителна информация",
     "settings": "@:settings.settings"
   },
   "insights": {
@@ -63,7 +64,7 @@
     "select_all": "Избери всички",
     "unselect_all": "Unselect all",
     "distance": "Разстояние:",
-    "value": "Value",
+    "value": "Стойност",
     "submit": "Потвърди",
     "type": "Вид",
     "label": "Етикет",

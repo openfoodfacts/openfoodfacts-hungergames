@@ -28,6 +28,7 @@
     "logos": "Logos",
     "manage": "Manage",
     "insights": "Insights",
+    "nutritions": "Nutrition facts",
     "settings": "@:settings.settings"
   },
   "insights": {
@@ -85,7 +86,7 @@
   },
   "settings": {
     "settings": "அமைப்புகள்",
-    "language": "Language",
-    "save": "Save"
+    "language": "மொழி",
+    "save": "சேமி"
   }
 }

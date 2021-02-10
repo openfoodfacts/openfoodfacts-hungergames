@@ -84,32 +84,9 @@
     "search": "Search",
     "number_of_results": "Number of results:"
   },
-  "nutrition": {
-    "present": "Specified on product",
-    "absent": "Not specified on product",
-    "skip": "Skip",
-    "validate": "Validate",
-    "table": {
-      "ispresent": "Is present",
-      "value": "Value",
-      "unit": "Unit"
-    },
-    "nutriments": {
-      "nutriment_energy-kj": "Energy (kJ)",
-      "nutriment_energy-kcal": "Energy (kCal)",
-      "nutriment_fat": "Fat",
-      "nutriment_saturated-fat": "Sat Fat",
-      "nutriment_carbohydrates": "Carbs",
-      "nutriment_sugars": "Sugar",
-      "nutriment_proteins": "Proteins",
-      "nutriment_fiber": "Fibers",
-      "nutriment_salt": "Salt",
-      "nutriment_sodium": "Sodium"
-    }
-  },
   "settings": {
     "settings": "Settings",
-    "language": "Language",
+    "language": "Languages",
     "save": "Save"
   }
 }

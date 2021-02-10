@@ -14,7 +14,7 @@
     "countries": "מדינות",
     "view": "הצגה",
     "edit": "עריכה",
-    "value_search": "Value (fanta, en:organic,...)",
+    "value_search": "ערך (fanta,‏ he:אורגני, ...)",
     "hide_images": "הסתרת תמונות (טעינה מואצת)",
     "display_images": "הצגת תמונות",
     "annotations": "פירוט",
@@ -28,6 +28,7 @@
     "logos": "לוגואים",
     "manage": "ניהול",
     "insights": "תובנות",
+    "nutritions": "מפרט תזונתי",
     "settings": "@:settings.settings"
   },
   "insights": {
@@ -35,7 +36,7 @@
     "barcode": "ברקוד",
     "barcode_placeholder": "ברקוד",
     "value_tag": "תגית ערך",
-    "value_placeholder": "ex: en:mueslis, bjorg,...",
+    "value_placeholder": "למשל: en:mueslis, שקדיה, …",
     "type": "סוג",
     "annotated": "נכתבו הערות",
     "annotation": "הערה",
