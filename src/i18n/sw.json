@@ -13,7 +13,7 @@
     "no_questions_remaining": "No questions remaining",
     "countries": "Countries",
     "view": "View",
-    "edit": "Edit",
+    "edit": "Hariri",
     "value_search": "Value (fanta, en:organic,...)",
     "hide_images": "Hide images (faster loading)",
     "display_images": "Display images",
@@ -28,6 +28,7 @@
     "logos": "Logos",
     "manage": "Manage",
     "insights": "Insights",
+    "nutritions": "Nutrition facts",
     "settings": "@:settings.settings"
   },
   "insights": {
@@ -86,6 +87,6 @@
   "settings": {
     "settings": "Mipangilio",
     "language": "Language",
-    "save": "Save"
+    "save": "Hifadhi"
   }
 }

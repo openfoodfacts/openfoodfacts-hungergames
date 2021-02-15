@@ -28,6 +28,7 @@
     "logos": "Logos",
     "manage": "Manage",
     "insights": "Insights",
+    "nutritions": "Nutrition facts",
     "settings": "@:settings.settings"
   },
   "insights": {
@@ -86,6 +87,6 @@
   "settings": {
     "settings": "Settings",
     "language": "Language",
-    "save": "Save"
+    "save": "ᱥᱟᱱᱪᱟᱣ"
   }
 }

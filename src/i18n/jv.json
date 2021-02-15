@@ -7,9 +7,9 @@
     "ingredients": "Ingredients",
     "product_weight": "product weight",
     "popularity_sort": "Sort by popularity",
-    "no": "No",
+    "no": "Mboten",
     "skip": "Skip",
-    "yes": "Yes",
+    "yes": "Nggih",
     "no_questions_remaining": "No questions remaining",
     "countries": "Countries",
     "view": "View",
@@ -28,11 +28,12 @@
     "logos": "Logos",
     "manage": "Manage",
     "insights": "Insights",
+    "nutritions": "Nutrition facts",
     "settings": "@:settings.settings"
   },
   "insights": {
     "insights": "Insights",
-    "barcode": "Barcode",
+    "barcode": "Barkod",
     "barcode_placeholder": "barcode",
     "value_tag": "Value tag",
     "value_placeholder": "ex: en:mueslis, bjorg,...",
@@ -43,9 +44,9 @@
     "all": "All",
     "label": "Label",
     "product_weight": "Product weight",
-    "category": "Category",
+    "category": "Kategori",
     "expiration_date": "Expiration date",
-    "packager_code": "Packager code",
+    "packager_code": "Kode paket",
     "skipped": "Skipped (-1)",
     "rejected": "Rejected (0)",
     "accepted": "Accepted (1)",
@@ -67,11 +68,11 @@
     "submit": "Submit",
     "type": "Type",
     "label": "Label",
-    "brand": "Brand",
-    "packager_code": "Packager code",
+    "brand": "Merek",
+    "packager_code": "Kode paket",
     "packaging": "Packaging",
     "qr_code": "QR code",
-    "category": "Category",
+    "category": "Kategori",
     "nutrition_label": "Nutrition label",
     "store": "Store",
     "detail": "Logo detail",
@@ -86,6 +87,6 @@
   "settings": {
     "settings": "Settings",
     "language": "Language",
-    "save": "Save"
+    "save": "Nyimpen"
   }
 }

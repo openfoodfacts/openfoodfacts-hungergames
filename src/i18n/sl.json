@@ -28,6 +28,7 @@
     "logos": "Logos",
     "manage": "Manage",
     "insights": "Insights",
+    "nutritions": "Dejstva o hranilni vrednosti",
     "settings": "@:settings.settings"
   },
   "insights": {
@@ -43,7 +44,7 @@
     "all": "All",
     "label": "Oznaka",
     "product_weight": "Product weight",
-    "category": "Kategorija",
+    "category": "Kategorijo",
     "expiration_date": "Expiration date",
     "packager_code": "Packager code",
     "skipped": "Skipped (-1)",
@@ -71,7 +72,7 @@
     "packager_code": "Packager code",
     "packaging": "Pakiranje",
     "qr_code": "QR code",
-    "category": "Kategorija",
+    "category": "Kategorijo",
     "nutrition_label": "Nutrition label",
     "store": "Trgovina",
     "detail": "Logo detail",

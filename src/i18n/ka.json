@@ -9,7 +9,7 @@
     "popularity_sort": "Sort by popularity",
     "no": "No",
     "skip": "Skip",
-    "yes": "Yes",
+    "yes": "დიახ",
     "no_questions_remaining": "No questions remaining",
     "countries": "Countries",
     "view": "View",
@@ -28,6 +28,7 @@
     "logos": "Logos",
     "manage": "Manage",
     "insights": "Insights",
+    "nutritions": "Nutrition facts",
     "settings": "@:settings.settings"
   },
   "insights": {
@@ -86,6 +87,6 @@
   "settings": {
     "settings": "Settings",
     "language": "Language",
-    "save": "Save"
+    "save": "შენახვა"
   }
 }

@@ -28,6 +28,7 @@
     "logos": "Logos",
     "manage": "Manage",
     "insights": "Insights",
+    "nutritions": "Nutriční hodnoty",
     "settings": "@:settings.settings"
   },
   "insights": {
@@ -45,7 +46,7 @@
     "product_weight": "Product weight",
     "category": "Kategorie",
     "expiration_date": "Expiration date",
-    "packager_code": "Packager code",
+    "packager_code": "Kód balírny",
     "skipped": "Skipped (-1)",
     "rejected": "Rejected (0)",
     "accepted": "Accepted (1)",
@@ -67,8 +68,8 @@
     "submit": "Submit",
     "type": "Type",
     "label": "Štítek",
-    "brand": "Výrobce",
-    "packager_code": "Packager code",
+    "brand": "Značka",
+    "packager_code": "Kód balírny",
     "packaging": "Obal",
     "qr_code": "QR code",
     "category": "Kategorie",

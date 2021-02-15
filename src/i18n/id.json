@@ -28,11 +28,12 @@
     "logos": "Logos",
     "manage": "Manage",
     "insights": "Insights",
+    "nutritions": "tabel nutrisi",
     "settings": "@:settings.settings"
   },
   "insights": {
     "insights": "Insights",
-    "barcode": "Kode batang",
+    "barcode": "kode batang",
     "barcode_placeholder": "barcode",
     "value_tag": "Value tag",
     "value_placeholder": "ex: en:mueslis, bjorg,...",
@@ -86,6 +87,6 @@
   "settings": {
     "settings": "Pengaturan",
     "language": "Bahasa",
-    "save": "Simpan"
+    "save": "menyimpan "
   }
 }

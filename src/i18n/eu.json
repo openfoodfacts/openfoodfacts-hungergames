@@ -28,6 +28,7 @@
     "logos": "Logoak",
     "manage": "Manage",
     "insights": "Insights",
+    "nutritions": "Nutrition facts",
     "settings": "@:settings.settings"
   },
   "insights": {
@@ -45,7 +46,7 @@
     "product_weight": "Product weight",
     "category": "Kategoria",
     "expiration_date": "Expiration date",
-    "packager_code": "Packager code",
+    "packager_code": "Paketatzailearen kodea",
     "skipped": "Skipped (-1)",
     "rejected": "Rejected (0)",
     "accepted": "Accepted (1)",
@@ -68,7 +69,7 @@
     "type": "Type",
     "label": "Etiketa",
     "brand": "Marka",
-    "packager_code": "Packager code",
+    "packager_code": "Paketatzailearen kodea",
     "packaging": "Packaging",
     "qr_code": "QR code",
     "category": "Kategoria",

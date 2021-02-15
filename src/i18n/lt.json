@@ -7,9 +7,9 @@
     "ingredients": "Ingredients",
     "product_weight": "product weight",
     "popularity_sort": "Sort by popularity",
-    "no": "No",
+    "no": "Ne",
     "skip": "Skip",
-    "yes": "Yes",
+    "yes": "Taip",
     "no_questions_remaining": "No questions remaining",
     "countries": "Countries",
     "view": "View",
@@ -28,6 +28,7 @@
     "logos": "Logos",
     "manage": "Manage",
     "insights": "Insights",
+    "nutritions": "Nutrition facts",
     "settings": "@:settings.settings"
   },
   "insights": {
@@ -52,7 +53,7 @@
     "search": "Paieška",
     "count": "Count",
     "id": "Id",
-    "value": "Value",
+    "value": "Vertė",
     "created_at": "Created at",
     "completed_at": "Completed at",
     "automatic": "Automatic"
@@ -63,7 +64,7 @@
     "select_all": "Select all",
     "unselect_all": "Unselect all",
     "distance": "Distance:",
-    "value": "Value",
+    "value": "Vertė",
     "submit": "Submit",
     "type": "Type",
     "label": "Label",
