@@ -14,7 +14,7 @@
     "countries": "Países",
     "view": "Ver",
     "edit": "Editar",
-    "value_search": "Valor (fanta, es:orgánico,...)",
+    "value_search": "Valor (fanta, en:organic,...)",
     "hide_images": "Ocultar imágenes (carga más rápida)",
     "display_images": "Mostrar imagen",
     "annotations": "Anotaciones",
@@ -29,7 +29,7 @@
     "manage": "Administrar",
     "insights": "Percepciones",
     "nutritions": "Información nutricional",
-    "settings": "@: settings.settings"
+    "settings": "@:settings.settings"
   },
   "insights": {
     "insights": "Percepciones",

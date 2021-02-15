@@ -32,11 +32,11 @@
     "settings": "@:settings.settings"
   },
   "insights": {
-    "insights": "Aperçu",
+    "insights": "Prédictions",
     "barcode": "Code barre",
     "barcode_placeholder": "code-barres",
     "value_tag": "Étiquette de valeur",
-    "value_placeholder": "ex: en: mueslis, bjorg, ...",
+    "value_placeholder": "ex: en:mueslis, bjorg, ...",
     "type": "Type",
     "annotated": "Annoté",
     "annotation": "Annotation",
