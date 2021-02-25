@@ -113,6 +113,14 @@ export default {
       ),
     };
   },
+  watch: {
+    $route() {
+      this.helpInformations = getHelpInformations(
+        this.$router.history.current.path,
+        explanations
+      );
+    },
+  },
   computed: {
     pageRatio: function() {
       if (this.helpInformations.length === 1) {
@@ -124,7 +132,6 @@ export default {
     },
     imgUrl: function() {
       var images = require.context("../assets/", false, /\.png$/);
-      console.log(this.helpInformations[this.pageIndex].image);
       return images(
         "./" + (this.helpInformations[this.pageIndex].image || "logo.png")
       );
