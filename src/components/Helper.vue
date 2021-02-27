@@ -122,6 +122,7 @@ export default {
         this.$router.history.current.path,
         explanations
       );
+      this.pageIndex = 0;
     },
   },
   computed: {
