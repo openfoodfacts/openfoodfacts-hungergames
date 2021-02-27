@@ -6,7 +6,7 @@
         <sui-image
           wrapped
           :size="helpInformations[pageIndex].imageSize || 'medium'"
-          :src="imgUrl"
+          :src="helpInformations[pageIndex].imgUrl"
         />
         <!-- <img wrapped size="large" :src="imgUrl" /> -->
         <sui-modal-description>
@@ -96,6 +96,17 @@ const explanations = {
     },
   ],
 };
+
+const images = require.context("../assets/", false, /\.png$/);
+const getImageUrl = (imageName) => images("./" + (imageName || "logo.png"));
+
+// set imageUrl in explanations
+Object.keys(explanations).forEach((key) => {
+  explanations[key].forEach((element, index) => {
+    explanations[key][index].imgUrl = getImageUrl(element.image || null);
+  });
+});
+
 const getHelpInformations = (currentPath, explanations) => {
   const currentPathKey = currentPath.slice(1);
   if (currentPathKey in explanations) {
@@ -132,12 +143,6 @@ export default {
       }
       return Math.floor(
         100 * (this.pageIndex / (this.helpInformations.length - 1))
-      );
-    },
-    imgUrl: function() {
-      var images = require.context("../assets/", false, /\.png$/);
-      return images(
-        "./" + (this.helpInformations[this.pageIndex].image || "logo.png")
       );
     },
   },
