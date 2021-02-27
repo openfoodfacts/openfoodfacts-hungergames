@@ -23,9 +23,12 @@
       <sui-segment aligned="right">
         <sui-progress attached top :percent="pageRatio" color="green" />
         <sui-button @click.native="prev">prev</sui-button>
-        <sui-button @click.native="next">next</sui-button>
-
-        <sui-button positive @click.native="close">
+        <sui-button
+          v-if="helpInformations.length > pageIndex + 1"
+          @click.native="next"
+          >next</sui-button
+        >
+        <sui-button v-else positive @click.native="close">
           OK
         </sui-button>
       </sui-segment>
