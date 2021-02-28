@@ -25,6 +25,7 @@
         <sui-button @click.native="prev">prev</sui-button>
         <sui-button
           v-if="helpInformations.length > pageIndex + 1"
+          primary
           @click.native="next"
           >next</sui-button
         >
