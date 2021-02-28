@@ -5,15 +5,14 @@
       <sui-modal-content image>
         <sui-image
           wrapped
-          :size="helpInformations[pageIndex].imageSize || 'medium'"
-          :src="helpInformations[pageIndex].imgUrl"
+          :size="helpInformations[pageKey].imageSize || 'medium'"
+          :src="helpInformations[pageKey].imgUrl"
         />
-        <!-- <img wrapped size="large" :src="imgUrl" /> -->
         <sui-modal-description>
-          <sui-header>{{ helpInformations[pageIndex].title }}</sui-header>
+          <sui-header>{{ helpInformations[pageKey].title }}</sui-header>
           <p
-            v-for="(text, index) in helpInformations[pageIndex].texts"
-            :key="index"
+            v-for="(text, key) in helpInformations[pageKey].texts"
+            :key="key"
             class="explanationText"
           >
             {{ text }}
@@ -24,7 +23,7 @@
         <sui-progress attached top :percent="pageRatio" color="green" />
         <sui-button @click.native="prev">prev</sui-button>
         <sui-button
-          v-if="helpInformations.length > pageIndex + 1"
+          v-if="Object.keys(helpInformations).length > pageIndex + 1"
           primary
           @click.native="next"
           >next</sui-button
@@ -40,91 +39,79 @@
 <script>
 // potential image size (default is medium) : "mini" | "tiny" | "small" | "medium" | "large" | "big" | "huge" | "massive"
 const explanations = {
-  welcome: [
-    {
-      title: "Welcome",
-      texts: [
-        "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
-        "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
-        "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel",
-      ],
-    },
-    {
-      title: "Questions",
-      texts: [
-        "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
-        "Do not hestiate to skip a question if you're not sure, there are plenty of others",
-      ],
+  welcome: {
+    page1: {},
+    page2: {
       image: "questionsScreenshot.png",
       imageSize: "huge",
     },
-    {
-      title: "Logos",
-      texts: [
-        "The worlds of products is full of logos. Explain to our AI which one are the same.",
-      ],
+    page3: {
       image: "logoGeneral.png",
       imageSize: "huge",
     },
-  ],
-  logos: [
-    {
-      title: "Selection",
-      texts: [
-        "Select the crops of a same logo by clicking on them",
-        "Selected logos go to the top of the page, you can unselect them by clicking again on them",
-      ],
+  },
+  logos: {
+    page1: {
       image: "logoGeneral.png",
     },
-    {
-      title: "Warning",
-      texts: [
-        "If the crop contains multiple logo do not select it.",
-        "If the crop contains only a partial part of a logo you can select it",
-      ],
+    page2: {
       image: "memLogo.png",
     },
-    {
-      title: "Validate",
-      texts: [
-        "Indicate the type of logo (label, brand, QRcode, ...)",
-        "If it is a label or a brand logo, indicate which one it is",
-        "Now you can submit your selection",
-        "Thank you :)",
-      ],
+    page3: {
       image: "logoNameLabel.png",
       imageSize: "large",
     },
-  ],
+  },
 };
 
 const images = require.context("../assets/", false, /\.png$/);
 const getImageUrl = (imageName) => images("./" + (imageName || "logo.png"));
 
 // set imageUrl in explanations
-Object.keys(explanations).forEach((key) => {
-  explanations[key].forEach((element, index) => {
-    explanations[key][index].imgUrl = getImageUrl(element.image || null);
+Object.keys(explanations).forEach((urlKey) => {
+  Object.keys(explanations[urlKey]).forEach((pageKey) => {
+    explanations[urlKey][pageKey].imgUrl = getImageUrl(
+      explanations[urlKey][pageKey].image || null
+    );
   });
 });
 
-const getHelpInformations = (currentPath, explanations) => {
-  const currentPathKey = currentPath.slice(1);
-  if (currentPathKey in explanations) {
-    return explanations[currentPathKey];
+const getHelpInformations = (currentPath, translatedExplanations) => {
+  let currentPathKey = currentPath.slice(1);
+  if (!(currentPathKey in translatedExplanations)) {
+    currentPathKey = "welcome";
   }
-  return explanations["welcome"];
+  const translations = translatedExplanations[currentPathKey];
+  const rep = {};
+
+  Object.keys(translations).forEach((pageKey) => {
+    const { title, ...texts } = translations[pageKey];
+    rep[pageKey] = {
+      title,
+      texts: { ...texts },
+      ...(explanations[currentPathKey] && explanations[currentPathKey][pageKey]
+        ? explanations[currentPathKey][pageKey]
+        : {}),
+    };
+  });
+
+  return rep;
 };
+
+// const translateHelpInformation = (explanations, rootKey, t) => {
+
+// }
 
 export default {
   name: "IntroductionView",
   props: { open: Boolean },
   data: function() {
+    console.log(this.$t("helper"));
     return {
       pageIndex: 0,
       helpInformations: getHelpInformations(
         this.$router.history.current.path,
-        explanations
+        this.$t("helper")
       ),
     };
   },
@@ -132,19 +119,22 @@ export default {
     $route() {
       this.helpInformations = getHelpInformations(
         this.$router.history.current.path,
-        explanations
+        this.$t("helper")
       );
       this.pageIndex = 0;
     },
   },
   computed: {
     pageRatio: function() {
-      if (this.helpInformations.length === 1) {
+      if (Object.keys(this.helpInformations).length === 1) {
         return 100;
       }
       return Math.floor(
-        100 * (this.pageIndex / (this.helpInformations.length - 1))
+        100 * (this.pageIndex / (Object.keys(this.helpInformations).length - 1))
       );
+    },
+    pageKey: function() {
+      return `page${this.pageIndex + 1}`;
     },
   },
   methods: {
@@ -156,7 +146,7 @@ export default {
     },
     next: function() {
       this.pageIndex = Math.min(
-        this.helpInformations.length - 1,
+        Object.keys(this.helpInformations).length - 1,
         this.pageIndex + 1
       );
     },
