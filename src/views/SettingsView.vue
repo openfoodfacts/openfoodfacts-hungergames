@@ -2,7 +2,7 @@
   <div class="ui stackable grid container">
     <div class="five wide column">
       <h2>{{$t('settings.settings')}}</h2>
-      <form class="ui form" v-on:submit.prevent="search">
+      <form class="ui form" v-on:submit.prevent="saveLang">
         <div class="field">
           <div class="ui action input labeled">
             <div class="ui label">{{$t('settings.language')}}</div>
@@ -11,7 +11,7 @@
             </select>
           </div>
         </div>
-        <button class="ui button primary" @click="saveLang">{{$t('settings.save')}}</button>
+        <button class="ui button primary">{{$t('settings.save')}}</button>
       </form>
     </div>
   </div>
