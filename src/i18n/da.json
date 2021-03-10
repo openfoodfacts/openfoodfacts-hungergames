@@ -10,7 +10,7 @@
     "no": "Nej",
     "skip": "Spring over",
     "yes": "Ja",
-    "no_questions_remaining": "Ingen øvrige spørgsmål",
+    "no_questions_remaining": "Ingen resterende spørgsmål",
     "countries": "Lande",
     "view": "Vis",
     "edit": "Redigér",
@@ -28,7 +28,7 @@
     "logos": "Logoer",
     "manage": "Håndtér",
     "insights": "Indblik",
-    "nutritions": "Ernæringsindhold",
+    "nutritions": "Ernæringsfakta",
     "settings": "@:settings.settings"
   },
   "insights": {

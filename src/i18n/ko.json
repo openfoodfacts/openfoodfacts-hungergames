@@ -50,7 +50,7 @@
     "skipped": "Skipped (-1)",
     "rejected": "Rejected (0)",
     "accepted": "Accepted (1)",
-    "search": "검색",
+    "search": "수색",
     "count": "Count",
     "id": "Id",
     "value": "값",
@@ -81,7 +81,7 @@
     "full_image": "Full image",
     "update": "Update",
     "no_found": "No logo found",
-    "search": "검색",
+    "search": "수색",
     "number_of_results": "Number of results:"
   },
   "settings": {
