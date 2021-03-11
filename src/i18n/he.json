@@ -1,8 +1,8 @@
 {
   "questions": {
-    "category": "categoria",
+    "category": "קטגוריה",
     "label": "tavit",
-    "brand": "mutag",
+    "brand": "מותג",
     "brands": "מותגים",
     "ingredients": "רכיבים",
     "product_weight": "משקל המוצר",
@@ -17,7 +17,7 @@
     "value_search": "ערך (fanta,‏ he:אורגני, ...)",
     "hide_images": "הסתרת תמונות (טעינה מואצת)",
     "display_images": "הצגת תמונות",
-    "annotations": "פירוט",
+    "annotations": "הסברים",
     "last_annotations": "הערות אחרונות",
     "remaining_annotations": "נותרו:",
     "annotated_annotations": "נכתבו הערות"

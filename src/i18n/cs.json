@@ -50,7 +50,7 @@
     "skipped": "Skipped (-1)",
     "rejected": "Rejected (0)",
     "accepted": "Accepted (1)",
-    "search": "Vyhledávat",
+    "search": "Vyhledat",
     "count": "Count",
     "id": "Id",
     "value": "Value",
@@ -81,7 +81,7 @@
     "full_image": "Full image",
     "update": "Update",
     "no_found": "No logo found",
-    "search": "Vyhledávat",
+    "search": "Vyhledat",
     "number_of_results": "Number of results:"
   },
   "settings": {

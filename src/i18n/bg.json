@@ -50,7 +50,7 @@
     "skipped": "Skipped (-1)",
     "rejected": "Rejected (0)",
     "accepted": "Accepted (1)",
-    "search": "Търси",
+    "search": "Търсене",
     "count": "Count",
     "id": "Id",
     "value": "Стойност",
@@ -81,7 +81,7 @@
     "full_image": "Full image",
     "update": "Update",
     "no_found": "No logo found",
-    "search": "Търси",
+    "search": "Търсене",
     "number_of_results": "Брой резултати:"
   },
   "settings": {

@@ -50,7 +50,7 @@
     "skipped": "Skipped (-1)",
     "rejected": "Rejected (0)",
     "accepted": "Accepted (1)",
-    "search": "Pretraži",
+    "search": "Pretraživanje",
     "count": "Count",
     "id": "Id",
     "value": "Value",
@@ -81,7 +81,7 @@
     "full_image": "Full image",
     "update": "Update",
     "no_found": "No logo found",
-    "search": "Pretraži",
+    "search": "Pretraživanje",
     "number_of_results": "Number of results:"
   },
   "settings": {

@@ -1,8 +1,8 @@
 {
   "questions": {
     "category": "kategori",
-    "label": "etikett",
-    "brand": "merke",
+    "label": "stempel",
+    "brand": "kjede",
     "brands": "Merker",
     "ingredients": "Ingredienser",
     "product_weight": "product weight",

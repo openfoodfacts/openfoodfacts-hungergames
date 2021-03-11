@@ -50,7 +50,7 @@
     "skipped": "Skipped (-1)",
     "rejected": "Rejected (0)",
     "accepted": "Accepted (1)",
-    "search": "খুঁজুন",
+    "search": "অনুসন্ধান",
     "count": "Count",
     "id": "Id",
     "value": "Value",
@@ -81,7 +81,7 @@
     "full_image": "Full image",
     "update": "Update",
     "no_found": "No logo found",
-    "search": "খুঁজুন",
+    "search": "অনুসন্ধান",
     "number_of_results": "Number of results:"
   },
   "settings": {

@@ -44,7 +44,7 @@
     "all": "All",
     "label": "Label",
     "product_weight": "Product weight",
-    "category": "ประเภท",
+    "category": "หมวดหมู่:",
     "expiration_date": "Expiration date",
     "packager_code": "รหัสแพ็คเกจ",
     "skipped": "Skipped (-1)",
@@ -68,11 +68,11 @@
     "submit": "Submit",
     "type": "Type",
     "label": "Label",
-    "brand": "ยี่ห้อสินค้า",
+    "brand": "ยี่ห้อ",
     "packager_code": "รหัสแพ็คเกจ",
     "packaging": "บรรจุภัณฑ์",
     "qr_code": "QR code",
-    "category": "ประเภท",
+    "category": "หมวดหมู่:",
     "nutrition_label": "Nutrition label",
     "store": "เก็บ",
     "detail": "Logo detail",
@@ -85,7 +85,7 @@
     "number_of_results": "Number of results:"
   },
   "settings": {
-    "settings": "การตั้งค่า",
+    "settings": "ตั้งค่า",
     "language": "ภาษา",
     "save": "บันทึก"
   }

@@ -17,7 +17,7 @@
     "value_search": "Valor (fanta, en: orgânico,...)",
     "hide_images": "Oculte imagens (carregamento mais rápido)",
     "display_images": "Mostre imagens",
-    "annotations": "Annotations",
+    "annotations": "Anotações",
     "last_annotations": "Últimas anotações",
     "remaining_annotations": "Restando:",
     "annotated_annotations": "Anotado"
@@ -25,7 +25,7 @@
   "menu": {
     "games": "Jogos",
     "questions": "Perguntas",
-    "logos": "Logos",
+    "logos": "Logótipos",
     "manage": "Gerencie",
     "insights": "Percepções",
     "nutritions": "Informação nutricional",
@@ -85,8 +85,8 @@
     "number_of_results": "Número de resultados:"
   },
   "settings": {
-    "settings": "Configurações",
+    "settings": "Definições",
     "language": "Idioma",
-    "save": "Guardar"
+    "save": "Salvar"
   }
 }

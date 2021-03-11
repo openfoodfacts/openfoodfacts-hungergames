@@ -17,7 +17,7 @@
     "value_search": "Wartość (fanta, en:organic,...)",
     "hide_images": "Ukryj obrazy (szybsze ładowanie)",
     "display_images": "Wyświetlaj obrazki",
-    "annotations": "Annotations",
+    "annotations": "Dodatkowe informacje",
     "last_annotations": "Ostatnie adnotacje",
     "remaining_annotations": "Pozostało:",
     "annotated_annotations": "Z adnotacjami"
@@ -50,7 +50,7 @@
     "skipped": "Pominięto (-1)",
     "rejected": "Odrzucony (0)",
     "accepted": "Zaakceptowano (1)",
-    "search": "Szukaj",
+    "search": "Wyszukiwanie",
     "count": "Licznik",
     "id": "ID",
     "value": "Wartość",
@@ -70,7 +70,7 @@
     "label": "Etykieta",
     "brand": "Marka",
     "packager_code": "Kod opakowania",
-    "packaging": "Opakowanie",
+    "packaging": "Opakowania",
     "qr_code": "Kod QR",
     "category": "Kategoria",
     "nutrition_label": "Etykieta żywieniowa",
@@ -81,7 +81,7 @@
     "full_image": "Pełny obraz",
     "update": "Aktualizuj",
     "no_found": "Nie znaleziono logo",
-    "search": "Szukaj",
+    "search": "Wyszukiwanie",
     "number_of_results": "Liczba wyników:"
   },
   "settings": {

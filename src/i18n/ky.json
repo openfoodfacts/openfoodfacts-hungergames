@@ -13,7 +13,7 @@
     "no_questions_remaining": "No questions remaining",
     "countries": "Өлкөлөр",
     "view": "View",
-    "edit": "Edit",
+    "edit": "Оңдоо",
     "value_search": "Value (fanta, en:organic,...)",
     "hide_images": "Hide images (faster loading)",
     "display_images": "Display images",
@@ -44,7 +44,7 @@
     "all": "Баары",
     "label": "Label",
     "product_weight": "Product weight",
-    "category": "Category",
+    "category": "Категория",
     "expiration_date": "Expiration date",
     "packager_code": "Packager code",
     "skipped": "Skipped (-1)",
@@ -68,11 +68,11 @@
     "submit": "Урастоо",
     "type": "Түрү",
     "label": "Label",
-    "brand": "Brand",
+    "brand": "Бренд",
     "packager_code": "Packager code",
     "packaging": "Packaging",
     "qr_code": "QR коду",
-    "category": "Category",
+    "category": "Категория",
     "nutrition_label": "Азык-түлүк этикеткасы",
     "store": "Дүкөн",
     "detail": "Логотиптин маалыматы",
@@ -87,6 +87,6 @@
   "settings": {
     "settings": "Settings",
     "language": "Тил",
-    "save": "Save"
+    "save": "Сактоо"
   }
 }
