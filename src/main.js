@@ -2,10 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueI18n from 'vue-i18n'
 import Viewer from 'v-viewer'
+import VueZoomer from 'vue-zoomer'
 import './semantic-ui-utils/main.css'
 import App from './App.vue'
 import QuestionView from './views/QuestionView.vue'
 import NutritionView from './views/NutritionView.vue'
+import NutritionViewWIP from './views/NutritionViewWIP.vue'
 import TableAnnotation from './views/TableAnnotation.vue'
 import SettingsView from './views/SettingsView.vue'
 import InsightListView from './views/InsightListView.vue'
@@ -21,6 +23,7 @@ Vue.use(SuiVue)
 Vue.use(VueRouter)
 Vue.use(Viewer)
 Vue.use(VueI18n)
+Vue.use(VueZoomer)
 Vue.config.productionTip = false
 
 
@@ -29,6 +32,7 @@ const routes = [
   { path: '/insights', component: InsightListView },
   { path: '/questions', component: QuestionView },
   { path: '/nutritions', component: NutritionView },
+  { path: '/nutritionsWIP', component: NutritionViewWIP },
   { path: '/table', component: TableAnnotation },
   { path: '/settings', component: SettingsView },
   { path: '/logos', component: LogoAnnotationView },

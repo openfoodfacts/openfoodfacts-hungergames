@@ -1,5 +1,5 @@
 import { getLang } from "./settings";
-import { OFF_API_URL, OFF_IMAGE_URL } from "./const"
+import { OFF_API_URL, OFF_IMAGE_URL, OFF_URL } from "./const";
 import axios from 'axios';
 import combineURLs from 'axios/lib/helpers/combineURLs';
 
@@ -52,5 +52,13 @@ export default {
 
   getImageUrl(imagePath) {
     return combineURLs(OFF_IMAGE_URL, imagePath)
-  }
-}
+  },
+
+  getTableExtractionAI({ code, imgNumber, x0, y0, x1, y1 }) {
+    return `https://off-nutri-test.azurewebsites.net/api/get-nutri-table?name=${code}/${imgNumber}.jpg%7C(${x0},${y0},${x1},${y1})`;
+  },
+
+  getNutritionToFillUrl(pageNumber) {
+    return `${OFF_URL}/state/photos-validated/state/nutrition-facts-to-be-completed/${pageNumber}.json?fields=code,lang,image_nutrition_url,product_name,nutriments,images`;
+  },
+};

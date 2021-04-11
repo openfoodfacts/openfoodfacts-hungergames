@@ -88,5 +88,30 @@
     "settings": "Paramètres",
     "language": "Langue",
     "save": "Enregistrer"
+  },
+  "nutrition": {
+    "next": "Suivant",
+    "delete": "Supprimer",
+    "skip": "Passer",
+    "validateIsText": "(Text)",
+    "validateIsATable": "(Tableau)",
+    "skipCrop": "Passer",
+    "useCrop": "Utilise Crop",
+    "unit": "Unité",
+    "notAvailableImage": "Quitter",
+    "validate": "Valider",
+    "instruction_select": "Sélectionner le tableau nutritionnel",
+    "nutriments": {
+      "nutriment_energy-kj": "Energie (kJ)",
+      "nutriment_energy-kcal": "Energie (kCal)",
+      "nutriment_fat": "gras",
+      "nutriment_saturated-fat": "gras (saturé)",
+      "nutriment_carbohydrates": "glucide",
+      "nutriment_sugars": "sucres",
+      "nutriment_proteins": "protéines",
+      "nutriment_fiber": "fibres",
+      "nutriment_salt": "sel",
+      "nutriment_sodium": "sodium"
+    }
   }
 }
