@@ -115,13 +115,12 @@
       <sui-modal-header>
         {{ $t("nutrition.instruction_select") }}
       </sui-modal-header>
-      <div class="selectPictures">
+      <div class="selectPictures" v-if="openSelectPicture">
         <img
           v-for="imageUrl in productImages"
           :key="imageUrl.key"
-          class="explanationText"
           :class="{ selected: imageUrl.key === selectedPicture }"
-          :src="imageUrl.full"
+          :src="imageUrl.small"
           v-on:click="() => toggleSelectedPicture(imageUrl.key)"
         />
       </div>
