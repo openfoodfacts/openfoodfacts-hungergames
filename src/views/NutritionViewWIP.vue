@@ -17,7 +17,7 @@
         <div class="ui divider"></div>
         <!-- ask what type is the image -->
         <div v-if="currentQuestion === CLASSIFY_QUESTION">
-          <v-zoomer style="height: 300px; width: 300px;" :minScale="0">
+          <v-zoomer class="cropper" :minScale="0">
             <img
               :src="selectedPictureURL"
               style="object-fit: contain; width: 100%; height: 100%;"
@@ -74,7 +74,7 @@
         </div>
         <!-- ask to fill line per line the table -->
         <div v-else-if="currentQuestion === FILL_QUESTION">
-          <v-zoomer style="height: 300px; width: 300px;" :minScale="0">
+          <v-zoomer class="cropper" :minScale="0">
             <img
               :src="selectedPictureURL"
               style="object-fit: contain; width: 100%; height: 100%;"
@@ -464,6 +464,6 @@ button.annotate {
 .cropper {
   max-width: 100vw;
   max-height: 80vh;
-  background: #ddd;
+  background: #ddd !important;
 }
 </style>
