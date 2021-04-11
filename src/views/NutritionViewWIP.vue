@@ -182,6 +182,15 @@ export default {
     };
   },
   computed: {
+    productCode: function() {
+      if (
+        this.productBuffer.length === 0 ||
+        this.productBuffer[0].code === null
+      ) {
+        return "";
+      }
+      return this.productBuffer[0].code;
+    },
     productName: function() {
       if (
         this.productBuffer.length === 0 ||
@@ -318,7 +327,6 @@ export default {
     },
     validateText() {
       this.currentQuestion = constants.FILL_QUESTION;
-      this.nutrimentId = 0;
     },
     validateTable() {
       this.currentQuestion = constants.CROP_QUESTION;
@@ -329,7 +337,6 @@ export default {
         this.currentQuestion = constants.FILL_QUESTION;
       }
       this.currentQuestion = constants.FILL_QUESTION;
-      this.nutrimentId = 0;
     },
     validate() {
       // const toDelete = Object.keys(this.currentProductData).filter(
@@ -379,6 +386,7 @@ export default {
         };
       }
       this.currentProductData = data;
+      this.nutritiveId = 0;
       this.selectedPicture = null;
     },
     getNutrimentUnits(nutrimentId) {
@@ -399,17 +407,11 @@ export default {
     },
   },
   watch: {
-    productBuffer: function(newProductBuffer, oldProductBuffer) {
-      if (newProductBuffer.length <= 5 && !this.loading) {
+    productCode: function() {
+      // watch when a new question is asked
+      this.resetProductData();
+      if (this.productBuffer.length <= 5 && !this.loading) {
         this.addProducts();
-      }
-      if (
-        newProductBuffer[0] &&
-        (!oldProductBuffer[0] ||
-          newProductBuffer[0].code !== oldProductBuffer[0].code)
-      ) {
-        //if we have a product to display, and this product just changed
-        this.resetProductData();
       }
     },
   },
