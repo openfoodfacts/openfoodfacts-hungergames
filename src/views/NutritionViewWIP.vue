@@ -87,6 +87,7 @@
               style="flex-grow:1"
               :error="isInvalid(currentProductData[nutritiveValue.id]['data'])"
               v-model="currentProductData[nutritiveValue.id]['data']"
+              v-focus
             />
 
             <sui-dropdown
@@ -420,6 +421,12 @@ export default {
       if (event.target.nodeName == "BODY") {
         if (event.key === "k") vm.skipProduct();
         if (event.key === "v") vm.validate();
+      } else if (
+        event.target.nodeName == "INPUT" &&
+        event.key === "Enter" &&
+        vm.currentQuestion === constants.FILL_QUESTION
+      ) {
+        vm.nextNutriment();
       }
     });
   },

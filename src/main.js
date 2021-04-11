@@ -27,6 +27,14 @@ Vue.use(VueZoomer)
 Vue.config.productionTip = false
 
 
+Vue.directive("focus", {
+  componentUpdated: function(el) {
+    el.firstElementChild.focus();
+  },
+  inserted: function(el) {
+    el.firstElementChild.focus();
+  },
+});
 const routes = [
   { path: '/', redirect: '/questions' },
   { path: '/insights', component: InsightListView },
