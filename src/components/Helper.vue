@@ -78,7 +78,7 @@ Object.keys(explanations).forEach((urlKey) => {
 
 const getHelpInformations = (currentPath, translatedExplanations) => {
   let currentPathKey = currentPath.slice(1);
-  if (!(currentPathKey in translatedExplanations)) {
+  if (Object.keys(translatedExplanations).findIndex(currentPathKey) === -1) {
     currentPathKey = "welcome";
   }
   const translations = translatedExplanations[currentPathKey];
@@ -106,7 +106,6 @@ export default {
   name: "IntroductionView",
   props: { open: Boolean },
   data: function() {
-    console.log(this.$t("helper"));
     return {
       pageIndex: 0,
       helpInformations: getHelpInformations(
