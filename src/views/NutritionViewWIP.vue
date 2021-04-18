@@ -1,29 +1,31 @@
 <template>
-  <div>
+  <div class="container">
     <div class="center">
       <!--four wide column centered-->
       <div v-if="bufferIsEmpty">
         <p v-if="loading">Loading ...</p>
         <p v-else>No remaining images</p>
       </div>
-      <div v-else class="insight-column">
+      <template v-else>
         <h3>{{ productName }}</h3>
-        <a target="_blank" :href="productUrl" class="ui button primary">{{
-          $t("questions.view")
-        }}</a>
-        <a target="_blank" :href="productEditUrl" class="ui button">{{
-          $t("questions.edit")
-        }}</a>
+        <div>
+          <a target="_blank" :href="productUrl" class="ui button primary">{{
+            $t("questions.view")
+          }}</a>
+          <a target="_blank" :href="productEditUrl" class="ui button">{{
+            $t("questions.edit")
+          }}</a>
+        </div>
         <div class="ui divider"></div>
         <!-- ask what type is the image -->
-        <div v-if="currentQuestion === CLASSIFY_QUESTION">
+        <template v-if="currentQuestion === CLASSIFY_QUESTION">
           <v-zoomer class="cropper" :minScale="0">
             <img
               :src="selectedPictureURL"
               style="object-fit: contain; width: 100%; height: 100%;"
             />
           </v-zoomer>
-          <div>
+          <div class="questionGrid">
             <button
               data-tooltip="Shortcut: d"
               class="ui button red annotate"
@@ -53,9 +55,9 @@
               {{ $t("nutrition.validateIsATable") }}
             </button>
           </div>
-        </div>
+        </template>
         <!-- ask to crop the table -->
-        <div v-else-if="currentQuestion === CROP_QUESTION">
+        <template v-else-if="currentQuestion === CROP_QUESTION">
           <cropper
             class="cropper"
             :src="selectedPictureURL"
@@ -65,26 +67,30 @@
             :crossOrigine="false"
           />
 
-          <button class="ui button annotate" @click="validateCorp(false)">
-            {{ $t("nutrition.skipCrop") }}
-          </button>
-          <button class="ui button green annotate" @click="validateCorp(false)">
-            {{ $t("nutrition.useCrop") }}
-          </button>
-        </div>
+          <div class="questionGrid">
+            <button class="ui button annotate" @click="validateCorp(false)">
+              {{ $t("nutrition.skipCrop") }}
+            </button>
+            <button
+              class="ui button green annotate"
+              @click="validateCorp(false)"
+            >
+              {{ $t("nutrition.useCrop") }}
+            </button>
+          </div>
+        </template>
         <!-- ask to fill line per line the table -->
-        <div v-else-if="currentQuestion === FILL_QUESTION">
+        <template v-else-if="currentQuestion === FILL_QUESTION">
           <v-zoomer class="cropper" :minScale="0">
             <img
               :src="selectedPictureURL"
               style="object-fit: contain; width: 100%; height: 100%;"
             />
           </v-zoomer>
-          <div style="display: flex">
+          <div class="annotateline">
             <span>{{ $t(`nutrition.nutriments.${nutritiveValue.id}`) }}</span>
             <sui-input
               :disabled="!nutritiveValue.visible"
-              style="flex-grow:1"
               :error="isInvalid(currentProductData[nutritiveValue.id]['data'])"
               v-model="currentProductData[nutritiveValue.id]['data']"
               v-focus
@@ -107,8 +113,8 @@
               {{ $t("nutrition.next") }}
             </button>
           </div>
-        </div>
-      </div>
+        </template>
+      </template>
     </div>
 
     <!-- The model to select an other image -->
@@ -445,9 +451,19 @@ export default {
 button.annotate {
   padding: 1rem 1.5rem;
 }
+.container {
+  height: calc(100vh - 71px);
+  width: calc(100vw - 28px);
+}
 .center {
   text-align: center;
   margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 1;
+  border: solid black 1px;
 }
 .selectPictures {
   display: flex;
@@ -456,7 +472,6 @@ button.annotate {
   overflow: auto;
 }
 .selectPictures > img {
-  max-height: 400px;
   margin: 2rem;
 }
 
@@ -464,8 +479,18 @@ button.annotate {
   border: 5px solid blue;
 }
 .cropper {
-  max-width: 100vw;
-  max-height: 80vh;
   background: #ddd !important;
+}
+
+.questionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.questionGrid button {
+  margin: 0.5rem 1rem;
+}
+
+.annotateLine {
+  display: flex;
 }
 </style>
