@@ -25,36 +25,6 @@
               style="object-fit: contain; width: 100%; height: 100%;"
             />
           </v-zoomer>
-          <div class="questionGrid">
-            <button
-              data-tooltip="Shortcut: d"
-              class="ui button red annotate"
-              @click="deleteProduct()"
-            >
-              {{ $t("nutrition.delete") }}
-            </button>
-            <button
-              data-tooltip="Shortcut: k"
-              class="ui button annotate"
-              @click="skipProduct()"
-            >
-              {{ $t("nutrition.skip") }}
-            </button>
-            <button
-              data-tooltip="Shortcut: v"
-              class="ui button green annotate"
-              @click="validateText()"
-            >
-              {{ $t("nutrition.validateIsText") }}
-            </button>
-            <button
-              data-tooltip="Shortcut: v"
-              class="ui button green annotate"
-              @click="validateTable()"
-            >
-              {{ $t("nutrition.validateIsATable") }}
-            </button>
-          </div>
         </template>
         <!-- ask to crop the table -->
         <template v-else-if="currentQuestion === CROP_QUESTION">
@@ -66,18 +36,6 @@
             :checkOrientation="false"
             :crossOrigine="false"
           />
-
-          <div class="questionGrid">
-            <button class="ui button annotate" @click="validateCorp(false)">
-              {{ $t("nutrition.skipCrop") }}
-            </button>
-            <button
-              class="ui button green annotate"
-              @click="validateCorp(false)"
-            >
-              {{ $t("nutrition.useCrop") }}
-            </button>
-          </div>
         </template>
         <!-- ask to fill line per line the table -->
         <template v-else-if="currentQuestion === FILL_QUESTION">
@@ -87,34 +45,71 @@
               style="object-fit: contain; width: 100%; height: 100%;"
             />
           </v-zoomer>
-          <div class="annotateline">
-            <span>{{ $t(`nutrition.nutriments.${nutritiveValue.id}`) }}</span>
-            <sui-input
-              :disabled="!nutritiveValue.visible"
-              :error="isInvalid(currentProductData[nutritiveValue.id]['data'])"
-              v-model="currentProductData[nutritiveValue.id]['data']"
-              v-focus
-            />
-
-            <sui-dropdown
-              :disabled="!nutritiveValue.visible"
-              style="min-width: 3rem"
-              selection
-              :placeholder="$t('nutrition.unit')"
-              v-if="getNutrimentUnits(nutritiveValue.id).length > 1"
-              v-model="currentProductData[nutritiveValue.id]['unit']"
-              :options="getNutrimentUnits(nutritiveValue.id)"
-              class="unit"
-            />
-            <!-- <span class="unit" v-else>{{
-              getNutrimentUnits(nutritiveValue.id)[0]
-            }}</span> -->
-            <button class="ui button annotate" @click="nextNutriment()">
-              {{ $t("nutrition.next") }}
-            </button>
-          </div>
         </template>
       </template>
+    </div>
+    <div class="questionContainer">
+      <div class="questionGrid" v-if="currentQuestion === CLASSIFY_QUESTION">
+        <button
+          data-tooltip="Shortcut: d"
+          class="ui button red annotate"
+          @click="deleteProduct()"
+        >
+          {{ $t("nutrition.delete") }}
+        </button>
+        <button
+          data-tooltip="Shortcut: k"
+          class="ui button annotate"
+          @click="skipProduct()"
+        >
+          {{ $t("nutrition.skip") }}
+        </button>
+        <button
+          data-tooltip="Shortcut: v"
+          class="ui button green annotate"
+          @click="validateText()"
+        >
+          {{ $t("nutrition.validateIsText") }}
+        </button>
+        <button
+          data-tooltip="Shortcut: v"
+          class="ui button green annotate"
+          @click="validateTable()"
+        >
+          {{ $t("nutrition.validateIsATable") }}
+        </button>
+      </div>
+      <div class="questionGrid" v-else-if="currentQuestion === CROP_QUESTION">
+        <button class="ui button annotate" @click="validateCorp(false)">
+          {{ $t("nutrition.skipCrop") }}
+        </button>
+        <button class="ui button green annotate" @click="validateCorp(false)">
+          {{ $t("nutrition.useCrop") }}
+        </button>
+      </div>
+      <div class="annotateline" v-else-if="currentQuestion === FILL_QUESTION">
+        <span>{{ $t(`nutrition.nutriments.${nutritiveValue.id}`) }}</span>
+        <sui-input
+          :disabled="!nutritiveValue.visible"
+          :error="isInvalid(currentProductData[nutritiveValue.id]['data'])"
+          v-model="currentProductData[nutritiveValue.id]['data']"
+          v-focus
+        />
+
+        <sui-dropdown
+          :disabled="!nutritiveValue.visible"
+          style="min-width: 3rem"
+          selection
+          :placeholder="$t('nutrition.unit')"
+          v-if="getNutrimentUnits(nutritiveValue.id).length > 1"
+          v-model="currentProductData[nutritiveValue.id]['unit']"
+          :options="getNutrimentUnits(nutritiveValue.id)"
+          class="unit"
+        />
+        <button class="ui button annotate" @click="nextNutriment()">
+          {{ $t("nutrition.next") }}
+        </button>
+      </div>
     </div>
 
     <!-- The model to select an other image -->
@@ -452,13 +447,12 @@ button.annotate {
   padding: 1rem 1.5rem;
 }
 .container {
-  height: calc(100vh - 71px);
   width: calc(100vw - 28px);
 }
 .center {
   text-align: center;
   margin: 0 auto;
-  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   flex-grow: 0;
@@ -492,5 +486,14 @@ button.annotate {
 
 .annotateLine {
   display: flex;
+}
+
+.questionContainer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  padding: 0.5rem 0.5rem;
 }
 </style>
