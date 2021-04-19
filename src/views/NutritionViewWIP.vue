@@ -48,68 +48,69 @@
         </template>
       </template>
     </div>
-    <div class="questionContainer">
-      <div class="questionGrid" v-if="currentQuestion === CLASSIFY_QUESTION">
-        <button
-          data-tooltip="Shortcut: d"
-          class="ui button red annotate"
-          @click="deleteProduct()"
-        >
-          {{ $t("nutrition.delete") }}
-        </button>
-        <button
-          data-tooltip="Shortcut: k"
-          class="ui button annotate"
-          @click="skipProduct()"
-        >
-          {{ $t("nutrition.skip") }}
-        </button>
-        <button
-          data-tooltip="Shortcut: v"
-          class="ui button green annotate"
-          @click="validateText()"
-        >
-          {{ $t("nutrition.validateIsText") }}
-        </button>
-        <button
-          data-tooltip="Shortcut: v"
-          class="ui button green annotate"
-          @click="validateTable()"
-        >
-          {{ $t("nutrition.validateIsATable") }}
-        </button>
-      </div>
-      <div class="questionGrid" v-else-if="currentQuestion === CROP_QUESTION">
-        <button class="ui button annotate" @click="validateCorp(false)">
-          {{ $t("nutrition.skipCrop") }}
-        </button>
-        <button class="ui button green annotate" @click="validateCorp(false)">
-          {{ $t("nutrition.useCrop") }}
-        </button>
-      </div>
-      <div class="annotateLine" v-else-if="currentQuestion === FILL_QUESTION">
-        <span>{{ $t(`nutrition.nutriments.${nutritiveValue.id}`) }}</span>
-        <sui-input
-          :disabled="!nutritiveValue.visible"
-          :error="isInvalid(currentProductData[nutritiveValue.id]['data'])"
-          v-model="currentProductData[nutritiveValue.id]['data']"
-          v-focus
-        />
+    <div class="questionGrid" v-if="currentQuestion === CLASSIFY_QUESTION">
+      <button
+        data-tooltip="Shortcut: d"
+        class="ui button red annotate"
+        @click="deleteProduct()"
+      >
+        {{ $t("nutrition.delete") }}
+      </button>
+      <button
+        data-tooltip="Shortcut: k"
+        class="ui button annotate"
+        @click="skipProduct()"
+      >
+        {{ $t("nutrition.skip") }}
+      </button>
+      <button
+        data-tooltip="Shortcut: v"
+        class="ui button green annotate"
+        @click="validateText()"
+      >
+        {{ $t("nutrition.validateIsText") }}
+      </button>
+      <button
+        data-tooltip="Shortcut: v"
+        class="ui button green annotate"
+        @click="validateTable()"
+      >
+        {{ $t("nutrition.validateIsATable") }}
+      </button>
+    </div>
+    <div class="questionGrid" v-else-if="currentQuestion === CROP_QUESTION">
+      <button class="ui button annotate" @click="validateCorp(false)">
+        {{ $t("nutrition.skipCrop") }}
+      </button>
+      <button class="ui button green annotate" @click="validateCorp(false)">
+        {{ $t("nutrition.useCrop") }}
+      </button>
+    </div>
+    <div
+      class="questionContainer annotateLine"
+      v-else-if="currentQuestion === FILL_QUESTION"
+    >
+      <span>{{ $t(`nutrition.nutriments.${nutritiveValue.id}`) }}</span>
+      <sui-input
+        :disabled="!nutritiveValue.visible"
+        :error="isInvalid(currentProductData[nutritiveValue.id]['data'])"
+        v-model="currentProductData[nutritiveValue.id]['data']"
+        v-focus
+      />
 
-        <sui-dropdown
-          :disabled="!nutritiveValue.visible"
-          style="min-width: 3rem"
-          selection
-          :placeholder="$t('nutrition.unit')"
-          v-if="getNutrimentUnits(nutritiveValue.id).length > 1"
-          v-model="currentProductData[nutritiveValue.id]['unit']"
-          :options="getNutrimentUnits(nutritiveValue.id)"
-          class="unit"
-        />
-        <button class="ui button annotate" @click="nextNutriment()">
-          {{ $t("nutrition.next") }}
-        </button>
-      </div>
+      <sui-dropdown
+        :disabled="!nutritiveValue.visible"
+        style="min-width: 3rem"
+        selection
+        :placeholder="$t('nutrition.unit')"
+        v-if="getNutrimentUnits(nutritiveValue.id).length > 1"
+        v-model="currentProductData[nutritiveValue.id]['unit']"
+        :options="getNutrimentUnits(nutritiveValue.id)"
+        class="unit"
+      />
+      <button class="ui button annotate" @click="nextNutriment()">
+        {{ $t("nutrition.next") }}
+      </button>
     </div>
 
     <!-- The model to select an other image -->
