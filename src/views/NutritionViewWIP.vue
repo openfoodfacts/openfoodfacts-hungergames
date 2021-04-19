@@ -87,7 +87,7 @@
           {{ $t("nutrition.useCrop") }}
         </button>
       </div>
-      <div class="annotateline" v-else-if="currentQuestion === FILL_QUESTION">
+      <div class="annotateLine" v-else-if="currentQuestion === FILL_QUESTION">
         <span>{{ $t(`nutrition.nutriments.${nutritiveValue.id}`) }}</span>
         <sui-input
           :disabled="!nutritiveValue.visible"
@@ -451,13 +451,12 @@ button.annotate {
 }
 .center {
   text-align: center;
-  margin: 0 auto;
+  margin: 0 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   flex-grow: 0;
   flex-shrink: 1;
-  border: solid black 1px;
 }
 .selectPictures {
   display: flex;
@@ -486,10 +485,12 @@ button.annotate {
 
 .annotateLine {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .questionContainer {
-  position: fixed;
+  position: sticky;
   left: 0;
   right: 0;
   bottom: 0;
