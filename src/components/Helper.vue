@@ -78,7 +78,7 @@ Object.keys(explanations).forEach((urlKey) => {
 
 const getHelpInformations = (currentPath, translatedExplanations) => {
   let currentPathKey = currentPath.slice(1);
-  if (Object.keys(translatedExplanations).findIndex(currentPathKey) === -1) {
+  if (!Object.keys(translatedExplanations).includes(currentPathKey)) {
     currentPathKey = "welcome";
   }
   const translations = translatedExplanations[currentPathKey];
