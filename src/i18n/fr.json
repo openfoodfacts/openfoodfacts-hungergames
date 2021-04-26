@@ -101,6 +101,7 @@
     "notAvailableImage": "Quitter",
     "validate": "Valider",
     "instruction_select": "Sélectionner le tableau nutritionnel",
+    "other": "Autres images",
     "nutriments": {
       "nutriment_energy-kj": "Energie (kJ)",
       "nutriment_energy-kcal": "Energie (kCal)",

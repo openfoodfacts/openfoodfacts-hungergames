@@ -54,8 +54,8 @@ export default {
     return combineURLs(OFF_IMAGE_URL, imagePath)
   },
 
-  getTableExtractionAI({ code, imgNumber, x0, y0, x1, y1 }) {
-    return `https://off-nutri-test.azurewebsites.net/api/get-nutri-table?name=${code}/${imgNumber}.jpg%7C(${x0},${y0},${x1},${y1})`;
+  getTableExtractionAI({ img, x0, y0, x1, y1 }) {
+    return `https://off-nutri-test.azurewebsites.net/api/get-nutri-table?name=${img}%7C(${x0},${y0},${x1},${y1})`;
   },
 
   getNutritionToFillUrl(pageNumber) {

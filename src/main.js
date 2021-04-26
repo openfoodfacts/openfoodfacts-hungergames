@@ -7,7 +7,8 @@ import './semantic-ui-utils/main.css'
 import App from './App.vue'
 import QuestionView from './views/QuestionView.vue'
 import NutritionView from './views/NutritionView.vue'
-import NutritionViewWIP from './views/NutritionViewWIP.vue'
+import NutritionViewWIP1 from "./views/NutritionViewWIP1.vue"
+import NutritionViewWIP2 from "./views/NutritionViewWIP2.vue"
 import TableAnnotation from './views/TableAnnotation.vue'
 import SettingsView from './views/SettingsView.vue'
 import InsightListView from './views/InsightListView.vue'
@@ -40,7 +41,8 @@ const routes = [
   { path: '/insights', component: InsightListView },
   { path: '/questions', component: QuestionView },
   { path: '/nutritions', component: NutritionView },
-  { path: '/nutritionsWIP', component: NutritionViewWIP },
+  { path: "/nutritionsWIP1", component: NutritionViewWIP1 },
+  { path: "/nutritionsWIP2", component: NutritionViewWIP2 },
   { path: '/table', component: TableAnnotation },
   { path: '/settings', component: SettingsView },
   { path: '/logos', component: LogoAnnotationView },

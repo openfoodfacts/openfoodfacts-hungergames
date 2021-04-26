@@ -17,99 +17,30 @@
           }}</a>
         </div>
         <div class="ui divider"></div>
-        <!-- ask what type is the image -->
-        <template v-if="currentQuestion === CLASSIFY_QUESTION">
-          <v-zoomer class="cropper" :minScale="0">
-            <img
-              :src="selectedPictureURL"
-              style="object-fit: contain; width: 100%; height: 100%;"
-            />
-          </v-zoomer>
-        </template>
         <!-- ask to crop the table -->
-        <template v-else-if="currentQuestion === CROP_QUESTION">
-          <cropper
-            class="cropper"
-            :src="selectedPictureURL"
-            @change="changeCropCoordinate"
-            :canvas="false"
-            :checkOrientation="false"
-            :crossOrigine="false"
-          />
-        </template>
-        <!-- ask to fill line per line the table -->
-        <template v-else-if="currentQuestion === FILL_QUESTION">
-          <v-zoomer class="cropper" :minScale="0">
-            <img
-              :src="selectedPictureURL"
-              style="object-fit: contain; width: 100%; height: 100%;"
-            />
-          </v-zoomer>
-        </template>
+        <cropper
+          class="imageDisplay"
+          :src="selectedPictureURL"
+          @change="changeCropCoordinate"
+          :canvas="false"
+          :checkOrientation="false"
+          :crossOrigine="false"
+          defaultBoundaries="fit"
+        />
       </template>
     </div>
-    <div class="questionGrid" v-if="currentQuestion === CLASSIFY_QUESTION">
-      <button
-        data-tooltip="Shortcut: d"
-        class="ui button red annotate"
-        @click="deleteProduct()"
-      >
-        {{ $t("nutrition.delete") }}
+    <div class="questionGrid">
+      <button class="ui button red annotate" @click="openImageSelector()">
+        {{ $t("nutrition.other") }}
       </button>
-      <button
-        data-tooltip="Shortcut: k"
-        class="ui button annotate"
-        @click="skipProduct()"
-      >
+      <button class="ui button annotate" @click="skipProduct()">
         {{ $t("nutrition.skip") }}
       </button>
-      <button
-        data-tooltip="Shortcut: v"
-        class="ui button green annotate"
-        @click="validateText()"
-      >
+      <button class="ui button green annotate" @click="validateText()">
         {{ $t("nutrition.validateIsText") }}
       </button>
-      <button
-        data-tooltip="Shortcut: v"
-        class="ui button green annotate"
-        @click="validateTable()"
-      >
+      <button class="ui button green annotate" @click="validateTable()">
         {{ $t("nutrition.validateIsATable") }}
-      </button>
-    </div>
-    <div class="questionGrid" v-else-if="currentQuestion === CROP_QUESTION">
-      <button class="ui button annotate" @click="validateCorp(false)">
-        {{ $t("nutrition.skipCrop") }}
-      </button>
-      <button class="ui button green annotate" @click="validateCorp(false)">
-        {{ $t("nutrition.useCrop") }}
-      </button>
-    </div>
-    <div
-      class="questionContainer annotateLine"
-      v-else-if="currentQuestion === FILL_QUESTION"
-    >
-      <span>{{ $t(`nutrition.nutriments.${nutritiveValue.id}`) }}</span>
-      <sui-input
-        :disabled="!nutritiveValue.visible"
-        :error="isInvalid(currentProductData[nutritiveValue.id]['data'])"
-        v-model="currentProductData[nutritiveValue.id]['data']"
-        v-focus
-      />
-
-      <sui-dropdown
-        :disabled="!nutritiveValue.visible"
-        style="min-width: 3rem"
-        selection
-        :placeholder="$t('nutrition.unit')"
-        v-if="getNutrimentUnits(nutritiveValue.id).length > 1"
-        v-model="currentProductData[nutritiveValue.id]['unit']"
-        :options="getNutrimentUnits(nutritiveValue.id)"
-        class="unit"
-      />
-      <button class="ui button annotate" @click="nextNutriment()">
-        {{ $t("nutrition.next") }}
       </button>
     </div>
 
@@ -145,20 +76,13 @@
 
 <script>
 import axios from "axios";
-import nutrimentsDefaultUnit from "../data/nutritions";
 // import { OFF_URL } from "../const";
 import offService from "../off";
 import { Cropper } from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
 
-const constants = {
-  CLASSIFY_QUESTION: -2,
-  CROP_QUESTION: -1,
-  FILL_QUESTION: 0,
-};
-
 const getProducts = async (nbOfPages) => {
-  const randomPage = Math.floor(Math.random() * nbOfPages);
+  const randomPage = 1 + Math.floor(Math.random() * nbOfPages);
   const {
     data: { products },
   } = await axios(offService.getNutritionToFillUrl(randomPage));
@@ -175,12 +99,9 @@ export default {
       valueTagInput: "",
       loading: false,
       productBuffer: [],
-      currentProductData: {},
-      currentQuestion: constants.CLASSIFY_QUESTION,
       openSelectPicture: false,
       selectedPicture: false,
-      nutritiveId: 0,
-      ...constants,
+      cropperData: { x0: 0, y0: 0, x1: 0, y1: 0 },
     };
   },
   computed: {
@@ -201,6 +122,15 @@ export default {
         return "";
       }
       return this.productBuffer[0].product_name;
+    },
+    productLang: function() {
+      if (
+        this.productBuffer.length === 0 ||
+        this.productBuffer[0].lang === null
+      ) {
+        return "";
+      }
+      return this.productBuffer[0].lang;
     },
     productUrl: function() {
       if (
@@ -238,10 +168,28 @@ export default {
           full: `${imageUrl}${increment}.jpg`,
         }));
     },
+    selectedPictureSuffix: function() {
+      if (
+        this.productBuffer[0] &&
+        this.productBuffer[0].image_nutrition_url &&
+        this.productBuffer[0].lang
+      ) {
+        const imgId = this.productBuffer[0].images[
+          `nutrition_${this.productBuffer[0].lang}`
+        ].imgid;
+
+        const imageUrl = this.productBuffer[0].image_nutrition_url
+          .split("nutrition")[0]
+          .split("products")[1];
+        return `${imageUrl}${this.selectedPicture || imgId}.jpg`;
+      }
+      return "";
+    },
     selectedPictureURL: function() {
       if (this.productBuffer[0] && this.productBuffer[0].lang) {
         console.log(this.productBuffer[0]);
         console.log(this.productBuffer[0].lang);
+
         const imgId = this.productBuffer[0].images[
           `nutrition_${this.productBuffer[0].lang}`
         ].imgid;
@@ -256,30 +204,8 @@ export default {
     bufferIsEmpty: function() {
       return this.productBuffer.length === 0;
     },
-    nutritiveValue: function() {
-      if (this.currentQuestion !== constants.FILL_QUESTION) {
-        return {};
-      }
-
-      return this.currentProductData[
-        Object.keys(this.currentProductData)[this.nutritiveId]
-      ];
-    },
   },
   methods: {
-    nextNutriment() {
-      if (this.nutritiveId + 1 < Object.keys(this.currentProductData).length) {
-        this.nutritiveId += 1;
-      } else {
-        this.validate();
-      }
-    },
-    isInvalid(value) {
-      return !value.match("^((<|>|<=|>=|~|.)*[0-9]+| *)$");
-    },
-    clearValueTagInput() {
-      this.valueTagInput = "";
-    },
     toggleSelectedPicture: function(id) {
       if (this.selectedPicture === id) {
         this.selectedPicture = null;
@@ -290,7 +216,6 @@ export default {
     quitWithoutImage() {
       this.selectedPicture = null;
       this.openSelectPicture = false;
-      this.skipProduct();
     },
     validateImage() {
       // axios.post(
@@ -300,19 +225,17 @@ export default {
       //   )
       // );
       this.openSelectPicture = false;
-      this.currentQuestion = constants.CROP_QUESTION;
     },
     addProducts: async function() {
       this.loading = true;
-      const newProducts = await getProducts(20);
+      const newProducts = await getProducts(300);
       this.productBuffer = this.productBuffer.concat(newProducts);
       this.loading = false;
     },
     skipProduct() {
-      this.currentQuestion = constants.CLASSIFY_QUESTION;
       this.productBuffer.shift();
     },
-    deleteProduct() {
+    openImageSelector() {
       // const imageUrl = this.productBuffer[0]["image_nutrition_url"];
       // const imageId = imageUrl
       //   .split("/")
@@ -328,84 +251,35 @@ export default {
       this.openSelectPicture = true;
     },
     validateText() {
-      this.currentQuestion = constants.FILL_QUESTION;
+      axios.post("https://amathjourney.com/api/off/init/", {
+        code: this.productCode,
+        image_url: this.selectedPictureSuffix,
+        is_table: false,
+        lang: this.productLang,
+        ...this.cropperData,
+      });
+
+      this.skipProduct();
     },
     validateTable() {
-      this.currentQuestion = constants.CROP_QUESTION;
-    },
-    validateCorp(useCrop) {
-      if (useCrop) {
-        // add here the extraction of dat from api call
-        this.currentQuestion = constants.FILL_QUESTION;
-      }
-      this.currentQuestion = constants.FILL_QUESTION;
-    },
-    validate() {
-      // const toDelete = Object.keys(this.currentProductData).filter(
-      //   (nutrimentId) => !this.currentProductData[nutrimentId].visible
-      // );
-      // const toFill = Object.keys(this.currentProductData)
-      //   .filter(
-      //     (nutrimentId) =>
-      //       this.currentProductData[nutrimentId] &&
-      //       this.currentProductData[nutrimentId].visible &&
-      //       this.currentProductData[nutrimentId].data &&
-      //       this.isInvalid(this.currentProductData[nutrimentId].data) &&
-      //       this.currentProductData[nutrimentId].data.length > 0
-      //   )
-      //   .map((nutrimentId) => ({
-      //     name: nutrimentId,
-      //     value: `${this.currentProductData[nutrimentId].data}${this
-      //       .currentProductData[nutrimentId].unit || ""}`,
-      //     quantity: this.currentProductData[nutrimentId].data,
-      //     unit: this.currentProductData[nutrimentId].unit,
-      //   }));
-
-      // axios.post(
-      //   `${OFF_URL}/cgi/product_jqm2.pl?`,
-      //   new URLSearchParams(
-      //     `${toFill
-      //       .map((data) => `${data.name}=${data.quantity}&`)
-      //       .join("")}${toFill
-      //       .map((data) => (data.unit ? `${data.name}_unit=${data.unit}&` : ""))
-      //       .join("")}${toDelete.map((name) => `${name}=""&`).join("")}code=${
-      //       this.productBuffer[0]["code"]
-      //     }`
-      //   )
-      // ); // The status of the response is not displayed so no need to wait the response
+      axios.post("https://amathjourney.com/api/off/init/", {
+        code: this.productCode,
+        image_url: this.selectedPictureSuffix,
+        is_table: true,
+        lang: this.productLang,
+        ...this.cropperData,
+      });
 
       this.skipProduct();
     },
     resetProductData() {
-      const data = {};
-
-      for (const nutrimentId of Object.keys(nutrimentsDefaultUnit)) {
-        data[nutrimentId] = {
-          id: nutrimentId,
-          data: "",
-          unit: nutrimentsDefaultUnit[nutrimentId],
-          visible: true,
-        };
-      }
-      this.currentProductData = data;
-      this.nutritiveId = 0;
       this.selectedPicture = null;
     },
-    getNutrimentUnits(nutrimentId) {
-      switch (nutrimentId) {
-        case "nutriment_energy-kcal":
-          return ["kcal"];
-        case "nutriment_energy-kj":
-          return ["kJ"];
-        default:
-          return [
-            { text: "g", value: "g" },
-            { text: "mg", value: "mg" },
-          ];
-      }
-    },
-    changeCropCoordinate({ coordinates, canvas }) {
-      console.log(coordinates, canvas);
+    changeCropCoordinate({ coordinates }) {
+      this.cropperData.x0 = coordinates.left;
+      this.cropperData.y0 = coordinates.top;
+      this.cropperData.x1 = coordinates.left + coordinates.width;
+      this.cropperData.y1 = coordinates.top + coordinates.height;
     },
   },
   watch: {
@@ -420,19 +294,12 @@ export default {
   mounted: function() {
     this.addProducts();
 
-    const vm = this;
-    window.addEventListener("keyup", function(event) {
-      if (event.target.nodeName == "BODY") {
-        if (event.key === "k") vm.skipProduct();
-        if (event.key === "v") vm.validate();
-      } else if (
-        event.target.nodeName == "INPUT" &&
-        event.key === "Enter" &&
-        vm.currentQuestion === constants.FILL_QUESTION
-      ) {
-        vm.nextNutriment();
-      }
-    });
+    // const vm = this;
+    // // to modify
+    // window.addEventListener("keyup", function(event) {
+    //   if (event.key === "k") vm.skipProduct();
+    //   if (event.key === "v") vm.validate();
+    // });
   },
 };
 </script>
@@ -462,8 +329,10 @@ button.annotate {
 .selectPictures {
   display: flex;
   flex-wrap: nowrap;
+  align-items: stretch;
   flex-direction: row;
-  overflow: auto;
+  overflow-x: auto;
+  max-height: 60vh;
 }
 .selectPictures > img {
   margin: 2rem;
@@ -472,8 +341,10 @@ button.annotate {
 .selectPictures > .selected {
   border: 5px solid blue;
 }
-.cropper {
+.imageDisplay {
   background: #ddd !important;
+  max-height: 100vw;
+  width: 90vw;
 }
 
 .questionGrid {
