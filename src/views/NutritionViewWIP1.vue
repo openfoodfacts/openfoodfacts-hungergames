@@ -29,7 +29,7 @@
         />
       </template>
     </div>
-    <div class="questionGrid">
+    <div class="questionGrid questionContainer">
       <button class="ui button red annotate" @click="openImageSelector()">
         {{ $t("nutrition.other") }}
       </button>
@@ -102,6 +102,7 @@ export default {
       openSelectPicture: false,
       selectedPicture: false,
       cropperData: { x0: 0, y0: 0, x1: 0, y1: 0 },
+      seenProducts: [],
     };
   },
   computed: {
@@ -229,11 +230,20 @@ export default {
     addProducts: async function() {
       this.loading = true;
       const newProducts = await getProducts(300);
-      this.productBuffer = this.productBuffer.concat(newProducts);
+      this.productBuffer = this.productBuffer.concat(
+        newProducts.filter((prod) => !this.seenProducts.includes(prod.code))
+      );
       this.loading = false;
     },
+    fetchSeenProducts: async function() {
+      const {
+        data: { seen: seenProducts },
+      } = await axios("https://amathjourney.com/api/off/seen/");
+      this.seenProducts = [...this.seenProducts, ...seenProducts];
+    },
     skipProduct() {
-      this.productBuffer.shift();
+      const data = this.productBuffer.shift();
+      this.seenProducts = [...this.seenProducts, data.code];
     },
     openImageSelector() {
       // const imageUrl = this.productBuffer[0]["image_nutrition_url"];
@@ -293,7 +303,7 @@ export default {
   },
   mounted: function() {
     this.addProducts();
-
+    this.fetchSeenProducts();
     // const vm = this;
     // // to modify
     // window.addEventListener("keyup", function(event) {
@@ -367,6 +377,6 @@ button.annotate {
   right: 0;
   bottom: 0;
   background-color: white;
-  padding: 0.5rem 0.5rem;
+  padding: 0.1rem 0rem;
 }
 </style>
