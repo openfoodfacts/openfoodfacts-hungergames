@@ -30,7 +30,7 @@
       </template>
     </div>
     <div class="questionGrid questionContainer">
-      <button class="ui button red annotate" @click="openImageSelector()">
+      <button class="ui button annotate" @click="openImageSelector()">
         {{ $t("nutrition.other") }}
       </button>
       <button class="ui button annotate" @click="skipProduct()">
@@ -59,15 +59,8 @@
         />
       </div>
       <sui-modal-actions>
-        <sui-button negative @click.native="quitWithoutImage">
-          {{ $t("nutrition.notAvailableImage") }}
-        </sui-button>
-        <sui-button
-          :disabled="!selectedPicture"
-          positive
-          @click.native="validateImage"
-        >
-          {{ $t("nutrition.validate") }}
+        <sui-button @click.native="quitImageSelector">
+          {{ $t("nutrition.close") }}
         </sui-button>
       </sui-modal-actions>
     </sui-modal>
@@ -76,7 +69,7 @@
 
 <script>
 import axios from "axios";
-// import { OFF_URL } from "../const";
+import { OFF_URL } from "../const";
 import offService from "../off";
 import { Cropper } from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
@@ -186,6 +179,21 @@ export default {
       }
       return "";
     },
+    newPictureIsSelected: function() {
+      if (
+        this.selectedPicture !== null &&
+        this.productBuffer[0] &&
+        this.productBuffer[0].image_nutrition_url &&
+        this.productBuffer[0].lang
+      ) {
+        const imgId = this.productBuffer[0].images[
+          `nutrition_${this.productBuffer[0].lang}`
+        ].imgid;
+
+        return parseInt(this.selectedPicture) !== parseInt(imgId);
+      }
+      return false;
+    },
     selectedPictureURL: function() {
       if (this.productBuffer[0] && this.productBuffer[0].lang) {
         console.log(this.productBuffer[0]);
@@ -214,17 +222,7 @@ export default {
         this.selectedPicture = id;
       }
     },
-    quitWithoutImage() {
-      this.selectedPicture = null;
-      this.openSelectPicture = false;
-    },
-    validateImage() {
-      // axios.post(
-      //   `${OFF_URL}/cgi/product_image_crop.pl?`,
-      //   new URLSearchParams(
-      //     `code=${this.productBuffer[0].code}&id=${this.selectedPicture}&id=nutrition_${this.productBuffer[0].lang}`
-      //   )
-      // );
+    quitImageSelector() {
       this.openSelectPicture = false;
     },
     addProducts: async function() {
@@ -246,17 +244,6 @@ export default {
       this.seenProducts = [...this.seenProducts, data.code];
     },
     openImageSelector() {
-      // const imageUrl = this.productBuffer[0]["image_nutrition_url"];
-      // const imageId = imageUrl
-      //   .split("/")
-      //   .pop()
-      //   .split(".")[0]; //get the first part of the image off/.../nutrition_fr.400.jpg => nutrition_fr
-
-      // axios.post(
-      //   `${OFF_URL}/cgi/product_image_unselect.pl?`,
-      //   new URLSearchParams(`code=${this.productBuffer[0].code}&id=${imageId}`)
-      // );
-
       this.selectPicture = null;
       this.openSelectPicture = true;
     },
@@ -268,6 +255,14 @@ export default {
         lang: this.productLang,
         ...this.cropperData,
       });
+      if (this.selectedPicture && this.newPictureIsSelected) {
+        axios.post(
+          `${OFF_URL}/cgi/product_image_crop.pl?`,
+          new URLSearchParams(
+            `code=${this.productCode}&imgid=${this.selectedPicture}&id=nutrition_${this.productLang}&x1=${this.cropperData.x0}&y1=${this.cropperData.y0}&x2=${this.cropperData.x1}&y2=${this.cropperData.y1}`
+          )
+        );
+      }
 
       this.skipProduct();
     },
@@ -279,6 +274,14 @@ export default {
         lang: this.productLang,
         ...this.cropperData,
       });
+      if (this.selectedPicture && this.newPictureIsSelected) {
+        axios.post(
+          `${OFF_URL}/cgi/product_image_crop.pl?`,
+          new URLSearchParams(
+            `code=${this.productCode}&imgid=${this.selectedPicture}&id=nutrition_${this.productLang}&x1=${this.cropperData.x0}&y1=${this.cropperData.y0}&x2=${this.cropperData.x1}&y2=${this.cropperData.y1}`
+          )
+        );
+      }
 
       this.skipProduct();
     },

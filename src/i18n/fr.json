@@ -98,8 +98,7 @@
     "skipCrop": "Passer",
     "useCrop": "Utilise Crop",
     "unit": "Unité",
-    "notAvailableImage": "Quitter",
-    "validate": "Valider",
+    "validate": "Fermer",
     "instruction_select": "Sélectionner le tableau nutritionnel",
     "other": "Autres images",
     "nutriments": {
