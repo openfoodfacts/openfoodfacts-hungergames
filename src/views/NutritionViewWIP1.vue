@@ -33,7 +33,7 @@
       <button class="ui button annotate" @click="openImageSelector()">
         {{ $t("nutrition.other") }}
       </button>
-      <button class="ui button annotate" @click="skipProduct()">
+      <button class="ui button annotate" @click="openSkipExplanation()">
         {{ $t("nutrition.skip") }}
       </button>
       <button class="ui button green annotate" @click="validateText()">
@@ -60,6 +60,28 @@
       </div>
       <sui-modal-actions>
         <sui-button @click.native="quitImageSelector">
+          {{ $t("nutrition.close") }}
+        </sui-button>
+      </sui-modal-actions>
+    </sui-modal>
+
+    <sui-modal v-model="openExplainSkiping" :closable="false">
+      <sui-modal-header>
+        {{ $t("nutrition.instruction_select") }}
+      </sui-modal-header>
+      <div class="explainations">
+        <button
+          v-for="proposition in classicalExplanation"
+          :key="proposition"
+          @click="quitSkipExplanation(proposition)"
+        >
+          {{ $t(`nutrition.${proposition}`) }}
+        </button>
+        <label> {{ $t(`nutrition.other`) }}</label>
+        <sui-input v-model="otherExplanation" />
+      </div>
+      <sui-modal-actions>
+        <sui-button @click="quitSkipExplanation(otherExplanation)">
           {{ $t("nutrition.close") }}
         </sui-button>
       </sui-modal-actions>
@@ -93,9 +115,17 @@ export default {
       loading: false,
       productBuffer: [],
       openSelectPicture: false,
+      openExplainSkiping: false,
       selectedPicture: false,
       cropperData: { x0: 0, y0: 0, x1: 0, y1: 0 },
       seenProducts: [],
+      classicalExplanation: [
+        "notOFF",
+        "noNutritionImage",
+        "notReadable",
+        "rotationNeeded",
+      ],
+      otherExplanation: "",
     };
   },
   computed: {
@@ -224,6 +254,19 @@ export default {
     },
     quitImageSelector() {
       this.openSelectPicture = false;
+    },
+    openSkipExplanation() {
+      this.openExplainSkiping = true;
+    },
+    quitSkipExplanation(message) {
+      if (message) {
+        axios.post("https://amathjourney.com/api/off/init/", {
+          code: this.productCode,
+          info: message,
+        });
+      }
+      this.openExplainSkiping = false;
+      this.skipProduct();
     },
     addProducts: async function() {
       this.loading = true;
@@ -381,5 +424,19 @@ button.annotate {
   bottom: 0;
   background-color: white;
   padding: 0.1rem 0rem;
+}
+
+.explainations {
+  display: flex;
+  flex-direction: column;
+}
+.explainations button {
+  margin: 1rem auto;
+}
+.explainations > * {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.5rem;
+  min-width: 50%;
 }
 </style>

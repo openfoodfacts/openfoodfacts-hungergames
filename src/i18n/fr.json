@@ -101,6 +101,11 @@
     "validate": "Fermer",
     "instruction_select": "Sélectionner le tableau nutritionnel",
     "other": "Autres images",
+    "close": "Fermer",
+    "notOFF": "Pas de la nourriture",
+    "noNutritionImage": "Pas d'info nutritionnel",
+    "notReadable": "Illisible",
+    "rotationNeeded": "A retourner",
     "nutriments": {
       "nutriment_energy-kj": "Energie (kJ)",
       "nutriment_energy-kcal": "Energie (kCal)",
