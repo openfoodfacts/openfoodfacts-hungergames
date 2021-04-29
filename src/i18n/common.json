@@ -88,5 +88,40 @@
     "settings": "Settings",
     "language": "Language",
     "save": "Save"
+  },
+  "nutrition": {
+    "next": "Next",
+    "delete": "Delete",
+    "skip": "Skip",
+    "validateIsText": "(Text)",
+    "validateIsATable": "(Table)",
+    "skipCrop": "Skip",
+    "useCrop": "Use the crop",
+    "unit": "Unit",
+    "notAvailableImage": "Quit",
+    "validate": "Validate",
+    "instruction_select": "Select the image with nutritional info",
+    "prev": "Back",
+    "other": "Other images",
+    "close": "Close",
+    "notOFF": "Is not food product",
+    "noNutritionImage": "no nutritional information",
+    "notReadable": "Impossible to read",
+    "rotationNeeded": "Need some rotation",
+    "basis": "quantity per: ",
+    "end": "Send",
+    "servingSize": "serving size",
+    "nutriments": {
+      "nutriment_energy-kj": "Energy (kJ)",
+      "nutriment_energy-kcal": "Energy (kCal)",
+      "nutriment_fat": "fat",
+      "nutriment_saturated-fat": "fat (saturated)",
+      "nutriment_carbohydrates": "carbohydrates",
+      "nutriment_sugars": "sugars",
+      "nutriment_proteins": "proteins",
+      "nutriment_fiber": "fiber",
+      "nutriment_salt": "salt",
+      "nutriment_sodium": "sodium"
+    }
   }
 }
