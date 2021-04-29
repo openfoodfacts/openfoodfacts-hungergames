@@ -69,7 +69,7 @@
           </button>
         </div>
         <div class="line2">
-          <span>{{ $t(`nutrition.nutriments.${nutritiveValue.id}`) }}</span>
+          <span> {{ nutrimentName1 }}<br />{{ nutrimentName2 || "" }} </span>
           <sui-input
             :error="isInvalid(currentProductData[nutritiveValue.id]['data'])"
             v-model="currentProductData[nutritiveValue.id]['data']"
@@ -90,7 +90,7 @@
       <div class="line3">
         <button
           class="ui button annotate"
-          :disabled="nutrimentId == -1"
+          :disabled="nutritiveId == -1"
           @click="prevNutriment()"
         >
           {{ $t("nutrition.prev") }}
@@ -123,6 +123,7 @@
 <script>
 import axios from "axios";
 import nutrimentsDefaultUnit from "../data/nutritions";
+import nutrimentsTranslation from "../data/nutriments_translation.json";
 import { OFF_IMAGE_URL, OFF_URL } from "../const";
 import offService from "../off";
 import { Cropper } from "vue-advanced-cropper";
@@ -146,13 +147,23 @@ export default {
       loading: false,
       productBuffer: [],
       currentProductData: {},
-      basisData: {},
+      basisData: { quantity: "", isServingSize: false },
       openSelectPicture: false,
       selectedPicture: false,
       nutritiveId: -1,
     };
   },
   computed: {
+    nutrimentName1() {
+      return this.$t(`nutrition.nutriments.${this.nutritiveValue.id}`);
+    },
+    nutrimentName2() {
+      return (
+        nutrimentsTranslation[this.nutritiveValue.id][this.productLang] ||
+        nutrimentsTranslation[this.nutritiveValue.id]["en"] ||
+        ""
+      );
+    },
     productCode: function() {
       if (
         this.productBuffer.length === 0 ||
@@ -197,6 +208,15 @@ export default {
         return "";
       }
       return `${OFF_IMAGE_URL}${this.productBuffer[0].image_url}`;
+    },
+    productLang: function() {
+      if (
+        this.productBuffer.length === 0 ||
+        this.productBuffer[0].lang === null
+      ) {
+        return "";
+      }
+      return this.productBuffer[0].lang;
     },
     bufferIsEmpty: function() {
       return this.productBuffer.length === 0;
@@ -248,7 +268,6 @@ export default {
   },
   methods: {
     nextNutriment() {
-      console.log(this.currentProductData);
       if (this.remainNutriments) {
         this.nutritiveId += 1;
       }
@@ -278,7 +297,6 @@ export default {
     addProducts: async function() {
       this.loading = true;
       const newProducts = await getProducts();
-      console.log(newProducts);
       this.productBuffer = this.productBuffer.concat(newProducts);
       this.loading = false;
     },

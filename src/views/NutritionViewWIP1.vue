@@ -226,9 +226,6 @@ export default {
     },
     selectedPictureURL: function() {
       if (this.productBuffer[0] && this.productBuffer[0].lang) {
-        console.log(this.productBuffer[0]);
-        console.log(this.productBuffer[0].lang);
-
         const imgId = this.productBuffer[0].images[
           `nutrition_${this.productBuffer[0].lang}`
         ].imgid;
