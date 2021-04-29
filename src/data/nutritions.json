@@ -5,8 +5,8 @@
     "nutriment_saturated-fat": "g",
     "nutriment_carbohydrates": "g",
     "nutriment_sugars": "g",
-    "nutriment_proteins": "g",
     "nutriment_fiber": "g",
+    "nutriment_proteins": "g",
     "nutriment_salt": "g",
     "nutriment_sodium": null
 }

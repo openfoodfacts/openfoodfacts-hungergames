@@ -91,6 +91,7 @@
   },
   "nutrition": {
     "next": "Suivant",
+    "prev": "Retour",
     "delete": "Supprimer",
     "skip": "Passer",
     "validateIsText": "(Text)",
@@ -106,6 +107,9 @@
     "noNutritionImage": "Pas d'info nutritionnel",
     "notReadable": "Illisible",
     "rotationNeeded": "A retourner",
+    "basis": "données pour: ",
+    "end": "Fini",
+    "servingSize": "serving size",
     "nutriments": {
       "nutriment_energy-kj": "Energie (kJ)",
       "nutriment_energy-kcal": "Energie (kCal)",

@@ -372,6 +372,7 @@ button.annotate {
 }
 .container {
   width: calc(100vw - 28px);
+  max-width: 21cm;
 }
 .center {
   text-align: center;
@@ -422,7 +423,7 @@ button.annotate {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.7);
   padding: 0.1rem 0rem;
 }
 

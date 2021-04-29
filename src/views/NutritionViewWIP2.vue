@@ -43,44 +43,77 @@
     </div>
 
     <div class="questionContainer annotateLine">
-      <div class="line1">
-        <button
-          v-for="(prediction, index) in predictions"
-          :key="index"
-          @click="setNutriment(prediction)"
-        >
-          {{ prediction }}
-        </button>
-      </div>
-      <div class="line2">
-        <span>{{ $t(`nutrition.nutriments.${nutritiveValue.id}`) }}</span>
-        <sui-input
-          :disabled="!nutritiveValue.visible"
-          :error="isInvalid(currentProductData[nutritiveValue.id]['data'])"
-          v-model="currentProductData[nutritiveValue.id]['data']"
-          v-focus
-        />
+      <template v-if="nutritiveId == -1">
+        <div class="line2">
+          <span>{{ $t(`nutrition.basis`) }}</span>
+          <sui-input
+            :error="isInvalid(basisData['quantity'])"
+            v-model="basisData['quantity']"
+            style="width:5rem"
+            v-focus
+          /><span style="font-size:1.5rem; margin-right: 0.5rem;">g</span>
+          <sui-checkbox
+            :label="$t(`nutrition.servingSize`)"
+            v-model="basisData['isServingSize']"
+          />
+        </div>
+      </template>
+      <template v-else>
+        <div class="line1">
+          <button
+            v-for="(prediction, index) in predictions"
+            :key="index"
+            @click="setNutriment(prediction)"
+          >
+            {{ prediction }}
+          </button>
+        </div>
+        <div class="line2">
+          <span>{{ $t(`nutrition.nutriments.${nutritiveValue.id}`) }}</span>
+          <sui-input
+            :error="isInvalid(currentProductData[nutritiveValue.id]['data'])"
+            v-model="currentProductData[nutritiveValue.id]['data']"
+            v-focus
+          />
 
-        <sui-dropdown
-          :disabled="!nutritiveValue.visible"
-          style="min-width: 3rem"
-          selection
-          :placeholder="$t('nutrition.unit')"
-          v-if="getNutrimentUnits(nutritiveValue.id).length > 1"
-          v-model="currentProductData[nutritiveValue.id]['unit']"
-          :options="getNutrimentUnits(nutritiveValue.id)"
-          class="unit"
-        />
-      </div>
+          <sui-dropdown
+            style="min-width: 3rem"
+            selection
+            :placeholder="$t('nutrition.unit')"
+            v-if="getNutrimentUnits(nutritiveValue.id).length > 1"
+            v-model="currentProductData[nutritiveValue.id]['unit']"
+            :options="getNutrimentUnits(nutritiveValue.id)"
+            class="unit"
+          />
+        </div>
+      </template>
       <div class="line3">
-        <button class="ui button annotate" @click="prevNutriment()">
+        <button
+          class="ui button annotate"
+          :disabled="nutrimentId == -1"
+          @click="prevNutriment()"
+        >
           {{ $t("nutrition.prev") }}
         </button>
+        <button
+          class="ui button annotate"
+          :disabled="!remainNutriments"
+          @click="nextNutriment()"
+        >
+          {{ $t("nutrition.next") }}
+        </button>
+      </div>
+      <div class="line4">
         <button class="ui button annotate" @click="skipProduct()">
           {{ $t("nutrition.skip") }}
         </button>
-        <button class="ui button annotate" @click="nextNutriment()">
-          {{ $t("nutrition.next") }}
+
+        <button
+          class="ui positive button annotate"
+          @click="validate()"
+          :disabled="remainNutriments"
+        >
+          {{ $t("nutrition.end") }}
         </button>
       </div>
     </div>
@@ -90,7 +123,7 @@
 <script>
 import axios from "axios";
 import nutrimentsDefaultUnit from "../data/nutritions";
-import { OFF_IMAGE_URL } from "../const";
+import { OFF_IMAGE_URL, OFF_URL } from "../const";
 import offService from "../off";
 import { Cropper } from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
@@ -113,9 +146,10 @@ export default {
       loading: false,
       productBuffer: [],
       currentProductData: {},
+      basisData: {},
       openSelectPicture: false,
       selectedPicture: false,
-      nutritiveId: 0,
+      nutritiveId: -1,
     };
   },
   computed: {
@@ -208,17 +242,19 @@ export default {
         top: y0,
       };
     },
+    remainNutriments() {
+      return this.nutritiveId + 1 < Object.keys(this.currentProductData).length;
+    },
   },
   methods: {
     nextNutriment() {
-      if (this.nutritiveId + 1 < Object.keys(this.currentProductData).length) {
+      console.log(this.currentProductData);
+      if (this.remainNutriments) {
         this.nutritiveId += 1;
-      } else {
-        this.validate();
       }
     },
     prevNutriment() {
-      if (this.nutritiveId > 0) {
+      if (this.nutritiveId > -1) {
         this.nutritiveId -= 1;
       }
     },
@@ -234,6 +270,7 @@ export default {
         this.currentProductData[this.nutritiveValue.id]["unit"] = unit;
       }
       this.currentProductData[this.nutritiveValue.id]["data"] = val;
+      this.nextNutriment();
     },
     isInvalid(value) {
       return !value.match("^((<|>|<=|>=|~|.)*[0-9]+| *)$");
@@ -248,40 +285,66 @@ export default {
     skipProduct() {
       this.productBuffer.shift();
     },
+    getBasisTextForAPI() {
+      if (this.basisData.quantity && !this.isInvalid(this.basisData.quantity)) {
+        if (this.basisData.isServingSize) {
+          return `nutrition_data_per=serving&serving_size=${this.basisData.quantity}g`;
+        }
+        return `nutrition_data_per=${this.basisData.quantity}g`;
+      }
+      return "";
+    },
     validate() {
-      // const toDelete = Object.keys(this.currentProductData).filter(
-      //   (nutrimentId) => !this.currentProductData[nutrimentId].visible
-      // );
-      // const toFill = Object.keys(this.currentProductData)
-      //   .filter(
-      //     (nutrimentId) =>
-      //       this.currentProductData[nutrimentId] &&
-      //       this.currentProductData[nutrimentId].visible &&
-      //       this.currentProductData[nutrimentId].data &&
-      //       this.isInvalid(this.currentProductData[nutrimentId].data) &&
-      //       this.currentProductData[nutrimentId].data.length > 0
-      //   )
-      //   .map((nutrimentId) => ({
-      //     name: nutrimentId,
-      //     value: `${this.currentProductData[nutrimentId].data}${this
-      //       .currentProductData[nutrimentId].unit || ""}`,
-      //     quantity: this.currentProductData[nutrimentId].data,
-      //     unit: this.currentProductData[nutrimentId].unit,
-      //   }));
+      const withData = Object.keys(this.currentProductData)
+        .filter(
+          (nutrimentId) =>
+            this.currentProductData[nutrimentId] &&
+            this.currentProductData[nutrimentId].data &&
+            !this.isInvalid(this.currentProductData[nutrimentId].data) &&
+            this.currentProductData[nutrimentId].data.length > 0
+        )
+        .map((nutrimentId) => ({
+          name: nutrimentId,
+          value: `${this.currentProductData[nutrimentId].data}${this
+            .currentProductData[nutrimentId].unit || ""}`,
+          quantity: this.currentProductData[nutrimentId].data,
+          unit: this.currentProductData[nutrimentId].unit,
+        }));
+      const withoutData = Object.keys(this.currentProductData)
+        .filter(
+          (nutrimentId) =>
+            this.currentProductData[nutrimentId] &&
+            !this.currentProductData[nutrimentId].data
+        )
+        .map((nutrimentId) => ({
+          name: nutrimentId,
+          value: "",
+          quantity: "",
+          unit: "",
+        }));
+      const basisText = this.getBasisTextForAPI();
 
-      // axios.post(
-      //   `${OFF_URL}/cgi/product_jqm2.pl?`,
-      //   new URLSearchParams(
-      //     `${toFill
-      //       .map((data) => `${data.name}=${data.quantity}&`)
-      //       .join("")}${toFill
-      //       .map((data) => (data.unit ? `${data.name}_unit=${data.unit}&` : ""))
-      //       .join("")}${toDelete.map((name) => `${name}=""&`).join("")}code=${
-      //       this.productBuffer[0]["code"]
-      //     }`
-      //   )
-      // ); // The status of the response is not displayed so no need to wait the response
+      axios.post(
+        `${OFF_URL}/cgi/product_jqm2.pl?`,
+        new URLSearchParams(
+          `${withData
+            .map((data) => `${data.name}=${data.quantity}&`)
+            .join("")}${withData
+            .map((data) => (data.unit ? `${data.name}_unit=${data.unit}&` : ""))
+            .join("")}${withoutData.map((name) => `${name}=""&`).join("")}${
+            basisText ? `${basisText}&` : ""
+          }code=${this.productBuffer[0]["code"]}`
+        )
+      ); // The status of the response is not displayed so no need to wait the response
+      const correctedData = {};
+      withData.forEach((data) => {
+        correctedData[data.name] = data.quantity;
+      });
 
+      axios.post("https://amathjourney.com/api/off/correct/", {
+        code: this.productCode,
+        true_value: correctedData,
+      });
       this.skipProduct();
     },
     resetProductData() {
@@ -292,11 +355,14 @@ export default {
           id: nutrimentId,
           data: "",
           unit: nutrimentsDefaultUnit[nutrimentId],
-          visible: true,
         };
       }
       this.currentProductData = data;
-      this.nutritiveId = 0;
+      this.basisData = {
+        quantity: "",
+        isServingSize: false,
+      };
+      this.nutritiveId = -1;
       this.selectedPicture = null;
     },
     getNutrimentUnits(nutrimentId) {
@@ -347,6 +413,7 @@ button.annotate {
 }
 .container {
   width: calc(100vw - 28px);
+  max-width: 21cm;
 }
 .center {
   text-align: center;
@@ -395,26 +462,35 @@ button.annotate {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.7);
   padding: 0.5rem 0.5rem;
 }
 
 .line1,
 .line2,
-.line3 {
+.line3,
+.line4 {
   display: flex;
   flex-direction: row;
   width: 100%;
+  margin-bottom: 4px;
 }
 
 .line2 {
   justify-content: center;
+  align-items: center;
 }
 .line3 {
   justify-content: space-between;
 }
 .line1 {
   justify-content: space-around;
+}
+.line4 {
+  justify-content: stretch;
+}
+.line4 button {
+  flex-grow: 1;
 }
 
 .line1 button {
