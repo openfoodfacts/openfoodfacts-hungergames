@@ -101,8 +101,7 @@ export default {
         .map((problem) => problem.code);
       console.log(this.toRemove);
       toRemoveDisplayed.forEach((code) => {
-        console.log(`remove ${code}`);
-        // axios.delete(`https://amathjourney.com/api/off/problem/${code}`);
+        axios.delete(`https://amathjourney.com/api/off/problem/${code}`);
       });
 
       this.data = [
