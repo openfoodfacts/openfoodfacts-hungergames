@@ -51,6 +51,7 @@
             v-model="basisData['quantity']"
             style="width:5rem"
             v-focus
+            inputmode="decimal"
           /><span style="font-size:1.5rem; margin-right: 0.5rem;">g</span>
           <sui-checkbox
             :label="$t(`nutrition.servingSize`)"
@@ -70,10 +71,16 @@
         </div>
         <div class="line2">
           <span> {{ nutrimentName1 }}<br />{{ nutrimentName2 || "" }} </span>
+          <sui-button @click="nextQuantificator()">{{
+            quantificators[
+              currentProductData[nutritiveValue.id]["quantificator"]
+            ]
+          }}</sui-button>
           <sui-input
             :error="isInvalid(currentProductData[nutritiveValue.id]['data'])"
             v-model="currentProductData[nutritiveValue.id]['data']"
             v-focus
+            inputmode="decimal"
           />
 
           <sui-dropdown
@@ -136,6 +143,8 @@ const getProducts = async () => {
   return products;
 };
 
+const quantificators = ["=", "<", ">", "~"];
+
 export default {
   name: "NutritionView",
   components: {
@@ -151,6 +160,7 @@ export default {
       openSelectPicture: false,
       selectedPicture: false,
       nutritiveId: -1,
+      quantificators: quantificators,
     };
   },
   computed: {
@@ -278,9 +288,11 @@ export default {
       }
     },
     setNutriment(prediction) {
-      const val = prediction
-        .match(/[0-9]*[<|>|<|=|>|=|~|.]*[0-9]*/g)
-        .filter((x) => x !== "")[0];
+      const val = prediction.match(/[0-9.]*/g).filter((x) => x !== "")[0];
+      const quantificatorIndex = Math.max(
+        0,
+        this.quantificators.indexOf(prediction.slice(0, 1))
+      );
       const unit = prediction.match(/[a-z]*/g).filter((x) => x !== "")[0];
 
       if (unit === "kj") {
@@ -289,6 +301,9 @@ export default {
         this.currentProductData[this.nutritiveValue.id]["unit"] = unit;
       }
       this.currentProductData[this.nutritiveValue.id]["data"] = val;
+      this.currentProductData[this.nutritiveValue.id][
+        "quantificator"
+      ] = quantificatorIndex;
       this.nextNutriment();
     },
     isInvalid(value) {
@@ -327,6 +342,7 @@ export default {
             .currentProductData[nutrimentId].unit || ""}`,
           quantity: this.currentProductData[nutrimentId].data,
           unit: this.currentProductData[nutrimentId].unit,
+          quantificator: this.currentProductData[nutrimentId].quantificator,
         }));
       const withoutData = Object.keys(this.currentProductData)
         .filter(
@@ -339,6 +355,7 @@ export default {
           value: "",
           quantity: "",
           unit: "",
+          quantificator: "",
         }));
       const basisText = this.getBasisTextForAPI();
 
@@ -346,7 +363,14 @@ export default {
         `${OFF_URL}/cgi/product_jqm2.pl?`,
         new URLSearchParams(
           `${withData
-            .map((data) => `${data.name}=${data.quantity}&`)
+            .map(
+              (data) =>
+                `${data.name}=${
+                  data.quantificator > 0
+                    ? this.quantificators[data.quantificator]
+                    : ""
+                }${data.quantity}&`
+            )
             .join("")}${withData
             .map((data) => (data.unit ? `${data.name}_unit=${data.unit}&` : ""))
             .join("")}${withoutData.map((name) => `${name}=""&`).join("")}${
@@ -356,7 +380,9 @@ export default {
       ); // The status of the response is not displayed so no need to wait the response
       const correctedData = {};
       withData.forEach((data) => {
-        correctedData[data.name] = data.quantity;
+        correctedData[data.name] = `${
+          data.quantificator > 0 ? this.quantificators[data.quantificator] : ""
+        }${data.quantity}&`;
       });
 
       axios.post("https://amathjourney.com/api/off/correct/", {
@@ -373,6 +399,7 @@ export default {
           id: nutrimentId,
           data: "",
           unit: nutrimentsDefaultUnit[nutrimentId],
+          quantificator: 0,
         };
       }
       this.currentProductData = data;
@@ -395,6 +422,11 @@ export default {
             { text: "mg", value: "mg" },
           ];
       }
+    },
+    nextQuantificator() {
+      this.currentProductData[this.nutritiveValue.id]["quantificator"] =
+        (this.currentProductData[this.nutritiveValue.id]["quantificator"] + 1) %
+        this.quantificators.length;
     },
   },
   watch: {
