@@ -9,6 +9,7 @@ import QuestionView from './views/QuestionView.vue'
 import NutritionView from './views/NutritionView.vue'
 import NutritionViewWIP1 from "./views/NutritionViewWIP1.vue"
 import NutritionViewWIP2 from "./views/NutritionViewWIP2.vue"
+import NutritionProblems from "./views/NutritionProblems.vue"
 import TableAnnotation from './views/TableAnnotation.vue'
 import SettingsView from './views/SettingsView.vue'
 import InsightListView from './views/InsightListView.vue'
@@ -43,6 +44,7 @@ const routes = [
   { path: '/nutritions', component: NutritionView },
   { path: "/nutritionsWIP1", component: NutritionViewWIP1 },
   { path: "/nutritionsWIP2", component: NutritionViewWIP2 },
+  { path: "/nutritionProblems", component: NutritionProblems },
   { path: '/table', component: TableAnnotation },
   { path: '/settings', component: SettingsView },
   { path: '/logos', component: LogoAnnotationView },
