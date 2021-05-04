@@ -128,6 +128,7 @@ export default {
         "noNutritionImage",
         "notReadable",
         "rotationNeeded",
+        "alcool",
       ],
       otherExplanation: "",
     };
