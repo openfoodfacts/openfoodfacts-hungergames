@@ -65,7 +65,11 @@
       </sui-modal-actions>
     </sui-modal>
 
-    <sui-modal v-model="openExplainSkiping" :closable="false">
+    <sui-modal
+      v-model="openExplainSkiping"
+      :closable="false"
+      :animationDuration="0"
+    >
       <sui-modal-header>
         {{ $t("nutrition.instruction_select") }}
       </sui-modal-header>
