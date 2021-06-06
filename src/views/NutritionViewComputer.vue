@@ -1,0 +1,751 @@
+<template>
+  <div class="ui grid stackable">
+    <div class="eight wide column centered">
+      <!--four wide column centered-->
+      <div v-if="bufferIsEmpty">
+        <p v-if="loading">Loading ...</p>
+        <p v-else>No remaining images</p>
+      </div>
+      <template v-else>
+        <h3>{{ productName }}</h3>
+        <div>
+          <a target="_blank" :href="productUrl" class="ui button primary">{{
+            $t("questions.view")
+          }}</a>
+          <a target="_blank" :href="productEditUrl" class="ui button">{{
+            $t("questions.edit")
+          }}</a>
+        </div>
+        <div class="ui divider"></div>
+        <!-- ask what type is the image -->
+
+        <template v-if="step == 0">
+          <cropper
+            class="imageDisplay"
+            :src="imageURL"
+            :canvas="false"
+            :checkOrientation="false"
+            :crossOrigine="false"
+            @change="changeCropCoordinate"
+          />
+        </template>
+        <template v-else>
+          <div
+            :style="
+              `width: min(50vw, 800px); height: calc(min(50vw, 800px) * ${
+                imageZoomOptions.coordinates
+                  ? imageZoomOptions.coordinates.height /
+                    imageZoomOptions.coordinates.width
+                  : 1
+              })`
+            "
+          >
+            <interactiveImage
+              :v-if="imageZoomOptions.image"
+              :image="imageZoomOptions.image"
+              :coordinates="imageZoomOptions.coordinates"
+              :clickableBoxes="clickableBoxes"
+              :anotationToValidate="anotationToValidate"
+              :bestMatch="bestMatch"
+              :boxesHighlight="nutrimentToFill.boxes"
+              :onlyPredictions="useOnlyPredictions"
+              v-on:nutriPredictionAccept="nutriPredictionAccepted"
+              v-on:nutriPredictionCancel="nutriPredictionCanceled"
+              v-on:validatedBox="validateHumanAnnotation"
+            />
+          </div>
+        </template>
+      </template>
+
+      <div class="questionContainer annotateLine">
+        <template v-if="step == 1">
+          <div class="line2">
+            <span>{{ $t(`nutrition.basis`) }}</span>
+            <sui-input
+              :error="isInvalid(basisData['quantity'])"
+              v-model="basisData['quantity']"
+              style="width:5rem"
+              v-focus
+              inputmode="decimal"
+            /><span style="font-size:1.5rem; margin-right: 0.5rem;">g/ml</span>
+            <sui-checkbox
+              :label="$t(`nutrition.servingSize`)"
+              v-model="basisData['isServingSize']"
+            />
+          </div>
+        </template>
+        <template :v-else-if="step >= 2 && step <= 4">
+          <div class="line2">
+            <p v-if="step == 2">Validez/Infirmez les nutriments détecté</p>
+            <p v-if="step == 3">
+              Cliquez sur l'image pour ajouter les nutriments manquant
+            </p>
+            <p v-if="step == 4">
+              Selectionnez la valeur pour
+              <span class="nutrimentName">{{ nutrimentToFill.id }}</span>
+              <button @click="skipNutrimentValue">Unknown</button>
+            </p>
+          </div>
+        </template>
+        <template v-if="step == 5">
+          <div class="line2">
+            <button>Valider</button>
+          </div>
+        </template>
+
+        <div class="line4">
+          <button class="ui button annotate" @click="skipProduct()">
+            {{ $t("nutrition.skip") }}
+          </button>
+          <button class="ui button annotate" @click="nextStep()">
+            {{ $t("nutrition.next") }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="eight wide column centered">
+      <sui-table celled definition>
+        <sui-table-header>
+          <sui-table-header-cell />
+          <sui-table-header-cell>{{
+            $t("nutrition.table.value")
+          }}</sui-table-header-cell>
+          <sui-table-header-cell>{{
+            $t("nutrition.table.ispresent")
+          }}</sui-table-header-cell>
+        </sui-table-header>
+        <sui-table-row v-for="nutritiveKey in nutriKeys" :key="nutritiveKey">
+          <sui-table-cell>{{
+            $t(`nutrition.nutriments.${nutritiveKey}`)
+          }}</sui-table-cell>
+          <sui-table-cell style="display: flex">
+            <button
+              :v-if="currentProductData[nutritiveKey].predictions"
+              v-for="v in currentProductData[nutritiveKey].predictions"
+              :key="v"
+            >
+              {{ v }}
+            </button>
+            <sui-input
+              :disabled="!currentProductData[nutritiveKey].visible"
+              style="flex-grow:1"
+              :error="isInvalid(currentProductData[nutritiveKey]['data'])"
+              v-model="currentProductData[nutritiveKey]['data']"
+            />
+
+            <sui-dropdown
+              :disabled="!currentProductData[nutritiveKey].visible"
+              style="min-width: 3rem"
+              selection
+              :placeholder="$t('nutrition.table.unit')"
+              v-if="getNutrimentUnits(nutritiveKey).length > 1"
+              v-model="currentProductData[nutritiveKey]['unit']"
+              :options="getNutrimentUnits(nutritiveKey)"
+              class="unit"
+            />
+
+            <span class="unit" v-else>{{
+              getNutrimentUnits(nutritiveKey)[0]
+            }}</span>
+          </sui-table-cell>
+          <sui-table-cell>
+            <sui-checkbox
+              name="public"
+              :label="
+                currentProductData[nutritiveKey].visible
+                  ? $t('nutrition.present')
+                  : $t('nutrition.absent')
+              "
+              v-model="currentProductData[nutritiveKey]['visible']"
+            />
+          </sui-table-cell>
+        </sui-table-row>
+      </sui-table>
+    </div>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+import nutrimentsDefaultUnit from "../data/nutritions";
+import tableExtraction from "../utils/tableExtraction";
+import { OFF_URL } from "../const"; //OFF_IMAGE_URL
+import offService from "../off";
+import { Cropper } from "vue-advanced-cropper";
+import "vue-advanced-cropper/dist/style.css";
+import InteractiveImage from "../components/InteractiveImage";
+
+const getProducts = async (nbOfPages) => {
+  const randomPage = 1 + Math.floor(Math.random() * nbOfPages);
+  const {
+    data: { products },
+  } = await axios(offService.getNutritionToFillUrl(randomPage));
+  return products;
+};
+
+const quantificators = ["=", "<", ">", "~"];
+
+export default {
+  name: "NutritionView",
+  components: {
+    Cropper,
+    InteractiveImage,
+  },
+  data: function() {
+    return {
+      valueTagInput: "",
+      loading: false,
+      productBuffer: [],
+      currentProductData: {},
+      basisData: { quantity: "", isServingSize: false },
+      openSelectPicture: false,
+      nutritiveId: -2,
+      quantificators: quantificators,
+      imageZoomOptions: {
+        coordinates: null,
+        image: null,
+      },
+      step: 0,
+      nutritionPredictionIndex: 0,
+      nutritionValueIndex: 0,
+      nutrimentToFillIndex: 0,
+    };
+  },
+  computed: {
+    productCode: function() {
+      if (
+        this.productBuffer.length === 0 ||
+        this.productBuffer[0].code === null
+      ) {
+        return "";
+      }
+      return this.productBuffer[0].code;
+    },
+    productName: function() {
+      if (
+        this.productBuffer.length === 0 ||
+        this.productBuffer[0].product_name === null
+      ) {
+        return "";
+      }
+      return this.productBuffer[0].product_name;
+    },
+    productUrl: function() {
+      if (
+        this.productBuffer.length === 0 ||
+        this.productBuffer[0].code === null
+      ) {
+        return "";
+      }
+      return offService.getProductUrl(this.productBuffer[0].code);
+    },
+    productEditUrl: function() {
+      if (
+        this.productBuffer.length === 0 ||
+        this.productBuffer[0].code === null
+      ) {
+        return "";
+      }
+      return offService.getProductEditUrl(this.productBuffer[0].code);
+    },
+    productLang: function() {
+      if (
+        this.productBuffer.length === 0 ||
+        this.productBuffer[0].lang === null
+      ) {
+        return "";
+      }
+      return this.productBuffer[0].lang;
+    },
+    imageURL: function() {
+      if (
+        this.productBuffer.length === 0 ||
+        this.productBuffer[0].image_nutrition_url === null
+      ) {
+        return "";
+      }
+      const imgId = this.productBuffer[0].images[
+        `nutrition_${this.productBuffer[0].lang}`
+      ].imgid;
+      return `${
+        this.productBuffer[0]["image_nutrition_url"].split("nutrition_")[0]
+      }${imgId}.jpg`;
+      // return `${OFF_IMAGE_URL}${this.productBuffer[0].image_url}`;
+    },
+    bufferIsEmpty: function() {
+      return this.productBuffer.length === 0;
+    },
+    proposedNutriments: function() {
+      return "";
+    },
+    boxes: function() {
+      if (!this.extracted || !this.extracted.filteredBoxes) {
+        return [];
+      }
+
+      return this.extracted.filteredBoxes;
+    },
+    clickableBoxes: function() {
+      if (this.step === 3) {
+        console.log(this.extracted.filteredBoxes);
+        return this.extracted.filteredBoxes.map((box) => {
+          return {
+            boxes: [{ ...box }],
+            values: box.description,
+          };
+        });
+      }
+      if (this.step === 4) {
+        const rep = this.extracted.values.map(({ boxesIndexes, text }) => {
+          return {
+            boxes: boxesIndexes.map((i) => this.extracted.filteredBoxes[i]),
+            values: text[0],
+          };
+        });
+        console.log(rep);
+        return rep;
+      }
+      return [];
+    },
+    anotationToValidate: function() {
+      if (this.step !== 2) {
+        return {};
+      }
+      console.log(this.nutritionPredictionIndex);
+      console.log(this.extracted.nutriments[this.nutritionPredictionIndex]);
+      return {
+        text: this.extracted.nutriments[this.nutritionPredictionIndex]["text"],
+        key: this.extracted.nutriments[this.nutritionPredictionIndex]["key"],
+        boxes: this.extracted.nutriments[this.nutritionPredictionIndex][
+          "boxes"
+        ].map((i) => this.extracted.filteredBoxes[i]),
+      };
+    },
+    currentValue: function() {
+      if (
+        !this.extracted ||
+        !this.extracted.values ||
+        this.nutritiveId < 0 ||
+        this.nutritiveId >= this.extracted.values.length
+      ) {
+        return {};
+      }
+      return this.extracted.values[this.nutritiveId];
+    },
+    nutriKeys: function() {
+      console.log(Object.keys(this.currentProductData));
+      return Object.keys(this.currentProductData);
+    },
+    useOnlyPredictions: function() {
+      return this.step === 3;
+    },
+    nutrimentToFill() {
+      if (
+        this.step !== 4 ||
+        this.nutrimentToFillIndex >= this.nutriKeys.length
+      ) {
+        return {};
+      }
+      const key = this.nutriKeys[this.nutrimentToFillIndex];
+      console.log(this.currentProductData[key]);
+      return this.currentProductData[key];
+    },
+  },
+  methods: {
+    bestMatch({ search, lang = "" }) {
+      if (this.step !== 3) {
+        return [];
+      }
+      return tableExtraction.bestMatch({
+        search,
+        lang,
+        except: Object.keys(this.currentProductData),
+      });
+    },
+    nextStep() {
+      this.step += 1;
+      if (this.step === 1) {
+        this.extracted = tableExtraction.getData(
+          this.productBuffer[0].ocrData,
+          this.imageZoomOptions
+        );
+        console.log(this.extracted);
+      }
+      if (this.step === 2) {
+        this.nextPrediction();
+      }
+    },
+    validateServingSize() {},
+    nextPrediction(initial = true) {
+      let index = this.nutritionPredictionIndex;
+      if (!initial) {
+        index += 1;
+      }
+      while (
+        index < this.extracted.nutriments.length &&
+        (!this.extracted.nutriments[index].key ||
+          this.currentProductData[this.extracted.nutriments[index].key] !==
+            undefined)
+      ) {
+        // We stop on a box only if there is a prediction not already attributed
+        index += 1;
+      }
+      if (index == this.extracted.nutriments.length) {
+        this.nextStep();
+      } else {
+        this.nutritionPredictionIndex = index;
+      }
+    },
+    nutriPredictionAccepted() {
+      const { key, boxes } = this.extracted.nutriments[
+        this.nutritionPredictionIndex
+      ];
+      console.log(boxes);
+      this.currentProductData = {
+        ...this.currentProductData,
+        [key]: {
+          id: key,
+          data: "",
+          unit: nutrimentsDefaultUnit[key],
+          quantificator: 0,
+          boxes: [...boxes.map((i) => this.boxes[i])],
+        },
+      };
+
+      this.nextPrediction(false);
+    },
+    nutriPredictionCanceled() {
+      this.nextPrediction(false);
+      console.log("nutriPredictionCanceled");
+    },
+    validateHumanAnnotation(descrition) {
+      console.log("hand labeled");
+      console.log(descrition);
+
+      if (this.step === 3) {
+        const { key, boxes } = descrition;
+
+        this.currentProductData = {
+          ...this.currentProductData,
+          [key]: {
+            id: key,
+            data: "",
+            unit: nutrimentsDefaultUnit[key],
+            quantificator: 0,
+            boxes: [...boxes.map((x) => ({ ...x }))],
+          },
+        };
+      } else if (this.step === 4) {
+        const { values } = descrition;
+        this.currentProductData = {
+          ...this.currentProductData,
+          [this.nutrimentToFill.id]: {
+            ...this.currentProductData[this.nutrimentToFill.id],
+            data: values,
+          },
+        };
+        this.nutrimentToFillIndex = this.nutrimentToFillIndex + 1;
+      }
+    },
+    skipNutrimentValue() {
+      this.nutrimentToFillIndex += 1;
+    },
+    setNutriment(prediction) {
+      const val = prediction.match(/[0-9.]*/g).filter((x) => x !== "")[0];
+      const quantificatorIndex = Math.max(
+        0,
+        this.quantificators.indexOf(prediction.slice(0, 1))
+      );
+      const unit = prediction.match(/[a-z]*/g).filter((x) => x !== "")[0];
+
+      if (unit === "kj") {
+        this.currentProductData[this.nutritiveValue.id]["unit"] = "kJ";
+      } else if (unit) {
+        this.currentProductData[this.nutritiveValue.id]["unit"] = unit;
+      }
+      this.currentProductData[this.nutritiveValue.id]["data"] = val;
+      this.currentProductData[this.nutritiveValue.id][
+        "quantificator"
+      ] = quantificatorIndex;
+      this.nextNutriment();
+    },
+    isInvalid(value) {
+      return !value.match("^((<|>|<=|>=|~|.)*[0-9]+| *)$");
+    },
+
+    changeCropCoordinate({ coordinates, image }) {
+      this.imageZoomOptions = {
+        ...this.imageZoomOptions,
+        coordinates,
+        image,
+        minX: coordinates.left,
+        maxX: coordinates.left + coordinates.width,
+        minY: coordinates.top,
+        maxY: coordinates.top + coordinates.height,
+      };
+    },
+    addProducts: async function() {
+      this.loading = true;
+      const newProducts = await getProducts(1);
+      this.productBuffer = this.productBuffer.concat(newProducts);
+      this.loading = false;
+    },
+    skipProduct() {
+      this.productBuffer.shift();
+    },
+    getBasisTextForAPI() {
+      if (this.basisData.quantity && !this.isInvalid(this.basisData.quantity)) {
+        if (this.basisData.isServingSize) {
+          return `nutrition_data_per=serving&serving_size=${this.basisData.quantity}g`;
+        }
+        return `nutrition_data_per=${this.basisData.quantity}g`;
+      }
+      return "";
+    },
+    validate() {
+      const withData = Object.keys(this.currentProductData)
+        .filter(
+          (nutrimentId) =>
+            this.currentProductData[nutrimentId] &&
+            this.currentProductData[nutrimentId].data &&
+            !this.isInvalid(this.currentProductData[nutrimentId].data) &&
+            this.currentProductData[nutrimentId].data.length > 0
+        )
+        .map((nutrimentId) => ({
+          name: nutrimentId,
+          value: `${this.currentProductData[nutrimentId].data}${this
+            .currentProductData[nutrimentId].unit || ""}`,
+          quantity: this.currentProductData[nutrimentId].data,
+          unit: this.currentProductData[nutrimentId].unit,
+          quantificator: this.currentProductData[nutrimentId].quantificator,
+        }));
+      const withoutData = Object.keys(this.currentProductData)
+        .filter(
+          (nutrimentId) =>
+            this.currentProductData[nutrimentId] &&
+            !this.currentProductData[nutrimentId].data
+        )
+        .map((nutrimentId) => ({
+          name: nutrimentId,
+          value: "",
+          quantity: "",
+          unit: "",
+          quantificator: "",
+        }));
+      const basisText = this.getBasisTextForAPI();
+
+      axios.post(
+        `${OFF_URL}/cgi/product_jqm2.pl?`,
+        new URLSearchParams(
+          `${withData
+            .map(
+              (data) =>
+                `${data.name}=${
+                  data.quantificator > 0
+                    ? this.quantificators[data.quantificator]
+                    : ""
+                }${data.quantity}&`
+            )
+            .join("")}${withData
+            .map((data) => (data.unit ? `${data.name}_unit=${data.unit}&` : ""))
+            .join("")}${withoutData.map((name) => `${name}=""&`).join("")}${
+            basisText ? `${basisText}&` : ""
+          }code=${this.productBuffer[0]["code"]}`
+        )
+      ); // The status of the response is not displayed so no need to wait the response
+      const correctedData = {};
+      withData.forEach((data) => {
+        correctedData[data.name] = `${
+          data.quantificator > 0 ? this.quantificators[data.quantificator] : ""
+        }${data.quantity}&`;
+      });
+
+      // axios.post("https://amathjourney.com/api/off/correct/", {
+      //   code: this.productCode,
+      //   true_value: correctedData,
+      // });
+      this.skipProduct();
+    },
+    resetProductData() {
+      this.currentProductData = {};
+      this.basisData = {
+        quantity: "",
+        isServingSize: false,
+      };
+
+      this.step = 0;
+      this.nutritionPredictionIndex = 0;
+      this.nutritionValueIndex = 0;
+      this.nutrimentToFillIndex = 0;
+    },
+    getNutrimentUnits(nutrimentId) {
+      switch (nutrimentId) {
+        case "nutriment_energy-kcal":
+          return ["kcal"];
+        case "nutriment_energy-kj":
+          return ["kJ"];
+        default:
+          return [
+            { text: "g", value: "g" },
+            { text: "mg", value: "mg" },
+          ];
+      }
+    },
+    nextQuantificator() {
+      this.currentProductData[this.nutritiveValue.id]["quantificator"] =
+        (this.currentProductData[this.nutritiveValue.id]["quantificator"] + 1) %
+        this.quantificators.length;
+    },
+  },
+  watch: {
+    productCode: function() {
+      // watch when a new question is asked
+      this.resetProductData();
+      if (this.productBuffer.length <= 5 && !this.loading) {
+        this.addProducts();
+      }
+      if (
+        this.productBuffer[0] &&
+        this.productBuffer[0].image_nutrition_url &&
+        this.productBuffer[0].lang
+      ) {
+        const imgId = this.productBuffer[0].images[
+          `nutrition_${this.productBuffer[0].lang}`
+        ].imgid;
+
+        const imageUrl = `${
+          this.productBuffer[0].image_nutrition_url
+            .split("nutrition")[0]
+            .split("products")[1]
+        }${imgId}.jpg`;
+        const code = this.productBuffer[0].code;
+        tableExtraction.getOCRdata(imageUrl).then((response) => {
+          if (this.productBuffer[0].code === code) {
+            // const nutritionKey = `nutrition_${this.productBuffer[0].lang}`;
+            this.productBuffer[0] = {
+              ...this.productBuffer[0],
+              ocrData: response,
+              sizes: {
+                // for now, it is useless
+                // offset: {
+                //   ...this.productBuffer[0].images[nutritionKey],
+                // },
+                full: {
+                  ...this.productBuffer[0].images[imgId].sizes.full,
+                },
+                small: {
+                  ...this.productBuffer[0].images[imgId].sizes["400"],
+                },
+              },
+            };
+          }
+        });
+      }
+    },
+  },
+  mounted: function() {
+    this.addProducts();
+
+    const vm = this;
+    window.addEventListener("keyup", function(event) {
+      if (event.target.nodeName == "INPUT" && event.key === "Enter") {
+        vm.nextNutriment();
+      }
+    });
+  },
+};
+</script>
+
+<style scoped>
+.shadow {
+  opacity: 0.2;
+}
+.unit {
+  margin-left: 1rem;
+}
+button.annotate {
+  padding: 1rem 1.5rem;
+}
+.center {
+  text-align: center;
+  margin: 0 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 1;
+}
+.selectPictures {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  overflow: auto;
+}
+.selectPictures > img {
+  margin: 2rem;
+}
+
+.selectPictures > .selected {
+  border: 5px solid blue;
+}
+.imageDisplay {
+  background: #ddd !important;
+  max-height: 100vw;
+  width: 90vw;
+}
+
+.questionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.questionGrid button {
+  margin: 0.5rem 1rem;
+}
+
+.questionContainer {
+  position: sticky;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 0.5rem 0.5rem;
+}
+
+.line1,
+.line2,
+.line3,
+.line4 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.line2 {
+  justify-content: center;
+  align-items: center;
+}
+.line3 {
+  justify-content: space-between;
+}
+.line1 {
+  justify-content: space-around;
+}
+.line4 {
+  justify-content: stretch;
+}
+.line4 button {
+  flex-grow: 1;
+}
+
+.line1 button {
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  margin-bottom: 0.5rem;
+}
+.nutrimentName {
+  color: blue;
+  font-size: 1.5rem;
+}
+</style>
