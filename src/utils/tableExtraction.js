@@ -374,6 +374,9 @@ const ocr = {
       maxX,
       maxY,
     });
+    filteredBoxes.forEach((x, i) => {
+      filteredBoxes[i] = { id: i, ...x };
+    });
     const values = getValues(filteredBoxes, linkBoxes);
     const nutriments = getNutrimentBoxes(
       filteredBoxes,

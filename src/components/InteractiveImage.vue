@@ -47,6 +47,7 @@ export default {
     anotationToValidate: { type: Object },
     bestMatch: { type: Function },
     boxesHighlight: { type: Array },
+    attributedBoxesIds: { type: Array }, // list of box_id that as been used (fo nutriment or quantity selection)
   },
   data() {
     return {
@@ -328,6 +329,7 @@ export default {
               :d="boxBoundingPath(box)"
               :class="{
                 highlight: displayedBox.index === i,
+                alreadyUsed: attributedBoxesIds.includes(box.id),
               }"
               @click="displayBox(j)"
             />
@@ -351,22 +353,6 @@ export default {
         </svg>
       </div>
     </div>
-    <!-- the clicked box Quantity Information
-    <div
-      v-if="displayedBox && displayedBox.values !== undefined"
-      class="anotation"
-      :style="
-        interactiveElementStyle(
-          displayedBox.boxes[displayedBox.boxes.length - 1]
-        )
-      "
-      v-focus
-    >
-      <input v-model="displayedBox.values" />
-      <br />
-      <button @click="removeDisplayedBox">X</button>
-      <button @click="validatedDisplayedBox">V</button>
-    </div> -->
 
     <!-- the clicked box Nutritive Information -->
     <div
@@ -380,16 +366,25 @@ export default {
       v-focus
     >
       <input v-model="displayedBox.values" />
-      <button @click="removeDisplayedBox">X</button>
-      <button v-if="!onlyPredictions" @click="validateValue">V</button>
-      <ol class="propositions">
-        <li v-for="proposition in potentialNutriments" :key="proposition.key">
-          <span>{{ proposition.key }}({{ proposition.text }})</span>
-          <button @click="validateProposition(proposition.key)">
-            V
-          </button>
-        </li>
-      </ol>
+      <template v-if="onlyPredictions">
+        <button @click="removeDisplayedBox">X</button>
+        <ol class="propositions">
+          <li v-for="proposition in potentialNutriments" :key="proposition.key">
+            <!-- <span>{{ proposition.key }}({{ proposition.text }})</span>
+            <button @click="validateProposition(proposition.key)">
+              V
+            </button> -->
+            <button @click="validateProposition(proposition.key)">
+              {{ proposition.key }}({{ proposition.text }})
+            </button>
+          </li>
+        </ol>
+      </template>
+      <template v-else>
+        <br />
+        <button @click="removeDisplayedBox">X</button>
+        <button @click="validateValue">V</button>
+      </template>
     </div>
 
     <!-- The nutrition to verify -->
@@ -464,14 +459,19 @@ g:hover path {
 }
 
 .boxHighlighted {
-  stroke: green;
+  stroke: blue;
   stroke-width: 5;
-  fill: none;
+  fill: blue;
+}
+
+.alreadyUsed {
+  fill: green;
 }
 
 .anotation {
   background-color: white;
   position: absolute;
+  z-index: 1000;
   text-align: left;
 }
 .anotation button {
@@ -479,15 +479,15 @@ g:hover path {
 }
 
 .propositions li {
-  justify-content: space-between;
-  align-items: center;
-  display: flex;
-  border-top: solid 1px gray;
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  /* display: flex; */
+  /* border-top: solid 1px gray; */
   padding-bottom: 2px;
+  font-size: 1.2rem;
 }
 .propositions {
   list-style: none;
-  z-index: 1000;
   position: relative;
   background: white;
   padding: 0 1rem;

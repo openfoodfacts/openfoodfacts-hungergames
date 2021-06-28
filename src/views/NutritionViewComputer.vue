@@ -48,6 +48,7 @@
               :anotationToValidate="anotationToValidate"
               :bestMatch="bestMatch"
               :boxesHighlight="nutrimentToFill.boxes"
+              :attributedBoxesIds="attributedBoxesIds"
               :onlyPredictions="useOnlyPredictions"
               v-on:nutriPredictionAccept="nutriPredictionAccepted"
               v-on:nutriPredictionCancel="nutriPredictionCanceled"
@@ -58,6 +59,15 @@
       </template>
 
       <div class="questionContainer annotateLine">
+        <sui-step-group step-number="four">
+          <sui-step :active="step == 0" title="Cropp" />
+          <sui-step :active="step == 1" title="Special values" />
+          <sui-step
+            :active="step == 2 || step == 3"
+            title="Nutriments Selection"
+          />
+          <sui-step :active="step == 4" title="Values Selection" />
+        </sui-step-group>
         <template v-if="step == 1">
           <div class="line2">
             <span>{{ $t(`nutrition.basis`) }}</span>
@@ -87,81 +97,45 @@
             </p>
           </div>
         </template>
-        <template v-if="step == 5">
-          <div class="line2">
-            <button>Valider</button>
-          </div>
-        </template>
 
         <div class="line4">
-          <button class="ui button annotate" @click="skipProduct()">
+          <button
+            class="ui button annotate"
+            :class="{ disabled: step === 0 }"
+            @click="prevStep()"
+          >
+            {{ $t("nutrition.prev") }}
+          </button>
+          <button
+            class="ui button annotate"
+            :class="{ disabled: !canGoNext }"
+            @click="nextStep()"
+          >
+            {{ $t("nutrition.next") }}
+          </button>
+        </div>
+        <div class="line4">
+          <button class="ui button negative annotate" @click="skipProduct()">
             {{ $t("nutrition.skip") }}
           </button>
-          <button class="ui button annotate" @click="nextStep()">
-            {{ $t("nutrition.next") }}
+          <button
+            class="ui button positive annotate"
+            :class="{ disabled: !canValidate }"
+            @click="validate()"
+          >
+            {{ $t("nutrition.validate") }}
           </button>
         </div>
       </div>
     </div>
 
     <div class="eight wide column centered">
-      <sui-table celled definition>
-        <sui-table-header>
-          <sui-table-header-cell />
-          <sui-table-header-cell>{{
-            $t("nutrition.table.value")
-          }}</sui-table-header-cell>
-          <sui-table-header-cell>{{
-            $t("nutrition.table.ispresent")
-          }}</sui-table-header-cell>
-        </sui-table-header>
-        <sui-table-row v-for="nutritiveKey in nutriKeys" :key="nutritiveKey">
-          <sui-table-cell>{{
-            $t(`nutrition.nutriments.${nutritiveKey}`)
-          }}</sui-table-cell>
-          <sui-table-cell style="display: flex">
-            <button
-              :v-if="currentProductData[nutritiveKey].predictions"
-              v-for="v in currentProductData[nutritiveKey].predictions"
-              :key="v"
-            >
-              {{ v }}
-            </button>
-            <sui-input
-              :disabled="!currentProductData[nutritiveKey].visible"
-              style="flex-grow:1"
-              :error="isInvalid(currentProductData[nutritiveKey]['data'])"
-              v-model="currentProductData[nutritiveKey]['data']"
-            />
-
-            <sui-dropdown
-              :disabled="!currentProductData[nutritiveKey].visible"
-              style="min-width: 3rem"
-              selection
-              :placeholder="$t('nutrition.table.unit')"
-              v-if="getNutrimentUnits(nutritiveKey).length > 1"
-              v-model="currentProductData[nutritiveKey]['unit']"
-              :options="getNutrimentUnits(nutritiveKey)"
-              class="unit"
-            />
-
-            <span class="unit" v-else>{{
-              getNutrimentUnits(nutritiveKey)[0]
-            }}</span>
-          </sui-table-cell>
-          <sui-table-cell>
-            <sui-checkbox
-              name="public"
-              :label="
-                currentProductData[nutritiveKey].visible
-                  ? $t('nutrition.present')
-                  : $t('nutrition.absent')
-              "
-              v-model="currentProductData[nutritiveKey]['visible']"
-            />
-          </sui-table-cell>
-        </sui-table-row>
-      </sui-table>
+      <NutritionTable
+        v-model="currentProductData"
+        v-on:setNurtiIndex="setNutrimentValueIndex"
+        :nutrimentToFillIndex="nutrimentToFillIndex"
+        :selectLine="step === 4"
+      />
     </div>
   </div>
 </template>
@@ -175,6 +149,7 @@ import offService from "../off";
 import { Cropper } from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
 import InteractiveImage from "../components/InteractiveImage";
+import NutritionTable from "../components/NutritionTable";
 
 const getProducts = async (nbOfPages) => {
   const randomPage = 1 + Math.floor(Math.random() * nbOfPages);
@@ -184,31 +159,26 @@ const getProducts = async (nbOfPages) => {
   return products;
 };
 
-const quantificators = ["=", "<", ">", "~"];
-
 export default {
   name: "NutritionView",
   components: {
     Cropper,
     InteractiveImage,
+    NutritionTable,
   },
   data: function() {
     return {
-      valueTagInput: "",
       loading: false,
       productBuffer: [],
       currentProductData: {},
       basisData: { quantity: "", isServingSize: false },
-      openSelectPicture: false,
       nutritiveId: -2,
-      quantificators: quantificators,
       imageZoomOptions: {
         coordinates: null,
         image: null,
       },
       step: 0,
       nutritionPredictionIndex: 0,
-      nutritionValueIndex: 0,
       nutrimentToFillIndex: 0,
     };
   },
@@ -334,22 +304,46 @@ export default {
       return this.extracted.values[this.nutritiveId];
     },
     nutriKeys: function() {
-      console.log(Object.keys(this.currentProductData));
-      return Object.keys(this.currentProductData);
+      return Object.keys(this.currentProductData).sort(
+        (a, b) => this.currentProductData[a].y - this.currentProductData[b].y
+      );
     },
     useOnlyPredictions: function() {
       return this.step === 3;
     },
     nutrimentToFill() {
-      if (
-        this.step !== 4 ||
-        this.nutrimentToFillIndex >= this.nutriKeys.length
-      ) {
+      if (this.step !== 4) {
         return {};
       }
       const key = this.nutriKeys[this.nutrimentToFillIndex];
-      console.log(this.currentProductData[key]);
       return this.currentProductData[key];
+    },
+    attributedBoxesIds() {
+      return [
+        ...Object.keys(this.currentProductData).flatMap((key) =>
+          this.currentProductData[key].boxes.map((x) => x.id)
+        ),
+        ...Object.keys(this.currentProductData).flatMap((key) =>
+          this.currentProductData[key].valueBoxes
+            ? this.currentProductData[key].valueBoxes.map((x) => x.id)
+            : []
+        ),
+      ];
+    },
+    canValidate() {
+      return this.step === 4;
+    },
+    canGoNext() {
+      if (this.step === 4) {
+        return false;
+      }
+      if (
+        this.step === 3 &&
+        Object.keys(this.currentProductData).length === 0
+      ) {
+        return false;
+      }
+      return true;
     },
   },
   methods: {
@@ -363,6 +357,25 @@ export default {
         except: Object.keys(this.currentProductData),
       });
     },
+    prevStep() {
+      if (this.step === 1) {
+        // return to cropp step. But before that must erase all the computed data because boxes will not be the same
+        this.resetProductData();
+        return null;
+      }
+      if (this.step == 2) {
+        this.step -= 1;
+        return null;
+      }
+      if (this.step == 3) {
+        this.step -= 2;
+        return null;
+      }
+      if (this.step == 4) {
+        this.step -= 1;
+        return null;
+      }
+    },
     nextStep() {
       this.step += 1;
       if (this.step === 1) {
@@ -370,13 +383,13 @@ export default {
           this.productBuffer[0].ocrData,
           this.imageZoomOptions
         );
+        // this.extracted = {filteredBoxes, values, nutriment}
         console.log(this.extracted);
       }
       if (this.step === 2) {
         this.nextPrediction();
       }
     },
-    validateServingSize() {},
     nextPrediction(initial = true) {
       let index = this.nutritionPredictionIndex;
       if (!initial) {
@@ -401,15 +414,16 @@ export default {
       const { key, boxes } = this.extracted.nutriments[
         this.nutritionPredictionIndex
       ];
-      console.log(boxes);
       this.currentProductData = {
         ...this.currentProductData,
         [key]: {
           id: key,
           data: "",
           unit: nutrimentsDefaultUnit[key],
-          quantificator: 0,
+          x: Math.min(...boxes.map((i) => this.boxes[i].minX)),
+          y: Math.min(...boxes.map((i) => this.boxes[i].minY)),
           boxes: [...boxes.map((i) => this.boxes[i])],
+          valueBoxes: [],
         },
       };
 
@@ -417,12 +431,8 @@ export default {
     },
     nutriPredictionCanceled() {
       this.nextPrediction(false);
-      console.log("nutriPredictionCanceled");
     },
     validateHumanAnnotation(descrition) {
-      console.log("hand labeled");
-      console.log(descrition);
-
       if (this.step === 3) {
         const { key, boxes } = descrition;
 
@@ -432,48 +442,70 @@ export default {
             id: key,
             data: "",
             unit: nutrimentsDefaultUnit[key],
-            quantificator: 0,
+            x: Math.min(...boxes.map((box) => box.minX)),
+            y: Math.min(...boxes.map((box) => box.minY)),
             boxes: [...boxes.map((x) => ({ ...x }))],
+            valueBoxes: [],
           },
         };
       } else if (this.step === 4) {
-        const { values } = descrition;
+        const { values, boxes } = descrition;
+
+        console.log(descrition);
+        const val = values
+          .toLowerCase()
+          .match(/[0-9.]*/g)
+          .filter((x) => x !== "")[0];
+        let unit = values
+          .toLowerCase()
+          .match(/[a-z]*/g)
+          .filter((x) => x !== "")[0];
+
+        if (unit === "kj") {
+          unit = "kJ";
+        }
+
         this.currentProductData = {
           ...this.currentProductData,
           [this.nutrimentToFill.id]: {
             ...this.currentProductData[this.nutrimentToFill.id],
-            data: values,
+            valueBoxes: [...boxes.map((x) => ({ ...x }))],
+            data: val,
+            unit: unit,
           },
         };
-        this.nutrimentToFillIndex = this.nutrimentToFillIndex + 1;
+
+        if (
+          false ===
+          this.nutriKeys.reduce(
+            (accumulator, currentValue) =>
+              accumulator && !!this.currentProductData[currentValue].data,
+            true
+          )
+        ) {
+          // if there is a nutriment not filled
+          let nextIndex =
+            (this.nutrimentToFillIndex + 1) % this.nutriKeys.length;
+          while (
+            nextIndex !== this.nutrimentToFillIndex &&
+            this.currentProductData[this.nutriKeys[nextIndex]].data
+          ) {
+            nextIndex = (nextIndex + 1) % this.nutriKeys.length;
+          }
+          this.nutrimentToFillIndex = nextIndex;
+        }
       }
     },
     skipNutrimentValue() {
-      this.nutrimentToFillIndex += 1;
+      this.nutrimentToFillIndex =
+        (this.nutrimentToFillIndex + 1) % this.nutriKeys.length;
     },
-    setNutriment(prediction) {
-      const val = prediction.match(/[0-9.]*/g).filter((x) => x !== "")[0];
-      const quantificatorIndex = Math.max(
-        0,
-        this.quantificators.indexOf(prediction.slice(0, 1))
-      );
-      const unit = prediction.match(/[a-z]*/g).filter((x) => x !== "")[0];
-
-      if (unit === "kj") {
-        this.currentProductData[this.nutritiveValue.id]["unit"] = "kJ";
-      } else if (unit) {
-        this.currentProductData[this.nutritiveValue.id]["unit"] = unit;
-      }
-      this.currentProductData[this.nutritiveValue.id]["data"] = val;
-      this.currentProductData[this.nutritiveValue.id][
-        "quantificator"
-      ] = quantificatorIndex;
-      this.nextNutriment();
+    setNutrimentValueIndex(index) {
+      this.nutrimentToFillIndex = index;
     },
     isInvalid(value) {
       return !value.match("^((<|>|<=|>=|~|.)*[0-9]+| *)$");
     },
-
     changeCropCoordinate({ coordinates, image }) {
       this.imageZoomOptions = {
         ...this.imageZoomOptions,
@@ -518,7 +550,6 @@ export default {
             .currentProductData[nutrimentId].unit || ""}`,
           quantity: this.currentProductData[nutrimentId].data,
           unit: this.currentProductData[nutrimentId].unit,
-          quantificator: this.currentProductData[nutrimentId].quantificator,
         }));
       const withoutData = Object.keys(this.currentProductData)
         .filter(
@@ -531,7 +562,6 @@ export default {
           value: "",
           quantity: "",
           unit: "",
-          quantificator: "",
         }));
       const basisText = this.getBasisTextForAPI();
 
@@ -539,14 +569,7 @@ export default {
         `${OFF_URL}/cgi/product_jqm2.pl?`,
         new URLSearchParams(
           `${withData
-            .map(
-              (data) =>
-                `${data.name}=${
-                  data.quantificator > 0
-                    ? this.quantificators[data.quantificator]
-                    : ""
-                }${data.quantity}&`
-            )
+            .map((data) => `${data.name}=${data.quantity}&`)
             .join("")}${withData
             .map((data) => (data.unit ? `${data.name}_unit=${data.unit}&` : ""))
             .join("")}${withoutData.map((name) => `${name}=""&`).join("")}${
@@ -556,9 +579,7 @@ export default {
       ); // The status of the response is not displayed so no need to wait the response
       const correctedData = {};
       withData.forEach((data) => {
-        correctedData[data.name] = `${
-          data.quantificator > 0 ? this.quantificators[data.quantificator] : ""
-        }${data.quantity}&`;
+        correctedData[data.name] = `${data.quantity}&`;
       });
 
       // axios.post("https://amathjourney.com/api/off/correct/", {
@@ -573,29 +594,9 @@ export default {
         quantity: "",
         isServingSize: false,
       };
-
       this.step = 0;
       this.nutritionPredictionIndex = 0;
-      this.nutritionValueIndex = 0;
       this.nutrimentToFillIndex = 0;
-    },
-    getNutrimentUnits(nutrimentId) {
-      switch (nutrimentId) {
-        case "nutriment_energy-kcal":
-          return ["kcal"];
-        case "nutriment_energy-kj":
-          return ["kJ"];
-        default:
-          return [
-            { text: "g", value: "g" },
-            { text: "mg", value: "mg" },
-          ];
-      }
-    },
-    nextQuantificator() {
-      this.currentProductData[this.nutritiveValue.id]["quantificator"] =
-        (this.currentProductData[this.nutritiveValue.id]["quantificator"] + 1) %
-        this.quantificators.length;
     },
   },
   watch: {
@@ -641,6 +642,13 @@ export default {
             };
           }
         });
+      }
+    },
+    nutriKeys: function() {
+      // prevent overflow
+      if (this.nutrimentToFillIndex >= this.nutriKeys.length) {
+        this.nutrimentToFillIndex =
+          this.nutrimentToFillIndex % this.nutriKeys.length || 0;
       }
     },
   },
