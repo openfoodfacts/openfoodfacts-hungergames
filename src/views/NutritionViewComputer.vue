@@ -638,27 +638,31 @@ export default {
             .split("products")[1]
         }${imgId}.jpg`;
         const code = this.productBuffer[0].code;
-        tableExtraction.getOCRdata(imageUrl).then((response) => {
-          if (this.productBuffer[0].code === code) {
-            // const nutritionKey = `nutrition_${this.productBuffer[0].lang}`;
-            this.productBuffer[0] = {
-              ...this.productBuffer[0],
-              ocrData: response,
-              sizes: {
-                // for now, it is useless
-                // offset: {
-                //   ...this.productBuffer[0].images[nutritionKey],
-                // },
-                full: {
-                  ...this.productBuffer[0].images[imgId].sizes.full,
+        tableExtraction
+          .getOCRdata(imageUrl)
+          .then((response) => {
+            if (this.productBuffer[0].code === code) {
+              // const nutritionKey = `nutrition_${this.productBuffer[0].lang}`;
+              this.productBuffer[0] = {
+                ...this.productBuffer[0],
+                ocrData: response,
+                sizes: {
+                  full: {
+                    ...this.productBuffer[0].images[imgId].sizes.full,
+                  },
+                  small: {
+                    ...this.productBuffer[0].images[imgId].sizes["400"],
+                  },
                 },
-                small: {
-                  ...this.productBuffer[0].images[imgId].sizes["400"],
-                },
-              },
-            };
-          }
-        });
+              };
+            }
+          })
+          .catch(() => {
+            // TODO : should notify the server that the OCR does not exist
+            if (this.productBuffer[0].code === code) {
+              this.skipProduct();
+            }
+          });
       }
     },
     nutriKeys: function() {
