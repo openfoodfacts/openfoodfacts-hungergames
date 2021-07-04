@@ -32,7 +32,8 @@ const addExpression = (trad, expression, nutriKey) => {
 
 const remapTranslation = (lang) => {
   if (!Object.keys(nutrimentTranslation).includes(lang)) {
-    return {};
+    //TODO : log in the server that the detected language is not available
+    return remapTranslation("en");
   }
   const translationTree = {};
 
@@ -399,7 +400,14 @@ const ocr = {
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase();
     return Object.keys(translation)
-      .filter((nutriKey) => !except.includes(nutriKey))
+      .filter(
+        (nutriKey) =>
+          !except.includes(nutriKey) &&
+          !(
+            nutriKey === "nutriment_energy" &&
+            except.includes("nutriment_energy-kj")
+          )
+      )
       .map((nutriKey) => {
         const text = translation[nutriKey][0]
           .normalize("NFD")

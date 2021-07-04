@@ -414,18 +414,27 @@ export default {
       const { key, boxes } = this.extracted.nutriments[
         this.nutritionPredictionIndex
       ];
-      this.currentProductData = {
-        ...this.currentProductData,
-        [key]: {
-          id: key,
-          data: "",
-          unit: nutrimentsDefaultUnit[key],
-          x: Math.min(...boxes.map((i) => this.boxes[i].minX)),
-          y: Math.min(...boxes.map((i) => this.boxes[i].minY)),
-          boxes: [...boxes.map((i) => this.boxes[i])],
-          valueBoxes: [],
-        },
-      };
+      const keysToAdd = [];
+      if (key === "nutriment_energy") {
+        keysToAdd.push("nutriment_energy-kj");
+        keysToAdd.push("nutriment_energy-kcal");
+      } else {
+        keysToAdd.push(key);
+      }
+      keysToAdd.forEach((k) => {
+        this.currentProductData = {
+          ...this.currentProductData,
+          [k]: {
+            id: k,
+            data: "",
+            unit: nutrimentsDefaultUnit[k],
+            x: Math.min(...boxes.map((i) => this.boxes[i].minX)),
+            y: Math.min(...boxes.map((i) => this.boxes[i].minY)),
+            boxes: [...boxes.map((i) => this.boxes[i])],
+            valueBoxes: [],
+          },
+        };
+      });
 
       this.nextPrediction(false);
     },
@@ -435,23 +444,31 @@ export default {
     validateHumanAnnotation(descrition) {
       if (this.step === 3) {
         const { key, boxes } = descrition;
+        const keysToAdd = [];
+        if (key === "nutriment_energy") {
+          keysToAdd.push("nutriment_energy-kj");
+          keysToAdd.push("nutriment_energy-kcal");
+        } else {
+          keysToAdd.push(key);
+        }
 
-        this.currentProductData = {
-          ...this.currentProductData,
-          [key]: {
-            id: key,
-            data: "",
-            unit: nutrimentsDefaultUnit[key],
-            x: Math.min(...boxes.map((box) => box.minX)),
-            y: Math.min(...boxes.map((box) => box.minY)),
-            boxes: [...boxes.map((x) => ({ ...x }))],
-            valueBoxes: [],
-          },
-        };
+        keysToAdd.forEach((k) => {
+          this.currentProductData = {
+            ...this.currentProductData,
+            [k]: {
+              id: k,
+              data: "",
+              unit: nutrimentsDefaultUnit[k],
+              x: Math.min(...boxes.map((box) => box.minX)),
+              y: Math.min(...boxes.map((box) => box.minY)),
+              boxes: [...boxes.map((x) => ({ ...x }))],
+              valueBoxes: [],
+            },
+          };
+        });
       } else if (this.step === 4) {
         const { values, boxes } = descrition;
 
-        console.log(descrition);
         const val = values
           .toLowerCase()
           .match(/[0-9.]*/g)

@@ -1,15 +1,12 @@
 {
     "fr": {
-        "nutriment_energy-kj": [
+        "nutriment_energy": [
             "energie",
             "energetique",
             "valeur energetique",
             "valeurs energetique",
             "calories",
             "calorie"
-        ],
-        "nutriment_energy-kcal": [
-            "energie"
         ],
         "nutriment_fat": [
             "graisse",
@@ -298,16 +295,10 @@
         ],
         "nutriment_vitamin": [
             "vitamine"
-        ],
-        "nutriment_energy": [
-            "energie"
         ]
     },
     "en": {
-        "nutriment_energy-kj": [
-            "energy"
-        ],
-        "nutriment_energy-kcal": [
+        "nutriment_energy": [
             "energy"
         ],
         "nutriment_fat": [
@@ -559,19 +550,10 @@
         ],
         "nutriment_vitamin": [
             "vitamin"
-        ],
-        "nutriment_energy": [
-            "energy"
         ]
     },
     "es": {
-        "nutriment_energy-kj": [
-            "energia",
-            "energetice",
-            "energetica",
-            "energetico"
-        ],
-        "nutriment_energy-kcal": [
+        "nutriment_energy": [
             "energia",
             "energetice",
             "energetica",
@@ -848,17 +830,10 @@
         ],
         "nutriment_vitamin": [
             "vitamina"
-        ],
-        "nutriment_energy": [
-            "energia"
         ]
     },
     "de": {
-        "nutriment_energy-kj": [
-            "energie",
-            "brennwert"
-        ],
-        "nutriment_energy-kcal": [
+        "nutriment_energy": [
             "energie",
             "brennwert"
         ],
@@ -1108,16 +1083,10 @@
         ],
         "nutriment_vitamin": [
             "vitamin"
-        ],
-        "nutriment_energy": [
-            "energie"
         ]
     },
     "pt": {
-        "nutriment_energy-kj": [
-            "energia"
-        ],
-        "nutriment_energy-kcal": [
+        "nutriment_energy": [
             "energia"
         ],
         "nutriment_fat": [
@@ -1360,16 +1329,10 @@
         ],
         "nutriment_vitamin": [
             "vitamina"
-        ],
-        "nutriment_energy": [
-            "energia"
         ]
     },
     "it": {
-        "nutriment_energy-kj": [
-            "energia"
-        ],
-        "nutriment_energy-kcal": [
+        "nutriment_energy": [
             "energia"
         ],
         "nutriment_fat": [
@@ -1603,9 +1566,6 @@
         ],
         "nutriment_vitamin": [
             "vitamina"
-        ],
-        "nutriment_energy": [
-            "energia"
         ]
     }
 }
