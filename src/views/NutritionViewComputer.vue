@@ -536,7 +536,7 @@ export default {
     },
     addProducts: async function() {
       this.loading = true;
-      const newProducts = await getProducts(1);
+      const newProducts = await getProducts(100);
       this.productBuffer = this.productBuffer.concat(newProducts);
       this.loading = false;
     },
