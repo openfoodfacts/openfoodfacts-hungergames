@@ -356,7 +356,7 @@ export default {
 
     <!-- the clicked box Nutritive Information -->
     <div
-      v-if="displayedBox && displayedBox.values"
+      v-if="displayedBox && displayedBox.values !== undefined"
       class="anotation"
       :style="
         interactiveElementStyle(
