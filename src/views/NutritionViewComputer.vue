@@ -177,6 +177,7 @@ export default {
         coordinates: null,
         image: null,
       },
+      extracted: null,
       step: 0,
       nutritionPredictionIndex: 0,
       nutrimentToFillIndex: 0,
@@ -375,10 +376,12 @@ export default {
     nextStep() {
       this.step += 1;
       if (this.step === 1) {
-        this.extracted = tableExtraction.getData(
-          this.productBuffer[0].ocrData,
-          this.imageZoomOptions
-        );
+        this.extracted = {
+          ...tableExtraction.getData(
+            this.productBuffer[0].ocrData,
+            this.imageZoomOptions
+          ),
+        };
         // this.extracted = {filteredBoxes, values, nutriment}
         console.log(this.extracted);
       }
@@ -407,7 +410,7 @@ export default {
       }
     },
     nutriPredictionAccepted() {
-      const { key, boxes } = this.extracted.nutriments[
+      const { key, boxes: nutriBoxes } = this.extracted.nutriments[
         this.nutritionPredictionIndex
       ];
       const keysToAdd = [];
@@ -417,6 +420,8 @@ export default {
       } else {
         keysToAdd.push(key);
       }
+      const boxes = this.boxes;
+
       keysToAdd.forEach((k) => {
         this.currentProductData = {
           ...this.currentProductData,
@@ -424,9 +429,9 @@ export default {
             id: k,
             data: "",
             unit: nutrimentsDefaultUnit[k],
-            x: Math.min(...boxes.map((i) => this.boxes[i].minX)),
-            y: Math.min(...boxes.map((i) => this.boxes[i].minY)),
-            boxes: [...boxes.map((i) => this.boxes[i])],
+            x: Math.min(...nutriBoxes.map((i) => boxes[i].minX)),
+            y: Math.min(...nutriBoxes.map((i) => boxes[i].minY)),
+            boxes: [...nutriBoxes.map((i) => boxes[i])],
             valueBoxes: [],
           },
         };
@@ -607,6 +612,7 @@ export default {
         quantity: "",
         isServingSize: false,
       };
+      this.extracted = null;
       this.step = 0;
       this.nutritionPredictionIndex = 0;
       this.nutrimentToFillIndex = 0;
