@@ -471,7 +471,7 @@ export default {
 
         const val = values
           .toLowerCase()
-          .match(/[0-9.]*/g)
+          .match("^((<|>|<=|>=|~|.)*[0-9]+| *)")
           .filter((x) => x !== "")[0];
         let unit = values
           .toLowerCase()
