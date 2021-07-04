@@ -258,7 +258,6 @@ export default {
     },
     clickableBoxes: function() {
       if (this.step === 3) {
-        console.log(this.extracted.filteredBoxes);
         return this.extracted.filteredBoxes.map((box) => {
           return {
             boxes: [{ ...box }],
@@ -267,14 +266,12 @@ export default {
         });
       }
       if (this.step === 4) {
-        const rep = this.extracted.values.map(({ boxesIndexes, text }) => {
+        return this.extracted.values.map(({ boxesIndexes, text }) => {
           return {
             boxes: boxesIndexes.map((i) => this.extracted.filteredBoxes[i]),
             values: text[0],
           };
         });
-        console.log(rep);
-        return rep;
       }
       return [];
     },
@@ -282,8 +279,7 @@ export default {
       if (this.step !== 2) {
         return {};
       }
-      console.log(this.nutritionPredictionIndex);
-      console.log(this.extracted.nutriments[this.nutritionPredictionIndex]);
+
       return {
         text: this.extracted.nutriments[this.nutritionPredictionIndex]["text"],
         key: this.extracted.nutriments[this.nutritionPredictionIndex]["key"],
@@ -675,13 +671,6 @@ export default {
   },
   mounted: function() {
     this.addProducts();
-
-    const vm = this;
-    window.addEventListener("keyup", function(event) {
-      if (event.target.nodeName == "INPUT" && event.key === "Enter") {
-        vm.nextNutriment();
-      }
-    });
   },
 };
 </script>
