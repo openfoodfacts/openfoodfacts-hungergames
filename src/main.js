@@ -6,6 +6,7 @@ import './semantic-ui-utils/main.css'
 import App from './App.vue'
 import QuestionView from './views/QuestionView.vue'
 import NutritionView from './views/NutritionView.vue'
+import NutritionInteractiveView from "./views/NutritionInteractiveView.vue"
 import TableAnnotation from './views/TableAnnotation.vue'
 import SettingsView from './views/SettingsView.vue'
 import InsightListView from './views/InsightListView.vue'
@@ -24,11 +25,22 @@ Vue.use(VueI18n)
 Vue.config.productionTip = false
 
 
+
+Vue.directive("focus", {
+  componentUpdated: function(el) {
+    el.firstElementChild.focus();
+  },
+  inserted: function(el) {
+    el.firstElementChild.focus();
+  },
+});
+
 const routes = [
   { path: '/', redirect: '/questions' },
   { path: '/insights', component: InsightListView },
   { path: '/questions', component: QuestionView },
   { path: '/nutritions', component: NutritionView },
+  { path: "/NutritionInteractiveView", component: NutritionInteractiveView },
   { path: '/table', component: TableAnnotation },
   { path: '/settings', component: SettingsView },
   { path: '/logos', component: LogoAnnotationView },

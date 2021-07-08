@@ -1,0 +1,1571 @@
+{
+    "fr": {
+        "nutriment_energy": [
+            "energie",
+            "energetique",
+            "valeur energetique",
+            "valeurs energetique",
+            "calories",
+            "calorie"
+        ],
+        "nutriment_fat": [
+            "graisse",
+            "grasses",
+            "matieres grasses",
+            "matidere grasses",
+            "matieres grasses",
+            "matidere grasse",
+            "lipide",
+            "lipides"
+        ],
+        "nutriment_saturated-fat": [
+            "acides gras satures",
+            "acides satures",
+            "satures",
+            "saturees"
+        ],
+        "nutriment_carbohydrates": [
+            "glucides"
+        ],
+        "nutriment_sugars": [
+            "sucres"
+        ],
+        "nutriment_proteins": [
+            "proteines",
+            "proteine",
+            "protein"
+        ],
+        "nutriment_salt": [
+            "sel"
+        ],
+        "nutriment_sodium": [
+            "sodium"
+        ],
+        "nutriment_casein": [
+            "caseine"
+        ],
+        "nutriment_serum-proteins": [
+            "proteines seriques"
+        ],
+        "nutriment_nucleotides": [
+            "nucleotides"
+        ],
+        "nutriment_sucrose": [
+            "sacharose"
+        ],
+        "nutriment_glucose": [
+            "glucose"
+        ],
+        "nutriment_fructose": [
+            "fructose"
+        ],
+        "nutriment_lactose": [
+            "lactose"
+        ],
+        "nutriment_maltose": [
+            "maltose"
+        ],
+        "nutriment_maltodextrins": [
+            "maltodextrines"
+        ],
+        "nutriment_starch": [
+            "amidon"
+        ],
+        "nutriment_polyols": [
+            "polyols"
+        ],
+        "nutriment_butyric-acid": [
+            "acide butyrique",
+            "butyrique"
+        ],
+        "nutriment_caproic-acid": [
+            "acide caproique",
+            "caproique"
+        ],
+        "nutriment_caprylic-acid": [
+            "acide caproique",
+            "caproique"
+        ],
+        "nutriment_capric-acid": [
+            "acide caprique",
+            "caprique"
+        ],
+        "nutriment_lauric-acid": [
+            "acide laurique",
+            "laurique"
+        ],
+        "nutriment_myristic-acid": [
+            "acide myristique",
+            "myristique"
+        ],
+        "nutriment_palmitic-acid": [
+            "acide palmitique",
+            "palmitique"
+        ],
+        "nutriment_stearic-acid": [
+            "acide stearique",
+            "stearique"
+        ],
+        "nutriment_arachidic-acid": [
+            "acide arachidique",
+            "arachidique"
+        ],
+        "nutriment_behenic-acid": [
+            "acide behenique",
+            "behenique"
+        ],
+        "nutriment_lignoceric-acid": [
+            "acide lignocerique",
+            "lignocerique"
+        ],
+        "nutriment_cerotic-acid": [
+            "acide cerotique",
+            "cerotique"
+        ],
+        "nutriment_montanic-acid": [
+            "acide montanique",
+            "montanique"
+        ],
+        "nutriment_melissic-acid": [
+            "acide melissique",
+            "melissique"
+        ],
+        "nutriment_monounsaturated-fat": [
+            "acides gras monoinsatures",
+            "monoinsatures",
+            "mono-insatures"
+        ],
+        "nutriment_polyunsaturated-fat": [
+            "acides gras polyinsatures",
+            "polyinsatures",
+            "poly-insatures"
+        ],
+        "nutriment_omega-3-fat": [
+            "acides gras omega 3",
+            "omega 3"
+        ],
+        "nutriment_alpha-linolenic-acid": [
+            "acide alpha linolenique",
+            "alpha linolenique"
+        ],
+        "nutriment_eicosapentaenoic-acid": [
+            "acide eicosapentaenoique",
+            "eicosapentaenoique"
+        ],
+        "nutriment_docosahexaenoic-acid": [
+            "acide docosahexaenoique",
+            "docosahexaenoique"
+        ],
+        "nutriment_omega-6-fat": [
+            "acides gras omega 6"
+        ],
+        "nutriment_linoleic-acid": [
+            "acide linoleique",
+            "linoleique"
+        ],
+        "nutriment_arachidonic-acid": [
+            "acide arachidonique",
+            "arachidonique"
+        ],
+        "nutriment_gamma-linolenic-acid": [
+            "acide gamma linolenique",
+            "gamma linolenique"
+        ],
+        "nutriment_dihomo-gamma-linolenic-acid": [
+            "acide dihomo gamma linolenique",
+            "dihomo gamma linolenique"
+        ],
+        "nutriment_omega-9-fat": [
+            "acides gras omega 9"
+        ],
+        "nutriment_oleic-acid": [
+            "acide oleique",
+            "oleique"
+        ],
+        "nutriment_elaidic-acid": [
+            "acide ela\u00efdique",
+            "ela\u00efdique",
+            "acide elaidique"
+        ],
+        "nutriment_gondoic-acid": [
+            "acide gadoleique",
+            "gadoleique"
+        ],
+        "nutriment_mead-acid": [
+            "acide de mead",
+            "de mead"
+        ],
+        "nutriment_erucic-acid": [
+            "acide erucique",
+            "erucique"
+        ],
+        "nutriment_nervonic-acid": [
+            "acide nervonique",
+            "nervonique"
+        ],
+        "nutriment_trans-fat": [
+            "acides gras trans",
+            "trans",
+            "transforme",
+            "transformes"
+        ],
+        "nutriment_cholesterol": [
+            "cholesterol"
+        ],
+        "nutriment_fiber": [
+            "fibres",
+            "fibres alimentaires",
+            "fibre alimentaire",
+            "fibre"
+        ],
+        "nutriment_biotin": [
+            "vitamine b7"
+        ],
+        "nutriment_pantothenic-acid": [
+            "acide pantothenique"
+        ],
+        "nutriment_silica": [
+            "silice"
+        ],
+        "nutriment_bicarbonate": [
+            "bicarbonate"
+        ],
+        "nutriment_potassium": [
+            "potassium"
+        ],
+        "nutriment_chloride": [
+            "chlorure"
+        ],
+        "nutriment_calcium": [
+            "calcium"
+        ],
+        "nutriment_phosphorus": [
+            "phosphore"
+        ],
+        "nutriment_iron": [
+            "fer"
+        ],
+        "nutriment_magnesium": [
+            "magnesium"
+        ],
+        "nutriment_zinc": [
+            "zinc"
+        ],
+        "nutriment_copper": [
+            "cuivre"
+        ],
+        "nutriment_manganese": [
+            "manganese"
+        ],
+        "nutriment_fluoride": [
+            "fluorure"
+        ],
+        "nutriment_selenium": [
+            "selenium"
+        ],
+        "nutriment_chromium": [
+            "chrome"
+        ],
+        "nutriment_molybdenum": [
+            "molybdene"
+        ],
+        "nutriment_iodine": [
+            "iode"
+        ],
+        "nutriment_caffeine": [
+            "cafeine"
+        ],
+        "nutriment_taurine": [
+            "taurine"
+        ],
+        "nutriment_vitamin-a": [
+            "vitamine a"
+        ],
+        "nutriment_vitamin-d": [
+            "vitamine d"
+        ],
+        "nutriment_vitamin-k": [
+            "vitamine k"
+        ],
+        "nutriment_vitamin-c": [
+            "vitamine c"
+        ],
+        "nutriment_vitamin-b6": [
+            "vitamine b6"
+        ],
+        "nutriment_vitamin": [
+            "vitamine"
+        ]
+    },
+    "en": {
+        "nutriment_energy": [
+            "energy"
+        ],
+        "nutriment_fat": [
+            "fat"
+        ],
+        "nutriment_saturated-fat": [
+            "saturated fat",
+            "saturated",
+            "saturated fatty acids"
+        ],
+        "nutriment_carbohydrates": [
+            "carbohydrate",
+            "carbohydra",
+            "carb"
+        ],
+        "nutriment_sugars": [
+            "sugars",
+            "sugar"
+        ],
+        "nutriment_proteins": [
+            "proteins",
+            "protein"
+        ],
+        "nutriment_salt": [
+            "salt"
+        ],
+        "nutriment_sodium": [
+            "sodium"
+        ],
+        "nutriment_casein": [
+            "casein"
+        ],
+        "nutriment_serum-proteins": [
+            "serum proteins"
+        ],
+        "nutriment_nucleotides": [
+            "nucleotides"
+        ],
+        "nutriment_sucrose": [
+            "sucrose"
+        ],
+        "nutriment_glucose": [
+            "glucose"
+        ],
+        "nutriment_fructose": [
+            "fructose"
+        ],
+        "nutriment_lactose": [
+            "lactose"
+        ],
+        "nutriment_maltose": [
+            "maltose"
+        ],
+        "nutriment_maltodextrins": [
+            "maltodextrins"
+        ],
+        "nutriment_starch": [
+            "starch"
+        ],
+        "nutriment_polyols": [
+            "sugar alcohols polyols "
+        ],
+        "nutriment_butyric-acid": [
+            "butyric acid"
+        ],
+        "nutriment_caproic-acid": [
+            "caproic acid"
+        ],
+        "nutriment_caprylic-acid": [
+            "caprylic acid"
+        ],
+        "nutriment_capric-acid": [
+            "capric acid"
+        ],
+        "nutriment_lauric-acid": [
+            "lauric acid"
+        ],
+        "nutriment_myristic-acid": [
+            "myristic acid"
+        ],
+        "nutriment_palmitic-acid": [
+            "palmitic acid"
+        ],
+        "nutriment_stearic-acid": [
+            "acide stearique",
+            "stearique",
+            "stearic acid"
+        ],
+        "nutriment_arachidic-acid": [
+            "arachidic acid"
+        ],
+        "nutriment_behenic-acid": [
+            "behenic acid"
+        ],
+        "nutriment_lignoceric-acid": [
+            "lignoceric acid"
+        ],
+        "nutriment_cerotic-acid": [
+            "cerotic acid"
+        ],
+        "nutriment_montanic-acid": [
+            "montanic acid"
+        ],
+        "nutriment_melissic-acid": [
+            "melissic acid"
+        ],
+        "nutriment_monounsaturated-fat": [
+            "monounsaturated fat"
+        ],
+        "nutriment_polyunsaturated-fat": [
+            "polyunsaturated fat"
+        ],
+        "nutriment_omega-3-fat": [
+            "omega 3 fatty acids",
+            "omega 3"
+        ],
+        "nutriment_alpha-linolenic-acid": [
+            "alpha linolenic acid"
+        ],
+        "nutriment_eicosapentaenoic-acid": [
+            "eicosapentaenoic acid"
+        ],
+        "nutriment_docosahexaenoic-acid": [
+            "docosahexaenoic acid"
+        ],
+        "nutriment_omega-6-fat": [
+            "omega 6 fatty acids",
+            "omega 6"
+        ],
+        "nutriment_linoleic-acid": [
+            "linoleic acid"
+        ],
+        "nutriment_arachidonic-acid": [
+            "arachidonic acid"
+        ],
+        "nutriment_gamma-linolenic-acid": [
+            "gamma linolenic acid"
+        ],
+        "nutriment_dihomo-gamma-linolenic-acid": [
+            "dihomo gamma linolenic acid"
+        ],
+        "nutriment_omega-9-fat": [
+            "omega 9 fatty acids",
+            "omega 9"
+        ],
+        "nutriment_oleic-acid": [
+            "oleic acid"
+        ],
+        "nutriment_elaidic-acid": [
+            "elaidic acid"
+        ],
+        "nutriment_gondoic-acid": [
+            "gondoic acid"
+        ],
+        "nutriment_mead-acid": [
+            "mead acid"
+        ],
+        "nutriment_erucic-acid": [
+            "erucic acid"
+        ],
+        "nutriment_nervonic-acid": [
+            "nervonic acid"
+        ],
+        "nutriment_trans-fat": [
+            "trans fat"
+        ],
+        "nutriment_cholesterol": [
+            "cholesterol",
+            "cholest"
+        ],
+        "nutriment_fiber": [
+            "fiber",
+            "dietary fiber"
+        ],
+        "nutriment_biotin": [
+            "biotin"
+        ],
+        "nutriment_pantothenic-acid": [
+            "pantothenic acid"
+        ],
+        "nutriment_silica": [
+            "silica"
+        ],
+        "nutriment_bicarbonate": [
+            "bicarbonate"
+        ],
+        "nutriment_potassium": [
+            "potassium"
+        ],
+        "nutriment_chloride": [
+            "chloride"
+        ],
+        "nutriment_calcium": [
+            "calcium"
+        ],
+        "nutriment_phosphorus": [
+            "phosphorus"
+        ],
+        "nutriment_iron": [
+            "iron"
+        ],
+        "nutriment_magnesium": [
+            "magnesium"
+        ],
+        "nutriment_zinc": [
+            "zinc"
+        ],
+        "nutriment_copper": [
+            "copper"
+        ],
+        "nutriment_manganese": [
+            "manganese"
+        ],
+        "nutriment_fluoride": [
+            "fluoride"
+        ],
+        "nutriment_selenium": [
+            "selenium"
+        ],
+        "nutriment_chromium": [
+            "chromium"
+        ],
+        "nutriment_molybdenum": [
+            "molybdenum"
+        ],
+        "nutriment_iodine": [
+            "iodine"
+        ],
+        "nutriment_caffeine": [
+            "caffeine"
+        ],
+        "nutriment_taurine": [
+            "taurine"
+        ],
+        "nutriment_vitamin-a": [
+            "vitamin a"
+        ],
+        "nutriment_vitamin-d": [
+            "vitamin d"
+        ],
+        "nutriment_vitamin-k": [
+            "vitamin k"
+        ],
+        "nutriment_vitamin-c": [
+            "vitamin c"
+        ],
+        "nutriment_vitamin-b6": [
+            "vitamin b6"
+        ],
+        "nutriment_vitamin": [
+            "vitamin"
+        ]
+    },
+    "es": {
+        "nutriment_energy": [
+            "energia",
+            "energetice",
+            "energetica",
+            "energetico"
+        ],
+        "nutriment_fat": [
+            "gordo",
+            "grasa",
+            "grasas",
+            "lipidos"
+        ],
+        "nutriment_saturated-fat": [
+            "acidos grasos saturados",
+            "saturadas",
+            "saturada",
+            "saturados",
+            "saturado",
+            "de las cuales saturadas",
+            "de las cuales saturada"
+        ],
+        "nutriment_carbohydrates": [
+            "hidratos de carbono",
+            "hidrafos de carbono",
+            "Hidratos carbono",
+            "hidrafos carbono",
+            "carbono",
+            "carboni",
+            "carbohidratos"
+        ],
+        "nutriment_sugars": [
+            "azucares",
+            "azcares",
+            "ozucares"
+        ],
+        "nutriment_proteins": [
+            "proteinas",
+            "proteinos",
+            "protelnos",
+            "protelnas"
+        ],
+        "nutriment_salt": [
+            "sal"
+        ],
+        "nutriment_sodium": [
+            "sodio"
+        ],
+        "nutriment_casein": [
+            "caseina"
+        ],
+        "nutriment_sucrose": [
+            "sacarosa"
+        ],
+        "nutriment_glucose": [
+            "glucosa"
+        ],
+        "nutriment_fructose": [
+            "fructosa"
+        ],
+        "nutriment_lactose": [
+            "lactosa"
+        ],
+        "nutriment_maltose": [
+            "maltosa"
+        ],
+        "nutriment_maltodextrins": [
+            "maltodextrinas"
+        ],
+        "nutriment_starch": [
+            "almidon"
+        ],
+        "nutriment_polyols": [
+            "azucares alcoholicos polialcoholes "
+        ],
+        "nutriment_butyric-acid": [
+            "acido butirico",
+            "butirico"
+        ],
+        "nutriment_caproic-acid": [
+            "acido caproico",
+            "caproico"
+        ],
+        "nutriment_caprylic-acid": [
+            "acido caprilico",
+            "caprilico"
+        ],
+        "nutriment_capric-acid": [
+            "acido caprico",
+            "caprico"
+        ],
+        "nutriment_lauric-acid": [
+            "acido laurico",
+            "laurico"
+        ],
+        "nutriment_myristic-acid": [
+            "acido miristico",
+            "miristico"
+        ],
+        "nutriment_palmitic-acid": [
+            "acido palmitico",
+            "palmitico"
+        ],
+        "nutriment_stearic-acid": [
+            "acido estearico",
+            "este\u00e1rico"
+        ],
+        "nutriment_arachidic-acid": [
+            "acido araquidico",
+            "araquidico"
+        ],
+        "nutriment_behenic-acid": [
+            "acido behenico"
+        ],
+        "nutriment_lignoceric-acid": [
+            "acido lignocerico"
+        ],
+        "nutriment_cerotic-acid": [
+            "acido cerotico"
+        ],
+        "nutriment_montanic-acid": [
+            "acido montanico"
+        ],
+        "nutriment_melissic-acid": [
+            "acido melisico"
+        ],
+        "nutriment_monounsaturated-fat": [
+            "grasas monoinsaturadas",
+            "grasas monoinsaturada",
+            "monoinsaturadas",
+            "monoinsaturada"
+        ],
+        "nutriment_polyunsaturated-fat": [
+            "grasas poliinsaturadas",
+            "grasas poliinsaturada",
+            "poliinsaturadas",
+            "poliinsaturada"
+        ],
+        "nutriment_omega-3-fat": [
+            "acidos grasos omega 3",
+            "omega 3"
+        ],
+        "nutriment_alpha-linolenic-acid": [
+            "acido alfa linolenico"
+        ],
+        "nutriment_eicosapentaenoic-acid": [
+            "acido eicosapentaenoico"
+        ],
+        "nutriment_docosahexaenoic-acid": [
+            "acido docosahexaenoico"
+        ],
+        "nutriment_omega-6-fat": [
+            "acidos grasos omega 6",
+            "omega 6"
+        ],
+        "nutriment_linoleic-acid": [
+            "acido linoleico"
+        ],
+        "nutriment_arachidonic-acid": [
+            "acido araquidonico"
+        ],
+        "nutriment_gamma-linolenic-acid": [
+            "acido gamma linolenico"
+        ],
+        "nutriment_dihomo-gamma-linolenic-acid": [
+            "acido dihomo gamma linolenico"
+        ],
+        "nutriment_omega-9-fat": [
+            "acidos grasos omega 9",
+            "omega 9"
+        ],
+        "nutriment_oleic-acid": [
+            "acido oleico"
+        ],
+        "nutriment_elaidic-acid": [
+            "acido elaidico"
+        ],
+        "nutriment_gondoic-acid": [
+            "acido gondoico"
+        ],
+        "nutriment_mead-acid": [
+            "acido mead"
+        ],
+        "nutriment_erucic-acid": [
+            "acido erucico"
+        ],
+        "nutriment_nervonic-acid": [
+            "acido nervonico"
+        ],
+        "nutriment_trans-fat": [
+            "grasas trans"
+        ],
+        "nutriment_cholesterol": [
+            "colesterol"
+        ],
+        "nutriment_fiber": [
+            "fibra",
+            "fibra alimentaria",
+            "fibra alimentaria",
+            "fibra dietetica"
+        ],
+        "nutriment_biotin": [
+            "biotina"
+        ],
+        "nutriment_pantothenic-acid": [
+            "acido pantotenico"
+        ],
+        "nutriment_silica": [
+            "silice"
+        ],
+        "nutriment_bicarbonate": [
+            "bicarbonato"
+        ],
+        "nutriment_potassium": [
+            "potasio"
+        ],
+        "nutriment_chloride": [
+            "cloruro"
+        ],
+        "nutriment_calcium": [
+            "calcio"
+        ],
+        "nutriment_phosphorus": [
+            "fosforo"
+        ],
+        "nutriment_iron": [
+            "hierro"
+        ],
+        "nutriment_magnesium": [
+            "magnesio"
+        ],
+        "nutriment_zinc": [
+            "zinc"
+        ],
+        "nutriment_copper": [
+            "cobre"
+        ],
+        "nutriment_manganese": [
+            "manganeso"
+        ],
+        "nutriment_fluoride": [
+            "fluoruro"
+        ],
+        "nutriment_selenium": [
+            "selenio"
+        ],
+        "nutriment_chromium": [
+            "cromo"
+        ],
+        "nutriment_molybdenum": [
+            "molibdeno"
+        ],
+        "nutriment_iodine": [
+            "yodo"
+        ],
+        "nutriment_caffeine": [
+            "cafeina"
+        ],
+        "nutriment_taurine": [
+            "taurina"
+        ],
+        "nutriment_vitamin-a": [
+            "vitamina a"
+        ],
+        "nutriment_vitamin-d": [
+            "vitamina d"
+        ],
+        "nutriment_vitamin-k": [
+            "vitamina k"
+        ],
+        "nutriment_vitamin-c": [
+            "vitamina c"
+        ],
+        "nutriment_vitamin-b6": [
+            "vitamina b6"
+        ],
+        "nutriment_vitamin": [
+            "vitamina"
+        ]
+    },
+    "de": {
+        "nutriment_energy": [
+            "energie",
+            "brennwert"
+        ],
+        "nutriment_fat": [
+            "fett",
+            "fet"
+        ],
+        "nutriment_saturated-fat": [
+            "gesattigte fettsauren",
+            "gesattigte",
+            "fettsauren"
+        ],
+        "nutriment_carbohydrates": [
+            "kohlenhydrate"
+        ],
+        "nutriment_sugars": [
+            "zucker"
+        ],
+        "nutriment_proteins": [
+            "eiwei",
+            "eiweis",
+            "eiweiss",
+            "eiwei "
+        ],
+        "nutriment_salt": [
+            "speisesalz",
+            "salz"
+        ],
+        "nutriment_sodium": [
+            "natrium"
+        ],
+        "nutriment_casein": [
+            "casein"
+        ],
+        "nutriment_serum-proteins": [
+            "serumprotein"
+        ],
+        "nutriment_nucleotides": [
+            "nukleotide"
+        ],
+        "nutriment_sucrose": [
+            "saccharose"
+        ],
+        "nutriment_glucose": [
+            "glukose"
+        ],
+        "nutriment_fructose": [
+            "fructose"
+        ],
+        "nutriment_lactose": [
+            "lactose"
+        ],
+        "nutriment_maltose": [
+            "maltose"
+        ],
+        "nutriment_maltodextrins": [
+            "maltodextrine"
+        ],
+        "nutriment_starch": [
+            "starke"
+        ],
+        "nutriment_polyols": [
+            "mehrwertige alkohole polyole "
+        ],
+        "nutriment_butyric-acid": [
+            "buttersaure"
+        ],
+        "nutriment_caproic-acid": [
+            "capronsaure"
+        ],
+        "nutriment_caprylic-acid": [
+            "caprylsaure"
+        ],
+        "nutriment_capric-acid": [
+            "caprinsaure"
+        ],
+        "nutriment_lauric-acid": [
+            "laurinsaure"
+        ],
+        "nutriment_myristic-acid": [
+            "myristinsaure"
+        ],
+        "nutriment_palmitic-acid": [
+            "palitinsaure"
+        ],
+        "nutriment_stearic-acid": [
+            "stearinsaure"
+        ],
+        "nutriment_arachidic-acid": [
+            "arachinsaure"
+        ],
+        "nutriment_behenic-acid": [
+            "behensaure"
+        ],
+        "nutriment_lignoceric-acid": [
+            "lignocerinsaure"
+        ],
+        "nutriment_cerotic-acid": [
+            "cerotinsaure"
+        ],
+        "nutriment_montanic-acid": [
+            "montansaure"
+        ],
+        "nutriment_melissic-acid": [
+            "melissinsaure"
+        ],
+        "nutriment_monounsaturated-fat": [
+            "einfach ungesattigte fettsauren"
+        ],
+        "nutriment_polyunsaturated-fat": [
+            "mehrfach ungesattigte fettsauren"
+        ],
+        "nutriment_omega-3-fat": [
+            "omega 3 fettsauren",
+            "omega 3"
+        ],
+        "nutriment_alpha-linolenic-acid": [
+            "alpha linolensaure"
+        ],
+        "nutriment_eicosapentaenoic-acid": [
+            "eicosapentaensaure"
+        ],
+        "nutriment_docosahexaenoic-acid": [
+            "docosahexaensaure"
+        ],
+        "nutriment_omega-6-fat": [
+            "omega 6 fettsauren",
+            "omega 6"
+        ],
+        "nutriment_linoleic-acid": [
+            "linolsaure"
+        ],
+        "nutriment_arachidonic-acid": [
+            "arachidonsaeure"
+        ],
+        "nutriment_gamma-linolenic-acid": [
+            "gamma linolensaure"
+        ],
+        "nutriment_dihomo-gamma-linolenic-acid": [
+            "dihomo gamma linolsaure"
+        ],
+        "nutriment_omega-9-fat": [
+            "omega 9 fettsauren",
+            "omega 9"
+        ],
+        "nutriment_oleic-acid": [
+            "olsaure"
+        ],
+        "nutriment_elaidic-acid": [
+            "elaidinsaure"
+        ],
+        "nutriment_gondoic-acid": [
+            "gondosaure"
+        ],
+        "nutriment_mead-acid": [
+            "mead sche saure"
+        ],
+        "nutriment_erucic-acid": [
+            "erucasaure"
+        ],
+        "nutriment_nervonic-acid": [
+            "nervonsaure"
+        ],
+        "nutriment_trans-fat": [
+            "trans fettsauren"
+        ],
+        "nutriment_cholesterol": [
+            "cholesterin"
+        ],
+        "nutriment_fiber": [
+            "ballaststoffe"
+        ],
+        "nutriment_biotin": [
+            "biotin"
+        ],
+        "nutriment_pantothenic-acid": [
+            "pantothensaure"
+        ],
+        "nutriment_silica": [
+            "siliciumdioxid"
+        ],
+        "nutriment_bicarbonate": [
+            "bikarbonat"
+        ],
+        "nutriment_potassium": [
+            "kalium"
+        ],
+        "nutriment_chloride": [
+            "chloride"
+        ],
+        "nutriment_calcium": [
+            "calcium"
+        ],
+        "nutriment_phosphorus": [
+            "phosphor"
+        ],
+        "nutriment_iron": [
+            "eisen"
+        ],
+        "nutriment_magnesium": [
+            "magnesium"
+        ],
+        "nutriment_zinc": [
+            "zink"
+        ],
+        "nutriment_copper": [
+            "kupfer"
+        ],
+        "nutriment_manganese": [
+            "mangan"
+        ],
+        "nutriment_fluoride": [
+            "fluoride"
+        ],
+        "nutriment_selenium": [
+            "selen"
+        ],
+        "nutriment_chromium": [
+            "chrom"
+        ],
+        "nutriment_molybdenum": [
+            "molybdan"
+        ],
+        "nutriment_iodine": [
+            "jod"
+        ],
+        "nutriment_caffeine": [
+            "coffein"
+        ],
+        "nutriment_taurine": [
+            "taurin"
+        ],
+        "nutriment_vitamin-a": [
+            "vitamin a"
+        ],
+        "nutriment_vitamin-d": [
+            "vitamin d"
+        ],
+        "nutriment_vitamin-k": [
+            "vitamin k"
+        ],
+        "nutriment_vitamin-c": [
+            "vitamin c"
+        ],
+        "nutriment_vitamin-b6": [
+            "vitamin b6"
+        ],
+        "nutriment_vitamin": [
+            "vitamin"
+        ]
+    },
+    "pt": {
+        "nutriment_energy": [
+            "energia"
+        ],
+        "nutriment_fat": [
+            "gordura"
+        ],
+        "nutriment_saturated-fat": [
+            "gorduras saturadas",
+            "saturada"
+        ],
+        "nutriment_carbohydrates": [
+            "hidratos de carbono"
+        ],
+        "nutriment_sugars": [
+            "acucares"
+        ],
+        "nutriment_proteins": [
+            "proteinas"
+        ],
+        "nutriment_salt": [
+            "sal de cozinha"
+        ],
+        "nutriment_sodium": [
+            "sodio"
+        ],
+        "nutriment_casein": [
+            "caseina"
+        ],
+        "nutriment_serum-proteins": [
+            "proteina plasmatica"
+        ],
+        "nutriment_nucleotides": [
+            "nucleotideos"
+        ],
+        "nutriment_sucrose": [
+            "sacarose"
+        ],
+        "nutriment_glucose": [
+            "glicose"
+        ],
+        "nutriment_fructose": [
+            "frutosa"
+        ],
+        "nutriment_lactose": [
+            "lactose"
+        ],
+        "nutriment_maltose": [
+            "maltose"
+        ],
+        "nutriment_maltodextrins": [
+            "maltodextrinas"
+        ],
+        "nutriment_starch": [
+            "amido"
+        ],
+        "nutriment_polyols": [
+            "acucares alcoolicos polialcools"
+        ],
+        "nutriment_butyric-acid": [
+            "acido butirico"
+        ],
+        "nutriment_caproic-acid": [
+            "acido caproico"
+        ],
+        "nutriment_caprylic-acid": [
+            "acido caprilico"
+        ],
+        "nutriment_capric-acid": [
+            "acido caprico"
+        ],
+        "nutriment_lauric-acid": [
+            "acido laurico"
+        ],
+        "nutriment_myristic-acid": [
+            "acido miristico"
+        ],
+        "nutriment_palmitic-acid": [
+            "acido palmitico"
+        ],
+        "nutriment_stearic-acid": [
+            "acido estearico"
+        ],
+        "nutriment_arachidic-acid": [
+            "acido araquidico"
+        ],
+        "nutriment_behenic-acid": [
+            "acido beenico"
+        ],
+        "nutriment_lignoceric-acid": [
+            "acido lignocerico"
+        ],
+        "nutriment_cerotic-acid": [
+            "acido cerotico"
+        ],
+        "nutriment_montanic-acid": [
+            "acido montanico"
+        ],
+        "nutriment_melissic-acid": [
+            "acido melissico"
+        ],
+        "nutriment_monounsaturated-fat": [
+            "gorduras monoinsaturadas",
+            "monoinsaturada"
+        ],
+        "nutriment_polyunsaturated-fat": [
+            "gorduras poli insaturadas",
+            "poli insaturada"
+        ],
+        "nutriment_omega-3-fat": [
+            "acidos graxos omega 3"
+        ],
+        "nutriment_alpha-linolenic-acid": [
+            "acido alfa linolenico"
+        ],
+        "nutriment_eicosapentaenoic-acid": [
+            "acido eicosapentaenoico"
+        ],
+        "nutriment_docosahexaenoic-acid": [
+            "acido docosa hexaenoico"
+        ],
+        "nutriment_omega-6-fat": [
+            "acidos graxos omega 6"
+        ],
+        "nutriment_linoleic-acid": [
+            "acido linoleico"
+        ],
+        "nutriment_arachidonic-acid": [
+            "acido araquidonico"
+        ],
+        "nutriment_gamma-linolenic-acid": [
+            "acido gama linolenico"
+        ],
+        "nutriment_dihomo-gamma-linolenic-acid": [
+            "acido dihomo gama linolenico"
+        ],
+        "nutriment_omega-9-fat": [
+            "acidos graxos omega 9"
+        ],
+        "nutriment_oleic-acid": [
+            "acido oleico"
+        ],
+        "nutriment_elaidic-acid": [
+            "acido elaidico"
+        ],
+        "nutriment_gondoic-acid": [
+            "acido gondoico"
+        ],
+        "nutriment_mead-acid": [
+            "acido de mead"
+        ],
+        "nutriment_erucic-acid": [
+            "acido erucico"
+        ],
+        "nutriment_nervonic-acid": [
+            "acido nervonico"
+        ],
+        "nutriment_trans-fat": [
+            "gorduras trans"
+        ],
+        "nutriment_cholesterol": [
+            "colesterol"
+        ],
+        "nutriment_fiber": [
+            "fibra",
+            "fibra alimentar"
+        ],
+        "nutriment_biotin": [
+            "biotina"
+        ],
+        "nutriment_pantothenic-acid": [
+            "acido pantotenico"
+        ],
+        "nutriment_silica": [
+            "dioxido de silicio"
+        ],
+        "nutriment_bicarbonate": [
+            "bicarbonato"
+        ],
+        "nutriment_potassium": [
+            "potassio"
+        ],
+        "nutriment_chloride": [
+            "cloreto"
+        ],
+        "nutriment_calcium": [
+            "calcio"
+        ],
+        "nutriment_phosphorus": [
+            "fosforo"
+        ],
+        "nutriment_iron": [
+            "ferro"
+        ],
+        "nutriment_magnesium": [
+            "magnesio"
+        ],
+        "nutriment_zinc": [
+            "zinco"
+        ],
+        "nutriment_copper": [
+            "cobre"
+        ],
+        "nutriment_manganese": [
+            "manganes"
+        ],
+        "nutriment_fluoride": [
+            "fluoreto"
+        ],
+        "nutriment_selenium": [
+            "selenio"
+        ],
+        "nutriment_chromium": [
+            "cromio"
+        ],
+        "nutriment_molybdenum": [
+            "molibdenio"
+        ],
+        "nutriment_iodine": [
+            "iodo"
+        ],
+        "nutriment_caffeine": [
+            "cafeina"
+        ],
+        "nutriment_taurine": [
+            "taurina"
+        ],
+        "nutriment_vitamin-a": [
+            "vitamina a"
+        ],
+        "nutriment_vitamin-d": [
+            "vitamina d"
+        ],
+        "nutriment_vitamin-k": [
+            "vitamina k"
+        ],
+        "nutriment_vitamin-c": [
+            "vitamina c"
+        ],
+        "nutriment_vitamin-b6": [
+            "vitamina b6"
+        ],
+        "nutriment_vitamin": [
+            "vitamina"
+        ]
+    },
+    "it": {
+        "nutriment_energy": [
+            "energia"
+        ],
+        "nutriment_fat": [
+            "grasso"
+        ],
+        "nutriment_saturated-fat": [
+            "acidi grassi saturi"
+        ],
+        "nutriment_carbohydrates": [
+            "carboidrati"
+        ],
+        "nutriment_sugars": [
+            "zuccheri"
+        ],
+        "nutriment_proteins": [
+            "proteine"
+        ],
+        "nutriment_salt": [
+            "cloruro di sodio"
+        ],
+        "nutriment_sodium": [
+            "sodio"
+        ],
+        "nutriment_casein": [
+            "caseina"
+        ],
+        "nutriment_serum-proteins": [
+            "sieroproteine"
+        ],
+        "nutriment_nucleotides": [
+            "nucleotidi"
+        ],
+        "nutriment_sucrose": [
+            "saccarosio"
+        ],
+        "nutriment_glucose": [
+            "glucosio"
+        ],
+        "nutriment_fructose": [
+            "fruttosio"
+        ],
+        "nutriment_lactose": [
+            "lattosio"
+        ],
+        "nutriment_maltose": [
+            "maltosio"
+        ],
+        "nutriment_maltodextrins": [
+            "maltodestrine"
+        ],
+        "nutriment_starch": [
+            "amido"
+        ],
+        "nutriment_polyols": [
+            "polialcoli polioli alcoli degli zuccheri "
+        ],
+        "nutriment_butyric-acid": [
+            "acido butirrico"
+        ],
+        "nutriment_caproic-acid": [
+            "acido capronico"
+        ],
+        "nutriment_caprylic-acid": [
+            "acido caprilico"
+        ],
+        "nutriment_capric-acid": [
+            "acido caprico"
+        ],
+        "nutriment_lauric-acid": [
+            "acido laurico"
+        ],
+        "nutriment_myristic-acid": [
+            "acido miristico"
+        ],
+        "nutriment_palmitic-acid": [
+            "acido palmitico"
+        ],
+        "nutriment_stearic-acid": [
+            "acido stearico"
+        ],
+        "nutriment_arachidic-acid": [
+            "acido arachico"
+        ],
+        "nutriment_behenic-acid": [
+            "acido behenico"
+        ],
+        "nutriment_lignoceric-acid": [
+            "acido lignocerico"
+        ],
+        "nutriment_cerotic-acid": [
+            "acido cerotico"
+        ],
+        "nutriment_montanic-acid": [
+            "acido montanico"
+        ],
+        "nutriment_melissic-acid": [
+            "acido melissico"
+        ],
+        "nutriment_monounsaturated-fat": [
+            "acidi grassi monoinsaturi"
+        ],
+        "nutriment_polyunsaturated-fat": [
+            "acidi grassi polinsaturi"
+        ],
+        "nutriment_omega-3-fat": [
+            "acidi grassi omega 3"
+        ],
+        "nutriment_alpha-linolenic-acid": [
+            "acido alfa linoleico"
+        ],
+        "nutriment_eicosapentaenoic-acid": [
+            "acido eicosapentenoico"
+        ],
+        "nutriment_docosahexaenoic-acid": [
+            "acido docosaesaenoico"
+        ],
+        "nutriment_omega-6-fat": [
+            "acidi grassi omega 6"
+        ],
+        "nutriment_linoleic-acid": [
+            "acido linoleico"
+        ],
+        "nutriment_arachidonic-acid": [
+            "acido arachidonico"
+        ],
+        "nutriment_gamma-linolenic-acid": [
+            "acido gamma linolenico"
+        ],
+        "nutriment_dihomo-gamma-linolenic-acid": [
+            "acido linolenico diomo gamma"
+        ],
+        "nutriment_omega-9-fat": [
+            "acidi grassi omega 9"
+        ],
+        "nutriment_oleic-acid": [
+            "acido oleico"
+        ],
+        "nutriment_elaidic-acid": [
+            "acido elaidico"
+        ],
+        "nutriment_erucic-acid": [
+            "acido erucico"
+        ],
+        "nutriment_nervonic-acid": [
+            "acido nervonico"
+        ],
+        "nutriment_trans-fat": [
+            "acidi grassi trans"
+        ],
+        "nutriment_cholesterol": [
+            "colesterolo"
+        ],
+        "nutriment_fiber": [
+            "fibra",
+            "fibra alimentare"
+        ],
+        "nutriment_biotin": [
+            "biotina"
+        ],
+        "nutriment_pantothenic-acid": [
+            "acido pantotenico"
+        ],
+        "nutriment_silica": [
+            "silice"
+        ],
+        "nutriment_bicarbonate": [
+            "bicarbonato"
+        ],
+        "nutriment_potassium": [
+            "potassio"
+        ],
+        "nutriment_chloride": [
+            "cloruro"
+        ],
+        "nutriment_calcium": [
+            "calcio"
+        ],
+        "nutriment_phosphorus": [
+            "fosforo"
+        ],
+        "nutriment_iron": [
+            "ferro"
+        ],
+        "nutriment_magnesium": [
+            "magnesio"
+        ],
+        "nutriment_zinc": [
+            "zinco"
+        ],
+        "nutriment_copper": [
+            "rame"
+        ],
+        "nutriment_manganese": [
+            "manganese"
+        ],
+        "nutriment_fluoride": [
+            "fluoruro"
+        ],
+        "nutriment_selenium": [
+            "selenio"
+        ],
+        "nutriment_chromium": [
+            "cromo"
+        ],
+        "nutriment_molybdenum": [
+            "molibdeno"
+        ],
+        "nutriment_iodine": [
+            "iodio"
+        ],
+        "nutriment_caffeine": [
+            "caffeina"
+        ],
+        "nutriment_taurine": [
+            "taurina"
+        ],
+        "nutriment_vitamin-a": [
+            "vitamina a"
+        ],
+        "nutriment_vitamin-d": [
+            "vitamina d"
+        ],
+        "nutriment_vitamin-k": [
+            "vitamina k"
+        ],
+        "nutriment_vitamin-c": [
+            "vitamina c"
+        ],
+        "nutriment_vitamin-b6": [
+            "vitamina b6"
+        ],
+        "nutriment_vitamin": [
+            "vitamina"
+        ]
+    }
+}

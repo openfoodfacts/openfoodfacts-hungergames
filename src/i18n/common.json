@@ -88,5 +88,76 @@
     "settings": "Settings",
     "language": "Language",
     "save": "Save"
+  },
+  "helper": {
+    "welcome": {
+      "page1": {
+        "title": "Welcome",
+        "text1": "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
+        "text2": "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
+        "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
+      },
+      "page2": {
+        "title": "Questions",
+        "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
+        "text2": "Do not hestiate to skip a question if you're not sure, there are plenty of others"
+      },
+      "page3": {
+        "title": "Logos",
+        "text1": "The worlds of products is full of logos. Explain to our AI which one are the same."
+      }
+    },
+    "logos": {
+      "page1": {
+        "title": "Selection",
+        "text1": "Select the crops of a same logo by clicking on them",
+        "text2": "Selected logos go to the top of the page, you can unselect them by clicking again on them"
+      },
+      "page2": {
+        "title": "Warning",
+        "text1": "If the crop contains multiple logo do not select it.",
+        "text2": "If the crop contains only a partial part of a logo you can select it"
+      },
+      "page3": {
+        "title": "Validate",
+        "text1": "Indicate the type of logo (label, brand, QRcode, ...)",
+        "text2": "If it is a label or a brand logo, indicate which one it is",
+        "text3": "Now you can submit your selection",
+        "text4": "Thank you :)"
+      }
+    }
+  },
+  "nutrition": {
+    "instructions": {
+      "cropTheTable": "Crop the image to simplify your annotation",
+      "verifyNutrimentDetected": "Indicate if the nutriment detected is correct",
+      "selectMissingNutriments": "Add missing nutriments (you can click event if the word has no box)",
+      "selectValue": "select the nutritive value of: "
+    },
+    "steps": {
+      "1": "Cropp",
+      "2": "Special values",
+      "3": "Nutriments Selection",
+      "4": "Values Selection"
+    },
+    "next": "Next Step",
+    "prev": "Prev Step",
+    "skip": "Skip this product",
+    "validate": "Validate Table",
+    "basis": "données pour: ",
+    "servingSize": "serving size",
+    "value": "value",
+    "nutriments": {
+      "nutriment_energy-kj": "Energie (kJ)",
+      "nutriment_energy-kcal": "Energie (kCal)",
+      "nutriment_fat": "gras",
+      "nutriment_saturated-fat": "gras (saturé)",
+      "nutriment_carbohydrates": "glucides",
+      "nutriment_sugars": "sucres",
+      "nutriment_proteins": "protéines",
+      "nutriment_fiber": "fibres",
+      "nutriment_salt": "sel",
+      "nutriment_sodium": "sodium"
+    }
   }
 }
