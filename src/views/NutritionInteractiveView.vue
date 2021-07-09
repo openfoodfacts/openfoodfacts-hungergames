@@ -174,15 +174,31 @@ import { Cropper } from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
 import InteractiveImage from "../components/InteractiveImage";
 import NutritionTable from "../components/NutritionTable";
-const getProducts = async (nbOfPages, country = "", contributor = "") => {
+
+const getProducts = async (
+  nbOfPages,
+  country = "",
+  contributor = "",
+  code = ""
+) => {
   const randomPage = 1 + Math.floor(Math.random() * nbOfPages);
-  const {
-    data: { products },
-  } = await axios(
-    offService.getNutritionToFillUrl(randomPage, country, contributor)
-  );
-  return products;
+  if (code) {
+    const {
+      data: { product },
+    } = await axios(
+      offService.getNutritionToFillUrl(randomPage, country, contributor, code)
+    );
+    return [product];
+  } else {
+    const {
+      data: { products },
+    } = await axios(
+      offService.getNutritionToFillUrl(randomPage, country, contributor)
+    );
+    return products;
+  }
 };
+
 export default {
   name: "NutritionView",
   components: {
@@ -549,10 +565,22 @@ export default {
       };
     },
     addProducts: async function(country, contributor) {
-      this.loading = true;
-      const newProducts = await getProducts(100, country, contributor);
-      this.productBuffer = this.productBuffer.concat(newProducts);
-      this.loading = false;
+      if (this.$route.params.code) {
+        this.loading = true;
+        const newProducts = await getProducts(
+          1,
+          country,
+          contributor,
+          this.$route.params.code
+        );
+        this.productBuffer = [...newProducts];
+        this.loading = false;
+      } else {
+        this.loading = true;
+        const newProducts = await getProducts(100, country, contributor);
+        this.productBuffer = this.productBuffer.concat(newProducts);
+        this.loading = false;
+      }
     },
     replaceProducts: async function(country, contributor) {
       this.loading = true;
