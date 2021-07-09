@@ -159,12 +159,14 @@
     </div>
 
     <div class="eight wide column centered">
-      <NutritionTable
-        v-model="currentProductData"
-        v-on:setNurtiIndex="setNutrimentValueIndex"
-        :nutrimentToFillIndex="nutrimentToFillIndex"
-        :selectLine="step === 4"
-      />
+      <div class="table">
+        <NutritionTable
+          v-model="currentProductData"
+          v-on:setNurtiIndex="setNutrimentValueIndex"
+          :nutrimentToFillIndex="nutrimentToFillIndex"
+          :selectLine="step === 4"
+        />
+      </div>
     </div>
     <sui-modal v-model="historyIsOpen">
       <sui-modal-header>{{ $t("nutrition.history.title") }}</sui-modal-header>
@@ -931,5 +933,9 @@ button.annotate {
 }
 .filters input {
   margin-top: 0.5rem;
+}
+.table {
+  position: sticky;
+  top: 60px;
 }
 </style>

@@ -429,9 +429,23 @@ const ocr = {
       return [];
     }
     let translation = nutrimentTranslation[lang];
+
     if (!translation) {
-      // TODO : perform a fusion instead of just replacing missing lang?
-      translation = nutrimentTranslation["en"];
+      translation = {};
+    }
+    if (lang !== "en") {
+      Object.keys(nutrimentTranslation["en"]).forEach((key) => {
+        if (!translation[key]) {
+          translation[key] = [...nutrimentTranslation["en"][key]];
+        } else {
+          nutrimentTranslation["en"][key].forEach((trad) => {
+            if (!translation[key].includes(trad)) {
+              translation[key].push(trad);
+            }
+          });
+        }
+        translation[key];
+      });
     }
 
     const normalizedSearch = search
@@ -461,7 +475,11 @@ const ocr = {
         //   .normalize("NFD")
         //   .replace(/[\u0300-\u036f]/g, "")
         //   .toLowerCase();
-        return { key: nutriKey, text, d: distance(normalizedSearch, text) };
+        return {
+          key: nutriKey,
+          text,
+          d: distance(normalizedSearch, text),
+        };
       })
       .sort((a, b) => a.d - b.d)
       .slice(0, 5);

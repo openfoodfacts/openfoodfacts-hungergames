@@ -292,12 +292,62 @@
         ],
         "nutriment_vitamin-b6": [
             "vitamine b6"
-        ],
-        "nutriment_vitamin": [
-            "vitamine"
         ]
     },
     "en": {
+        "nutriment_alcohol : % vol of alcohol": [
+            "alcohol"
+        ],
+        "nutriment_vitamin-e": [
+            "Vitamin E"
+        ],
+        "nutriment_vitamin-b1": [
+            "Vitamin B1",
+            "B1",
+            "Thiamin"
+        ],
+        "nutriment_vitamin-b2": [
+            "Vitamin B2",
+            "B2",
+            "Riboflavin"
+        ],
+        "nutriment_vitamin-pp": [
+            "Vitamin B3",
+            "B3",
+            "Vitamin PP",
+            "PP",
+            "Niacin"
+        ],
+        "nutriment_vitamin-b9": [
+            "Vitamin B9",
+            "B9",
+            "Folic acid"
+        ],
+        "nutriment_vitamin-b12": [
+            "Vitamin B12",
+            "B12",
+            "cobalamin"
+        ],
+        "nutriment_vitamin-a": [
+            "vitamin a"
+        ],
+        "nutriment_vitamin-d": [
+            "vitamin d"
+        ],
+        "nutriment_vitamin-k": [
+            "vitamin k"
+        ],
+        "nutriment_vitamin-c": [
+            "vitamin c",
+            "ascorbic acid"
+        ],
+        "nutriment_vitamin-b6": [
+            "vitamin b6",
+            "Pyridoxin"
+        ],
+        "nutriment_ph : pH (no unit)": [
+            "pH"
+        ],
         "nutriment_energy": [
             "energy"
         ],
@@ -362,48 +412,62 @@
             "sugar alcohols polyols "
         ],
         "nutriment_butyric-acid": [
-            "butyric acid"
+            "butyric acid",
+            "butyric"
         ],
         "nutriment_caproic-acid": [
-            "caproic acid"
+            "caproic acid",
+            "caproic"
         ],
         "nutriment_caprylic-acid": [
-            "caprylic acid"
+            "caprylic acid",
+            "caprylic"
         ],
         "nutriment_capric-acid": [
-            "capric acid"
+            "capric acid",
+            "capric"
         ],
         "nutriment_lauric-acid": [
-            "lauric acid"
+            "lauric acid",
+            "lauric"
         ],
         "nutriment_myristic-acid": [
-            "myristic acid"
+            "myristic acid",
+            "myristic"
         ],
         "nutriment_palmitic-acid": [
-            "palmitic acid"
+            "palmitic acid",
+            "palmitic"
         ],
         "nutriment_stearic-acid": [
             "acide stearique",
             "stearique",
-            "stearic acid"
+            "stearic acid",
+            "stearic"
         ],
         "nutriment_arachidic-acid": [
-            "arachidic acid"
+            "arachidic acid",
+            "arachidic"
         ],
         "nutriment_behenic-acid": [
-            "behenic acid"
+            "behenic acid",
+            "behenic"
         ],
         "nutriment_lignoceric-acid": [
-            "lignoceric acid"
+            "lignoceric acid",
+            "lignoceric"
         ],
         "nutriment_cerotic-acid": [
-            "cerotic acid"
+            "cerotic acid",
+            "cerotic"
         ],
         "nutriment_montanic-acid": [
-            "montanic acid"
+            "montanic acid",
+            "montanic"
         ],
         "nutriment_melissic-acid": [
-            "melissic acid"
+            "melissic acid",
+            "melissic"
         ],
         "nutriment_monounsaturated-fat": [
             "monounsaturated fat"
@@ -416,51 +480,64 @@
             "omega 3"
         ],
         "nutriment_alpha-linolenic-acid": [
-            "alpha linolenic acid"
+            "alpha linolenic acid",
+            "alpha linolenic"
         ],
         "nutriment_eicosapentaenoic-acid": [
-            "eicosapentaenoic acid"
+            "eicosapentaenoic acid",
+            "eicosapentaenoic"
         ],
         "nutriment_docosahexaenoic-acid": [
-            "docosahexaenoic acid"
+            "docosahexaenoic acid",
+            "docosahexaenoic"
         ],
         "nutriment_omega-6-fat": [
             "omega 6 fatty acids",
             "omega 6"
         ],
         "nutriment_linoleic-acid": [
-            "linoleic acid"
+            "linoleic acid",
+            "linoleic"
         ],
         "nutriment_arachidonic-acid": [
-            "arachidonic acid"
+            "arachidonic acid",
+            "arachidonic"
         ],
         "nutriment_gamma-linolenic-acid": [
-            "gamma linolenic acid"
+            "gamma linolenic acid",
+            "gamma linolenic"
         ],
         "nutriment_dihomo-gamma-linolenic-acid": [
-            "dihomo gamma linolenic acid"
+            "dihomo gamma linolenic acid",
+            "dihomo gamma linolenic"
         ],
         "nutriment_omega-9-fat": [
             "omega 9 fatty acids",
             "omega 9"
         ],
         "nutriment_oleic-acid": [
-            "oleic acid"
+            "oleic acid",
+            "oleic"
         ],
         "nutriment_elaidic-acid": [
-            "elaidic acid"
+            "elaidic acid",
+            "elaidic"
         ],
         "nutriment_gondoic-acid": [
-            "gondoic acid"
+            "gondoic acid",
+            "gondoic"
         ],
         "nutriment_mead-acid": [
-            "mead acid"
+            "mead acid",
+            "mead"
         ],
         "nutriment_erucic-acid": [
-            "erucic acid"
+            "erucic acid",
+            "erucic"
         ],
         "nutriment_nervonic-acid": [
-            "nervonic acid"
+            "nervonic acid",
+            "nervonic"
         ],
         "nutriment_trans-fat": [
             "trans fat"
@@ -477,7 +554,8 @@
             "biotin"
         ],
         "nutriment_pantothenic-acid": [
-            "pantothenic acid"
+            "pantothenic acid",
+            "pantothenic"
         ],
         "nutriment_silica": [
             "silica"
@@ -532,24 +610,6 @@
         ],
         "nutriment_taurine": [
             "taurine"
-        ],
-        "nutriment_vitamin-a": [
-            "vitamin a"
-        ],
-        "nutriment_vitamin-d": [
-            "vitamin d"
-        ],
-        "nutriment_vitamin-k": [
-            "vitamin k"
-        ],
-        "nutriment_vitamin-c": [
-            "vitamin c"
-        ],
-        "nutriment_vitamin-b6": [
-            "vitamin b6"
-        ],
-        "nutriment_vitamin": [
-            "vitamin"
         ]
     },
     "es": {
@@ -827,9 +887,6 @@
         ],
         "nutriment_vitamin-b6": [
             "vitamina b6"
-        ],
-        "nutriment_vitamin": [
-            "vitamina"
         ]
     },
     "de": {
@@ -1080,9 +1137,6 @@
         ],
         "nutriment_vitamin-b6": [
             "vitamin b6"
-        ],
-        "nutriment_vitamin": [
-            "vitamin"
         ]
     },
     "pt": {
@@ -1326,9 +1380,6 @@
         ],
         "nutriment_vitamin-b6": [
             "vitamina b6"
-        ],
-        "nutriment_vitamin": [
-            "vitamina"
         ]
     },
     "it": {
@@ -1563,9 +1614,6 @@
         ],
         "nutriment_vitamin-b6": [
             "vitamina b6"
-        ],
-        "nutriment_vitamin": [
-            "vitamina"
         ]
     }
 }
