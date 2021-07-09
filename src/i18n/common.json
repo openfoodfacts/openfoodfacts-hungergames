@@ -158,6 +158,17 @@
       "nutriment_fiber": "fibres",
       "nutriment_salt": "sel",
       "nutriment_sodium": "sodium"
+    },
+    "history": {
+      "title": "Session History",
+      "status": "status",
+      "product name": "product name",
+      "view": "view page",
+      "edit": "edit page",
+      "SKIP": "ignored",
+      "VALIDATED": "edited",
+      "close": "close",
+      "open": "open history"
     }
   }
 }

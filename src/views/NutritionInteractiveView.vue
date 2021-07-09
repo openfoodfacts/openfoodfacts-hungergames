@@ -2,23 +2,28 @@
   <div class="ui grid stackable">
     <div class="eight wide column centered">
       <!--four wide column centered-->
-      <div>
-        <select v-model="country">
-          <option value="">country</option>
-          <option>Australia</option>
-          <option>Austria</option>
-          <option>Belgium</option>
-          <option>Denmark</option>
-          <option>France</option>
-          <option>Germany</option>
-          <option>Greece</option>
-          <option>Italy</option>
-          <option>Sweden</option>
-          <option>Switzerland</option>
-          <option>United Kingdom</option>
-          <option>United States</option>
-        </select>
-        <input v-model="contributor" placeholder="contributor" />
+      <div class="filters">
+        <div>
+          <select v-model="country">
+            <option value="">country</option>
+            <option>Australia</option>
+            <option>Austria</option>
+            <option>Belgium</option>
+            <option>Denmark</option>
+            <option>France</option>
+            <option>Germany</option>
+            <option>Greece</option>
+            <option>Italy</option>
+            <option>Sweden</option>
+            <option>Switzerland</option>
+            <option>United Kingdom</option>
+            <option>United States</option>
+          </select>
+          <input v-model="contributor" placeholder="contributor" />
+        </div>
+        <button @click="toggleHistoryIsOpen">
+          {{ $t("nutrition.history.open") }}
+        </button>
       </div>
       <div v-if="bufferIsEmpty">
         <p v-if="loading">Loading ...</p>
@@ -161,6 +166,52 @@
         :selectLine="step === 4"
       />
     </div>
+    <sui-modal v-model="historyIsOpen">
+      <sui-modal-header>{{ $t("nutrition.history.title") }}</sui-modal-header>
+      <sui-modal-content scrolling>
+        <table class="ui celled table">
+          <thead>
+            <tr>
+              <th>{{ $t("nutrition.history.status") }}</th>
+              <th>{{ $t("nutrition.history.product name") }}</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="product in history"
+              :key="product.code"
+              :class="{
+                positive: product.status === 'VALIDATED',
+                negative: product.status === 'SKIP',
+              }"
+            >
+              <td>
+                {{ $t(`nutrition.history.${product.status}`) }}
+              </td>
+              <td>{{ product.name }}</td>
+
+              <td>
+                <a target="_blank" :href="getProductUrl(product.code)">{{
+                  $t("nutrition.history.view")
+                }}</a>
+              </td>
+              <td>
+                <a target="_blank" :href="getProductEditUrl(product.code)">{{
+                  $t("nutrition.history.edit")
+                }}</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </sui-modal-content>
+      <sui-modal-actions>
+        <sui-button positive @click.native="toggleHistoryIsOpen">
+          {{ $t("nutrition.history.close") }}
+        </sui-button>
+      </sui-modal-actions>
+    </sui-modal>
   </div>
 </template>
 
@@ -223,6 +274,8 @@ export default {
       nutrimentToFillIndex: 0,
       country: "",
       contributor: "",
+      history: [],
+      historyIsOpen: false,
     };
   },
   computed: {
@@ -553,6 +606,15 @@ export default {
     isInvalid(value) {
       return !value.match("^((<|>|<=|>=|~|.)*[0-9]+| *)$");
     },
+    getProductUrl(code) {
+      return offService.getProductUrl(code);
+    },
+    getProductEditUrl(code) {
+      return offService.getProductEditUrl(code);
+    },
+    toggleHistoryIsOpen() {
+      this.historyIsOpen = !this.historyIsOpen;
+    },
     changeCropCoordinate({ coordinates, image }) {
       this.imageZoomOptions = {
         ...this.imageZoomOptions,
@@ -589,6 +651,11 @@ export default {
       this.loading = false;
     },
     skipProduct() {
+      this.history.push({
+        code: this.productCode,
+        name: this.productName,
+        status: "SKIP",
+      });
       this.productBuffer.shift();
     },
     getBasisTextForAPI() {
@@ -601,6 +668,11 @@ export default {
       return "";
     },
     validate() {
+      this.history.push({
+        code: this.productCode,
+        name: this.productName,
+        status: "VALIDATED",
+      });
       const withData = Object.keys(this.currentProductData)
         .filter(
           (nutrimentId) =>
@@ -649,7 +721,7 @@ export default {
       //   code: this.productCode,
       //   true_value: correctedData,
       // });
-      this.skipProduct();
+      this.productBuffer.shift();
     },
     resetProductData() {
       this.currentProductData = {};
@@ -839,5 +911,17 @@ button.annotate {
 .nutrimentName {
   color: blue;
   font-size: 1.5rem;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+}
+.filters > div {
+  display: flex;
+  flex-direction: column;
+}
+.filters input {
+  margin-top: 0.5rem;
 }
 </style>
