@@ -63,12 +63,14 @@ export default {
     return `https://off-nutri-test.azurewebsites.net/api/get-nutri-table?name=${img}%7C(${x0},${y0},${x1},${y1})`;
   },
 
-  getNutritionToFillUrl(pageNumber, country, creator, code = false) {
+  getNutritionToFillUrl(page, country, creator, code = false) {
     if (code) {
       return `https://world.openfoodfacts.org/api/v0/product/${code}.json?fields=code,states,lang,image_nutrition_url,product_name,nutriments,images,creator,countries`;
     }
     // TODO : must be able to navigate throw pages of the API
-    return `${OFF_SEARCH}?json=true&fields=code,states,lang,image_nutrition_url,product_name,nutriments,images,creator,countries&action=process&sort_by=last_modified_t&tagtype_0=states&tag_contains_0=contains&tag_0=photos-validated&tagtype_1=states&tag_contains_1=contains&tag_1=nutrition-facts-to-be-completed${
+    return `${OFF_SEARCH}?json=true&${
+      page ? `page=${page}&` : ""
+    }fields=code,states,lang,image_nutrition_url,product_name,nutriments,images,creator,countries&action=process&sort_by=last_modified_t&tagtype_0=states&tag_contains_0=contains&tag_0=photos-validated&tagtype_1=states&tag_contains_1=contains&tag_1=nutrition-facts-to-be-completed${
       country
         ? `&tagtype_2=countries&tag_contains_2=contains&tag_2=${country}`
         : ""

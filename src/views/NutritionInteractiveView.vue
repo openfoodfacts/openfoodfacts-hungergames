@@ -226,27 +226,21 @@ import "vue-advanced-cropper/dist/style.css";
 import InteractiveImage from "../components/InteractiveImage";
 import NutritionTable from "../components/NutritionTable";
 
-const getProducts = async (
-  nbOfPages,
-  country = "",
-  contributor = "",
-  code = ""
-) => {
-  const randomPage = 1 + Math.floor(Math.random() * nbOfPages);
+const getProducts = async (page, country = "", contributor = "", code = "") => {
   if (code) {
     const {
       data: { product },
     } = await axios(
-      offService.getNutritionToFillUrl(randomPage, country, contributor, code)
+      offService.getNutritionToFillUrl(page, country, contributor, code)
     );
     return [product];
   } else {
     const {
-      data: { products },
+      data: { products, count, page_size },
     } = await axios(
-      offService.getNutritionToFillUrl(randomPage, country, contributor)
+      offService.getNutritionToFillUrl(page, country, contributor)
     );
-    return products;
+    return [products, Math.ceil(count / page_size)];
   }
 };
 
@@ -276,6 +270,7 @@ export default {
       contributor: "",
       history: [],
       historyIsOpen: false,
+      nextPage: 1,
     };
   },
   computed: {
@@ -639,15 +634,28 @@ export default {
         this.loading = false;
       } else {
         this.loading = true;
-        const newProducts = await getProducts(100, country, contributor);
-        this.productBuffer = this.productBuffer.concat(newProducts);
+        const [newProducts, nbPages] = await getProducts(
+          this.nextPage,
+          country,
+          contributor
+        );
+        this.nextPage = 1 + Math.floor(nbPages * Math.random());
+        const seenCodes = this.history.map(({ code: c }) => c);
+
+        this.productBuffer = this.productBuffer.concat(
+          newProducts.filter(({ code }) => !seenCodes.includes(code))
+        );
         this.loading = false;
       }
     },
     replaceProducts: async function(country, contributor) {
       this.loading = true;
-      const newProducts = await getProducts(1, country, contributor);
-      this.productBuffer = [...newProducts];
+      const [newProducts, nbPages] = await getProducts(1, country, contributor);
+      this.nextPage = 1 + Math.floor(nbPages * Math.random());
+      const seenCodes = this.history.map(({ code: c }) => c);
+      this.productBuffer = [...newProducts].filter(
+        ({ code }) => !seenCodes.includes(code)
+      );
       this.loading = false;
     },
     skipProduct() {
