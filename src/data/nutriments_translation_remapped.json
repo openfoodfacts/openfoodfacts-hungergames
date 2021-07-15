@@ -146,7 +146,8 @@
         ],
         "nutriment_alpha-linolenic-acid": [
             "acide alpha linolenique",
-            "alpha linolenique"
+            "alpha linolenique",
+            "acide alpha-linolenique"
         ],
         "nutriment_eicosapentaenoic-acid": [
             "acide eicosapentaenoique",
@@ -169,11 +170,13 @@
         ],
         "nutriment_gamma-linolenic-acid": [
             "acide gamma linolenique",
-            "gamma linolenique"
+            "gamma linolenique",
+            "acide gamma-linolenique"
         ],
         "nutriment_dihomo-gamma-linolenic-acid": [
             "acide dihomo gamma linolenique",
-            "dihomo gamma linolenique"
+            "dihomo gamma linolenique",
+            "acide dihomo-gamma-linolenique"
         ],
         "nutriment_omega-9-fat": [
             "acides gras omega 9"
@@ -292,10 +295,16 @@
         ],
         "nutriment_vitamin-b6": [
             "vitamine b6"
+        ],
+        "nutriment_alcohol": [
+            "alcool"
+        ],
+        "nutriment_ph": [
+            "ph"
         ]
     },
     "en": {
-        "nutriment_alcohol : % vol of alcohol": [
+        "nutriment_alcohol": [
             "alcohol"
         ],
         "nutriment_vitamin-e": [
@@ -345,8 +354,9 @@
             "vitamin b6",
             "Pyridoxin"
         ],
-        "nutriment_ph : pH (no unit)": [
-            "pH"
+        "nutriment_ph": [
+            "pH",
+            "ph"
         ],
         "nutriment_energy": [
             "energy"
@@ -481,7 +491,8 @@
         ],
         "nutriment_alpha-linolenic-acid": [
             "alpha linolenic acid",
-            "alpha linolenic"
+            "alpha linolenic",
+            "alpha-linolenic acid"
         ],
         "nutriment_eicosapentaenoic-acid": [
             "eicosapentaenoic acid",
@@ -505,11 +516,13 @@
         ],
         "nutriment_gamma-linolenic-acid": [
             "gamma linolenic acid",
-            "gamma linolenic"
+            "gamma linolenic",
+            "gamma-linolenic acid"
         ],
         "nutriment_dihomo-gamma-linolenic-acid": [
             "dihomo gamma linolenic acid",
-            "dihomo gamma linolenic"
+            "dihomo gamma linolenic",
+            "dihomo-gamma-linolenic acid"
         ],
         "nutriment_omega-9-fat": [
             "omega 9 fatty acids",
@@ -755,7 +768,8 @@
             "omega 3"
         ],
         "nutriment_alpha-linolenic-acid": [
-            "acido alfa linolenico"
+            "acido alfa linolenico",
+            "acido alfa-linolenico"
         ],
         "nutriment_eicosapentaenoic-acid": [
             "acido eicosapentaenoico"
@@ -774,10 +788,12 @@
             "acido araquidonico"
         ],
         "nutriment_gamma-linolenic-acid": [
-            "acido gamma linolenico"
+            "acido gamma linolenico",
+            "acido gamma-linolenico"
         ],
         "nutriment_dihomo-gamma-linolenic-acid": [
-            "acido dihomo gamma linolenico"
+            "acido dihomo gamma linolenico",
+            "acido dihomo-gamma-linolenico"
         ],
         "nutriment_omega-9-fat": [
             "acidos grasos omega 9",
@@ -887,6 +903,12 @@
         ],
         "nutriment_vitamin-b6": [
             "vitamina b6"
+        ],
+        "nutriment_alcohol": [
+            "alcohol"
+        ],
+        "nutriment_ph": [
+            "ph"
         ]
     },
     "de": {
@@ -913,7 +935,8 @@
             "eiwei",
             "eiweis",
             "eiweiss",
-            "eiwei "
+            "eiwei ",
+            "eiwei\u00df"
         ],
         "nutriment_salt": [
             "speisesalz",
@@ -1008,7 +1031,8 @@
             "omega 3"
         ],
         "nutriment_alpha-linolenic-acid": [
-            "alpha linolensaure"
+            "alpha linolensaure",
+            "alpha-linolensaure"
         ],
         "nutriment_eicosapentaenoic-acid": [
             "eicosapentaensaure"
@@ -1027,10 +1051,12 @@
             "arachidonsaeure"
         ],
         "nutriment_gamma-linolenic-acid": [
-            "gamma linolensaure"
+            "gamma linolensaure",
+            "gamma-linolensaure"
         ],
         "nutriment_dihomo-gamma-linolenic-acid": [
-            "dihomo gamma linolsaure"
+            "dihomo gamma linolsaure",
+            "dihomo-gamma-linolsaure"
         ],
         "nutriment_omega-9-fat": [
             "omega 9 fettsauren",
@@ -1046,7 +1072,8 @@
             "gondosaure"
         ],
         "nutriment_mead-acid": [
-            "mead sche saure"
+            "mead sche saure",
+            "mead'sche saure"
         ],
         "nutriment_erucic-acid": [
             "erucasaure"
@@ -1055,7 +1082,8 @@
             "nervonsaure"
         ],
         "nutriment_trans-fat": [
-            "trans fettsauren"
+            "trans fettsauren",
+            "trans-fettsauren"
         ],
         "nutriment_cholesterol": [
             "cholesterin"
@@ -1137,6 +1165,12 @@
         ],
         "nutriment_vitamin-b6": [
             "vitamin b6"
+        ],
+        "nutriment_alcohol": [
+            "alkohol"
+        ],
+        "nutriment_ph": [
+            "ph-wert"
         ]
     },
     "pt": {
@@ -1246,19 +1280,22 @@
         ],
         "nutriment_polyunsaturated-fat": [
             "gorduras poli insaturadas",
-            "poli insaturada"
+            "poli insaturada",
+            "gorduras poli-insaturadas"
         ],
         "nutriment_omega-3-fat": [
             "acidos graxos omega 3"
         ],
         "nutriment_alpha-linolenic-acid": [
-            "acido alfa linolenico"
+            "acido alfa linolenico",
+            "acido alfa-linolenico"
         ],
         "nutriment_eicosapentaenoic-acid": [
             "acido eicosapentaenoico"
         ],
         "nutriment_docosahexaenoic-acid": [
-            "acido docosa hexaenoico"
+            "acido docosa hexaenoico",
+            "acido docosa-hexaenoico"
         ],
         "nutriment_omega-6-fat": [
             "acidos graxos omega 6"
@@ -1270,10 +1307,12 @@
             "acido araquidonico"
         ],
         "nutriment_gamma-linolenic-acid": [
-            "acido gama linolenico"
+            "acido gama linolenico",
+            "acido gama-linolenico"
         ],
         "nutriment_dihomo-gamma-linolenic-acid": [
-            "acido dihomo gama linolenico"
+            "acido dihomo gama linolenico",
+            "acido dihomo-gama-linolenico"
         ],
         "nutriment_omega-9-fat": [
             "acidos graxos omega 9"
@@ -1380,6 +1419,12 @@
         ],
         "nutriment_vitamin-b6": [
             "vitamina b6"
+        ],
+        "nutriment_alcohol": [
+            "alcool"
+        ],
+        "nutriment_ph": [
+            "ph"
         ]
     },
     "it": {
@@ -1492,7 +1537,8 @@
             "acidi grassi omega 3"
         ],
         "nutriment_alpha-linolenic-acid": [
-            "acido alfa linoleico"
+            "acido alfa linoleico",
+            "acido alfa-linoleico"
         ],
         "nutriment_eicosapentaenoic-acid": [
             "acido eicosapentenoico"
@@ -1510,10 +1556,12 @@
             "acido arachidonico"
         ],
         "nutriment_gamma-linolenic-acid": [
-            "acido gamma linolenico"
+            "acido gamma linolenico",
+            "acido gamma-linolenico"
         ],
         "nutriment_dihomo-gamma-linolenic-acid": [
-            "acido linolenico diomo gamma"
+            "acido linolenico diomo gamma",
+            "acido linolenico diomo-gamma"
         ],
         "nutriment_omega-9-fat": [
             "acidi grassi omega 9"
@@ -1614,6 +1662,12 @@
         ],
         "nutriment_vitamin-b6": [
             "vitamina b6"
+        ],
+        "nutriment_alcohol": [
+            "alcol"
+        ],
+        "nutriment_ph": [
+            "ph"
         ]
     }
 }

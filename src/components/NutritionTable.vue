@@ -27,8 +27,12 @@ export default {
           return ["kcal"];
         case "nutriment_energy-kj":
           return ["kJ"];
+        case "nutriment_alcohol":
+          return [];
+        case "nutriment_ph":
+          return [];
         default:
-          return ["g", "mg"];
+          return ["g", "mg", "µg", "IU"];
         // { text: "g", value: "g" },
         // { text: "mg", value: "mg" },
       }
