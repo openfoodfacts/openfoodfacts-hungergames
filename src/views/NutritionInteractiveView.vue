@@ -144,7 +144,13 @@
           </button>
         </div>
         <div class="line4">
-          <button class="ui button negative annotate" @click="skipProduct()">
+          <button
+            class="ui button negative annotate"
+            @click="unselectPicture()"
+          >
+            {{ $t("nutrition.unselect_picture") }}
+          </button>
+          <button class="ui button annotate" @click="skipProduct()">
             {{ $t("nutrition.skip") }}
           </button>
           <button
@@ -186,7 +192,8 @@
               :key="product.code"
               :class="{
                 positive: product.status === 'VALIDATED',
-                negative: product.status === 'SKIP',
+                negative:
+                  product.status === 'SKIP' || product.status === 'WRONG_IMAGE',
               }"
             >
               <td>
@@ -660,11 +667,24 @@ export default {
       );
       this.loading = false;
     },
-    skipProduct() {
+    unselectPicture: function() {
+      axios.post(
+        `https://world.openfoodfacts.org/cgi/product_image_unselect.pl?`,
+        new URLSearchParams(
+          `code=${this.productBuffer[0]["code"]}&id=nutrition${
+            this.productBuffer[0].image_nutrition_url
+              .split("nutrition")[1]
+              .split(".")[0]
+          }`
+        )
+      );
+      this.skipProduct("WRONG_IMAGE");
+    },
+    skipProduct(status = "SKIP") {
       this.history.push({
         code: this.productCode,
         name: this.productName,
-        status: "SKIP",
+        status: status,
       });
       this.productBuffer.shift();
     },

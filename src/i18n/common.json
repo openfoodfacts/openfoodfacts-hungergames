@@ -144,6 +144,7 @@
     "prev": "Prev Step",
     "skip": "Skip this product",
     "validate": "Validate Table",
+    "unselect_picture": "No nutrition info",
     "basis": "données pour: ",
     "servingSize": "serving size",
     "value": "value",
@@ -167,6 +168,7 @@
       "edit": "edit page",
       "SKIP": "ignored",
       "VALIDATED": "edited",
+      "WRONG_IMAGE": "unselected picture",
       "close": "close",
       "open": "open history"
     }
