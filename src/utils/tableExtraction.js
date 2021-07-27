@@ -331,11 +331,34 @@ function getValues(filteredBoxes, linkBoxes) {
   return values;
 }
 
-function filterBoxes(ocrData, { minX, minY, maxX, maxY }) {
+function filterBoxes(
+  ocrData,
+  { minX, minY, maxX, maxY, angle, width, height }
+) {
   // return the list of the boxes inside the rectangle
   // and provide a tree of which box is one the right of which box and close enough the be part of an expression.
-
+  while (angle < 0) {
+    angle += 360;
+  }
   const filteredBoxes = ocrData.boxes
+    .map((box) => ({
+      ...box,
+      boundingPoly: {
+        ...box.boundingPoly,
+        vertices: box.boundingPoly.vertices.map(({ x, y }) => {
+          switch (angle % 360) {
+            case 90:
+              return { x: height - y, y: x };
+            case 180:
+              return { x: width - x, y: height - y };
+            case 270:
+              return { x: y, y: width - x };
+            default:
+              return { x, y };
+          }
+        }),
+      },
+    }))
     .filter((box) => boxIsInside(box, { minX, minY, maxX, maxY }))
     .map((box) => addGlobalBox(box))
     .sort((a, b) => a.minY - b.minY);
@@ -402,7 +425,20 @@ const ocr = {
       boxes: textAnnotations.slice(1),
     };
   },
-  getData(ocrData, { minX, minY, maxX, maxY }) {
+  getData(
+    ocrData,
+    {
+      minX,
+      minY,
+      maxX,
+      maxY,
+      image: {
+        width,
+        height,
+        transforms: { rotate: angle = 0 },
+      },
+    }
+  ) {
     // recover all the information from OCR and the cropping
 
     const { filteredBoxes, linkBoxes } = filterBoxes(ocrData, {
@@ -410,6 +446,9 @@ const ocr = {
       minY,
       maxX,
       maxY,
+      angle,
+      width,
+      height,
     });
     filteredBoxes.forEach((x, i) => {
       filteredBoxes[i] = { id: i, ...x };

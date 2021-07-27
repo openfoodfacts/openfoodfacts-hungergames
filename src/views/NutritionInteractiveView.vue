@@ -45,12 +45,21 @@
         <template v-if="step == 0">
           <cropper
             class="imageDisplay"
+            ref="cropper"
             :src="imageURL"
             :canvas="false"
             :checkOrientation="false"
             :crossOrigine="false"
             @change="changeCropCoordinate"
           />
+          <div style="text-align: center">
+            <button @click="rotateLeft" class="ui icon button">
+              <i class="undo icon"></i>
+            </button>
+            <button @click="rotateRight" class="ui icon button">
+              <i class="redo icon"></i>
+            </button>
+          </div>
         </template>
         <template v-else>
           <div
@@ -606,6 +615,12 @@ export default {
     },
     setNutrimentValueIndex(index) {
       this.nutrimentToFillIndex = index;
+    },
+    rotateLeft() {
+      this.$refs.cropper.rotate(-90);
+    },
+    rotateRight() {
+      this.$refs.cropper.rotate(90);
     },
     isInvalid(value) {
       return !value.match("^((<|>|<=|>=|~|.)*[0-9]+| *)$");

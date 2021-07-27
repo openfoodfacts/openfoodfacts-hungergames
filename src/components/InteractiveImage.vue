@@ -151,6 +151,44 @@ export default {
         return {};
       }
     },
+    svgStyle() {
+      // the difference with the image style is the rotation
+      // box coordinates are already rotated, so the svg does not need to be rotated
+      if (this.coordinates && this.image) {
+        const coefficient = this.coordinates.width / this.size.width;
+        const transforms = {
+          flip: {
+            horizontal: false,
+            vertical: false,
+          },
+          rotate: 0,
+          ...this.image.transforms,
+          scaleX: 1 / coefficient,
+          scaleY: 1 / coefficient,
+        };
+
+        const { width, height } = rotateSize(this.imageSize, transforms.rotate);
+
+        const result = {
+          width: `${width}px`,
+          height: `${height}px`,
+          left: "0px",
+          top: "0px",
+        };
+        result.transformOrigin = "0 0";
+        result.transform =
+          `translate(
+          ${-this.coordinates.left * transforms.scaleX}px,${-this.coordinates
+            .top * transforms.scaleY}px) ` +
+          getStyleTransforms({ ...transforms, rotate: 0 });
+        if (this.transitions && this.transitions.enabled) {
+          result.transition = `${this.transitions.time}ms ${this.transitions.timingFunction}`;
+        }
+        return result;
+      } else {
+        return {};
+      }
+    },
     size() {
       return {
         width: this.width || this.calculatedSize.width,
@@ -296,7 +334,7 @@ export default {
         />
         <svg
           class="image"
-          :style="imageStyle"
+          :style="svgStyle"
           :width="imageWidth"
           :height="imageHeight"
         >
@@ -306,7 +344,6 @@ export default {
             :width="imageWidth"
             :height="imageHeight"
             class="nutriHighlight"
-            @click="log($event)"
           />
           <g v-for="(data, j) in clickableBoxes" :key="j">
             <path
