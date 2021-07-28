@@ -3,7 +3,7 @@
     <div class="eight wide column centered">
       <!--four wide column centered-->
       <div class="filters">
-        <div>
+        <div class="column">
           <select v-model="country">
             <option value="">country</option>
             <option>Australia</option>
@@ -21,6 +21,25 @@
           </select>
           <input v-model="contributor" placeholder="contributor" />
         </div>
+        <div>
+          <button
+            class="ui button"
+            :class="{ positive: category === 'baby-milks' }"
+            @click="setCategory('baby-milks')"
+          >
+            baby-milks
+          </button>
+          <button
+            class="ui button"
+            :class="{ positive: category === 'waters' }"
+            @click="setCategory('waters')"
+          >
+            waters
+          </button>
+        </div>
+        <button @click="search">
+          {{ $t("nutrition.search") }}
+        </button>
         <button @click="toggleHistoryIsOpen">
           {{ $t("nutrition.history.open") }}
         </button>
@@ -244,19 +263,36 @@ import "vue-advanced-cropper/dist/style.css";
 import InteractiveImage from "../components/InteractiveImage";
 import NutritionTable from "../components/NutritionTable";
 
-const getProducts = async (page, country = "", contributor = "", code = "") => {
+const getProducts = async (
+  page,
+  country = "",
+  contributor = "",
+  category = "",
+  code = ""
+) => {
   if (code) {
     const {
       data: { product },
     } = await axios(
-      offService.getNutritionToFillUrl(page, country, contributor, code)
+      offService.getNutritionToFillUrl({
+        page,
+        country,
+        category,
+        creator: contributor,
+        code,
+      })
     );
     return [product];
   } else {
     const {
       data: { products, count, page_size },
     } = await axios(
-      offService.getNutritionToFillUrl(page, country, contributor)
+      offService.getNutritionToFillUrl({
+        page,
+        country,
+        category,
+        creator: contributor,
+      })
     );
     return [products, Math.ceil(count / page_size)];
   }
@@ -286,6 +322,7 @@ export default {
       nutrimentToFillIndex: 0,
       country: "",
       contributor: "",
+      category: "",
       history: [],
       historyIsOpen: false,
       nextPage: 1,
@@ -622,6 +659,13 @@ export default {
     rotateRight() {
       this.$refs.cropper.rotate(90);
     },
+    setCategory(cat) {
+      if (this.category === cat) {
+        this.category = "";
+      } else {
+        this.category = cat;
+      }
+    },
     isInvalid(value) {
       return !value.match("^((<|>|<=|>=|~|.)*[0-9]+| *)$");
     },
@@ -645,13 +689,14 @@ export default {
         maxY: coordinates.top + coordinates.height,
       };
     },
-    addProducts: async function(country, contributor) {
+    addProducts: async function(country, contributor, category) {
       if (this.$route.params.code) {
         this.loading = true;
         const newProducts = await getProducts(
           1,
           country,
           contributor,
+          category,
           this.$route.params.code
         );
         this.productBuffer = [...newProducts];
@@ -661,7 +706,8 @@ export default {
         const [newProducts, nbPages] = await getProducts(
           this.nextPage,
           country,
-          contributor
+          contributor,
+          category
         );
         this.nextPage = 1 + Math.floor(nbPages * Math.random());
         const seenCodes = this.history.map(({ code: c }) => c);
@@ -672,9 +718,14 @@ export default {
         this.loading = false;
       }
     },
-    replaceProducts: async function(country, contributor) {
+    replaceProducts: async function(country, contributor, category) {
       this.loading = true;
-      const [newProducts, nbPages] = await getProducts(1, country, contributor);
+      const [newProducts, nbPages] = await getProducts(
+        1,
+        country,
+        contributor,
+        category
+      );
       this.nextPage = 1 + Math.floor(nbPages * Math.random());
       const seenCodes = this.history.map(({ code: c }) => c);
       this.productBuffer = [...newProducts].filter(
@@ -779,13 +830,16 @@ export default {
       this.nutritionPredictionIndex = 0;
       this.nutrimentToFillIndex = 0;
     },
+    search() {
+      this.replaceProducts(this.country, this.contributor, this.category);
+    },
   },
   watch: {
     productCode: function() {
       // watch when a new question is asked
       this.resetProductData();
       if (this.productBuffer.length <= 5 && !this.loading) {
-        this.addProducts(this.country, this.contributor);
+        this.addProducts(this.country, this.contributor, this.category);
       }
       if (
         this.productBuffer[0] &&
@@ -834,36 +888,6 @@ export default {
         this.nutrimentToFillIndex =
           this.nutrimentToFillIndex % this.nutriKeys.length || 0;
       }
-    },
-    country: function() {
-      const vm = this;
-      const currentCountry = this.country;
-      const currentContributor = this.contributor;
-      setTimeout(() => {
-        if (
-          currentCountry === vm.country &&
-          currentContributor === vm.contributor
-        ) {
-          this.replaceProducts(vm.country, vm.contributor);
-        } else {
-          console.log("change");
-        }
-      }, 500);
-    },
-    contributor: function() {
-      const vm = this;
-      const currentCountry = this.country;
-      const currentContributor = this.contributor;
-      setTimeout(() => {
-        if (
-          currentCountry === vm.country &&
-          currentContributor === vm.contributor
-        ) {
-          this.replaceProducts(vm.country, vm.contributor);
-        } else {
-          console.log("change");
-        }
-      }, 500);
     },
   },
   mounted: function() {
@@ -962,7 +986,7 @@ button.annotate {
   display: flex;
   justify-content: space-between;
 }
-.filters > div {
+.filters > .column {
   display: flex;
   flex-direction: column;
 }
