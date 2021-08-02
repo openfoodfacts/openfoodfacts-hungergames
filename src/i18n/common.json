@@ -29,7 +29,7 @@
     "manage": "Manage",
     "insights": "Insights",
     "nutritions": "Nutrition facts",
-    "settings": "@:settings.settings"
+    "settings": "Settings"
   },
   "insights": {
     "insights": "Insights",
@@ -135,7 +135,7 @@
       "selectValue": "select the nutritive value of: "
     },
     "steps": {
-      "1": "Cropp",
+      "1": "Crop",
       "2": "Special values",
       "3": "Nutriments Selection",
       "4": "Values Selection"
