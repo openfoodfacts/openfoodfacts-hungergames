@@ -56,29 +56,33 @@
             />
           </viewer>
           <div class="ui divider hidden"></div>
+
           <div>
             <button
               data-inverted
-              data-tooltip="Shortcut: n"
-              class="ui button red annotate"
+              data-tooltip="Shortcut: N"
+              class="ui big negative button annotate"
               @click="annotate(0)"
             >
+              <i class="trash icon"></i>
               {{ $t("questions.no") }}
             </button>
             <button
               data-inverted
-              data-tooltip="Shortcut: k"
-              class="ui button annotate"
+              data-tooltip="Shortcut: K"
+              class="ui big button annotate"
               @click="annotate(-1)"
             >
+              <i class="question icon"></i>
               {{ $t("questions.skip") }}
             </button>
             <button
               data-inverted
-              data-tooltip="Shortcut: o"
-              class="ui button green annotate"
+              data-tooltip="Shortcut: O"
+              class="ui big positive button annotate"
               @click="annotate(1)"
             >
+              <i class="check icon"></i>
               {{ $t("questions.yes") }}
             </button>
           </div>
