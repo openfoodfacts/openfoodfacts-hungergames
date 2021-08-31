@@ -4,20 +4,34 @@
       <sui-dropdown-menu>
         <template v-for="item in menu">
           <sui-dropdown-header v-if="!item.to" :key="item.label">
-            {{item.label}}
+            {{ item.label }}
           </sui-dropdown-header>
-          <sui-dropdown-divider v-if="!item.label" :key="item.label"/>
-          <router-link active-class="active" class="item" :to="item.to" :key="item.label" v-if="item.to">
-            {{item.label}}
+          <sui-dropdown-divider v-if="!item.label" :key="item.label" />
+          <router-link
+            active-class="active"
+            class="item"
+            :to="item.to"
+            :key="item.label"
+            v-if="item.to"
+          >
+            {{ item.label }}
           </router-link>
         </template>
       </sui-dropdown-menu>
     </sui-dropdown>
+
     <sui-menu-item class="item mobile hidden">
-      <img src="~/../assets/logo.png" >
+      <img src="~/../assets/logo.png" />
     </sui-menu-item>
-    <router-link v-for="item in menuItems" active-class="active" class="item mobile hidden" :to="item.to" :key='item.to'>
-      {{item.label}}
+
+    <router-link
+      v-for="item in menuItems"
+      active-class="active"
+      class="item mobile hidden"
+      :to="item.to"
+      :key="item.to"
+    >
+      {{ item.label }}
     </router-link>
 
     <sui-menu-menu position="right">
@@ -37,34 +51,34 @@ const intialSettings = localSettings.fetch();
 localSettings.update("tuto-done", true);
 
 export default {
-  data: function() {
+  data: function () {
     return {
-      menu : [
-        {label: this.$t('menu.games')},
-        {label: this.$t('menu.questions'), to:'/questions'},
-        {label: this.$t('menu.logos'), to:'/logos'},
+      menu: [
+        { label: this.$t("menu.games") },
+        { label: this.$t("menu.questions"), to: "/questions" },
+        { label: this.$t("menu.logos"), to: "/logos" },
         // {label: this.$t('menu.nutritions'), to:'/nutritions'},
         {},
-        {label: this.$t('menu.manage'), type: 'header'},
-        {label: this.$t('menu.insights'), to:'/insights'},
-        {label: this.$t('menu.settings'), to:'/settings'},
+        { label: this.$t("menu.manage"), type: "header" },
+        { label: this.$t("menu.insights"), to: "/insights" },
+        { label: this.$t("menu.settings"), to: "/settings" },
       ],
       helperIsOpen: !intialSettings["tuto-done"],
     };
   },
   components: { Helper },
   computed: {
-    menuItems: function() {
+    menuItems: function () {
       return this.menu.filter((item) => {
-        return item.to
-      })
-    }
+        return item.to;
+      });
+    },
   },
   methods: {
-    closeHelper: function() {
+    closeHelper: function () {
       this.helperIsOpen = false;
     },
-    openHelper: function() {
+    openHelper: function () {
       this.helperIsOpen = true;
     },
   },

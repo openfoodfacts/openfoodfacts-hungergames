@@ -1,13 +1,15 @@
 <template>
   <div>
     <sui-modal :open="open" v-on:changed="close">
-      <sui-modal-header>Help page</sui-modal-header>
+      <sui-modal-header> {{ $t("helper.title") }} </sui-modal-header>
+
       <sui-modal-content image>
         <sui-image
           wrapped
           :size="helpInformations[pageKey].imageSize || 'medium'"
           :src="helpInformations[pageKey].imgUrl"
         />
+
         <sui-modal-description>
           <sui-header>{{ helpInformations[pageKey].title }}</sui-header>
           <p
@@ -19,17 +21,23 @@
           </p>
         </sui-modal-description>
       </sui-modal-content>
+
       <sui-segment aligned="right">
         <sui-progress attached top :percent="pageRatio" color="green" />
-        <sui-button @click.native="prev">prev</sui-button>
+        <sui-button v-if="pageIndex > 0" @click.native="prev">
+          {{ $t("helper.previous") }}
+        </sui-button>
+
         <sui-button
           v-if="Object.keys(helpInformations).length > pageIndex + 1"
           primary
           @click.native="next"
-          >next</sui-button
         >
+          {{ $t("helper.next") }}
+        </sui-button>
+
         <sui-button v-else positive @click.native="close">
-          OK
+          {{ $t("helper.close") }}
         </sui-button>
       </sui-segment>
     </sui-modal>
@@ -37,7 +45,8 @@
 </template>
 
 <script>
-// potential image size (default is medium) : "mini" | "tiny" | "small" | "medium" | "large" | "big" | "huge" | "massive"
+// potential image size (default is medium) :
+// "mini" | "tiny" | "small" | "medium" | "large" | "big" | "huge" | "massive"
 const explanations = {
   welcome: {
     page1: {},
@@ -78,9 +87,12 @@ Object.keys(explanations).forEach((urlKey) => {
 
 const getHelpInformations = (currentPath, translatedExplanations) => {
   let currentPathKey = currentPath.slice(1);
+  console.debug(translatedExplanations);
+
   if (!(currentPathKey in translatedExplanations)) {
     currentPathKey = "welcome";
   }
+
   const translations = translatedExplanations[currentPathKey];
   const rep = {};
 
@@ -94,7 +106,7 @@ const getHelpInformations = (currentPath, translatedExplanations) => {
         : {}),
     };
   });
-
+  console.debug(rep);
   return rep;
 };
 
@@ -105,7 +117,7 @@ const getHelpInformations = (currentPath, translatedExplanations) => {
 export default {
   name: "IntroductionView",
   props: { open: Boolean },
-  data: function() {
+  data: function () {
     console.log(this.$t("helper"));
     return {
       pageIndex: 0,
@@ -125,7 +137,7 @@ export default {
     },
   },
   computed: {
-    pageRatio: function() {
+    pageRatio: function () {
       if (Object.keys(this.helpInformations).length === 1) {
         return 100;
       }
@@ -133,18 +145,18 @@ export default {
         100 * (this.pageIndex / (Object.keys(this.helpInformations).length - 1))
       );
     },
-    pageKey: function() {
+    pageKey: function () {
       return `page${this.pageIndex + 1}`;
     },
   },
   methods: {
-    close: function() {
+    close: function () {
       this.$emit("close-helper");
     },
-    prev: function() {
+    prev: function () {
       this.pageIndex = Math.max(0, this.pageIndex - 1);
     },
-    next: function() {
+    next: function () {
       this.pageIndex = Math.min(
         Object.keys(this.helpInformations).length - 1,
         this.pageIndex + 1

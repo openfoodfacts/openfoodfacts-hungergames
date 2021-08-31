@@ -88,5 +88,18 @@
     "settings": "Settings",
     "language": "Languages",
     "save": "Save"
+  },
+  "helper": {
+    "title": "Help page",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+
+
+    "welcome": {
+      "page1": [
+        "TODO"
+      ]
+    }
   }
 }
