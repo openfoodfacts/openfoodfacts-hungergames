@@ -29,7 +29,7 @@
     "manage": "Gestisci",
     "insights": "Approfondimenti",
     "nutritions": "Valori nutrizionali",
-    "settings": "@: settings.settings"
+    "settings": "@:settings.settings"
   },
   "insights": {
     "insights": "Approfondimenti",
