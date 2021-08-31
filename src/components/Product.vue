@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { localSettings } from "../settings";
 import { countryMap } from "../countries";
 import offService from "../off";
 
@@ -80,13 +81,14 @@ export default {
 
   data: function () {
     return {
+      hideImage: localSettings.fetch()["hideImage"] || false,
+
       productName: "",
       brands: "",
       ingredientsText: "",
       countriesTags: [],
       images: {},
       loaded: false,
-      hideImage: false,
       imageZoomOptions: {
         toolbar: {
           rotateLeft: 1,
@@ -108,6 +110,10 @@ export default {
         this.images = {};
         this.loaded = false;
       }
+    },
+
+    hideImage: function (value) {
+      localSettings.update("hideImage", value);
     },
   },
   methods: {
