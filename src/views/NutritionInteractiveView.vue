@@ -262,6 +262,7 @@ import { Cropper } from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
 import InteractiveImage from "../components/InteractiveImage";
 import NutritionTable from "../components/NutritionTable";
+const SEEN_CODES = "SEEN_CODES";
 
 const getProducts = async (
   page,
@@ -710,7 +711,7 @@ export default {
           category
         );
         this.nextPage = 1 + Math.floor(nbPages * Math.random());
-        const seenCodes = this.history.map(({ code: c }) => c);
+        const seenCodes = JSON.parse(localStorage.getItem(SEEN_CODES) || "[]");
 
         this.productBuffer = this.productBuffer.concat(
           newProducts.filter(({ code }) => !seenCodes.includes(code))
@@ -727,7 +728,7 @@ export default {
         category
       );
       this.nextPage = 1 + Math.floor(nbPages * Math.random());
-      const seenCodes = this.history.map(({ code: c }) => c);
+      const seenCodes = JSON.parse(localStorage.getItem(SEEN_CODES) || "[]");
       this.productBuffer = [...newProducts].filter(
         ({ code }) => !seenCodes.includes(code)
       );
@@ -752,6 +753,14 @@ export default {
         name: this.productName,
         status: status,
       });
+      const oldCodes = JSON.parse(
+        localStorage.getItem(SEEN_CODES) || "[]"
+      ).slice(0, 1000);
+      localStorage.setItem(
+        SEEN_CODES,
+        JSON.stringify([this.productCode, ...oldCodes])
+      );
+
       this.productBuffer.shift();
     },
     getBasisTextForAPI() {
@@ -769,6 +778,14 @@ export default {
         name: this.productName,
         status: "VALIDATED",
       });
+      const oldCodes = JSON.parse(
+        localStorage.getItem(SEEN_CODES) || "[]"
+      ).slice(0, 1000);
+      localStorage.setItem(
+        SEEN_CODES,
+        JSON.stringify([this.productCode, ...oldCodes])
+      );
+
       const withData = Object.keys(this.currentProductData)
         .filter(
           (nutrimentId) =>
