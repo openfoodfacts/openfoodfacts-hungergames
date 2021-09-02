@@ -16,7 +16,7 @@ export const localSettings = {
 
 export const getLang = () => {
     const settings = localSettings.fetch();
-
+    console.log("")
     const urlParams = new URLSearchParams(window.location.search)
     const urlLanguage = urlParams.has("language") && urlParams.get("language")
 
