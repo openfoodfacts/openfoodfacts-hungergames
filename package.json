@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@yaireo/tagify": "^3.21.0",
+    "@yaireo/tagify": "^4.7.2",
     "axios": "^0.21.1",
     "fastest-levenshtein": "^1.0.12",
     "semantic-ui-vue": "^0.11.0",
