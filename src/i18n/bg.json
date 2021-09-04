@@ -28,7 +28,7 @@
     "logos": "Logos",
     "manage": "Manage",
     "insights": "Insights",
-    "nutritions": "Хранителна информация",
+    "nutritions": "Хранителни факти",
     "settings": "@:settings.settings"
   },
   "insights": {
@@ -70,7 +70,7 @@
     "label": "Етикет",
     "brand": "Марка",
     "packager_code": "Packager code",
-    "packaging": "Packaging",
+    "packaging": "Опаковка",
     "qr_code": "QR code",
     "category": "Категория",
     "nutrition_label": "Nutrition label",
