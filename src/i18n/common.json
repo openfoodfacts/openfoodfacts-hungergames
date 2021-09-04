@@ -100,7 +100,7 @@
       "page2": {
         "title": "Questions",
         "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
-        "text2": "Do not hestiate to skip a question if you're not sure, there are plenty of others"
+        "text2": "Do not hesitate to skip a question if you're not sure, there are plenty of others"
       },
       "page3": {
         "title": "Logos",
@@ -131,8 +131,8 @@
     "instructions": {
       "cropTheTable": "Crop the image to simplify your annotation",
       "verifyNutrimentDetected": "Indicate if the nutriment detected is correct",
-      "selectMissingNutriments": "Add missing nutriments (you can click event if the word has no box)",
-      "selectValue": "select the nutritive value of: "
+      "selectMissingNutriments": "Add missing nutriments (you can click even if the word has no box)",
+      "selectValue": "Select the nutritional value of: "
     },
     "steps": {
       "1": "Crop",
@@ -145,20 +145,20 @@
     "skip": "Skip this product",
     "validate": "Validate Table",
     "unselect_picture": "No nutrition info",
-    "basis": "données pour: ",
+    "basis": "data for: ",
     "servingSize": "serving size",
     "value": "value",
     "nutriments": {
-      "nutriment_energy-kj": "Energie (kJ)",
-      "nutriment_energy-kcal": "Energie (kCal)",
-      "nutriment_fat": "gras",
-      "nutriment_saturated-fat": "gras (saturé)",
-      "nutriment_carbohydrates": "glucides",
-      "nutriment_sugars": "sucres",
-      "nutriment_proteins": "protéines",
-      "nutriment_fiber": "fibres",
-      "nutriment_salt": "sel",
-      "nutriment_sodium": "sodium"
+      "nutriment_energy-kj": "Energy (kJ)",
+      "nutriment_energy-kcal": "Energy (kCal)",
+      "nutriment_fat": "Fat",
+      "nutriment_saturated-fat": "Saturated fat",
+      "nutriment_carbohydrates": "Carbohydrates",
+      "nutriment_sugars": "Sugars",
+      "nutriment_proteins": "Proteins",
+      "nutriment_fiber": "Fibers",
+      "nutriment_salt": "Salt",
+      "nutriment_sodium": "Sodium"
     },
     "history": {
       "title": "Session History",
