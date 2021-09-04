@@ -48,7 +48,9 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: "history",
+  // Using "hash" allows us to deploy with gh-pages
+  //https://stackoverflow.com/questions/38658363/gh-pages-share-index-html-for-all-routes
+  mode: 'hash',
   routes,
 });
 
