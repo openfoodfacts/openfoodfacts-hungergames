@@ -5,17 +5,17 @@
     "brand": "brand",
     "brands": "Brands",
     "ingredients": "Ingredients",
-    "product_weight": "product weight",
+    "product_weight": "peso del producto",
     "popularity_sort": "Sort by popularity",
     "no": "No",
     "skip": "Skip",
     "yes": "Yes",
-    "no_questions_remaining": "No questions remaining",
-    "countries": "Countries",
-    "view": "View",
+    "no_questions_remaining": "No quedan preguntas",
+    "countries": "Paises",
+    "view": "Vista",
     "edit": "Edit",
     "value_search": "Value (fanta, en:organic,...)",
-    "hide_images": "Hide images (faster loading)",
+    "hide_images": "Esconder imágenes",
     "display_images": "Display images",
     "annotations": "Annotations",
     "last_annotations": "Last annotations",
@@ -23,18 +23,18 @@
     "annotated_annotations": "Annotated"
   },
   "menu": {
-    "games": "Games",
-    "questions": "Questions",
+    "games": "Juegos",
+    "questions": "Preguntas",
     "logos": "Logos",
-    "manage": "Manage",
+    "manage": "Administrar",
     "insights": "Insights",
     "nutritions": "Nutrition facts",
-    "settings": "@:settings.settings"
+    "settings": "Settings"
   },
   "insights": {
     "insights": "Insights",
     "barcode": "Barcode",
-    "barcode_placeholder": "barcode",
+    "barcode_placeholder": "código de barras",
     "value_tag": "Value tag",
     "value_placeholder": "ex: en:mueslis, bjorg,...",
     "type": "Type",
@@ -82,7 +82,7 @@
     "update": "Update",
     "no_found": "No logo found",
     "search": "Search",
-    "number_of_results": "Number of results:"
+    "number_of_results": "Número de resultados:"
   },
   "settings": {
     "settings": "Settings",
@@ -90,10 +90,6 @@
     "save": "Save"
   },
   "helper": {
-    "title": "Help page",
-    "next": "Next",
-    "previous": "Previous",
-    "close": "Close",
     "welcome": {
       "page1": {
         "title": "Welcome",
@@ -102,9 +98,9 @@
         "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
       },
       "page2": {
-        "title": "Questions",
+        "title": "Preguntas",
         "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
-        "text2": "Do not hestiate to skip a question if you're not sure, there are plenty of others"
+        "text2": "Do not hesitate to skip a question if you're not sure, there are plenty of others"
       },
       "page3": {
         "title": "Logos",
@@ -135,11 +131,11 @@
     "instructions": {
       "cropTheTable": "Crop the image to simplify your annotation",
       "verifyNutrimentDetected": "Indicate if the nutriment detected is correct",
-      "selectMissingNutriments": "Add missing nutriments (you can click event if the word has no box)",
-      "selectValue": "select the nutritive value of: "
+      "selectMissingNutriments": "Add missing nutriments (you can click even if the word has no box)",
+      "selectValue": "Select the nutritional value of: "
     },
     "steps": {
-      "1": "Cropp",
+      "1": "Crop",
       "2": "Special values",
       "3": "Nutriments Selection",
       "4": "Values Selection"
@@ -149,20 +145,20 @@
     "skip": "Skip this product",
     "validate": "Validate Table",
     "unselect_picture": "No nutrition info",
-    "basis": "données pour: ",
+    "basis": "data for: ",
     "servingSize": "serving size",
     "value": "value",
     "nutriments": {
       "nutriment_energy-kj": "Energy (kJ)",
       "nutriment_energy-kcal": "Energy (kCal)",
-      "nutriment_fat": "fat",
-      "nutriment_saturated-fat": "fat (saturated)",
-      "nutriment_carbohydrates": "carbohydrates",
-      "nutriment_sugars": "sugars",
-      "nutriment_proteins": "proteins",
-      "nutriment_fiber": "fiber",
-      "nutriment_salt": "salt",
-      "nutriment_sodium": "sodium"
+      "nutriment_fat": "Fat",
+      "nutriment_saturated-fat": "Saturated fat",
+      "nutriment_carbohydrates": "Carbohydrates",
+      "nutriment_sugars": "Sugar",
+      "nutriment_proteins": "Protein content",
+      "nutriment_fiber": "Fibers",
+      "nutriment_salt": "Salt",
+      "nutriment_sodium": "Sodium"
     },
     "history": {
       "title": "Session History",
