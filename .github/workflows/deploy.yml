@@ -27,6 +27,7 @@ jobs:
         run: |
           npm install --legacy-peer-deps
           npm run build
+          npm run deploy
 
         # --legacy-peer-deps is used due to a dependency between "@vue/cli-plugin-eslint" and eslint
       - name: Deploy 🚀
