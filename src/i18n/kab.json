@@ -29,7 +29,7 @@
     "manage": "Manage",
     "insights": "Insights",
     "nutritions": "Nutrition facts",
-    "settings": "@:settings.settings"
+    "settings": "Iɣewwaren"
   },
   "insights": {
     "insights": "Insights",
@@ -88,5 +88,89 @@
     "settings": "Iɣewwaren",
     "language": "Tutlayt",
     "save": "Sekles"
+  },
+  "helper": {
+    "welcome": {
+      "page1": {
+        "title": "Welcome",
+        "text1": "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
+        "text2": "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
+        "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
+      },
+      "page2": {
+        "title": "Questions",
+        "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
+        "text2": "Do not hesitate to skip a question if you're not sure, there are plenty of others"
+      },
+      "page3": {
+        "title": "Iluguten",
+        "text1": "The worlds of products is full of logos. Explain to our AI which one are the same."
+      }
+    },
+    "logos": {
+      "page1": {
+        "title": "Selection",
+        "text1": "Select the crops of a same logo by clicking on them",
+        "text2": "Selected logos go to the top of the page, you can unselect them by clicking again on them"
+      },
+      "page2": {
+        "title": "ɣuṛ-k",
+        "text1": "If the crop contains multiple logo do not select it.",
+        "text2": "If the crop contains only a partial part of a logo you can select it"
+      },
+      "page3": {
+        "title": "Validate",
+        "text1": "Indicate the type of logo (label, brand, QRcode, ...)",
+        "text2": "If it is a label or a brand logo, indicate which one it is",
+        "text3": "Now you can submit your selection",
+        "text4": "Thank you :)"
+      }
+    }
+  },
+  "nutrition": {
+    "instructions": {
+      "cropTheTable": "Crop the image to simplify your annotation",
+      "verifyNutrimentDetected": "Indicate if the nutriment detected is correct",
+      "selectMissingNutriments": "Add missing nutriments (you can click even if the word has no box)",
+      "selectValue": "Select the nutritional value of: "
+    },
+    "steps": {
+      "1": "Crop",
+      "2": "Special values",
+      "3": "Nutriments Selection",
+      "4": "Values Selection"
+    },
+    "next": "Next Step",
+    "prev": "Prev Step",
+    "skip": "Skip this product",
+    "validate": "Validate Table",
+    "unselect_picture": "No nutrition info",
+    "basis": "data for: ",
+    "servingSize": "serving size",
+    "value": "azal",
+    "nutriments": {
+      "nutriment_energy-kj": "Energy (kJ)",
+      "nutriment_energy-kcal": "Energy (kCal)",
+      "nutriment_fat": "Tassemt",
+      "nutriment_saturated-fat": "Iččuṛ d tassemt",
+      "nutriment_carbohydrates": "Carbohydrates",
+      "nutriment_sugars": "Sskeṛ",
+      "nutriment_proteins": "Ipṛutinen",
+      "nutriment_fiber": "Fibers",
+      "nutriment_salt": "Lemleḥ",
+      "nutriment_sodium": "Aṣudyum"
+    },
+    "history": {
+      "title": "Session History",
+      "status": "status",
+      "product name": "product name",
+      "view": "view page",
+      "edit": "edit page",
+      "SKIP": "ignored",
+      "VALIDATED": "edited",
+      "WRONG_IMAGE": "unselected picture",
+      "close": "close",
+      "open": "open history"
+    }
   }
 }

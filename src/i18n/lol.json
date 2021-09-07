@@ -29,7 +29,7 @@
     "manage": "crwdns173418:0crwdne173418:0",
     "insights": "crwdns173420:0crwdne173420:0",
     "nutritions": "crwdns173422:0crwdne173422:0",
-    "settings": "crwdns173424:0crwdne173424:0"
+    "settings": "crwdns187559:0crwdne187559:0"
   },
   "insights": {
     "insights": "crwdns173426:0crwdne173426:0",
@@ -88,5 +88,89 @@
     "settings": "crwdns173524:0crwdne173524:0",
     "language": "crwdns173526:0crwdne173526:0",
     "save": "crwdns173528:0crwdne173528:0"
+  },
+  "helper": {
+    "welcome": {
+      "page1": {
+        "title": "crwdns187561:0crwdne187561:0",
+        "text1": "crwdns187563:0crwdne187563:0",
+        "text2": "crwdns187565:0crwdne187565:0",
+        "text3": "crwdns187567:0crwdne187567:0"
+      },
+      "page2": {
+        "title": "crwdns187569:0crwdne187569:0",
+        "text1": "crwdns187571:0crwdne187571:0",
+        "text2": "crwdns187681:0crwdne187681:0"
+      },
+      "page3": {
+        "title": "crwdns187575:0crwdne187575:0",
+        "text1": "crwdns187577:0crwdne187577:0"
+      }
+    },
+    "logos": {
+      "page1": {
+        "title": "crwdns187579:0crwdne187579:0",
+        "text1": "crwdns187581:0crwdne187581:0",
+        "text2": "crwdns187583:0crwdne187583:0"
+      },
+      "page2": {
+        "title": "crwdns187585:0crwdne187585:0",
+        "text1": "crwdns187587:0crwdne187587:0",
+        "text2": "crwdns187589:0crwdne187589:0"
+      },
+      "page3": {
+        "title": "crwdns187591:0crwdne187591:0",
+        "text1": "crwdns187593:0crwdne187593:0",
+        "text2": "crwdns187595:0crwdne187595:0",
+        "text3": "crwdns187597:0crwdne187597:0",
+        "text4": "crwdns187599:0crwdne187599:0"
+      }
+    }
+  },
+  "nutrition": {
+    "instructions": {
+      "cropTheTable": "crwdns187601:0crwdne187601:0",
+      "verifyNutrimentDetected": "crwdns187603:0crwdne187603:0",
+      "selectMissingNutriments": "crwdns187683:0crwdne187683:0",
+      "selectValue": "crwdns187685:0crwdne187685:0"
+    },
+    "steps": {
+      "1": "crwdns187609:0crwdne187609:0",
+      "2": "crwdns187611:0crwdne187611:0",
+      "3": "crwdns187613:0crwdne187613:0",
+      "4": "crwdns187615:0crwdne187615:0"
+    },
+    "next": "crwdns187617:0crwdne187617:0",
+    "prev": "crwdns187619:0crwdne187619:0",
+    "skip": "crwdns187621:0crwdne187621:0",
+    "validate": "crwdns187623:0crwdne187623:0",
+    "unselect_picture": "crwdns187625:0crwdne187625:0",
+    "basis": "crwdns187687:0crwdne187687:0",
+    "servingSize": "crwdns187629:0crwdne187629:0",
+    "value": "crwdns187631:0crwdne187631:0",
+    "nutriments": {
+      "nutriment_energy-kj": "crwdns187689:0crwdne187689:0",
+      "nutriment_energy-kcal": "crwdns187691:0crwdne187691:0",
+      "nutriment_fat": "crwdns187693:0crwdne187693:0",
+      "nutriment_saturated-fat": "crwdns187695:0crwdne187695:0",
+      "nutriment_carbohydrates": "crwdns187697:0crwdne187697:0",
+      "nutriment_sugars": "crwdns187699:0crwdne187699:0",
+      "nutriment_proteins": "crwdns187701:0crwdne187701:0",
+      "nutriment_fiber": "crwdns187703:0crwdne187703:0",
+      "nutriment_salt": "crwdns187705:0crwdne187705:0",
+      "nutriment_sodium": "crwdns187707:0crwdne187707:0"
+    },
+    "history": {
+      "title": "crwdns187653:0crwdne187653:0",
+      "status": "crwdns187655:0crwdne187655:0",
+      "product name": "crwdns187657:0crwdne187657:0",
+      "view": "crwdns187659:0crwdne187659:0",
+      "edit": "crwdns187661:0crwdne187661:0",
+      "SKIP": "crwdns187663:0crwdne187663:0",
+      "VALIDATED": "crwdns187665:0crwdne187665:0",
+      "WRONG_IMAGE": "crwdns187667:0crwdne187667:0",
+      "close": "crwdns187669:0crwdne187669:0",
+      "open": "crwdns187671:0crwdne187671:0"
+    }
   }
 }
