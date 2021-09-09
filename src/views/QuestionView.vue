@@ -12,21 +12,41 @@
           {{ $t("questions." + insightType) }}
         </div>
         <div class="ui form">
-          <div class="ui icon input" id="value-tag-input">
-            <input
-              class="ui input"
-              :placeholder="$t('questions.value_search')"
-              v-model="valueTagInput"
-            />
-            <i
-              @click="clearValueTagInput()"
-              v-if="valueTagInput"
-              class="times link icon"
-            ></i>
-          </div>
-          <div class="ui toggle checkbox" style="margin-top: 0.5rem">
-            <input v-model="sortByPopularity" type="checkbox" name="sortBy" />
-            <label>{{ $t("questions.popularity_sort") }}</label>
+          <div class="fields">
+            <div class="ui icon field eight wide">
+              <input
+                class="ui input"
+                :placeholder="$t('questions.value_search')"
+                v-model="valueTagInput"
+              />
+              <i
+                @click="clearValueTagInput()"
+                v-if="valueTagInput"
+                class="times link icon"
+              ></i>
+            </div>
+            <div class="ui field four wide">
+              <select class="ui fluid dropdown" v-model="countryFilter">
+                <option value="">World</option>
+                <option
+                  :value="country"
+                  v-for="country in countryNames"
+                  :key="country"
+                  >{{ country.slice(3) }}</option
+                >
+              </select>
+            </div>
+
+            <div class="field four wide">
+              <div class="ui toggle checkbox" style="margin-top: 0.5rem">
+                <input
+                  v-model="sortByPopularity"
+                  type="checkbox"
+                  name="sortBy"
+                />
+                <label>{{ $t("questions.popularity_sort") }}</label>
+              </div>
+            </div>
           </div>
         </div>
         <div class="ui divider" />
@@ -160,6 +180,19 @@ const insightTypesNames = {
 
 const randomInsightTypeChoices = ["label", "category", "brand"];
 
+const countryNames = [
+  "en:belgium",
+  "en:denmark",
+  "en:france",
+  "en:germany",
+  "en:italy",
+  "en:netherlands",
+  "en:portugal",
+  "en:spain",
+  "en:sweden",
+  "en:switzerland",
+  "en:united-kingdom",
+];
 const getRandomInsightType = () =>
   randomInsightTypeChoices[
     Math.floor(randomInsightTypeChoices.length * Math.random())
@@ -207,7 +240,7 @@ const reformatValueTag = (value) => {
 export default {
   name: "QuestionView",
   components: { Product, AnnotationCounter, LoadingSpinner },
-  data: function () {
+  data: function() {
     return {
       valueTag: getURLParam("value_tag"),
       valueTagInput: getURLParam("value_tag"),
@@ -223,6 +256,7 @@ export default {
       seenInsightIds: new Set(),
       sortByPopularity: false,
       brandFilter: getURLParam("brand"),
+      countryNames: countryNames,
       countryFilter: getURLParam("country"),
       imageZoomOptions: {
         toolbar: {
@@ -233,7 +267,7 @@ export default {
     };
   },
   watch: {
-    valueTagInput: function () {
+    valueTagInput: function() {
       clearTimeout(this.valueTagTimeout);
 
       if (this.valueTagInput.length == 0) {
@@ -249,17 +283,22 @@ export default {
         updateURLParam("value_tag", this.valueTag);
       }, 1000);
     },
-    valueTag: function () {
+    valueTag: function() {
       this.currentQuestion = null;
       this.questionBuffer = [];
       this.loadQuestions();
     },
-    sortByPopularity: function () {
+    sortByPopularity: function() {
       this.currentQuestion = null;
       this.questionBuffer = [];
       this.loadQuestions();
     },
-    selectedInsightType: function () {
+    countryFilter: function() {
+      this.currentQuestion = null;
+      this.questionBuffer = [];
+      this.loadQuestions();
+    },
+    selectedInsightType: function() {
       this.updateInsightTypeUrlParam();
     },
   },
@@ -292,13 +331,13 @@ export default {
         this.lastAnnotations.shift();
       }
     },
-    selectInsightType: function (insightType) {
+    selectInsightType: function(insightType) {
       this.selectedInsightType = insightType;
       this.currentQuestion = null;
       this.questionBuffer = [];
       this.loadQuestions();
     },
-    annotate: function (annotation) {
+    annotate: function(annotation) {
       if (annotation !== -1) {
         robotoffService.annotate(this.currentQuestion.insight_id, annotation);
         this.updateLastAnnotations(this.currentQuestion, annotation);
@@ -311,7 +350,7 @@ export default {
         this.loadQuestions();
       }
     },
-    updateCurrentQuestion: function () {
+    updateCurrentQuestion: function() {
       this.currentQuestion = null;
       if (this.questionBuffer.length > 0) {
         this.currentQuestion = this.questionBuffer.shift();
@@ -321,7 +360,7 @@ export default {
         );
       }
     },
-    loadQuestions: function () {
+    loadQuestions: function() {
       const sortBy = this.sortByPopularity ? "popular" : "random";
       const count = 10;
       robotoffService
@@ -359,31 +398,31 @@ export default {
     },
   },
   computed: {
-    availableInsightTypes: function () {
+    availableInsightTypes: function() {
       return Object.keys(insightTypesNames);
     },
-    currentQuestionImageUrl: function () {
+    currentQuestionImageUrl: function() {
       if (this.currentQuestion.source_image_url) {
         return this.currentQuestion.source_image_url;
       }
       return "https://static.openfoodfacts.org/images/image-placeholder.png";
     },
-    imageRotationClassName: function () {
+    imageRotationClassName: function() {
       if (this.imageRotation === 90) return "rotate-90";
       if (this.imageRotation === 180) return "rotate-180";
       if (this.imageRotation === 270) return "rotate-270";
       return "rotation-0";
     },
-    loading: function () {
+    loading: function() {
       return !this.noRemainingQuestion && this.currentQuestion == null;
     },
-    noRemainingQuestion: function () {
+    noRemainingQuestion: function() {
       return (
         this.questionBuffer.length == 1 &&
         this.questionBuffer[0] === NO_QUESTION_LEFT
       );
     },
-    currentQuestionBarcode: function () {
+    currentQuestionBarcode: function() {
       if (
         this.currentQuestion !== null &&
         this.currentQuestion !== NO_QUESTION_LEFT
@@ -393,7 +432,7 @@ export default {
         return null;
       }
     },
-    valueTagQuestionsURL: function () {
+    valueTagQuestionsURL: function() {
       if (
         this.currentQuestion !== null &&
         this.currentQuestion !== NO_QUESTION_LEFT &&
@@ -414,7 +453,7 @@ export default {
     this.updateInsightTypeUrlParam();
     this.loadQuestions();
     const vm = this;
-    window.addEventListener("keyup", function (event) {
+    window.addEventListener("keyup", function(event) {
       if (event.target.nodeName == "BODY") {
         if (event.key === "k") vm.annotate(-1);
         if (event.key === "n") vm.annotate(0);
@@ -427,12 +466,6 @@ export default {
 </script>
 
 <style scoped>
-#value-tag-input {
-  width: 300px;
-  margin-top: 0.5rem;
-  margin-right: 0.5rem;
-}
-
 .tag {
   background-color: #e8e8e8;
   display: inline-block;
