@@ -68,13 +68,31 @@
             <div class="ui big label">{{ currentQuestion.value }}</div>
           </div>
           <div class="ui divider hidden"></div>
-          <viewer :options="imageZoomOptions" style="height: 300px">
-            <img
-              :class="[imageRotationClassName]"
-              :src="currentQuestionImageUrl"
-              style="max-height: 300px; max-width: 300px"
-            />
-          </viewer>
+          <cropper
+            style="height: 300px; margin:auto"
+            :src="currentQuestionImageUrl"
+            :canvas="false"
+            :checkOrientation="false"
+            :crossOrigine="false"
+            :default-position="{
+              left: 0,
+              top: 0,
+            }"
+            :stencilSize="
+              ({ boundaries }) => {
+                return {
+                  width: boundaries.width,
+                  height: boundaries.height,
+                };
+              }
+            "
+            default-boundaries="fit"
+            :stencil-props="{
+              handlers: {},
+              movable: false,
+              resizable: false,
+            }"
+          />
           <div class="ui divider hidden"></div>
 
           <div>
@@ -129,6 +147,7 @@
 </template>
 
 <script>
+import { Cropper } from "vue-advanced-cropper";
 import robotoffService from "../robotoff";
 import Product from "../components/Product";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -179,7 +198,6 @@ const insightTypesNames = {
 };
 
 const randomInsightTypeChoices = ["label", "category", "brand"];
-
 
 const countryNames = [
   "en:belgium",
@@ -243,7 +261,7 @@ const reformatValueTag = (value) => {
 
 export default {
   name: "QuestionView",
-  components: { Product, AnnotationCounter, LoadingSpinner },
+  components: { Product, AnnotationCounter, LoadingSpinner, Cropper },
   data: function() {
     return {
       valueTag: getURLParam("value_tag"),
