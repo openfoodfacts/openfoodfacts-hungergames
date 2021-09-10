@@ -180,6 +180,7 @@ const insightTypesNames = {
 
 const randomInsightTypeChoices = ["label", "category", "brand"];
 
+
 const countryNames = [
   "en:belgium",
   "en:denmark",
@@ -191,6 +192,7 @@ const countryNames = [
   "en:spain",
   "en:sweden",
   "en:switzerland",
+  "en:united-states",
   "en:united-kingdom",
 ];
 const getRandomInsightType = () =>
