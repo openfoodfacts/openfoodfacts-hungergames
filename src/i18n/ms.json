@@ -92,85 +92,85 @@
   "helper": {
     "welcome": {
       "page1": {
-        "title": "Welcome",
-        "text1": "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
-        "text2": "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
-        "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
+        "title": "Selamat Datang",
+        "text1": "Hunger Games adalah koleksi permainan mini yang membantu menyumbang kepada Open Food Facts dalam banyak cara. Kategorikan produk untuk mendapatkan Nutri-Score dan Eco-Score, membantu menentusahkan label untuk Eco-Score, menambahkan jenama dan timbangan, membantu sistem pengenalan logo kami pelajari mengenai logo yang dikesannya.",
+        "text2": "Itu merupakan beberapa perkara menarik yang dapat anda lakukan. Pastikan anda terhubung ke laman web Open Food Facts untuk mendapatkan kredit atas sumbangan anda. Sekiranya anda melakukan kesalahan, sila luangkan masa untuk membetulkannya dengan melayari laman web.",
+        "text3": "Sekiranya terdapat keraguan tentang permainan, anda mempunyai pembantu di kanan atas halaman, dan anda boleh menghubungi kami di slack di saluran # kelaparan-permainan"
       },
       "page2": {
         "title": "Soalan",
-        "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
-        "text2": "Do not hesitate to skip a question if you're not sure, there are plenty of others"
+        "text1": "AI kami mempunyai banyak soalan untuk anda. Di sini anda perlu mengesahkan atau menafikan maklumat yang dikesannya pada imej.",
+        "text2": "Jangan teragak-agak untuk melangkau soalan jika anda tidak pasti, ada terdapat banyak soalan lain"
       },
       "page3": {
         "title": "Logos",
-        "text1": "The worlds of products is full of logos. Explain to our AI which one are the same."
+        "text1": "Dunia produk penuh dengan logo. Terangkan kepada AI kami yang mana satu adalah yang sama."
       }
     },
     "logos": {
       "page1": {
-        "title": "Selection",
-        "text1": "Select the crops of a same logo by clicking on them",
-        "text2": "Selected logos go to the top of the page, you can unselect them by clicking again on them"
+        "title": "Pemilihan",
+        "text1": "Pilih pangkasan dengan logo yang sama dengan mengklik padanya",
+        "text2": "Logo yang terpilih pergi ke bahagian atas halaman, anda boleh membatalkannya dengan mengetik padanya semula"
       },
       "page2": {
         "title": "Amaran",
-        "text1": "If the crop contains multiple logo do not select it.",
-        "text2": "If the crop contains only a partial part of a logo you can select it"
+        "text1": "Sekiranya pangkasan mengandungi pelbagai logo, jangan memilihnya.",
+        "text2": "Sekiranya pangkasan mengandungi hanya sebahagian logo sahaja, anda boleh memilihnya"
       },
       "page3": {
-        "title": "Validate",
-        "text1": "Indicate the type of logo (label, brand, QRcode, ...)",
-        "text2": "If it is a label or a brand logo, indicate which one it is",
-        "text3": "Now you can submit your selection",
-        "text4": "Thank you :)"
+        "title": "Tentusahkan",
+        "text1": "Nyatakan jenis logo (label, jenama, QRcode, ...)",
+        "text2": "Sekiranya ia adalah label atau logo jenama, nyatakan ianya adalah yang mana satu",
+        "text3": "Sekarang anda boleh menghantar pilihan anda",
+        "text4": "Terima kasih :)"
       }
     }
   },
   "nutrition": {
     "instructions": {
-      "cropTheTable": "Crop the image to simplify your annotation",
-      "verifyNutrimentDetected": "Indicate if the nutriment detected is correct",
-      "selectMissingNutriments": "Add missing nutriments (you can click even if the word has no box)",
-      "selectValue": "Select the nutritional value of: "
+      "cropTheTable": "Pangkas gambar untuk memudahkan anotasi anda",
+      "verifyNutrimentDetected": "Nyatakan jika nutrimen yang dikesan adalah betul",
+      "selectMissingNutriments": "Tambahkan nutrimen yang tiada (anda boleh mengklik walaupun perkataan itu tidak berkotak)",
+      "selectValue": "Pilih nilai pemakanan untuk: "
     },
     "steps": {
-      "1": "Crop",
-      "2": "Special values",
-      "3": "Nutriments Selection",
-      "4": "Values Selection"
+      "1": "Pangkas",
+      "2": "Nilai istimewa",
+      "3": "Pilihan Nutrimen",
+      "4": "Pilihan Nilai"
     },
-    "next": "Next Step",
-    "prev": "Prev Step",
-    "skip": "Skip this product",
-    "validate": "Validate Table",
-    "unselect_picture": "No nutrition info",
-    "basis": "data for: ",
-    "servingSize": "serving size",
+    "next": "Langkah Seterusnya",
+    "prev": "Langkah Sebelumnya",
+    "skip": "Langkau produk ini",
+    "validate": "Tentusahkan Jadual",
+    "unselect_picture": "Tiada maklumat pemakanan",
+    "basis": "data untuk: ",
+    "servingSize": "saiz hidangan",
     "value": "nilai",
     "nutriments": {
       "nutriment_energy-kj": "Energy (kJ)",
-      "nutriment_energy-kcal": "Energy (kCal)",
+      "nutriment_energy-kcal": "Tenaga (kCal)",
       "nutriment_fat": "Fat",
       "nutriment_saturated-fat": "Saturated fat",
       "nutriment_carbohydrates": "Carbohydrate",
       "nutriment_sugars": "Sugars",
       "nutriment_proteins": "Proteins",
-      "nutriment_fiber": "Fibers",
+      "nutriment_fiber": "Gentian",
       "nutriment_salt": "Salt",
       "nutriment_sodium": "Sodium"
     },
     "history": {
-      "title": "Session History",
+      "title": "Sejarah Sesi",
       "status": "status",
-      "product name": "product name",
-      "view": "view page",
-      "edit": "edit page",
-      "SKIP": "ignored",
-      "VALIDATED": "edited",
-      "WRONG_IMAGE": "unselected picture",
-      "close": "close",
-      "open": "open history"
+      "product name": "nama produk",
+      "view": "lihat halaman",
+      "edit": "edit halaman",
+      "SKIP": "diabaikan",
+      "VALIDATED": "diedit",
+      "WRONG_IMAGE": "gambar yang tidak terpilih",
+      "close": "tutup",
+      "open": "buka sejarah"
     }
   }
 }
