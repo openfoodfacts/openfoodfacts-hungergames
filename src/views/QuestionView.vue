@@ -193,6 +193,8 @@ const countryNames = [
   "en:sweden",
   "en:switzerland",
   "en:united-states",
+  "en:canada",
+  "en:australia",
   "en:united-kingdom",
 ];
 const getRandomInsightType = () =>
