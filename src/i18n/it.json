@@ -104,7 +104,7 @@
       },
       "page3": {
         "title": "Loghi",
-        "text1": "Il mondo dei prodotti è pieno di loghi. Spiega alla nostra IA quali sono uguali."
+        "text1": "The world of products is full of logos. Explain to our AI which one are the same."
       }
     },
     "logos": {
@@ -125,7 +125,10 @@
         "text3": "Ora puoi inviare la tua selezione",
         "text4": "Grazie :)"
       }
-    }
+    },
+    "previous": "Prev",
+    "next": "Successiva",
+    "close": "Chiudi"
   },
   "nutrition": {
     "instructions": {

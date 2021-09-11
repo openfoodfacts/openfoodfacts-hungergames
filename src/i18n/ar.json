@@ -44,7 +44,7 @@
     "all": "الكل",
     "label": "al3alama",
     "product_weight": "وزن المنتج",
-    "category": "Atassnifate",
+    "category": "Category",
     "expiration_date": "تاريخ انتهاء الصلاحية",
     "packager_code": "رمز المعبئ",
     "skipped": "تجاوز",
@@ -72,7 +72,7 @@
     "packager_code": "رمز المعبئ",
     "packaging": "التعبئة والتغليف",
     "qr_code": "رمز الإستجابة السريع",
-    "category": "Atassnifate",
+    "category": "Category",
     "nutrition_label": "طابع المكونات الغذائية",
     "store": "المتجر",
     "detail": "تفاصيل الشعار",
@@ -104,7 +104,7 @@
       },
       "page3": {
         "title": "Logos",
-        "text1": "عالم المنتجات مليء بشعارات العلامات التجارية، وضِّح لنظام الذكاء الاصطناعي الخاص بنا أي من هذه الشعارات متماثل."
+        "text1": "The world of products is full of logos. Explain to our AI which one are the same."
       }
     },
     "logos": {
@@ -125,7 +125,10 @@
         "text3": "الآن يمكنك تقديم اختيارك",
         "text4": "شكرا لك :)"
       }
-    }
+    },
+    "previous": "Prev",
+    "next": "التالى",
+    "close": "إغلق"
   },
   "nutrition": {
     "instructions": {
