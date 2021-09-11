@@ -1,9 +1,7 @@
 <template>
   <div>
     <sui-modal :open="open" v-on:changed="close">
-      <sui-modal-header> {{ $t("helper.title") }} </sui-modal-header>
-
-      <sui-modal-content image>
+      <sui-modal-content scrolling image>
         <sui-image
           wrapped
           :size="helpInformations[pageKey].imageSize || 'medium'"
@@ -117,7 +115,7 @@ const getHelpInformations = (currentPath, translatedExplanations) => {
 export default {
   name: "IntroductionView",
   props: { open: Boolean },
-  data: function () {
+  data: function() {
     console.log(this.$t("helper"));
     return {
       pageIndex: 0,
@@ -137,7 +135,7 @@ export default {
     },
   },
   computed: {
-    pageRatio: function () {
+    pageRatio: function() {
       if (Object.keys(this.helpInformations).length === 1) {
         return 100;
       }
@@ -145,18 +143,18 @@ export default {
         100 * (this.pageIndex / (Object.keys(this.helpInformations).length - 1))
       );
     },
-    pageKey: function () {
+    pageKey: function() {
       return `page${this.pageIndex + 1}`;
     },
   },
   methods: {
-    close: function () {
+    close: function() {
       this.$emit("close-helper");
     },
-    prev: function () {
+    prev: function() {
       this.pageIndex = Math.max(0, this.pageIndex - 1);
     },
-    next: function () {
+    next: function() {
       this.pageIndex = Math.min(
         Object.keys(this.helpInformations).length - 1,
         this.pageIndex + 1
