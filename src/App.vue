@@ -1,24 +1,23 @@
 <template>
-  <div>
-
+  <div :dir="dir">
     <Menu />
     <sui-segment attached="bottom">
       <router-view />
     </sui-segment>
-
   </div>
 </template>
 
 <script>
-
 import Menu from "./components/Menu";
 
 export default {
   name: "app",
   components: { Menu },
   data: function() {
-    return {};
-  }
+    var userLang = navigator.language || navigator.userLanguage;
+
+    return { dir: ["he", "ar"].includes(userLang) ? "rtl" : "ltr" };
+  },
 };
 </script>
 
@@ -28,6 +27,6 @@ export default {
 }
 
 .segment {
-  border: none!important;
+  border: none !important;
 }
 </style>

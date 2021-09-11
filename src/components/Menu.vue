@@ -34,7 +34,7 @@
       {{ item.label }}
     </router-link>
 
-    <sui-menu-menu position="right">
+    <sui-menu-menu style="margin-inline-start: auto;">
       <sui-menu-item v-on:click="openHelper" class="helpButton">
         <sui-icon name="help" />
       </sui-menu-item>
@@ -51,7 +51,7 @@ const intialSettings = localSettings.fetch();
 localSettings.update("tuto-done", true);
 
 export default {
-  data: function () {
+  data: function() {
     return {
       menu: [
         { label: this.$t("menu.games") },
@@ -68,17 +68,17 @@ export default {
   },
   components: { Helper },
   computed: {
-    menuItems: function () {
+    menuItems: function() {
       return this.menu.filter((item) => {
         return item.to;
       });
     },
   },
   methods: {
-    closeHelper: function () {
+    closeHelper: function() {
       this.helperIsOpen = false;
     },
-    openHelper: function () {
+    openHelper: function() {
       this.helperIsOpen = true;
     },
   },
