@@ -104,7 +104,7 @@
       },
       "page3": {
         "title": "Logos",
-        "text1": "The worlds of products is full of logos. Explain to our AI which one are the same."
+        "text1": "The world of products is full of logos. Explain to our AI which one are the same."
       }
     },
     "logos": {
@@ -123,13 +123,16 @@
         "text1": "Indicate the type of logo (label, brand, QRcode, ...)",
         "text2": "If it is a label or a brand logo, indicate which one it is",
         "text3": "Now you can submit your selection",
-        "text4": "Thank you :)"
+        "text4": "Merci :)"
       }
-    }
+    },
+    "previous": "Prev",
+    "next": "Suivante",
+    "close": "Fermer"
   },
   "nutrition": {
     "instructions": {
-      "cropTheTable": "Crop the image to simplify your annotation",
+      "cropTheTable": "Recadrez l'image pour simplifier votre annotation",
       "verifyNutrimentDetected": "Indicate if the nutriment detected is correct",
       "selectMissingNutriments": "Add missing nutriments (you can click even if the word has no box)",
       "selectValue": "Select the nutritional value of: "

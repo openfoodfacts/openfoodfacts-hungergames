@@ -104,7 +104,7 @@
       },
       "page3": {
         "title": "crwdns187575:0crwdne187575:0",
-        "text1": "crwdns187577:0crwdne187577:0"
+        "text1": "crwdns190657:0crwdne190657:0"
       }
     },
     "logos": {
@@ -125,7 +125,10 @@
         "text3": "crwdns187597:0crwdne187597:0",
         "text4": "crwdns187599:0crwdne187599:0"
       }
-    }
+    },
+    "previous": "crwdns190659:0crwdne190659:0",
+    "next": "crwdns190661:0crwdne190661:0",
+    "close": "crwdns190663:0crwdne190663:0"
   },
   "nutrition": {
     "instructions": {

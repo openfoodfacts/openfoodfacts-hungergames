@@ -104,7 +104,7 @@
       },
       "page3": {
         "title": "Logoer",
-        "text1": "Produktverdenen er fuld af logoer. Forklar AI'en, hvilken som er de samme."
+        "text1": "The world of products is full of logos. Explain to our AI which one are the same."
       }
     },
     "logos": {
@@ -125,7 +125,10 @@
         "text3": "Nu kan det valgte indsendes",
         "text4": "Tak"
       }
-    }
+    },
+    "previous": "Prev",
+    "next": "Næste",
+    "close": "Luk"
   },
   "nutrition": {
     "instructions": {
