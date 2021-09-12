@@ -42,6 +42,12 @@ const fr_labels = [
       "https://world.openfoodfacts.org/images/lang/en/labels/ab-agriculture-biologique.74x90.svg",
   },
   {
+    url: "questions?type=label&value_tag=en:eg-oko-verordnung",
+    value_tag: "en:eg-oko-verordnung",
+    logo:
+      "https://world-fr.openfoodfacts.org/images/lang/en/labels/eg-oko-verordnung.110x90.svg",
+  },
+  {
     url: "questions?type=label&value_tag=fr:haute-valeur-environnementale",
     value_tag: "fr:haute-valeur-environnementale",
     logo:
