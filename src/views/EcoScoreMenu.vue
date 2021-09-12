@@ -117,10 +117,9 @@ export default {
   computed: {},
   methods: {
     setRemainingQuestions: function({ value_tag }) {
-      console.log(value_tag);
       const count = 10;
       robotoffService
-        .questions("random", "label", value_tag, null, "en:france", count)
+        .questions("random", "label", value_tag, null, null, count)
         .then((result) => {
           this.labels = {
             ...this.labels,
