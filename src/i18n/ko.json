@@ -29,7 +29,8 @@
     "manage": "관리",
     "insights": "인사이트",
     "nutritions": "영양 성분 표시",
-    "settings": "설정"
+    "settings": "설정",
+    "eco-score": "Eco-score"
   },
   "insights": {
     "insights": "인사이트",
@@ -104,7 +105,7 @@
       },
       "page3": {
         "title": "로고",
-        "text1": "The world of products is full of logos. Explain to our AI which one are the same."
+        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
       }
     },
     "logos": {

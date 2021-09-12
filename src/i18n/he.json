@@ -29,7 +29,8 @@
     "manage": "ניהול",
     "insights": "תובנות",
     "nutritions": "מפרט תזונתי",
-    "settings": "הגדרות"
+    "settings": "הגדרות",
+    "eco-score": "Eco-score"
   },
   "insights": {
     "insights": "תובנות",
@@ -104,7 +105,7 @@
       },
       "page3": {
         "title": "לוגואים",
-        "text1": "The world of products is full of logos. Explain to our AI which one are the same."
+        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
       }
     },
     "logos": {
@@ -126,7 +127,7 @@
         "text4": "תודה רבה :)"
       }
     },
-    "previous": "Prev",
+    "previous": "הקודם",
     "next": "הבא",
     "close": "סגירה"
   },

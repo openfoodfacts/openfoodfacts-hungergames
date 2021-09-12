@@ -29,7 +29,8 @@
     "manage": "Administrer",
     "insights": "Innsikter",
     "nutritions": "Ernæringsinnhold",
-    "settings": "Innstillinger"
+    "settings": "Innstillinger",
+    "eco-score": "Eco-score"
   },
   "insights": {
     "insights": "Innsikter",
@@ -104,7 +105,7 @@
       },
       "page3": {
         "title": "Logoer",
-        "text1": "The world of products is full of logos. Explain to our AI which one are the same."
+        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
       }
     },
     "logos": {

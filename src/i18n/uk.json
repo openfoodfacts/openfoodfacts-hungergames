@@ -29,7 +29,8 @@
     "manage": "Керування",
     "insights": "Статистика",
     "nutritions": "Харчова цінність",
-    "settings": "Налаштування"
+    "settings": "Налаштування",
+    "eco-score": "Eco-score"
   },
   "insights": {
     "insights": "Статистика",
@@ -104,7 +105,7 @@
       },
       "page3": {
         "title": "Logos",
-        "text1": "The world of products is full of logos. Explain to our AI which one are the same."
+        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
       }
     },
     "logos": {

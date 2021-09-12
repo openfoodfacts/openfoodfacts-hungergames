@@ -29,7 +29,8 @@
     "manage": "Quản lý",
     "insights": "Thông tin chi tiết",
     "nutritions": "Giá trị dinh dưỡng",
-    "settings": "Cài đặt"
+    "settings": "Cài đặt",
+    "eco-score": "Eco-score"
   },
   "insights": {
     "insights": "Thông tin chi tiết",
@@ -104,7 +105,7 @@
       },
       "page3": {
         "title": "Logos",
-        "text1": "The world of products is full of logos. Explain to our AI which one are the same."
+        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
       }
     },
     "logos": {
