@@ -29,7 +29,8 @@
     "manage": "Hantera",
     "insights": "Insikter",
     "nutritions": "Näringsfakta",
-    "settings": "Inställningar"
+    "settings": "Inställningar",
+    "eco-score": "Eco-score"
   },
   "insights": {
     "insights": "Insikter",
@@ -104,7 +105,7 @@
       },
       "page3": {
         "title": "Logotyper",
-        "text1": "The world of products is full of logos. Explain to our AI which one are the same."
+        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
       }
     },
     "logos": {

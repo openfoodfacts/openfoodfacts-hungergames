@@ -29,7 +29,8 @@
     "manage": "Kezelés",
     "insights": "Betekintés",
     "nutritions": "Tápértékadatok",
-    "settings": "Beállítások"
+    "settings": "Beállítások",
+    "eco-score": "Eco-score"
   },
   "insights": {
     "insights": "Betekintés",
@@ -104,7 +105,7 @@
       },
       "page3": {
         "title": "Logos",
-        "text1": "The world of products is full of logos. Explain to our AI which one are the same."
+        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
       }
     },
     "logos": {
