@@ -13,6 +13,7 @@ import InsightListView from "./views/InsightListView.vue";
 import LogoSearchView from "./views/LogoSearchView.vue";
 import LogoAnnotationView from "./views/LogoAnnotationView.vue";
 import LogoUpdateView from "./views/LogoUpdateView.vue";
+import EcoScoreMenu from "./views/EcoScoreMenu.vue";
 import "viewerjs/dist/viewer.css";
 import SuiVue from "semantic-ui-vue";
 import messages from "./i18n/messages";
@@ -37,6 +38,7 @@ const routes = [
   { path: "/", redirect: "/questions" },
   { path: "/insights", component: InsightListView },
   { path: "/questions", component: QuestionView },
+  { path: "/eco-score", component: EcoScoreMenu },
   { path: "/nutritions", component: NutritionView },
   { path: "/nutritionInteractive", component: NutritionInteractiveView },
   { path: "/nutritionInteractive/:code", component: NutritionInteractiveView },

@@ -57,6 +57,7 @@ export default {
         { label: this.$t("menu.games") },
         { label: this.$t("menu.questions"), to: "/questions" },
         { label: this.$t("menu.logos"), to: "/logos" },
+        { label: this.$t("menu.eco-score"), to: "/eco-score" },
         // {label: this.$t('menu.nutritions'), to:'/nutritions'},
         {},
         { label: this.$t("menu.manage"), type: "header" },
