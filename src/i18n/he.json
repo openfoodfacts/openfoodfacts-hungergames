@@ -104,7 +104,7 @@
       },
       "page3": {
         "title": "לוגואים",
-        "text1": "עולמות המוצרים עמוסים בלוגואים. נשמח להסבר למערכת הבינה שלנו אילו מהם זהים."
+        "text1": "The world of products is full of logos. Explain to our AI which one are the same."
       }
     },
     "logos": {
@@ -125,7 +125,10 @@
         "text3": "כעת מותר לך להגיש את הבחירה שלך",
         "text4": "תודה רבה :)"
       }
-    }
+    },
+    "previous": "Prev",
+    "next": "הבא",
+    "close": "סגירה"
   },
   "nutrition": {
     "instructions": {
