@@ -14,6 +14,7 @@ import LogoSearchView from "./views/LogoSearchView.vue";
 import LogoAnnotationView from "./views/LogoAnnotationView.vue";
 import LogoUpdateView from "./views/LogoUpdateView.vue";
 import EcoScoreMenu from "./views/EcoScoreMenu.vue";
+import SecretTool from "./views/secretTool.vue";
 import "viewerjs/dist/viewer.css";
 import SuiVue from "semantic-ui-vue";
 import messages from "./i18n/messages";
@@ -39,6 +40,7 @@ const routes = [
   { path: "/insights", component: InsightListView },
   { path: "/questions", component: QuestionView },
   { path: "/eco-score", component: EcoScoreMenu },
+  { path: "/secretTool", component: SecretTool },
   { path: "/nutritions", component: NutritionView },
   { path: "/nutritionInteractive", component: NutritionInteractiveView },
   { path: "/nutritionInteractive/:code", component: NutritionInteractiveView },
