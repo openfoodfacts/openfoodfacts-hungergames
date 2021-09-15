@@ -40,7 +40,7 @@ const routes = [
   { path: "/insights", component: InsightListView },
   { path: "/questions", component: QuestionView },
   { path: "/eco-score", component: EcoScoreMenu },
-  { path: "/secretTool", component: SecretTool },
+  { path: "/secretTools", component: SecretTool },
   { path: "/nutritions", component: NutritionView },
   { path: "/nutritionInteractive", component: NutritionInteractiveView },
   { path: "/nutritionInteractive/:code", component: NutritionInteractiveView },
