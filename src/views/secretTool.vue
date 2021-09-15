@@ -1,12 +1,24 @@
 <template>
   <div class="ui">
+    <div>
+      <button
+        class="ui big button"
+        @click="setLabel(lab)"
+        v-for="lab in labels"
+        :key="lab"
+        :class="{ primary: lab === label }"
+      >
+        {{ lab }}
+      </button>
+    </div>
     <div v-if="loading"><LoadingSpinner show /></div>
     <div v-else-if="noRemainingQuestion">No more questions</div>
     <div v-else>
       <h3>
         {{ questions[0].question }}
-        <!-- <img :src="questions[0].image_url" /> -->
         <span class="ui big label">{{ questions[0].value }}</span>
+        <br />
+        <img class="logo" :src="labelLogo[label]" />
       </h3>
       <div class="ui grid stackable">
         <div
@@ -35,21 +47,35 @@ import LoadingSpinner from "../components/LoadingSpinner";
 const NO_QUESTION_LEFT = "NO_QUESTION_LEFT";
 const LOADING = "LOADING";
 
+const labels = ["en:eu-organic", "en:sustainable-seafood-msc"];
+
 export default {
   name: "QuestionView",
   components: { LoadingSpinner },
   data: function() {
     return {
       status: LOADING,
+      labels: labels,
+      label: "en:eu-organic",
+      labelLogo: {
+        "en:eu-organic":
+          "https://world.openfoodfacts.org/images/lang/en/labels/eu-organic.135x90.svg",
+        "en:sustainable-seafood-msc":
+          "https://world-fr.openfoodfacts.org/images/lang/en/labels/sustainable-seafood-msc.126x90.svg",
+      },
       questions: [],
     };
   },
   methods: {
     validate() {
-      this.questions.forEach(({ insight_id, selected }) => {
-        if (selected === true) {
+      const validatedInsights = this.questions
+        .filter(({ selected }) => selected === true)
+        .map(({ insight_id }) => insight_id);
+
+      validatedInsights.forEach((insight_id, index) => {
+        setTimeout(function() {
           robotoffService.annotate(insight_id, 1);
-        }
+        }, index * 100);
       });
       this.questions = [];
       this.fetchNewQuestions();
@@ -59,11 +85,18 @@ export default {
         x.insight_id === insight_id ? { ...x, selected: !x.selected } : x
       );
     },
+    setLabel(label) {
+      if (this.label !== label) {
+        this.label = label;
+        this.questions = [];
+        this.fetchNewQuestions();
+      }
+    },
     fetchNewQuestions() {
       this.status = LOADING;
-      const count = 100;
+      const count = 50;
       robotoffService
-        .questions("random", "label", "en:eu-organic", null, null, count)
+        .questions("random", "label", this.label, null, null, count)
         .then((result) => {
           if (result.data.questions.length == 0) {
             this.status = NO_QUESTION_LEFT;
@@ -123,6 +156,10 @@ export default {
 h3 {
   margin-bottom: 4rem;
   text-align: center;
+}
+.logo {
+  height: 4rem;
+  width: auto;
 }
 .selected {
   position: relative;
