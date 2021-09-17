@@ -93,26 +93,26 @@
   "helper": {
     "welcome": {
       "page1": {
-        "title": "Welcome",
+        "title": "Välkommen",
         "text1": "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
         "text2": "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
         "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
       },
       "page2": {
         "title": "Frågor",
-        "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
-        "text2": "Do not hesitate to skip a question if you're not sure, there are plenty of others"
+        "text1": "Vår AI har många frågor till dig. Här måste du bekräfta eller neka den information hon upptäckte på bilder.",
+        "text2": "Tveka inte att hoppa över en fråga om du inte är säker, det finns många andra"
       },
       "page3": {
         "title": "Logotyper",
-        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
+        "text1": "Världen av produkter är full av logotyper. Förklara för vår AI vilka som är samma."
       }
     },
     "logos": {
       "page1": {
-        "title": "Selection",
-        "text1": "Select the crops of a same logo by clicking on them",
-        "text2": "Selected logos go to the top of the page, you can unselect them by clicking again on them"
+        "title": "Urval",
+        "text1": "Välj beskärning av samma logotyp genom att klicka på dem",
+        "text2": "Valda logotyper går högst upp på sidan, du kan avmarkera dem genom att klicka igen på dem"
       },
       "page2": {
         "title": "Varning",
@@ -120,61 +120,61 @@
         "text2": "If the crop contains only a partial part of a logo you can select it"
       },
       "page3": {
-        "title": "Validate",
-        "text1": "Indicate the type of logo (label, brand, QRcode, ...)",
-        "text2": "If it is a label or a brand logo, indicate which one it is",
-        "text3": "Now you can submit your selection",
-        "text4": "Thank you :)"
+        "title": "Validera",
+        "text1": "Ange logotypen (etikett, märke, QRcode, ...)",
+        "text2": "Om det är en etikett eller en varumärkeslogotyp, ange vilken det är",
+        "text3": "Nu kan du skicka in ditt val",
+        "text4": "Tack :)"
       }
     },
-    "previous": "Prev",
+    "previous": "Föregående",
     "next": "Nästa",
     "close": "Stäng"
   },
   "nutrition": {
     "instructions": {
-      "cropTheTable": "Crop the image to simplify your annotation",
-      "verifyNutrimentDetected": "Indicate if the nutriment detected is correct",
-      "selectMissingNutriments": "Add missing nutriments (you can click even if the word has no box)",
-      "selectValue": "Select the nutritional value of: "
+      "cropTheTable": "Beskär bilden för att förenkla din anteckning",
+      "verifyNutrimentDetected": "Ange om det upptäckta näringsämnet är korrekt",
+      "selectMissingNutriments": "Lägg till saknade näringsämnen (du kan klicka även om ordet inte har någon ruta)",
+      "selectValue": "Välj näringsvärde för: "
     },
     "steps": {
       "1": "Crop",
-      "2": "Special values",
+      "2": "Särskilda värden",
       "3": "Nutriments Selection",
       "4": "Values Selection"
     },
-    "next": "Next Step",
-    "prev": "Prev Step",
-    "skip": "Skip this product",
-    "validate": "Validate Table",
-    "unselect_picture": "No nutrition info",
-    "basis": "data for: ",
-    "servingSize": "serving size",
+    "next": "Nästa Steg",
+    "prev": "Föregående steg",
+    "skip": "Hoppa över denna produkt",
+    "validate": "Validera tabell",
+    "unselect_picture": "Ingen näringsinformation",
+    "basis": "data för: ",
+    "servingSize": "portion storlek",
     "value": "värde",
     "nutriments": {
       "nutriment_energy-kj": "Energi (kJ)",
-      "nutriment_energy-kcal": "Energy (kCal)",
+      "nutriment_energy-kcal": "Energi (kcal)",
       "nutriment_fat": "Fett",
       "nutriment_saturated-fat": "Mättat fett",
       "nutriment_carbohydrates": "Kolhydrat",
       "nutriment_sugars": "Socker",
       "nutriment_proteins": "Proteiner",
-      "nutriment_fiber": "Fibers",
+      "nutriment_fiber": "Fibrer",
       "nutriment_salt": "Salt",
       "nutriment_sodium": "Natrium"
     },
     "history": {
-      "title": "Session History",
+      "title": "Sessionshistorik",
       "status": "status",
-      "product name": "product name",
-      "view": "view page",
-      "edit": "edit page",
-      "SKIP": "ignored",
-      "VALIDATED": "edited",
-      "WRONG_IMAGE": "unselected picture",
-      "close": "close",
-      "open": "open history"
+      "product name": "produktnamn",
+      "view": "visa sida",
+      "edit": "redigera sida",
+      "SKIP": "ignorerad",
+      "VALIDATED": "redigerad",
+      "WRONG_IMAGE": "avmarkerad bild",
+      "close": "stäng",
+      "open": "öppna historik"
     }
   }
 }

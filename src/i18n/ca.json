@@ -30,7 +30,7 @@
     "insights": "Insights",
     "nutritions": "Informació nutricional",
     "settings": "Preferències",
-    "eco-score": "Eco-score"
+    "eco-score": "Eco-puntuació"
   },
   "insights": {
     "insights": "Insights",
@@ -105,7 +105,7 @@
       },
       "page3": {
         "title": "Logos",
-        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
+        "text1": "El món dels productes està ple de logotips. Expliqueu a la nostra IA quins són iguals."
       }
     },
     "logos": {

@@ -30,7 +30,7 @@
     "insights": "Aperçu",
     "nutritions": "Tableau nutritionnel",
     "settings": "Paramètres",
-    "eco-score": "Eco-score"
+    "eco-score": "Éco-Score"
   },
   "insights": {
     "insights": "Aperçu",
@@ -105,13 +105,13 @@
       },
       "page3": {
         "title": "Logos",
-        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
+        "text1": "Le monde des produits regorge de logos. Expliquez à notre IA lesquels sont les mêmes."
       }
     },
     "logos": {
       "page1": {
         "title": "Sélection",
-        "text1": "Sélectionnez les découpes d'un même logo en cliquant dessus",
+        "text1": "Sélectionnez les cultures d'un même logo en cliquant dessus",
         "text2": "Les logos sélectionnés vont en haut de la page, vous pouvez les désélectionner en cliquant à nouveau dessus"
       },
       "page2": {

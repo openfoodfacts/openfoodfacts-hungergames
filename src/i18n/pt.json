@@ -6,7 +6,7 @@
     "brands": "Marcas",
     "ingredients": "Ingredientes",
     "product_weight": "peso do produto",
-    "popularity_sort": "Classifique por popularidade",
+    "popularity_sort": "Ordenar por popularidade",
     "no": "Não",
     "skip": "Pular",
     "yes": "Sim",
@@ -93,48 +93,48 @@
   "helper": {
     "welcome": {
       "page1": {
-        "title": "Welcome",
-        "text1": "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
-        "text2": "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
-        "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
+        "title": "Boas vindas",
+        "text1": "Hunger Games é uma coleção de minijogos que ajudam a contribuir ao Open Food Facts de várias maneiras. Categorize um produto para obter o Nutri-Socre e o Eco-Score, ajude a validar rótulos para o Eco-Score, adicione marcas e pesos, ajude nosso sistema de reconhecimento de logotipos a aprender sobre os logotipos detectados.",
+        "text2": "Estas são algumas das coisas emocionantes que você poderá fazer. Certifique-se de estar conectado ao site da Open Food Facts para ganhar crédito pelas suas contribuições. Se você cometer um erro, por favor reserve um tempo para corrigi-lo acessando o site.",
+        "text3": "Em caso de dúvidas sobre o jogo, você tem um auxiliar no canto superior direito da página, e você pode encontrar-nos no canal #hunger-games"
       },
       "page2": {
         "title": "Perguntas",
-        "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
-        "text2": "Do not hesitate to skip a question if you're not sure, there are plenty of others"
+        "text1": "Nossa IA tem muitas questões para você. Aqui você terá de confirmar ou negar a informação que ela detectou em imagens.",
+        "text2": "Não hesite em pular de questão se você não tiver certeza, ainda há muitas outras"
       },
       "page3": {
         "title": "Logótipos",
-        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
+        "text1": "O mundo de produtos é cheio de logotipos. Explique à nossa IA quais são os mesmos."
       }
     },
     "logos": {
       "page1": {
-        "title": "Selection",
-        "text1": "Select the crops of a same logo by clicking on them",
-        "text2": "Selected logos go to the top of the page, you can unselect them by clicking again on them"
+        "title": "Seleção",
+        "text1": "Selecione os recortes de um mesmo logotipo clicando neles",
+        "text2": "Logotipos selecionados vão ao topo da página, você pode desfazer a seleção clicando neles novamente"
       },
       "page2": {
         "title": "Aviso",
-        "text1": "If the crop contains multiple logo do not select it.",
-        "text2": "If the crop contains only a partial part of a logo you can select it"
+        "text1": "Se o recorte contiver vários logotipos, não o selecione.",
+        "text2": "Se o recorte contiver apenas uma parte parcial de um logotipo, você pode selecioná-lo"
       },
       "page3": {
-        "title": "Validate",
-        "text1": "Indicate the type of logo (label, brand, QRcode, ...)",
-        "text2": "If it is a label or a brand logo, indicate which one it is",
-        "text3": "Now you can submit your selection",
-        "text4": "Thank you :)"
+        "title": "Validar",
+        "text1": "Indicar o tipo de logotipo (rótulo, marca, código QR, ...)",
+        "text2": "Se for um logotipo de um rótulo ou de uma marca, indique qual é",
+        "text3": "Agora você pode enviar sua seleção",
+        "text4": "Obrigado :)"
       }
     },
-    "previous": "Prev",
+    "previous": "Anterior",
     "next": "Seguinte",
     "close": "Fechar"
   },
   "nutrition": {
     "instructions": {
-      "cropTheTable": "Crop the image to simplify your annotation",
-      "verifyNutrimentDetected": "Indicate if the nutriment detected is correct",
+      "cropTheTable": "Recorte a imagem para simplificar sua anotação",
+      "verifyNutrimentDetected": "Indique se o nutrimento detectado está correto",
       "selectMissingNutriments": "Add missing nutriments (you can click even if the word has no box)",
       "selectValue": "Select the nutritional value of: "
     },
