@@ -30,7 +30,7 @@
     "insights": "Aperçu",
     "nutritions": "Tableau nutritionnel",
     "settings": "Paramètres",
-    "eco-score": "Eco-score"
+    "eco-score": "Éco-Score"
   },
   "insights": {
     "insights": "Aperçu",
@@ -105,7 +105,7 @@
       },
       "page3": {
         "title": "Logos",
-        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
+        "text1": "Le monde des produits regorge de logos. Expliquez à notre IA lesquels sont les mêmes."
       }
     },
     "logos": {

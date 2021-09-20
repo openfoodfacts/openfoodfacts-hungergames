@@ -30,7 +30,7 @@
     "insights": "Indblik",
     "nutritions": "Ernæringsfakta",
     "settings": "Indstillinger",
-    "eco-score": "Eco-score"
+    "eco-score": "Eco-Score"
   },
   "insights": {
     "insights": "Indblik",
@@ -105,7 +105,7 @@
       },
       "page3": {
         "title": "Logoer",
-        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
+        "text1": "Produktverdenen er fuld af logoer. Forklar AI'en, hvilke som repræsenterer samme mærke mv."
       }
     },
     "logos": {

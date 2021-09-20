@@ -93,7 +93,7 @@
   "helper": {
     "welcome": {
       "page1": {
-        "title": "Welcome",
+        "title": "Hoş Geldin",
         "text1": "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
         "text2": "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
         "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
@@ -124,7 +124,7 @@
         "text1": "Indicate the type of logo (label, brand, QRcode, ...)",
         "text2": "If it is a label or a brand logo, indicate which one it is",
         "text3": "Now you can submit your selection",
-        "text4": "Thank you :)"
+        "text4": "Teşekkür ederiz :)"
       }
     },
     "previous": "Prev",
@@ -139,8 +139,8 @@
       "selectValue": "Select the nutritional value of: "
     },
     "steps": {
-      "1": "Crop",
-      "2": "Special values",
+      "1": "Kırp",
+      "2": "Özel değerler",
       "3": "Nutriments Selection",
       "4": "Values Selection"
     },
@@ -149,7 +149,7 @@
     "skip": "Skip this product",
     "validate": "Validate Table",
     "unselect_picture": "No nutrition info",
-    "basis": "data for: ",
+    "basis": "için veri: ",
     "servingSize": "serving size",
     "value": "değer",
     "nutriments": {
