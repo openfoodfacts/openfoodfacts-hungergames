@@ -29,7 +29,8 @@
     "manage": "crwdns173418:0crwdne173418:0",
     "insights": "crwdns173420:0crwdne173420:0",
     "nutritions": "crwdns173422:0crwdne173422:0",
-    "settings": "crwdns187559:0crwdne187559:0"
+    "settings": "crwdns187559:0crwdne187559:0",
+    "eco-score": "crwdns190665:0crwdne190665:0"
   },
   "insights": {
     "insights": "crwdns173426:0crwdne173426:0",
@@ -104,7 +105,7 @@
       },
       "page3": {
         "title": "crwdns187575:0crwdne187575:0",
-        "text1": "crwdns190657:0crwdne190657:0"
+        "text1": "crwdns190667:0crwdne190667:0"
       }
     },
     "logos": {

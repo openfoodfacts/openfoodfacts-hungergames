@@ -29,7 +29,8 @@
     "manage": "Manage",
     "insights": "Insights",
     "nutritions": "Διατροφικά στοιχεία",
-    "settings": "Ρυθμίσεις"
+    "settings": "Ρυθμίσεις",
+    "eco-score": "Eco-score"
   },
   "insights": {
     "insights": "Insights",
@@ -104,7 +105,7 @@
       },
       "page3": {
         "title": "Logos",
-        "text1": "The world of products is full of logos. Explain to our AI which one are the same."
+        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
       }
     },
     "logos": {

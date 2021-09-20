@@ -29,7 +29,8 @@
     "manage": "Gestisci",
     "insights": "Approfondimenti",
     "nutritions": "Valori nutrizionali",
-    "settings": "Impostazioni"
+    "settings": "Impostazioni",
+    "eco-score": "Eco-score"
   },
   "insights": {
     "insights": "Approfondimenti",
@@ -104,7 +105,7 @@
       },
       "page3": {
         "title": "Loghi",
-        "text1": "The world of products is full of logos. Explain to our AI which one are the same."
+        "text1": "Il mondo dei prodotti è pieno di loghi. Spiega alla nostra IA quali sono uguali."
       }
     },
     "logos": {
@@ -126,7 +127,7 @@
         "text4": "Grazie :)"
       }
     },
-    "previous": "Prev",
+    "previous": "Prec",
     "next": "Successiva",
     "close": "Chiudi"
   },

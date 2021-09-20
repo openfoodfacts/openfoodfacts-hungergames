@@ -29,7 +29,8 @@
     "manage": "Håndtér",
     "insights": "Indblik",
     "nutritions": "Ernæringsfakta",
-    "settings": "Indstillinger"
+    "settings": "Indstillinger",
+    "eco-score": "Eco-Score"
   },
   "insights": {
     "insights": "Indblik",
@@ -104,7 +105,7 @@
       },
       "page3": {
         "title": "Logoer",
-        "text1": "The world of products is full of logos. Explain to our AI which one are the same."
+        "text1": "Produktverdenen er fuld af logoer. Forklar AI'en, hvilke som repræsenterer samme mærke mv."
       }
     },
     "logos": {
@@ -126,7 +127,7 @@
         "text4": "Tak"
       }
     },
-    "previous": "Prev",
+    "previous": "Foreg.",
     "next": "Næste",
     "close": "Luk"
   },

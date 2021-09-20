@@ -29,7 +29,8 @@
     "manage": "يدير",
     "insights": "تاريخ انتهاء صلاحية",
     "nutritions": "حقائق غذائية",
-    "settings": "الإعدادات"
+    "settings": "الإعدادات",
+    "eco-score": "العلامة البيئية Eco-score"
   },
   "insights": {
     "insights": "تاريخ انتهاء صلاحية",
@@ -104,7 +105,7 @@
       },
       "page3": {
         "title": "Logos",
-        "text1": "The world of products is full of logos. Explain to our AI which one are the same."
+        "text1": "عالم المنتجات مليء بالشعارات والعلامات التجارية، اشرح لنظام الذكاء الاصطناعي الخاص بنا أيهما متشابه."
       }
     },
     "logos": {
@@ -126,7 +127,7 @@
         "text4": "شكرا لك :)"
       }
     },
-    "previous": "Prev",
+    "previous": "السابق",
     "next": "التالى",
     "close": "إغلق"
   },

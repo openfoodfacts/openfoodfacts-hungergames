@@ -1,7 +1,7 @@
 {
   "questions": {
     "category": "קטגוריה",
-    "label": "tavit",
+    "label": "תווית",
     "brand": "מותג",
     "brands": "מותגים",
     "ingredients": "רכיבים",
@@ -29,7 +29,8 @@
     "manage": "ניהול",
     "insights": "תובנות",
     "nutritions": "מפרט תזונתי",
-    "settings": "הגדרות"
+    "settings": "הגדרות",
+    "eco-score": "Eco-Score"
   },
   "insights": {
     "insights": "תובנות",
@@ -104,7 +105,7 @@
       },
       "page3": {
         "title": "לוגואים",
-        "text1": "The world of products is full of logos. Explain to our AI which one are the same."
+        "text1": "עולם המוצרים עמוס בלוגואים. מערכת הבינה המלאכותית שלנו תשמח לקבל הסבר אילו מהם זהים."
       }
     },
     "logos": {
@@ -126,7 +127,7 @@
         "text4": "תודה רבה :)"
       }
     },
-    "previous": "Prev",
+    "previous": "הקודם",
     "next": "הבא",
     "close": "סגירה"
   },

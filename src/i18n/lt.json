@@ -4,37 +4,38 @@
     "label": "etiketė",
     "brand": "prekės ženklas",
     "brands": "Prekės ženklai",
-    "ingredients": "Ingredients",
-    "product_weight": "product weight",
-    "popularity_sort": "Sort by popularity",
+    "ingredients": "Sudėtis",
+    "product_weight": "produkto svoris",
+    "popularity_sort": "Rikiuoti pagal populiarumą",
     "no": "Ne",
     "skip": "Skip",
     "yes": "Taip",
     "no_questions_remaining": "No questions remaining",
-    "countries": "Countries",
+    "countries": "Šalys",
     "view": "View",
     "edit": "Edit",
     "value_search": "Value (fanta, en:organic,...)",
-    "hide_images": "Hide images (faster loading)",
-    "display_images": "Display images",
+    "hide_images": "Paslėpti nuotraukas (greitesnis užkrovimas)",
+    "display_images": "Rodyti nuotraukas",
     "annotations": "Annotations",
     "last_annotations": "Last annotations",
-    "remaining_annotations": "Remaining:",
+    "remaining_annotations": "Liko:",
     "annotated_annotations": "Annotated"
   },
   "menu": {
-    "games": "Games",
-    "questions": "Questions",
+    "games": "Žaidimai",
+    "questions": "Klausimai",
     "logos": "Logos",
     "manage": "Manage",
     "insights": "Insights",
     "nutritions": "Nutrition facts",
-    "settings": "Settings"
+    "settings": "Settings",
+    "eco-score": "Eco-score"
   },
   "insights": {
     "insights": "Insights",
     "barcode": "Barkodas",
-    "barcode_placeholder": "barcode",
+    "barcode_placeholder": "brūkšninis kodas",
     "value_tag": "Value tag",
     "value_placeholder": "ex: en:mueslis, bjorg,...",
     "type": "Type",
@@ -61,28 +62,28 @@
   "logos": {
     "annotation": "Annotation: ",
     "annotations": "Logo annotations",
-    "select_all": "Select all",
-    "unselect_all": "Unselect all",
+    "select_all": "Pažymėti viską",
+    "unselect_all": "Išžymėti viską",
     "distance": "Distance:",
     "value": "Vertė",
-    "submit": "Submit",
+    "submit": "Pateikti",
     "type": "Type",
     "label": "Label",
     "brand": "Brand",
     "packager_code": "Packager code",
     "packaging": "Pakuotė",
-    "qr_code": "QR code",
+    "qr_code": "QR kodas",
     "category": "Category",
     "nutrition_label": "Nutrition label",
     "store": "Store",
     "detail": "Logo detail",
     "id": "Logo ID:",
-    "barcode": "Barcode:",
-    "full_image": "Full image",
-    "update": "Update",
+    "barcode": "Brūkšninis kodas:",
+    "full_image": "Visa nuotrauka",
+    "update": "Atnaujinti",
     "no_found": "No logo found",
     "search": "Paieška",
-    "number_of_results": "Number of results:"
+    "number_of_results": "Rezultatų skaičius:"
   },
   "settings": {
     "settings": "Settings",
@@ -98,13 +99,13 @@
         "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
       },
       "page2": {
-        "title": "Questions",
+        "title": "Klausimai",
         "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
         "text2": "Do not hesitate to skip a question if you're not sure, there are plenty of others"
       },
       "page3": {
         "title": "Logos",
-        "text1": "The world of products is full of logos. Explain to our AI which one are the same."
+        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
       }
     },
     "logos": {
@@ -143,13 +144,13 @@
       "3": "Nutriments Selection",
       "4": "Values Selection"
     },
-    "next": "Next Step",
-    "prev": "Prev Step",
-    "skip": "Skip this product",
+    "next": "Kitas žingsnis",
+    "prev": "Ankstesnis žingsnis",
+    "skip": "Praleisti šį produktą",
     "validate": "Validate Table",
-    "unselect_picture": "No nutrition info",
+    "unselect_picture": "Nėra informacijos apie maistingumą",
     "basis": "data for: ",
-    "servingSize": "serving size",
+    "servingSize": "porcijos dydis",
     "value": "vertė",
     "nutriments": {
       "nutriment_energy-kj": "Energy (kJ)",
@@ -159,21 +160,21 @@
       "nutriment_carbohydrates": "Carbohydrate",
       "nutriment_sugars": "Sugars",
       "nutriment_proteins": "Proteins",
-      "nutriment_fiber": "Fibers",
+      "nutriment_fiber": "Ląsteliena",
       "nutriment_salt": "Salt",
       "nutriment_sodium": "Sodium"
     },
     "history": {
       "title": "Session History",
-      "status": "status",
-      "product name": "product name",
-      "view": "view page",
-      "edit": "edit page",
+      "status": "būsena",
+      "product name": "produkto pavadinimas",
+      "view": "peržiūrėti puslapį",
+      "edit": "redaguoti puslapį",
       "SKIP": "ignored",
       "VALIDATED": "edited",
       "WRONG_IMAGE": "unselected picture",
       "close": "close",
-      "open": "open history"
+      "open": "atidaryti istoriją"
     }
   }
 }
