@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import VueI18n from "vue-i18n";
 import Viewer from "v-viewer";
+import VueMatomo from "vue-matomo";
 import "./semantic-ui-utils/main.css";
 import App from "./App.vue";
 import QuestionView from "./views/QuestionView.vue";
@@ -60,6 +61,13 @@ const i18n = new VueI18n({
   locale: getLang(),
   messages,
   fallbackLocale: "en",
+});
+
+Vue.use(VueMatomo, {
+  // Configure your matomo server and site by providing
+  host: "https://analytics.openfoodfacts.org/",
+  siteId: 2,
+  router: router, // Enables automatically registering page views on the router
 });
 
 new Vue({
