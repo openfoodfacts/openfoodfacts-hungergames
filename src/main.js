@@ -66,7 +66,7 @@ const i18n = new VueI18n({
 Vue.use(VueMatomo, {
   // Configure your matomo server and site by providing
   host: "https://analytics.openfoodfacts.org/",
-  siteId: 2,
+  siteId: 3,
   router: router, // Enables automatically registering page views on the router
 });
 
