@@ -58,10 +58,12 @@ export default {
   mounted() {
     off
       .getAuthStatus()
-      .then(() => {
+      .then((message) => {
+        console.log(message);
         this.isAuthenticated = true;
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
         this.isAuthenticated = false;
       });
   },
