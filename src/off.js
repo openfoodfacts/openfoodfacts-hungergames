@@ -16,7 +16,7 @@ export default {
   },
 
   getAuthStatus() {
-    return axios.get("https://world.openfoodfacts.org/cgi/auth.pl");
+    return axios.get("https://world.openfoodfacts.org/cgi/auth.pl", {withCredentials: true} );
   },
 
   getUsername() {
