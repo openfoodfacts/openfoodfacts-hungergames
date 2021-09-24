@@ -15,6 +15,10 @@ export default {
     return "";
   },
 
+  getAuthStatus() {
+    return axios.get("https://world.openfoodfacts.org/cgi/auth.pl");
+  },
+
   getUsername() {
     const sessionCookie = this.getCookie("session");
 
