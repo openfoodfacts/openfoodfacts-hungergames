@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy": "cd dist && cp index.html 404.html && cd .."
+    "deploy": "bash deploy.sh"
   },
   "dependencies": {
     "@yaireo/tagify": "^4.8.0",
