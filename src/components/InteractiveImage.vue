@@ -202,13 +202,10 @@ export default {
       };
     },
     potentialNutriments() {
-      console.log("potentialNutriments");
-      console.log(this.displayedBox);
       if (!this.displayedBox || !this.displayedBox.values) {
         return [];
       }
       const rep = this.$props.bestMatch({ search: this.displayedBox.values });
-      console.log(rep);
       return rep;
     },
   },
@@ -235,20 +232,6 @@ export default {
     window.removeEventListener("orientationchange", this.refresh);
   },
   methods: {
-    log(event) {
-      console.log(event.target);
-      console.log(event);
-      console.log({
-        x: event.offsetX, // - event.target.left,
-        y: event.offsetY, // - event.target.top,
-      });
-
-      this.displayedBox = {
-        index: null,
-        boxes: [{ maxX: event.offsetX, minY: event.offsetY }],
-        values: "",
-      };
-    },
     boxBoundingPath(box) {
       return points2Path(box.boundingPoly.vertices, true);
     },
@@ -256,10 +239,6 @@ export default {
       if (this.displayedBox && this.displayedBox.index === boxIndex) {
         this.displayedBox = {};
       } else {
-        console.log({
-          index: boxIndex,
-          ...this.$props.clickableBoxes[boxIndex],
-        });
         this.displayedBox = {
           index: boxIndex,
           ...this.$props.clickableBoxes[boxIndex],

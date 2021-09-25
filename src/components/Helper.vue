@@ -116,7 +116,6 @@ export default {
   name: "IntroductionView",
   props: { open: Boolean },
   data: function() {
-    console.log(this.$t("helper"));
     return {
       pageIndex: 0,
       helpInformations: getHelpInformations(
