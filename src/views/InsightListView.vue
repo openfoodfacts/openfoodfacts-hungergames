@@ -89,6 +89,7 @@
 import robotoffService from "../robotoff";
 import Pagination from "../components/Pagination";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { getURLParam } from "../utils";
 
 export default {
   name: "InsightListView",
@@ -99,7 +100,7 @@ export default {
       insights: [],
       pageSize: 25,
       resultCount: 0,
-      barcodeFilter: "",
+      barcodeFilter: getURLParam("code"),
       insightTypeFilter: "",
       annotationFilter: "",
       valueTagFilter: "",
