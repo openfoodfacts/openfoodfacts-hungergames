@@ -30,7 +30,7 @@
     "insights": "Percepciones",
     "nutritions": "Información nutricional",
     "settings": "Configuración",
-    "eco-score": "Eco-score"
+    "eco-score": "Eco-Score"
   },
   "insights": {
     "insights": "Percepciones",
@@ -93,88 +93,88 @@
   "helper": {
     "welcome": {
       "page1": {
-        "title": "Welcome",
-        "text1": "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
-        "text2": "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
-        "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
+        "title": "Bienvenido",
+        "text1": "Hunger Games es una colección de minijuegos que ayudan a contribuir a Open Food Facts de muchas maneras. Categoriza un producto para obtener el Nutri-Score y Eco-Score, ayuda a validar etiquetas para el Eco-Score, añadir marcas y pesos, ayudar a nuestro sistema de reconocimiento de logotipos a aprender sobre los logotipos que detectó.",
+        "text2": "Estas son algunas de las cosas emocionantes que podrás hacer. Asegúrate de estar conectado al sitio web de Open Food Facts para obtener crédito por tus contribuciones. Si cometes un error, por favor tómate el tiempo para corregirlo dirigiéndote a la página web.",
+        "text3": "En caso de duda sobre el juego, tienes un ayudante en la parte superior derecha de la página, y puedes ponerte en contacto con nosotros en el canal #hunger-games"
       },
       "page2": {
         "title": "Preguntas",
-        "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
-        "text2": "Do not hesitate to skip a question if you're not sure, there are plenty of others"
+        "text1": "Nuestra IA tiene muchas preguntas para ti. Aquí tendrás que confirmar o negar la información que detectó en las imágenes.",
+        "text2": "No dudes en omitir una pregunta si no estás seguro, hay muchos otras más"
       },
       "page3": {
         "title": "Logotipo",
-        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
+        "text1": "El mundo de los productos está lleno de logotipos. Explique a nuestra IA cuáles son los mismos."
       }
     },
     "logos": {
       "page1": {
-        "title": "Selection",
-        "text1": "Select the crops of a same logo by clicking on them",
-        "text2": "Selected logos go to the top of the page, you can unselect them by clicking again on them"
+        "title": "Selección",
+        "text1": "Seleccione los cultivos de un mismo logotipo haciendo clic en ellos",
+        "text2": "Los logos seleccionados van a la parte superior de la página, puedes deseleccionarlos haciendo clic de nuevo en ellos"
       },
       "page2": {
         "title": "Aviso",
-        "text1": "If the crop contains multiple logo do not select it.",
-        "text2": "If the crop contains only a partial part of a logo you can select it"
+        "text1": "Si el recorte contiene varios logotipos, no lo seleccione.",
+        "text2": "Si el recorte contiene sólo una parte parcial de un logotipo, puede seleccionarlo"
       },
       "page3": {
-        "title": "Validate",
-        "text1": "Indicate the type of logo (label, brand, QRcode, ...)",
-        "text2": "If it is a label or a brand logo, indicate which one it is",
-        "text3": "Now you can submit your selection",
-        "text4": "Thank you :)"
+        "title": "Validar",
+        "text1": "Indicar el tipo de logo (etiqueta, marca, QRcode, ...)",
+        "text2": "Si es una etiqueta o un logo de marca, indica cuál es",
+        "text3": "Ahora puedes enviar tu selección",
+        "text4": "Gracias :)"
       }
     },
-    "previous": "Prev",
+    "previous": "Anterior",
     "next": "Siguiente",
     "close": "Cerrar"
   },
   "nutrition": {
     "instructions": {
-      "cropTheTable": "Crop the image to simplify your annotation",
-      "verifyNutrimentDetected": "Indicate if the nutriment detected is correct",
-      "selectMissingNutriments": "Add missing nutriments (you can click even if the word has no box)",
-      "selectValue": "Select the nutritional value of: "
+      "cropTheTable": "Recorta la imagen para simplificar tu anotación",
+      "verifyNutrimentDetected": "Indica si el nutriente detectado es correcto",
+      "selectMissingNutriments": "Añadir los nutrientes faltantes (puedes hacer clic incluso si la palabra no tiene ningún recuadro)",
+      "selectValue": "Seleccione el valor nutricional de: "
     },
     "steps": {
-      "1": "Crop",
-      "2": "Special values",
-      "3": "Nutriments Selection",
-      "4": "Values Selection"
+      "1": "Recortar",
+      "2": "Valores especiales",
+      "3": "Selección de nutrientes",
+      "4": "Selección de valores"
     },
-    "next": "Next Step",
-    "prev": "Prev Step",
-    "skip": "Skip this product",
-    "validate": "Validate Table",
-    "unselect_picture": "No nutrition info",
-    "basis": "data for: ",
-    "servingSize": "serving size",
+    "next": "Siguiente paso",
+    "prev": "Paso anterior",
+    "skip": "Omitir este producto",
+    "validate": "Validar tabla",
+    "unselect_picture": "Sin información nutricional",
+    "basis": "datos para: ",
+    "servingSize": "tamaño de la porción",
     "value": "valor",
     "nutriments": {
       "nutriment_energy-kj": "Energía (kj)",
-      "nutriment_energy-kcal": "Energy (kCal)",
+      "nutriment_energy-kcal": "Energía (kCal)",
       "nutriment_fat": "Grasas",
       "nutriment_saturated-fat": "Grasa saturada",
       "nutriment_carbohydrates": "Carbohidratos",
       "nutriment_sugars": "Azúcares",
       "nutriment_proteins": "Proteínas",
-      "nutriment_fiber": "Fibers",
+      "nutriment_fiber": "Fibras",
       "nutriment_salt": "Sal",
       "nutriment_sodium": "Sodio"
     },
     "history": {
-      "title": "Session History",
-      "status": "status",
-      "product name": "product name",
-      "view": "view page",
-      "edit": "edit page",
-      "SKIP": "ignored",
-      "VALIDATED": "edited",
-      "WRONG_IMAGE": "unselected picture",
-      "close": "close",
-      "open": "open history"
+      "title": "Historial de sesiones",
+      "status": "estado",
+      "product name": "nombre del producto",
+      "view": "ver página",
+      "edit": "editar página",
+      "SKIP": "ignorado",
+      "VALIDATED": "editado",
+      "WRONG_IMAGE": "imagen no seleccionada",
+      "close": "cerrar",
+      "open": "abrir historial"
     }
   }
 }
