@@ -83,7 +83,14 @@
           <td data-label="Barcode">
             <span class="mobile only list__label"
               >{{ $t("insights.barcode") }} </span
-            >{{ insight.barcode }}
+            ><a href="#" @click="filterBarcode(insight.barcode)">{{
+              insight.barcode
+            }}</a
+            ><a target="_blank" :href="getProductUrl(insight.barcode)"
+              ><i class="large icon eye link_icon"/></a
+            ><a target="_blank" :href="getProductEditUrl(insight.barcode)"
+              ><i class="large icon edit link_icon"
+            /></a>
           </td>
           <td data-label="Id">
             <span class="mobile only list__label">{{ $t("insights.id") }} </span
@@ -153,6 +160,7 @@ import robotoffService from "../robotoff";
 import Pagination from "../components/Pagination";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { getURLParam } from "../utils";
+import offService from "../off";
 
 export default {
   name: "InsightListView",
@@ -184,6 +192,22 @@ export default {
     },
   },
   methods: {
+    getProductUrl: function(code) {
+      if (!code) {
+        return "";
+      }
+      return offService.getProductUrl(code);
+    },
+    getProductEditUrl: function(code) {
+      if (!code) {
+        return "";
+      }
+      return offService.getProductEditUrl(code);
+    },
+    filterBarcode: function(code) {
+      this.barcodeFilter = code;
+      this.loadInsights();
+    },
     formatDatetime: function(datetime) {
       if (!datetime) {
         return null;
@@ -222,5 +246,8 @@ export default {
 <style>
 .list__label {
   font-weight: bold;
+}
+a > .link_icon {
+  margin: 5px;
 }
 </style>
