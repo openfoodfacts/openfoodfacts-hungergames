@@ -105,6 +105,12 @@
             <span class="mobile only list__label"
               >{{ $t("insights.value") }} </span
             >{{ insight.value || insight.value_tag }}
+            <a
+              target="_blank"
+              :href="getQuestionUrl(insight.type, insight.value_tag)"
+              v-if="getQuestionUrl(insight.type, insight.value_tag)"
+              ><i class="large icon external alternate link_icon"
+            /></a>
           </td>
           <td data-label="Created at">
             <span class="mobile only list__label"
@@ -203,6 +209,15 @@ export default {
         return "";
       }
       return offService.getProductEditUrl(code);
+    },
+    getQuestionUrl: function(type, value_tag) {
+      if (
+        !value_tag ||
+        !["category", "brand", "product_weight", "label"].includes(type)
+      ) {
+        return "";
+      }
+      return `https://hunger.openfoodfacts.org/questions?type=${type}&value_tag=${value_tag}`;
     },
     filterBarcode: function(code) {
       this.barcodeFilter = code;
