@@ -202,7 +202,6 @@ export default {
           count
         )
         .then((result) => {
-          console.log({ result, props: this.$props.value });
           const remainingQuestionCount = result.data.count;
           this.$emit("updateRemainingQuestionCount", remainingQuestionCount);
 

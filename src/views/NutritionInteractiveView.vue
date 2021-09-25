@@ -526,8 +526,6 @@ export default {
             this.imageZoomOptions
           ),
         };
-        // this.extracted = {filteredBoxes, values, nutriment}
-        console.log(this.extracted);
       }
       if (this.step === 2) {
         this.nextPrediction();

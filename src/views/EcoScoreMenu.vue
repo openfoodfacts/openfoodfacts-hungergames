@@ -135,7 +135,6 @@ export default {
             }),
           };
         });
-      console.log(value_tag);
     },
   },
   mounted() {
