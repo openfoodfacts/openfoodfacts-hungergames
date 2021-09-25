@@ -2,53 +2,10 @@
   <div class="ui grid stackable">
     <div class="five wide column centered">
       <div class="insight-column">
-        <div
-          class="tag"
-          :class="{ selected: insightType === selectedInsightType }"
-          v-for="insightType of availableInsightTypes"
-          :key="insightType"
-          @click="selectInsightType(insightType)"
-        >
-          {{ $t("questions." + insightType) }}
-        </div>
-        <div class="ui form">
-          <div class="fields">
-            <div class="ui icon field eight wide">
-              <input
-                class="ui input"
-                :placeholder="$t('questions.value_search')"
-                v-model="valueTagInput"
-              />
-              <i
-                @click="clearValueTagInput()"
-                v-if="valueTagInput"
-                class="times link icon"
-              ></i>
-            </div>
-            <div class="ui field four wide">
-              <select class="ui fluid dropdown" v-model="countryFilter">
-                <option value="">World</option>
-                <option
-                  :value="country"
-                  v-for="country in countryNames"
-                  :key="country"
-                  >{{ country.slice(3) }}</option
-                >
-              </select>
-            </div>
-
-            <div class="field four wide">
-              <div class="ui toggle checkbox" style="margin-top: 0.5rem">
-                <input
-                  v-model="sortByPopularity"
-                  type="checkbox"
-                  name="sortBy"
-                />
-                <label>{{ $t("questions.popularity_sort") }}</label>
-              </div>
-            </div>
-          </div>
-        </div>
+        <QuestionFilter
+          v-model="questionBuffer"
+          v-on:updateRemainingQuestionCount="updateRemainingQuestionCount"
+        />
         <div class="ui divider" />
         <div class="ui hidden divider"></div>
         <div v-if="currentQuestion">
@@ -149,86 +106,12 @@
 <script>
 import { Cropper } from "vue-advanced-cropper";
 import robotoffService from "../robotoff";
+import { NO_QUESTION_LEFT } from "../const";
 import Product from "../components/Product";
 import LoadingSpinner from "../components/LoadingSpinner";
+import QuestionFilter from "../components/QuestionFilter/index";
 
 import AnnotationCounter from "../components/AnnotationCounter";
-
-const updateURLParam = (key, value) => {
-  const urlParams = new URLSearchParams(window.location.search);
-  urlParams.set(key, value);
-  const newRelativePathQuery =
-    window.location.pathname + "?" + urlParams.toString();
-  history.pushState(null, "", newRelativePathQuery);
-};
-
-const deleteURLParam = (key) => {
-  const urlParams = new URLSearchParams(window.location.search);
-
-  if (!urlParams.has(key)) {
-    return;
-  }
-
-  urlParams.delete(key);
-
-  const newRelativePathQuery =
-    window.location.pathname +
-    (urlParams.toString().length ? `?${urlParams.toString()}` : "");
-
-  history.pushState(null, "", newRelativePathQuery);
-};
-
-const getURLParam = (key) => {
-  const urlParams = new URLSearchParams(window.location.search);
-
-  if (!urlParams.has(key)) {
-    return "";
-  }
-
-  return urlParams.get(key);
-};
-
-const NO_QUESTION_LEFT = "NO_QUESTION_LEFT";
-
-const insightTypesNames = {
-  label: "label",
-  category: "category",
-  brand: "brand",
-  product_weight: "product weight",
-};
-
-const randomInsightTypeChoices = ["label", "category", "brand"];
-
-const countryNames = [
-  "en:belgium",
-  "en:denmark",
-  "en:france",
-  "en:germany",
-  "en:italy",
-  "en:netherlands",
-  "en:portugal",
-  "en:spain",
-  "en:sweden",
-  "en:switzerland",
-  "en:united-states",
-  "en:canada",
-  "en:australia",
-  "en:united-kingdom",
-];
-const getRandomInsightType = () =>
-  randomInsightTypeChoices[
-    Math.floor(randomInsightTypeChoices.length * Math.random())
-  ];
-
-const getInitialInsightType = () => {
-  const urlParamValue = getURLParam("type");
-
-  if (urlParamValue.length) {
-    return urlParamValue;
-  }
-
-  return getRandomInsightType();
-};
 
 const reformatTagMapping = {
   " ": "-",
@@ -261,88 +144,34 @@ const reformatValueTag = (value) => {
 
 export default {
   name: "QuestionView",
-  components: { Product, AnnotationCounter, LoadingSpinner, Cropper },
+  components: {
+    Product,
+    AnnotationCounter,
+    LoadingSpinner,
+    Cropper,
+    QuestionFilter,
+  },
   data: function() {
     return {
-      valueTag: getURLParam("value_tag"),
-      valueTagInput: getURLParam("value_tag"),
       valueTagTimeout: null,
       currentQuestion: null,
       questionBuffer: [],
       remainingQuestionCount: 0,
       lastAnnotations: [],
       sessionAnnotatedCount: 0,
-      insightTypesNames: insightTypesNames,
-      selectedInsightType: getInitialInsightType(),
-      imageRotation: 0,
       seenInsightIds: new Set(),
-      sortByPopularity: false,
-      brandFilter: getURLParam("brand"),
-      countryNames: countryNames,
-      countryFilter: getURLParam("country"),
-      imageZoomOptions: {
-        toolbar: {
-          rotateLeft: 1,
-          rotateRight: 1,
-        },
-      },
     };
   },
   watch: {
-    valueTagInput: function() {
-      clearTimeout(this.valueTagTimeout);
-
-      if (this.valueTagInput.length == 0) {
-        this.valueTag = "";
-        deleteURLParam("value_tag");
-        return;
+    questionBuffer: function(newBuffer) {
+      if (newBuffer.length > 0 && newBuffer[0] !== NO_QUESTION_LEFT) {
+        this.currentQuestion = newBuffer[0];
+      } else {
+        this.currentQuestion = null;
       }
-
-      const valueTagInput = this.valueTagInput.toLowerCase();
-
-      this.valueTagTimeout = setTimeout(() => {
-        this.valueTag = reformatValueTag(valueTagInput);
-        updateURLParam("value_tag", this.valueTag);
-      }, 1000);
-    },
-    valueTag: function() {
-      this.currentQuestion = null;
-      this.questionBuffer = [];
-      this.loadQuestions();
-    },
-    sortByPopularity: function() {
-      this.currentQuestion = null;
-      this.questionBuffer = [];
-      this.loadQuestions();
-    },
-    countryFilter: function() {
-      this.currentQuestion = null;
-      this.questionBuffer = [];
-      this.loadQuestions();
-    },
-    selectedInsightType: function() {
-      this.updateInsightTypeUrlParam();
     },
   },
   methods: {
-    clearValueTagInput() {
-      this.valueTagInput = "";
-    },
-    rotateImage() {
-      window.console.log(this.imageRotation);
-      if (this.imageRotation === 0) {
-        this.imageRotation = 90;
-      } else if (this.imageRotation === 90) {
-        this.imageRotation = 180;
-      } else if (this.imageRotation === 180) {
-        this.imageRotation = 270;
-      } else if (this.imageRotation === 270) {
-        this.imageRotation = 0;
-      }
-    },
-    updateInsightTypeUrlParam() {
-      updateURLParam("type", this.selectedInsightType);
-    },
     updateLastAnnotations(question, annotation) {
       this.lastAnnotations.push({
         question,
@@ -353,12 +182,6 @@ export default {
         this.lastAnnotations.shift();
       }
     },
-    selectInsightType: function(insightType) {
-      this.selectedInsightType = insightType;
-      this.currentQuestion = null;
-      this.questionBuffer = [];
-      this.loadQuestions();
-    },
     annotate: function(annotation) {
       if (annotation !== -1) {
         robotoffService.annotate(this.currentQuestion.insight_id, annotation);
@@ -366,74 +189,19 @@ export default {
         this.remainingQuestionCount -= 1;
         this.sessionAnnotatedCount += 1;
       }
-      this.updateCurrentQuestion();
-
-      if (!this.noRemainingQuestion && this.questionBuffer.length <= 2) {
-        this.loadQuestions();
-      }
-    },
-    updateCurrentQuestion: function() {
       this.currentQuestion = null;
-      if (this.questionBuffer.length > 0) {
-        this.currentQuestion = this.questionBuffer.shift();
-      } else {
-        window.console.error(
-          "question buffer is empty, cannot update current question!"
-        );
-      }
+      this.questionBuffer = [...this.questionBuffer.slice(1)];
     },
-    loadQuestions: function() {
-      const sortBy = this.sortByPopularity ? "popular" : "random";
-      const count = 10;
-      robotoffService
-        .questions(
-          sortBy,
-          this.selectedInsightType,
-          this.valueTag,
-          this.brandFilter,
-          this.countryFilter !== "en:world" ? this.countryFilter : null,
-          count
-        )
-        .then((result) => {
-          this.remainingQuestionCount = result.data.count;
-          if (result.data.questions.length == 0) {
-            if (!this.questionBuffer.includes(NO_QUESTION_LEFT)) {
-              this.questionBuffer.push(NO_QUESTION_LEFT);
-            }
-            return;
-          }
-          result.data.questions.forEach((q) => {
-            if (!this.seenInsightIds.has(q.insight_id)) {
-              this.questionBuffer.push(q);
-              this.seenInsightIds.add(q.insight_id);
-            }
-          });
-          if (result.data.questions.length < count) {
-            if (!this.questionBuffer.includes(NO_QUESTION_LEFT)) {
-              this.questionBuffer.push(NO_QUESTION_LEFT);
-            }
-          }
-          if (this.currentQuestion === null) {
-            this.updateCurrentQuestion();
-          }
-        });
+    updateRemainingQuestionCount: function(newCount) {
+      this.remainingQuestionCount = newCount;
     },
   },
   computed: {
-    availableInsightTypes: function() {
-      return Object.keys(insightTypesNames);
-    },
     currentQuestionImageUrl: function() {
       if (this.currentQuestion.source_image_url) {
         return this.currentQuestion.source_image_url;
       }
       return "https://static.openfoodfacts.org/images/image-placeholder.png";
-    },
-    imageRotationClassName: function() {
-      if (this.imageRotation === 90) return "rotate-90";
-      if (this.imageRotation === 180) return "rotate-180";
-      if (this.imageRotation === 270) return "rotate-270";
-      return "rotation-0";
     },
     loading: function() {
       return !this.noRemainingQuestion && this.currentQuestion == null;
@@ -472,8 +240,6 @@ export default {
     },
   },
   mounted() {
-    this.updateInsightTypeUrlParam();
-    this.loadQuestions();
     const vm = this;
     window.addEventListener("keyup", function(event) {
       if (event.target.nodeName == "BODY") {
@@ -488,22 +254,6 @@ export default {
 </script>
 
 <style scoped>
-.tag {
-  background-color: #e8e8e8;
-  display: inline-block;
-  position: relative;
-  padding: 1em 1.5em;
-  margin: 0.3em 0.15em;
-  line-height: 1;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.tag.selected {
-  background-color: #35689d;
-  color: #ffffff;
-}
-
 button.annotate {
   padding: 2rem 2.5rem;
 }
@@ -519,21 +269,5 @@ button.annotate {
 
 .annotation-column {
   background-color: #686868;
-}
-
-.rotate-0 {
-  transform: none;
-}
-
-.rotate-90 {
-  transform: rotate(90deg);
-}
-
-.rotate-180 {
-  transform: rotate(180deg);
-}
-
-.rotate-270 {
-  transform: rotate(270deg);
 }
 </style>
