@@ -5,34 +5,33 @@
         {{ $t("questions." + value.selectedInsightType) }}
       </div>
       <div v-if="value.valueTag" class="ui label large">
-        value: {{ value.valueTag
+        {{ $t("questions.filters.short_label.value") }}: {{ value.valueTag
         }}<i class="icon close" @click="removeFilter('valueTag')"></i>
       </div>
       <div v-if="value.countryFilter" class="ui label large">
-        country: {{ value.countryFilter
+        {{ $t("questions.filters.short_label.country") }}:
+        {{ value.countryFilter
         }}<i class="icon close" @click="removeFilter('countryFilter')"></i>
       </div>
       <div v-if="value.brandFilter" class="ui label large">
-        brand: {{ value.brandFilter
+        {{ $t("questions.filters.short_label.brand") }}: {{ value.brandFilter
         }}<i class="icon close" @click="removeFilter('brandFilter')"></i>
       </div>
       <div v-if="value.sortByPopularity" class="ui label large">
-        popularity<i
-          class="icon close"
-          @click="removeFilter('sortByPopularity')"
-        ></i>
+        {{ $t("questions.filters.short_label.popularity")
+        }}<i class="icon close" @click="removeFilter('sortByPopularity')"></i>
       </div>
     </div>
     <div v-if="formIsClose" class="openForm">
       <button class="ui button" @click="openForm">
-        <i class="icon edit" />Edit Filters
+        <i class="icon edit" />{{ $t("questions.filters.actions.edit") }}
       </button>
     </div>
     <div v-else>
       <div class="ui divider" />
       <div class="ui form styled">
         <div class="field">
-          <label>Question Type</label>
+          <label>{{ $t("questions.filters.long_label.type") }}</label>
           <button
             class="ui button"
             :class="{
@@ -47,10 +46,10 @@
         </div>
 
         <div class="ui field">
-          <label>Proposed Value</label>
+          <label>{{ $t("questions.filters.long_label.value") }}</label>
           <div class="ui icon input ">
             <input
-              :placeholder="$t('questions.value_search')"
+              :placeholder="$t('questions.filters.placeholders.value')"
               v-model="formValues.valueTag"
             />
             <i
@@ -62,7 +61,7 @@
         </div>
 
         <div class="ui field">
-          <label>Country</label>
+          <label>{{ $t("questions.filters.long_label.country") }}</label>
           <select class="ui fluid dropdown" v-model="formValues.countryFilter">
             <option value="">World</option>
             <option
@@ -75,10 +74,10 @@
         </div>
 
         <div class="field">
-          <label>Brand</label>
+          <label>{{ $t("questions.filters.long_label.brand") }}</label>
           <div class="ui icon input ">
             <input
-              :placeholder="$t('questions.brand_search')"
+              :placeholder="$t('questions.filters.placeholders.brand')"
               v-model="formValues.brandFilter"
             />
             <i
@@ -103,9 +102,11 @@
         </div>
       </div>
       <div class="ui actions">
-        <button class="ui button" @click="resetForm">Cancel</button>
+        <button class="ui button" @click="resetForm">
+          {{ $t("questions.actions.cancel") }}
+        </button>
         <button class="ui primary button" @click="validateForm">
-          Apply
+          {{ $t("questions.actions.apply") }}
         </button>
       </div>
     </div>
