@@ -2,10 +2,7 @@
   <div class="ui grid stackable">
     <div class="five wide column centered">
       <div class="insight-column">
-        <QuestionFilter
-          v-model="questionBuffer"
-          v-on:updateRemainingQuestionCount="updateRemainingQuestionCount"
-        />
+        <QuestionFilter v-model="filters" />
         <div class="ui divider" />
         <div class="ui hidden divider"></div>
         <div v-if="currentQuestion">
@@ -110,6 +107,7 @@ import { NO_QUESTION_LEFT } from "../const";
 import Product from "../components/Product";
 import LoadingSpinner from "../components/LoadingSpinner";
 import QuestionFilter from "../components/QuestionFilter/index";
+import { getInitialFilterValues } from "../components/QuestionFilter/filterHelpers";
 
 import AnnotationCounter from "../components/AnnotationCounter";
 
@@ -154,24 +152,102 @@ export default {
   data: function() {
     return {
       valueTagTimeout: null,
-      currentQuestion: null,
       questionBuffer: [],
       remainingQuestionCount: 0,
       lastAnnotations: [],
       sessionAnnotatedCount: 0,
       seenInsightIds: new Set(),
+      filters: { ...getInitialFilterValues() },
     };
   },
   watch: {
+    filters: {
+      handler: function(newFilters, oldFilters) {
+        if (
+          oldFilters === null ||
+          JSON.stringify(newFilters) !== JSON.stringify(oldFilters)
+        ) {
+          // when filters change reload questions
+          this.loadQuestions(true);
+        }
+      },
+      deep: true,
+    },
     questionBuffer: function(newBuffer) {
-      if (newBuffer.length > 0 && newBuffer[0] !== NO_QUESTION_LEFT) {
-        this.currentQuestion = newBuffer[0];
+      // update the current question
+      if (
+        this.questionBuffer.length > 0 &&
+        this.questionBuffer[0] !== NO_QUESTION_LEFT
+      ) {
+        this.currentQuestion = this.questionBuffer[0];
       } else {
         this.currentQuestion = null;
+      }
+
+      // Fetch new questions to keep more than 9 questions in the buffer.
+      // Also send request for buffer sizes 0, 1, 2, 3 In cas a network problem occured
+      if (
+        (newBuffer.length == 9 || newBuffer.length < 4) &&
+        !newBuffer.includes(NO_QUESTION_LEFT)
+      ) {
+        this.loadQuestions(false);
       }
     },
   },
   methods: {
+    loadQuestions: function(clean = false) {
+      if (clean) {
+        this.questionBuffer = [];
+      }
+      const sortBy = this.filters.sortByPopularity ? "popular" : "random";
+      const count = 10;
+      robotoffService
+        .questions(
+          sortBy,
+          this.filters.selectedInsightType,
+          this.filters.valueTag,
+          this.filters.brandFilter,
+          this.filters.countryFilter !== "en:world"
+            ? this.filters.countryFilter
+            : null,
+          count
+        )
+        .then((result) => {
+          this.remainingQuestionCount = result.data.count;
+          if (result.data.questions.length == 0) {
+            if (!this.questionBuffer.includes(NO_QUESTION_LEFT)) {
+              if (clean) {
+                this.questionBuffer = [NO_QUESTION_LEFT];
+              } else {
+                this.questionBuffer = [
+                  ...this.questionBuffer,
+                  NO_QUESTION_LEFT,
+                ];
+              }
+            }
+            return;
+          }
+          const dataToAdd = [];
+          result.data.questions.forEach((q) => {
+            if (!this.seenInsightIds.has(q.insight_id)) {
+              dataToAdd.push(q);
+              this.seenInsightIds.add(q.insight_id);
+            }
+          });
+          if (
+            result.data.questions.length < count &&
+            (clean || !this.questionBuffer.includes(NO_QUESTION_LEFT))
+          ) {
+            dataToAdd.push(NO_QUESTION_LEFT);
+          }
+          if (clean) {
+            this.questionBuffer = [...dataToAdd];
+          } else {
+            this.questionBuffer = [...this.questionBuffer, ...dataToAdd];
+          }
+        });
+    },
+
     updateLastAnnotations(question, annotation) {
       this.lastAnnotations.push({
         question,
@@ -213,10 +289,7 @@ export default {
       );
     },
     currentQuestionBarcode: function() {
-      if (
-        this.currentQuestion !== null &&
-        this.currentQuestion !== NO_QUESTION_LEFT
-      ) {
+      if (this.currentQuestion && this.currentQuestion !== NO_QUESTION_LEFT) {
         return this.currentQuestion.barcode;
       } else {
         return null;
@@ -241,6 +314,7 @@ export default {
   },
   mounted() {
     const vm = this;
+    this.loadQuestions();
     window.addEventListener("keyup", function(event) {
       if (event.target.nodeName == "BODY") {
         if (event.key === "k") vm.annotate(-1);

@@ -2,22 +2,25 @@
   <div class="root">
     <div>
       <div class="ui label blue large">
-        {{ $t("questions." + usedValues.selectedInsightType) }}
+        {{ $t("questions." + value.selectedInsightType) }}
       </div>
-      <div v-if="usedValues.valueTag" class="ui label large">
-        value: {{ usedValues.valueTag
-        }}<i class="icon close" @click="reset('valueTag')"></i>
+      <div v-if="value.valueTag" class="ui label large">
+        value: {{ value.valueTag
+        }}<i class="icon close" @click="removeFilter('valueTag')"></i>
       </div>
-      <div v-if="usedValues.countryFilter" class="ui label large">
-        country: {{ usedValues.countryFilter
-        }}<i class="icon close" @click="reset('countryFilter')"></i>
+      <div v-if="value.countryFilter" class="ui label large">
+        country: {{ value.countryFilter
+        }}<i class="icon close" @click="removeFilter('countryFilter')"></i>
       </div>
-      <div v-if="usedValues.brandFilter" class="ui label large">
-        brand: {{ usedValues.brandFilter
-        }}<i class="icon close" @click="reset('brandFilter')"></i>
+      <div v-if="value.brandFilter" class="ui label large">
+        brand: {{ value.brandFilter
+        }}<i class="icon close" @click="removeFilter('brandFilter')"></i>
       </div>
-      <div v-if="usedValues.sortByPopularity" class="ui label large">
-        popularity<i class="icon close" @click="reset('sortByPopularity')"></i>
+      <div v-if="value.sortByPopularity" class="ui label large">
+        popularity<i
+          class="icon close"
+          @click="removeFilter('sortByPopularity')"
+        ></i>
       </div>
     </div>
     <div v-if="formIsClose" class="openForm">
@@ -110,69 +113,22 @@
 </template>
 
 <script>
-import robotoffService from "../../robotoff";
-import { NO_QUESTION_LEFT } from "../../const";
-import { setURLParams, getURLParam } from "../../utils";
-import { getInitialInsightType } from "./filterHelpers";
+import { setURLParams } from "../../utils";
 import { countryNames, insightTypesNames, key2urlParam } from "./const";
 
 export default {
   props: ["value"],
   data() {
-    const initialInsightType = getInitialInsightType();
-
     return {
       availableInsightTypes: insightTypesNames,
-      seenInsightIds: new Set(),
       countryNames,
-      cancelTimeout: null,
       formIsClose: true,
-      formValues: {
-        valueTag: getURLParam("value_tag"),
-        brandFilter: getURLParam("brand"),
-        countryFilter: getURLParam("country"),
-        selectedInsightType: initialInsightType,
-        sortByPopularity: !!getURLParam("sorted"),
-      },
-      usedValues: {
-        valueTag: getURLParam("value_tag"),
-        brandFilter: getURLParam("brand"),
-        countryFilter: getURLParam("country"),
-        selectedInsightType: initialInsightType,
-        sortByPopularity: !!getURLParam("sorted"),
-      },
+      formValues: {},
     };
   },
-
   mounted() {
-    this.loadQuestions();
-  },
-  computed: {
-    needToFetchNewInsights: function() {
-      return (
-        this.$props.value.length < 5 &&
-        !this.$props.value.includes(NO_QUESTION_LEFT)
-      );
-    },
-  },
-  watch: {
-    usedValues(newValues) {
-      const urlParams = {};
-      Object.keys(newValues).forEach((key) => {
-        const value =
-          key === "sortByPopularity"
-            ? newValues.sortByPopularity || ""
-            : newValues[key];
-        urlParams[key2urlParam[key]] = value;
-      });
-
-      setURLParams(urlParams);
-    },
-    needToFetchNewInsights() {
-      if (this.needToFetchNewInsights) {
-        this.loadQuestions();
-      }
-    },
+    this.formValues = { ...this.$props.value };
+    this.updateURLParams(this.formValues);
   },
   methods: {
     openForm: function() {
@@ -187,81 +143,39 @@ export default {
     clearFormField: function(key) {
       this.formValues[key] = "";
     },
-    loadQuestions: function(clean = false) {
-      const sortBy = this.usedValues.sortByPopularity ? "popular" : "random";
-      const count = 10;
-      robotoffService
-        .questions(
-          sortBy,
-          this.usedValues.selectedInsightType,
-          this.usedValues.valueTag,
-          this.usedValues.brandFilter,
-          this.usedValues.countryFilter !== "en:world"
-            ? this.usedValues.countryFilter
-            : null,
-          count
-        )
-        .then((result) => {
-          const remainingQuestionCount = result.data.count;
-          this.$emit("updateRemainingQuestionCount", remainingQuestionCount);
 
-          if (result.data.questions.length == 0) {
-            if (!this.$props.value.includes(NO_QUESTION_LEFT)) {
-              if (clean) {
-                this.$emit("input", [NO_QUESTION_LEFT]);
-              } else {
-                this.$emit("input", [...this.$props.value, NO_QUESTION_LEFT]);
-              }
-            }
-            return;
-          }
-          const dataToAdd = [];
-          result.data.questions.forEach((q) => {
-            if (!this.seenInsightIds.has(q.insight_id)) {
-              dataToAdd.push(q);
-              this.seenInsightIds.add(q.insight_id);
-            }
-          });
-          if (
-            result.data.questions.length < count &&
-            (clean || !this.$props.value.includes(NO_QUESTION_LEFT))
-          ) {
-            dataToAdd.push(NO_QUESTION_LEFT);
-          }
-          if (clean) {
-            this.$emit("input", [...dataToAdd]);
-          } else {
-            this.$emit("input", [...this.$props.value, ...dataToAdd]);
-          }
-        });
+    updateURLParams: function(params) {
+      const urlParams = {};
+      Object.keys(params).forEach((key) => {
+        const value =
+          key === "sortByPopularity"
+            ? params.sortByPopularity || ""
+            : params[key];
+        urlParams[key2urlParam[key]] = value;
+      });
+
+      setURLParams(urlParams);
     },
     validateForm: function() {
-      this.usedValues = { ...this.formValues }; // replace filter data by form data
-      this.$emit("input", []);
-      this.loadQuestions(true);
+      this.$emit("input", { ...this.formValues });
+      this.updateURLParams(this.formValues);
+
       this.closeForm();
     },
     resetForm: function() {
-      this.formValues = { ...this.usedValues };
+      this.formValues = { ...this.$props.value };
 
       this.closeForm();
     },
-    reset: function(key) {
-      clearTimeout(this.cancelTimeout);
-
-      this.usedValues = {
-        ...this.usedValues,
-        [key]: key === "sortByPopularity" ? false : "",
-      };
+    removeFilter: function(filterKey) {
       this.formValues = {
         ...this.formValues,
-        [key]: key === "sortByPopularity" ? false : "",
+        [filterKey]: filterKey === "sortByPopularity" ? false : "",
       };
-
-      this.$emit("input", []);
-      this.cancelTimeout = setTimeout(() => {
-        this.loadQuestions(true);
-      }, 1000);
+      this.$emit("input", {
+        ...this.$props.value,
+        [filterKey]: filterKey === "sortByPopularity" ? false : "",
+      });
     },
   },
 };
