@@ -30,7 +30,7 @@
     "insights": "Yönelimler",
     "nutritions": "Beslenme gerçekleri",
     "settings": "Ayarlar",
-    "eco-score": "Eco-score"
+    "eco-score": "Eko-skor"
   },
   "insights": {
     "insights": "Yönelimler",
@@ -100,34 +100,34 @@
       },
       "page2": {
         "title": "Sorular",
-        "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
-        "text2": "Do not hesitate to skip a question if you're not sure, there are plenty of others"
+        "text1": "Yapay zekamızın size bir sürü sorusu var. Görüntülerde tespit ettiği bilgileri onaylamanız veya reddetmeniz gerekmektedir.",
+        "text2": "Eğer emin değilseniz bir soruyu atlamaktan çekinmeyin, daha bir sürü var"
       },
       "page3": {
         "title": "Logolar",
-        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
+        "text1": "Ürünler dünyası logolar ile doludur. Hangilerinin aynı olduğunu yapay zekamıza söyleyin."
       }
     },
     "logos": {
       "page1": {
-        "title": "Selection",
-        "text1": "Select the crops of a same logo by clicking on them",
-        "text2": "Selected logos go to the top of the page, you can unselect them by clicking again on them"
+        "title": "Seçim",
+        "text1": "Aynı logolu ekinleri üzerlerine tıklayarak seçin",
+        "text2": "Seçilen logolar sayfanın üstüne gidecek, üstlerine tekrar tıklayarak seçmeyi geri alabilirsiniz"
       },
       "page2": {
         "title": "Uyarı",
-        "text1": "If the crop contains multiple logo do not select it.",
-        "text2": "If the crop contains only a partial part of a logo you can select it"
+        "text1": "Eğer ekin çoklu logo içeriyorsa seçmeyin.",
+        "text2": "Eğer ekin bir logonun sadece bir kısmını içeriyorsa onu seçebilirsiniz"
       },
       "page3": {
-        "title": "Validate",
+        "title": "Geçerlilik",
         "text1": "Indicate the type of logo (label, brand, QRcode, ...)",
         "text2": "If it is a label or a brand logo, indicate which one it is",
         "text3": "Now you can submit your selection",
         "text4": "Teşekkür ederiz :)"
       }
     },
-    "previous": "Prev",
+    "previous": "Önce",
     "next": "Sonraki",
     "close": "Kapat"
   },
@@ -141,40 +141,40 @@
     "steps": {
       "1": "Kırp",
       "2": "Özel değerler",
-      "3": "Nutriments Selection",
-      "4": "Values Selection"
+      "3": "Besinlerin Seçimi",
+      "4": "Değerlerin Seçimi"
     },
-    "next": "Next Step",
-    "prev": "Prev Step",
-    "skip": "Skip this product",
+    "next": "Sıradaki adım",
+    "prev": "Önceki adım",
+    "skip": "Bu ürünü atla",
     "validate": "Validate Table",
-    "unselect_picture": "No nutrition info",
+    "unselect_picture": "Besin değeri yok",
     "basis": "için veri: ",
     "servingSize": "serving size",
     "value": "değer",
     "nutriments": {
       "nutriment_energy-kj": "Enerji (kJ)",
-      "nutriment_energy-kcal": "Energy (kCal)",
+      "nutriment_energy-kcal": "Enerji (kCal)",
       "nutriment_fat": "Yağ",
       "nutriment_saturated-fat": "Doymuş yağ",
       "nutriment_carbohydrates": "Karbonhidrat",
       "nutriment_sugars": "Şeker",
       "nutriment_proteins": "Proteinler",
-      "nutriment_fiber": "Fibers",
+      "nutriment_fiber": "Fiberler",
       "nutriment_salt": "Tuz",
       "nutriment_sodium": "Sodyum"
     },
     "history": {
-      "title": "Session History",
-      "status": "status",
-      "product name": "product name",
-      "view": "view page",
-      "edit": "edit page",
-      "SKIP": "ignored",
-      "VALIDATED": "edited",
-      "WRONG_IMAGE": "unselected picture",
-      "close": "close",
-      "open": "open history"
+      "title": "Oturum Geçmişi",
+      "status": "durum",
+      "product name": "ürün ismi",
+      "view": "sayfayı görüntüle",
+      "edit": "sayfayı düzenle",
+      "SKIP": "yoksayıldı",
+      "VALIDATED": "düzenlendi",
+      "WRONG_IMAGE": "seçilmemiş resim",
+      "close": "kapat",
+      "open": "geçmişi aç"
     }
   }
 }

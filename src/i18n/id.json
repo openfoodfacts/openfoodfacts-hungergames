@@ -3,24 +3,24 @@
     "category": "kategori",
     "label": "label",
     "brand": "merek",
-    "brands": "Merek",
-    "ingredients": "Bahan",
+    "brands": "Merek - merek",
+    "ingredients": "Kandungan bahan",
     "product_weight": "berat produk",
     "popularity_sort": "Urutkan berdasarkan popularitas",
     "no": "Tidak",
     "skip": "Skip",
     "yes": "Ya",
     "no_questions_remaining": "Tidak ada pertanyaan yang tersisa",
-    "countries": "Negara",
+    "countries": "Negara - negara",
     "view": "Lihat",
     "edit": "Sunting",
     "value_search": "Nilai (fanta, en:organic,...)",
-    "hide_images": "Sembunyikan gambar (dimuat lebih cepat)",
+    "hide_images": "Sembunyikan gambar (memuat lebih cepat)",
     "display_images": "Tampilkan gambar",
     "annotations": "Anotasi",
-    "last_annotations": "Anotasi terakhir",
-    "remaining_annotations": "Sisa:",
-    "annotated_annotations": "Anotasi"
+    "last_annotations": "Anotasi - anotasi terakhir",
+    "remaining_annotations": "Tersisa:",
+    "annotated_annotations": "Teranotasi"
   },
   "menu": {
     "games": "Permainan",
@@ -28,18 +28,18 @@
     "logos": "Logos",
     "manage": "Kelola",
     "insights": "Wawasan",
-    "nutritions": "tabel nutrisi",
+    "nutritions": "Informasi nilai gizi",
     "settings": "Pengaturan",
     "eco-score": "Eco-score"
   },
   "insights": {
     "insights": "Wawasan",
     "barcode": "kode batang",
-    "barcode_placeholder": "barcode",
+    "barcode_placeholder": "kode batangan",
     "value_tag": "Label nilai",
     "value_placeholder": "cth: en:mueslis, bjorg,...",
-    "type": "Type",
-    "annotated": "Anotasi",
+    "type": "Tipe",
+    "annotated": "Teranotasi",
     "annotation": "Anotasi",
     "not_annotated": "Tidak beranotasi",
     "all": "Semua",
@@ -51,7 +51,7 @@
     "skipped": "Lewati (-1)",
     "rejected": "Ditolak (0)",
     "accepted": "Terima (1)",
-    "search": "mencari ",
+    "search": "Cari",
     "count": "Hitung",
     "id": "Id",
     "value": "Nilai",
@@ -61,17 +61,17 @@
   },
   "logos": {
     "annotation": "Anotasi: ",
-    "annotations": "Logo anotasi",
+    "annotations": "Anotasi - anotasi logo",
     "select_all": "Pilih semua",
     "unselect_all": "Batalkan semua pilihan",
     "distance": "Jarak:",
     "value": "Nilai",
     "submit": "Kirim",
-    "type": "Type",
+    "type": "Tipe",
     "label": "Label",
     "brand": "Merek",
     "packager_code": "Kode pengemasan",
-    "packaging": "Pengemasan",
+    "packaging": "Kemasan",
     "qr_code": "Kode QR",
     "category": "Kategori",
     "nutrition_label": "Label nutrisi",
@@ -82,7 +82,7 @@
     "full_image": "Gambar penuh",
     "update": "Pembaruan",
     "no_found": "Logo tidak ditemukan",
-    "search": "mencari ",
+    "search": "Cari",
     "number_of_results": "Jumlah hasil:"
   },
   "settings": {
@@ -93,88 +93,88 @@
   "helper": {
     "welcome": {
       "page1": {
-        "title": "Welcome",
-        "text1": "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
-        "text2": "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
-        "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
+        "title": "Selamat datang",
+        "text1": "Hunger Games adalah koleksi mini game yang menolong untuk berkontribusi ke Open Food Facts dalam banyak cara. Kategorikan produk untuk mendapatkan Nutri-Score dan Eco-Score, bantu memvalidasi label untuk Eco-Score, tambahkan merek dan beratnya, bantu sistem pengenalan logo kami belajar tentang logo yang terdeteksi.",
+        "text2": "Itulah beberapa hal menyenangkan yang akan dapat Anda lakukan. Pastikan terhubung dengan situs web Open Food Facts untuk mendapatkan kredit atas kontribusi Anda. Jika Anda membuat kesalahan, mohon luangkan waktu untuk memperbaikinya dengan mengunjungi situs web.",
+        "text3": "Jika ragu tentang permainannya, Anda memiliki penolong di sebelah kanan atas halaman ini, dan Anda bisa menghubungi kami di slack pada kanal #hunger-games"
       },
       "page2": {
         "title": "Pertanyaan",
-        "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
-        "text2": "Do not hesitate to skip a question if you're not sure, there are plenty of others"
+        "text1": "AI kami memiliki banyak pertanyaan untuk Anda. Di sini, Anda akan harus mengkonfirmasi atau menolak informasi yang ia deteksi pada gambar.",
+        "text2": "Jangan ragu untuk melewati pertanyaan jika Anda tidak yakin dengan jawabannya, masih ada banyak pertanyaan lainnya"
       },
       "page3": {
         "title": "Logos",
-        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
+        "text1": "Dunia produk penuh dengan logo. Jelaskan ke AI kami mana logo yang sama."
       }
     },
     "logos": {
       "page1": {
-        "title": "Selection",
-        "text1": "Select the crops of a same logo by clicking on them",
-        "text2": "Selected logos go to the top of the page, you can unselect them by clicking again on them"
+        "title": "Pilihan",
+        "text1": "Pilih gambar terpotong dengan logo yang sama dengan mengkliknya",
+        "text2": "Logo - logo terpilih masuk ke bagian atas halaman, Anda bisa membatalkan pilihan dengan mengkliknya lagi"
       },
       "page2": {
-        "title": "bahayaa",
-        "text1": "If the crop contains multiple logo do not select it.",
-        "text2": "If the crop contains only a partial part of a logo you can select it"
+        "title": "Peringatan",
+        "text1": "Jika gambar terpotongnya memiliki beragam logo, jangan pilih.",
+        "text2": "Jika gambar terpotongnya memiliki hanya sebagian dari logo, Anda boleh memilihnya"
       },
       "page3": {
-        "title": "Validate",
-        "text1": "Indicate the type of logo (label, brand, QRcode, ...)",
-        "text2": "If it is a label or a brand logo, indicate which one it is",
-        "text3": "Now you can submit your selection",
-        "text4": "Thank you :)"
+        "title": "Validasikan",
+        "text1": "Tunjukkan tipe logo (label, merek, kode QR ...)",
+        "text2": "Jika itu adalah label atau logo merek, tunjukkan salah satu dari keduanya",
+        "text3": "Sekarang Anda bisa mengirimkan pilihan Anda",
+        "text4": "Terima kasih :)"
       }
     },
-    "previous": "Prev",
-    "next": "Berikutnya",
+    "previous": "Sebelumnya",
+    "next": "Selanjutnya",
     "close": "Tutup"
   },
   "nutrition": {
     "instructions": {
-      "cropTheTable": "Crop the image to simplify your annotation",
-      "verifyNutrimentDetected": "Indicate if the nutriment detected is correct",
-      "selectMissingNutriments": "Add missing nutriments (you can click even if the word has no box)",
-      "selectValue": "Select the nutritional value of: "
+      "cropTheTable": "Potong gambar untuk menyederhanakan anotasi Anda",
+      "verifyNutrimentDetected": "Tunjukkan jika makanan bergizi yang terdeteksi benar",
+      "selectMissingNutriments": "Tambahkan nutrisi yang hilang (Anda bisa mengklik bahkan jika katanya tidak memiliki kotak)",
+      "selectValue": "Pilih nilai gizi dari: "
     },
     "steps": {
-      "1": "Crop",
-      "2": "Special values",
-      "3": "Nutriments Selection",
-      "4": "Values Selection"
+      "1": "Gambar terpotong",
+      "2": "Nilai - nilai khusus",
+      "3": "Pilihan nutrisi",
+      "4": "Pilihan Nilai"
     },
-    "next": "Next Step",
-    "prev": "Prev Step",
-    "skip": "Skip this product",
-    "validate": "Validate Table",
-    "unselect_picture": "No nutrition info",
-    "basis": "data for: ",
-    "servingSize": "serving size",
+    "next": "Langkah berikutnya",
+    "prev": "Langkah Sebelumnya",
+    "skip": "Lewati produk ini",
+    "validate": "Validasikan Tabel",
+    "unselect_picture": "Tidak ada informasi gizi",
+    "basis": "data untuk: ",
+    "servingSize": "takaran saji",
     "value": "nilai",
     "nutriments": {
       "nutriment_energy-kj": "Energi (kJ)",
-      "nutriment_energy-kcal": "Energy (kCal)",
+      "nutriment_energy-kcal": "Energi (kKal)",
       "nutriment_fat": "Lemak",
       "nutriment_saturated-fat": "Lemak jenuh",
       "nutriment_carbohydrates": "Karbohidrat",
       "nutriment_sugars": "Gula",
       "nutriment_proteins": "Protein:",
-      "nutriment_fiber": "Fibers",
-      "nutriment_salt": "garam",
+      "nutriment_fiber": "Serat",
+      "nutriment_salt": "Garam",
       "nutriment_sodium": "Sodium"
     },
     "history": {
-      "title": "Session History",
+      "title": "Riwayat Sesi",
       "status": "status",
-      "product name": "product name",
-      "view": "view page",
-      "edit": "edit page",
-      "SKIP": "ignored",
-      "VALIDATED": "edited",
-      "WRONG_IMAGE": "unselected picture",
-      "close": "close",
-      "open": "open history"
+      "product name": "nama produk",
+      "view": "lihat halaman",
+      "edit": "sunting halaman",
+      "SKIP": "diabaikan",
+      "VALIDATED": "tersunting",
+      "WRONG_IMAGE": "gambar yang tak dipilih",
+      "close": "tutup",
+      "open": "buka riwayat"
     }
   }
 }
