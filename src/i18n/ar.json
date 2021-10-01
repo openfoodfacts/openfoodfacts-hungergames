@@ -14,13 +14,37 @@
     "countries": "بلدان",
     "view": "مشاهدة",
     "edit": "تحرير",
-    "value_search": "القيمة (فانتا،ان: عضوي)",
     "hide_images": "إخفاء الصور (تحميل أسرع)",
     "display_images": "عرض الصور",
     "annotations": "Annotations",
     "last_annotations": "الشروح الأخيرة",
     "remaining_annotations": "المتبقي/المتبقية:",
-    "annotated_annotations": "مشروح"
+    "annotated_annotations": "مشروح",
+    "filters": {
+      "short_label": {
+        "value": "قيمة",
+        "country": "الدولة",
+        "brand": "3alama-tijariya",
+        "popularity": "شعبية"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "التصنيف عبر الشعبية",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Edit Filters",
+        "cancel": "إلغاء",
+        "apply": "طبق"
+      }
+    }
   },
   "menu": {
     "games": "ألعاب",

@@ -14,13 +14,37 @@
     "countries": "Quốc gia",
     "view": "Hiển thị",
     "edit": "Chỉnh sửa",
-    "value_search": "Giá trị (fanta, en: organic,...)",
     "hide_images": "Ẩn hình ảnh (tải nhanh hơn)",
     "display_images": "Hiển thị hình ảnh",
     "annotations": "Annotations",
     "last_annotations": "Chú thích mới nhất",
     "remaining_annotations": "Còn lại:",
-    "annotated_annotations": "Chú thích"
+    "annotated_annotations": "Chú thích",
+    "filters": {
+      "short_label": {
+        "value": "giá trị",
+        "country": "nước",
+        "brand": "nhãn hiệu",
+        "popularity": "mức phổ biến"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "Sắp xếp theo mức độ phổ biến",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Edit Filters",
+        "cancel": "Huỷ",
+        "apply": "Áp dụng"
+      }
+    }
   },
   "menu": {
     "games": "Trò chơi",

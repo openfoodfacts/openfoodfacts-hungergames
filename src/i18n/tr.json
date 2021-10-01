@@ -14,13 +14,37 @@
     "countries": "Ülkeler",
     "view": "Görüntüle",
     "edit": "Düzenle",
-    "value_search": "Değer (fanta, en:organic,...)",
     "hide_images": "Resimleri gizle (daha hızlı yükleme)",
     "display_images": "Resimleri görüntüle",
     "annotations": "3. Annotations",
     "last_annotations": "Son ek açıklamalar",
     "remaining_annotations": "Kalan:",
-    "annotated_annotations": "Açıklandı"
+    "annotated_annotations": "Açıklandı",
+    "filters": {
+      "short_label": {
+        "value": "değer",
+        "country": "ülke",
+        "brand": "marka",
+        "popularity": "popülerlik"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "Popülerliğe göre sırala",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Edit Filters",
+        "cancel": "İptal",
+        "apply": "Uygula"
+      }
+    }
   },
   "menu": {
     "games": "Oyunlar",

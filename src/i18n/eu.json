@@ -14,13 +14,37 @@
     "countries": "Countries",
     "view": "View",
     "edit": "Editatu",
-    "value_search": "Value (fanta, en:organic,...)",
     "hide_images": "Hide images (faster loading)",
     "display_images": "Display images",
     "annotations": "Annotations",
     "last_annotations": "Last annotations",
     "remaining_annotations": "Remaining:",
-    "annotated_annotations": "Annotated"
+    "annotated_annotations": "Annotated",
+    "filters": {
+      "short_label": {
+        "value": "balioa",
+        "country": "herrialdea",
+        "brand": "marka",
+        "popularity": "popularity"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "Sort by popularity",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Edit Filters",
+        "cancel": "Utzi",
+        "apply": "Apply"
+      }
+    }
   },
   "menu": {
     "games": "Games",

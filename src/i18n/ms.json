@@ -14,13 +14,37 @@
     "countries": "Negara-negara",
     "view": "Pandang",
     "edit": "Edit",
-    "value_search": "Nilai (fanta, en: organik,...)",
     "hide_images": "Sembunyikan gambar (pemuatan lebih pantas)",
     "display_images": "Paparkan gambar",
     "annotations": "Catatan",
     "last_annotations": "Anotasi terakhir",
     "remaining_annotations": "Yang tinggal:",
-    "annotated_annotations": "Dianotasikan"
+    "annotated_annotations": "Dianotasikan",
+    "filters": {
+      "short_label": {
+        "value": "nilai",
+        "country": "negara",
+        "brand": "jenama",
+        "popularity": "popularity"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "Isih mengikut populariti",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Edit Filters",
+        "cancel": "Cancel",
+        "apply": "Memohon"
+      }
+    }
   },
   "menu": {
     "games": "Permainan",
@@ -54,7 +78,7 @@
     "search": "Gelintar",
     "count": "Bilang",
     "id": "Id",
-    "value": "Value",
+    "value": "Nilai",
     "created_at": "Dibuat di",
     "completed_at": "Dilengkapkan pada",
     "automatic": "Automatik"
@@ -65,7 +89,7 @@
     "select_all": "Pilih semua",
     "unselect_all": "Nyahpilih semua",
     "distance": "Jarak:",
-    "value": "Value",
+    "value": "Nilai",
     "submit": "Serahkan",
     "type": "Type",
     "label": "Label",

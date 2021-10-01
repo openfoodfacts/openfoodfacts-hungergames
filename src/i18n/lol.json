@@ -14,13 +14,37 @@
     "countries": "crwdns173392:0crwdne173392:0",
     "view": "crwdns173394:0crwdne173394:0",
     "edit": "crwdns173396:0crwdne173396:0",
-    "value_search": "crwdns173398:0crwdne173398:0",
     "hide_images": "crwdns173400:0crwdne173400:0",
     "display_images": "crwdns173402:0crwdne173402:0",
     "annotations": "crwdns173404:0crwdne173404:0",
     "last_annotations": "crwdns173406:0crwdne173406:0",
     "remaining_annotations": "crwdns173408:0crwdne173408:0",
-    "annotated_annotations": "crwdns173410:0crwdne173410:0"
+    "annotated_annotations": "crwdns173410:0crwdne173410:0",
+    "filters": {
+      "short_label": {
+        "value": "crwdns190957:0crwdne190957:0",
+        "country": "crwdns190959:0crwdne190959:0",
+        "brand": "crwdns190961:0crwdne190961:0",
+        "popularity": "crwdns190963:0crwdne190963:0"
+      },
+      "long_label": {
+        "type": "crwdns190965:0crwdne190965:0",
+        "value": "crwdns190967:0crwdne190967:0",
+        "country": "crwdns190969:0crwdne190969:0",
+        "brand": "crwdns190971:0crwdne190971:0",
+        "popularity": "crwdns190973:0crwdne190973:0",
+        "edit": "crwdns190975:0crwdne190975:0"
+      },
+      "placeholders": {
+        "value": "crwdns190977:0crwdne190977:0",
+        "brand": "crwdns190979:0crwdne190979:0"
+      },
+      "actions": {
+        "edit": "crwdns190981:0crwdne190981:0",
+        "cancel": "crwdns190983:0crwdne190983:0",
+        "apply": "crwdns190985:0crwdne190985:0"
+      }
+    }
   },
   "menu": {
     "games": "crwdns173412:0crwdne173412:0",

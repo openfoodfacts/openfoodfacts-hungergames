@@ -14,13 +14,37 @@
     "countries": "Länder",
     "view": "Anzeigen",
     "edit": "Bearbeiten",
-    "value_search": "Wert (Fanta, de: Bio,...)",
     "hide_images": "Abbildungen ausblenden (für schnelleres Laden)",
     "display_images": "Abbildungen anzeigen",
     "annotations": "Anmerkungen",
     "last_annotations": "Neueste Anmerkungen",
     "remaining_annotations": "Verbleibend:",
-    "annotated_annotations": "Kommentiert"
+    "annotated_annotations": "Kommentiert",
+    "filters": {
+      "short_label": {
+        "value": "Wert",
+        "country": "Land",
+        "brand": "Marke",
+        "popularity": "Beliebtheit"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "Nach Beliebtheit sortieren",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Filter bearbeiten",
+        "cancel": "Abbrechen",
+        "apply": "Übernehmen"
+      }
+    }
   },
   "menu": {
     "games": "Spiele",
