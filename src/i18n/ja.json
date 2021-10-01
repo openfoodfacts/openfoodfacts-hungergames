@@ -14,13 +14,37 @@
     "countries": "国",
     "view": "表示",
     "edit": "編集",
-    "value_search": "キーワード(ファンタ, ja: オーガニック,…)",
     "hide_images": "画像を非表示（読み込み速度優先）",
     "display_images": "画像を表示",
     "annotations": "Annotations",
     "last_annotations": "最後の注釈",
     "remaining_annotations": "残り:",
-    "annotated_annotations": "注釈付き"
+    "annotated_annotations": "注釈付き",
+    "filters": {
+      "short_label": {
+        "value": "値",
+        "country": "国",
+        "brand": "ブランド",
+        "popularity": "人気"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "人気順",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Edit Filters",
+        "cancel": "取消",
+        "apply": "適用"
+      }
+    }
   },
   "menu": {
     "games": "ゲーム",

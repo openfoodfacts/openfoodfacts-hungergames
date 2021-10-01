@@ -14,13 +14,37 @@
     "countries": "ประเทศ",
     "view": "View",
     "edit": "แก้ไข",
-    "value_search": "Value (fanta, en:organic,...)",
     "hide_images": "ซ่อนรูปภาพ (โหลดเร็วขึ้น)",
     "display_images": "Display images",
     "annotations": "Annotations",
     "last_annotations": "Last annotations",
     "remaining_annotations": "Remaining:",
-    "annotated_annotations": "Annotated"
+    "annotated_annotations": "Annotated",
+    "filters": {
+      "short_label": {
+        "value": "value",
+        "country": "ประเทศ",
+        "brand": "ยี่ห้อสินค้า",
+        "popularity": "popularity"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "Sort by popularity",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Edit Filters",
+        "cancel": "ยกเลิก",
+        "apply": "Apply"
+      }
+    }
   },
   "menu": {
     "games": "Games",

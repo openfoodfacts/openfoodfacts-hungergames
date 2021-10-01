@@ -14,13 +14,37 @@
     "countries": "מדינות",
     "view": "הצגה",
     "edit": "עריכה",
-    "value_search": "ערך (fanta,‏ he:אורגני, ...)",
     "hide_images": "הסתרת תמונות (טעינה מואצת)",
     "display_images": "הצגת תמונות",
     "annotations": "הסברים",
     "last_annotations": "הערות אחרונות",
     "remaining_annotations": "נותרו:",
-    "annotated_annotations": "נכתבו הערות"
+    "annotated_annotations": "נכתבו הערות",
+    "filters": {
+      "short_label": {
+        "value": "ערך",
+        "country": "מדינה",
+        "brand": "מותג",
+        "popularity": "פופולריות"
+      },
+      "long_label": {
+        "type": "סוג שאלה",
+        "value": "ערך מוצע",
+        "country": "ארץ המוצר",
+        "brand": "מותג המוצר",
+        "popularity": "מיון לפי פופולריות",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "ערך (פאנטה, en:organic,…)",
+        "brand": "טרה, אסם, צבר, …"
+      },
+      "actions": {
+        "edit": "עריכת מסננים",
+        "cancel": "ביטול",
+        "apply": "החלה"
+      }
+    }
   },
   "menu": {
     "games": "משחקים",

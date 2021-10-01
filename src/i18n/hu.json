@@ -14,13 +14,37 @@
     "countries": "Országok",
     "view": "Megtekint",
     "edit": "Szerkesztés",
-    "value_search": "Érték (fanta, en:organic, …)",
     "hide_images": "Képek elrejtése (gyorsabb betöltés)",
     "display_images": "Képek megjelenítése",
     "annotations": "Annotations",
     "last_annotations": "Legutóbbi annotációk",
     "remaining_annotations": "Hátralévő:",
-    "annotated_annotations": "Annotált"
+    "annotated_annotations": "Annotált",
+    "filters": {
+      "short_label": {
+        "value": "érték",
+        "country": "ország",
+        "brand": "márkanév",
+        "popularity": "népszerűség"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "Rendezés népszerűség szerint",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Edit Filters",
+        "cancel": "Mégse",
+        "apply": "Apply"
+      }
+    }
   },
   "menu": {
     "games": "Játékok",

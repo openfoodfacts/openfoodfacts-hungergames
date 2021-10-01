@@ -14,13 +14,37 @@
     "countries": "국가",
     "view": "뷰",
     "edit": "수정",
-    "value_search": "값 (fanta, en:organic,...)",
     "hide_images": "사진 숨기기 (더 빨리 로딩)",
     "display_images": "사진 표시",
     "annotations": "주석",
     "last_annotations": "마지막 주석",
     "remaining_annotations": "남음:",
-    "annotated_annotations": "주석 달기"
+    "annotated_annotations": "주석 달기",
+    "filters": {
+      "short_label": {
+        "value": "값",
+        "country": "국가",
+        "brand": "브랜드",
+        "popularity": "인기도"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "인기순 정렬",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Edit Filters",
+        "cancel": "취소",
+        "apply": "적용"
+      }
+    }
   },
   "menu": {
     "games": "게임",

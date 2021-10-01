@@ -14,13 +14,37 @@
     "countries": "Šalys",
     "view": "View",
     "edit": "Edit",
-    "value_search": "Value (fanta, en:organic,...)",
     "hide_images": "Paslėpti nuotraukas (greitesnis užkrovimas)",
     "display_images": "Rodyti nuotraukas",
     "annotations": "Annotations",
     "last_annotations": "Last annotations",
     "remaining_annotations": "Liko:",
-    "annotated_annotations": "Annotated"
+    "annotated_annotations": "Annotated",
+    "filters": {
+      "short_label": {
+        "value": "vertė",
+        "country": "šalis",
+        "brand": "prekės ženklas",
+        "popularity": "populiarumas"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "Rikiuoti pagal populiarumą",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Edit Filters",
+        "cancel": "Cancel",
+        "apply": "Taikyti"
+      }
+    }
   },
   "menu": {
     "games": "Žaidimai",

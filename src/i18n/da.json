@@ -14,13 +14,37 @@
     "countries": "Lande",
     "view": "Vis",
     "edit": "Redigér",
-    "value_search": "Værdi (fanta, en:organic,...)",
     "hide_images": "Skjul billeder (hurtigere indlæsning)",
     "display_images": "Vis billeder",
     "annotations": "Anmærkninger",
     "last_annotations": "Seneste anmærkninger",
     "remaining_annotations": "Resterende:",
-    "annotated_annotations": "Anmærkede"
+    "annotated_annotations": "Anmærkede",
+    "filters": {
+      "short_label": {
+        "value": "værdi",
+        "country": "land",
+        "brand": "varemærke",
+        "popularity": "popularitet"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "Sortér efter popularitet",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Edit Filters",
+        "cancel": "Annullér",
+        "apply": "Anvend"
+      }
+    }
   },
   "menu": {
     "games": "Spil",
@@ -30,7 +54,7 @@
     "insights": "Indblik",
     "nutritions": "Ernæringsfakta",
     "settings": "Indstillinger",
-    "eco-score": "Eco-Score"
+    "eco-score": "Øko-Score"
   },
   "insights": {
     "insights": "Indblik",

@@ -12,56 +12,80 @@
     "yes": "Sí",
     "no_questions_remaining": "No queden preguntes",
     "countries": "Països",
-    "view": "View",
+    "view": "Vista",
     "edit": "Edita",
-    "value_search": "Value (fanta, en:organic,...)",
     "hide_images": "Amaga les imatges (es carrega més ràpid)",
     "display_images": "Mostra imatges",
     "annotations": "Annotations",
     "last_annotations": "Darreres anotacions",
     "remaining_annotations": "Restant:",
-    "annotated_annotations": "Anotat"
+    "annotated_annotations": "Anotat",
+    "filters": {
+      "short_label": {
+        "value": "valor",
+        "country": "país",
+        "brand": "marca",
+        "popularity": "popularity"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "Ordena per popularitat",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Edit Filters",
+        "cancel": "Cancel·lar",
+        "apply": "Aplicar"
+      }
+    }
   },
   "menu": {
     "games": "Jocs",
     "questions": "Preguntes",
     "logos": "Logos",
-    "manage": "Manage",
-    "insights": "Insights",
+    "manage": "Gestiona",
+    "insights": "Més detalls",
     "nutritions": "Informació nutricional",
     "settings": "Preferències",
     "eco-score": "Eco-puntuació"
   },
   "insights": {
-    "insights": "Insights",
+    "insights": "Més detalls",
     "barcode": "Codi de barres",
     "barcode_placeholder": "codi de barres",
-    "value_tag": "Value tag",
-    "value_placeholder": "ex: en:mueslis, bjorg,...",
+    "value_tag": "Etiqueta",
+    "value_placeholder": "ex: en: mueslis, bjorg,...",
     "type": "Type",
     "annotated": "Anotat",
-    "annotation": "Annotation",
-    "not_annotated": "Not annotated",
-    "all": "All",
+    "annotation": "Notes",
+    "not_annotated": "Cap anotació",
+    "all": "Tots",
     "label": "Etiqueta",
     "product_weight": "Pes del producte",
     "category": "Categoria",
     "expiration_date": "Data de caducitat",
     "packager_code": "Codi empaquetador",
-    "skipped": "Skipped (-1)",
-    "rejected": "Rejected (0)",
-    "accepted": "Accepted (1)",
+    "skipped": "Botat (-1)",
+    "rejected": "Rebutjat (0)",
+    "accepted": "Acceptat (1)",
     "search": "Cerca",
-    "count": "Count",
+    "count": "Recompte",
     "id": "Id",
     "value": "Value",
-    "created_at": "Created at",
-    "completed_at": "Completed at",
+    "created_at": "Creat a",
+    "completed_at": "Completat a",
     "automatic": "Automàtic"
   },
   "logos": {
-    "annotation": "Annotation: ",
-    "annotations": "Logo annotations",
+    "annotation": "Anotació: ",
+    "annotations": "Indicacions de logo",
     "select_all": "Selecciona-ho tot",
     "unselect_all": "Desmarca-ho tot",
     "distance": "Distància:",
@@ -116,65 +140,65 @@
       },
       "page2": {
         "title": "Avís",
-        "text1": "If the crop contains multiple logo do not select it.",
+        "text1": "Si el retall conté diversos logotips, no el seleccioneu.",
         "text2": "Si el retall només conté una part d'un logotip, podeu seleccionar-lo"
       },
       "page3": {
         "title": "Validar",
         "text1": "Indiqueu el tipus de logotip (etiqueta, marca, codi QR, ...)",
         "text2": "Si es tracta d’una etiqueta o logotip d'una marca, indiqueu quin és",
-        "text3": "Now you can submit your selection",
-        "text4": "Thank you :)"
+        "text3": "Ara podeu enviar la selecció",
+        "text4": "Gràcies :)"
       }
     },
-    "previous": "Prev",
+    "previous": "Previ",
     "next": "Següent",
     "close": "Tanca"
   },
   "nutrition": {
     "instructions": {
-      "cropTheTable": "Crop the image to simplify your annotation",
-      "verifyNutrimentDetected": "Indicate if the nutriment detected is correct",
-      "selectMissingNutriments": "Add missing nutriments (you can click even if the word has no box)",
-      "selectValue": "Select the nutritional value of: "
+      "cropTheTable": "Retalleu la imatge per simplificar l'anotació",
+      "verifyNutrimentDetected": "Indiqueu si el nutrient detectat és correcte",
+      "selectMissingNutriments": "Afegiu els nutrients que falten (podeu clicar encara que la paraula no tingui cap quadre)",
+      "selectValue": "Seleccioneu el valor nutricional de: "
     },
     "steps": {
-      "1": "Crop",
-      "2": "Special values",
-      "3": "Nutriments Selection",
-      "4": "Values Selection"
+      "1": "Escapça",
+      "2": "Característiques especials",
+      "3": "Selecció de nutrients",
+      "4": "Selecció de valors"
     },
-    "next": "Next Step",
-    "prev": "Prev Step",
-    "skip": "Skip this product",
-    "validate": "Validate Table",
-    "unselect_picture": "No nutrition info",
-    "basis": "data for: ",
-    "servingSize": "serving size",
+    "next": "Següent pas",
+    "prev": "Pas anterior",
+    "skip": "Botau el producte",
+    "validate": "Valida la graella",
+    "unselect_picture": "Sense dades nutricionals",
+    "basis": "dades per a: ",
+    "servingSize": "ració",
     "value": "valor",
     "nutriments": {
       "nutriment_energy-kj": "Energia (kJ)",
-      "nutriment_energy-kcal": "Energy (kCal)",
+      "nutriment_energy-kcal": "Energia (kcal)",
       "nutriment_fat": "Greixos",
       "nutriment_saturated-fat": "Greixos saturats",
       "nutriment_carbohydrates": "Carbohidrat",
       "nutriment_sugars": "Sucres",
       "nutriment_proteins": "Proteïnes",
-      "nutriment_fiber": "Fibers",
+      "nutriment_fiber": "Fibra",
       "nutriment_salt": "Sal",
       "nutriment_sodium": "Sodi"
     },
     "history": {
-      "title": "Session History",
-      "status": "status",
-      "product name": "product name",
-      "view": "view page",
-      "edit": "edit page",
-      "SKIP": "ignored",
-      "VALIDATED": "edited",
-      "WRONG_IMAGE": "unselected picture",
-      "close": "close",
-      "open": "open history"
+      "title": "Historial de sessions",
+      "status": "estat",
+      "product name": "nom del producte",
+      "view": "visualitza la pàgina",
+      "edit": "edita la pàgina",
+      "SKIP": "ignorat",
+      "VALIDATED": "modificat",
+      "WRONG_IMAGE": "imatge no seleccionada",
+      "close": "tanca",
+      "open": "obre l'historial"
     }
   }
 }
