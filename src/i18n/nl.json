@@ -14,13 +14,37 @@
     "countries": "Landen",
     "view": "Bekijk",
     "edit": "Bewerken",
-    "value_search": "Waarde (fanta, en:organic,...)",
     "hide_images": "Afbeeldingen verbergen (sneller laden)",
     "display_images": "Afbeelding weergeven",
     "annotations": "Aantekeningen",
     "last_annotations": "Laatste aantekeningen",
     "remaining_annotations": "Resterend:",
-    "annotated_annotations": "Geannoteerd"
+    "annotated_annotations": "Geannoteerd",
+    "filters": {
+      "short_label": {
+        "value": "waarde",
+        "country": "land",
+        "brand": "merk",
+        "popularity": "populariteit"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "Sorteren op populariteit",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Edit Filters",
+        "cancel": "Annuleer",
+        "apply": "Toepassen"
+      }
+    }
   },
   "menu": {
     "games": "Spellen",

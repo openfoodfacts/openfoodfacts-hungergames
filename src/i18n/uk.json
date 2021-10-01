@@ -14,13 +14,37 @@
     "countries": "Країн",
     "view": "Переглянути",
     "edit": "Редагувати",
-    "value_search": "Ціна (fanta, en: organic,...)",
     "hide_images": "Приховати зображення (швидше завантажити)",
     "display_images": "Відображення зображень",
     "annotations": "Annotations",
     "last_annotations": "Останні анотації\n",
     "remaining_annotations": "Залишок:",
-    "annotated_annotations": "Коментарі"
+    "annotated_annotations": "Коментарі",
+    "filters": {
+      "short_label": {
+        "value": "value",
+        "country": "country",
+        "brand": "виробник",
+        "popularity": "popularity"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "Сортувати за популярністю",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Edit Filters",
+        "cancel": "Відмінити",
+        "apply": "Застосувати"
+      }
+    }
   },
   "menu": {
     "games": "Ігри",

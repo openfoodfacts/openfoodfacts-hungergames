@@ -14,13 +14,37 @@
     "countries": "Държави",
     "view": "View",
     "edit": "Редактирай",
-    "value_search": "Value (fanta, en:organic,...)",
     "hide_images": "Hide images (faster loading)",
     "display_images": "Display images",
     "annotations": "Annotations",
     "last_annotations": "Last annotations",
     "remaining_annotations": "Remaining:",
-    "annotated_annotations": "Annotated"
+    "annotated_annotations": "Annotated",
+    "filters": {
+      "short_label": {
+        "value": "value",
+        "country": "държава",
+        "brand": "марка",
+        "popularity": "popularity"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "Сортирай по популярност",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Edit Filters",
+        "cancel": "Отмени",
+        "apply": "Apply"
+      }
+    }
   },
   "menu": {
     "games": "Игри",

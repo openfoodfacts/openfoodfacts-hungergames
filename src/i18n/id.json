@@ -14,13 +14,37 @@
     "countries": "Negara - negara",
     "view": "Lihat",
     "edit": "Sunting",
-    "value_search": "Nilai (fanta, en:organic,...)",
     "hide_images": "Sembunyikan gambar (memuat lebih cepat)",
     "display_images": "Tampilkan gambar",
     "annotations": "Anotasi",
     "last_annotations": "Anotasi - anotasi terakhir",
     "remaining_annotations": "Tersisa:",
-    "annotated_annotations": "Teranotasi"
+    "annotated_annotations": "Teranotasi",
+    "filters": {
+      "short_label": {
+        "value": "nilai",
+        "country": "negara",
+        "brand": "merek",
+        "popularity": "popularitas"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "Urutkan berdasarkan popularitas",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Edit Filters",
+        "cancel": "Batalkan",
+        "apply": "Terapkan"
+      }
+    }
   },
   "menu": {
     "games": "Permainan",

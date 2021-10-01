@@ -14,13 +14,37 @@
     "countries": "Länder",
     "view": "Visa",
     "edit": "Redigera",
-    "value_search": "Värde (fanta, sv: organisk,...)",
     "hide_images": "Dölj bilder (snabbare laddning)",
     "display_images": "Visa bilder",
     "annotations": "Annotations",
     "last_annotations": "Senaste anteckningar",
     "remaining_annotations": "Återstår:",
-    "annotated_annotations": "Antecknad"
+    "annotated_annotations": "Antecknad",
+    "filters": {
+      "short_label": {
+        "value": "värde",
+        "country": "land",
+        "brand": "varumärke",
+        "popularity": "popularitet"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "Sortera efter popularitet",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Edit Filters",
+        "cancel": "Annulera",
+        "apply": "Verkställ"
+      }
+    }
   },
   "menu": {
     "games": "Spel",

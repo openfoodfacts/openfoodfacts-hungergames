@@ -14,13 +14,37 @@
     "countries": "Maat",
     "view": "Näytä",
     "edit": "Muokkaa",
-    "value_search": "Arvo (fanta, fi:luomu,...)",
     "hide_images": "Piilota kuvat (nopeampi lataus)",
     "display_images": "Näytä kuvat",
     "annotations": "Merkinnät",
     "last_annotations": "Viimeisimmät merkinnät",
     "remaining_annotations": "Jäljellä:",
-    "annotated_annotations": "Merkitty"
+    "annotated_annotations": "Merkitty",
+    "filters": {
+      "short_label": {
+        "value": "arvo",
+        "country": "maa",
+        "brand": "tuotemerkki",
+        "popularity": "suosio"
+      },
+      "long_label": {
+        "type": "Question Type",
+        "value": "Proposed Value",
+        "country": "Product Country",
+        "brand": "Product Brand",
+        "popularity": "Lajittele suosion mukaan",
+        "edit": ""
+      },
+      "placeholders": {
+        "value": "Value (fanta, en:organic,...)",
+        "brand": "auchan, danone, herta, ..."
+      },
+      "actions": {
+        "edit": "Edit Filters",
+        "cancel": "Peruuta",
+        "apply": "Hyväksy"
+      }
+    }
   },
   "menu": {
     "games": "Pelit",
