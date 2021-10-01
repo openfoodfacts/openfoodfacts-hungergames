@@ -153,6 +153,7 @@ export default {
     return {
       valueTagTimeout: null,
       questionBuffer: [],
+      currentQuestion: null,
       remainingQuestionCount: 0,
       lastAnnotations: [],
       sessionAnnotatedCount: 0,
