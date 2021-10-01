@@ -75,39 +75,37 @@
 
         <div class="field">
           <label>{{ $t("questions.filters.long_label.brand") }}</label>
-          <div class="ui icon input ">
-            <input
-              :placeholder="$t('questions.filters.placeholders.brand')"
-              v-model="formValues.brandFilter"
-            />
-            <i
-              @click="clearFormField('brandFilter')"
-              v-if="formValues.brandFilter"
-              class="times link icon"
-            ></i>
-          </div>
+          <sui-dropdown
+            :options="populateBrandFilter ? brands : []"
+            v-model="formValues.brandFilter"
+            :text="$t('questions.filters.placeholders.brand')"
+            search
+            fluid
+            selection
+            v-on:filtered="setPopulateBrandFilter"
+          />
         </div>
-      </div>
 
-      <div class="ui segment">
-        <div class="field">
-          <div class="ui toggle checkbox">
-            <input
-              v-model="formValues.sortByPopularity"
-              type="checkbox"
-              name="sortBy"
-            />
-            <label>{{ $t("questions.popularity_sort") }}</label>
+        <div class="ui segment">
+          <div class="field">
+            <div class="ui toggle checkbox">
+              <input
+                v-model="formValues.sortByPopularity"
+                type="checkbox"
+                name="sortBy"
+              />
+              <label>{{ $t("questions.popularity_sort") }}</label>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="ui actions">
-        <button class="ui button" @click="resetForm">
-          {{ $t("questions.actions.cancel") }}
-        </button>
-        <button class="ui primary button" @click="validateForm">
-          {{ $t("questions.actions.apply") }}
-        </button>
+        <div class="ui actions">
+          <button class="ui button" @click="resetForm">
+            {{ $t("questions.actions.cancel") }}
+          </button>
+          <button class="ui primary button" @click="validateForm">
+            {{ $t("questions.actions.apply") }}
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -125,6 +123,8 @@ export default {
       countryNames,
       formIsClose: true,
       formValues: {},
+      brands: undefined,
+      populateBrandFilter: false,
     };
   },
   mounted() {
@@ -134,9 +134,11 @@ export default {
   methods: {
     openForm: function() {
       this.formIsClose = false;
+      this.loadBrands();
     },
     closeForm: function() {
       this.formIsClose = true;
+      this.populateBrandFilter = false;
     },
     selectInsightType: function(insightType) {
       this.formValues.selectedInsightType = insightType;
@@ -177,6 +179,21 @@ export default {
         ...this.$props.value,
         [filterKey]: filterKey === "sortByPopularity" ? false : "",
       });
+    },
+    loadBrands: async function() {
+      // Load list of brand when fields is acivated
+      if (this.brands === undefined) {
+        this.brands = []; // set empty list to avoid multiple trigge of the json loading
+        const images = require.context("../../assets/", false, /\.json$/);
+        this.brands = images("./brands.json").map((x) => ({
+          text: x,
+          value: x,
+          key: x,
+        }));
+      }
+    },
+    setPopulateBrandFilter: function() {
+      this.populateBrandFilter = true;
     },
   },
 };
