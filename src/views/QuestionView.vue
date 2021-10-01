@@ -207,7 +207,7 @@ export default {
           sortBy,
           this.filters.selectedInsightType,
           this.filters.valueTag,
-          this.filters.brandFilter,
+          reformatValueTag(this.filters.brandFilter),
           this.filters.countryFilter !== "en:world"
             ? this.filters.countryFilter
             : null,
