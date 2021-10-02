@@ -9,7 +9,7 @@
     "deploy": "cd dist && cp index.html 404.html && cd .."
   },
   "dependencies": {
-    "@yaireo/tagify": "^4.8.0",
+    "@yaireo/tagify": "^4.8.1",
     "axios": "^0.22.0",
     "fastest-levenshtein": "^1.0.12",
     "semantic-ui-vue": "^0.11.0",
