@@ -1,9 +1,20 @@
 <template>
   <div class="root">
     <div>
-      <div class="ui label blue large">
-        {{ $t("questions." + value.selectedInsightType) }}
-      </div>
+      <sui-dropdown
+        class="ui label blue large"
+        :text="$t('questions.' + value.selectedInsightType)"
+      >
+        <sui-dropdown-menu>
+          <sui-dropdown-item
+            v-for="insightType of availableInsightTypes"
+            :key="insightType"
+            @click="selectDirectlyInsightType(insightType)"
+            >{{ $t("questions." + insightType) }}</sui-dropdown-item
+          >
+        </sui-dropdown-menu>
+      </sui-dropdown>
+
       <div v-if="value.valueTag" class="ui label large">
         {{ $t("questions.filters.short_label.value") }}: {{ value.valueTag
         }}<i class="icon close" @click="removeFilter('valueTag')"></i>
@@ -142,6 +153,13 @@ export default {
     },
     selectInsightType: function(insightType) {
       this.formValues.selectedInsightType = insightType;
+    },
+    selectDirectlyInsightType: function(insightType) {
+      if (this.$props.value.selectedInsightType !== insightType) {
+        this.formValues.selectedInsightType = insightType;
+        this.formValues.valueTag = "";
+        this.validateForm();
+      }
     },
     clearFormField: function(key) {
       this.formValues[key] = "";
