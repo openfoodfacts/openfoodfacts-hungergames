@@ -300,10 +300,10 @@ export default {
       if (
         this.currentQuestion !== null &&
         this.currentQuestion !== NO_QUESTION_LEFT &&
-        this.selectedInsightType === "brand"
+        this.filters.selectedInsightType === "brand"
       ) {
         const urlParams = new URLSearchParams();
-        urlParams.append("type", this.selectedInsightType);
+        urlParams.append("type", this.filters.selectedInsightType);
         urlParams.append(
           "value_tag",
           reformatValueTag(this.currentQuestion.value)
