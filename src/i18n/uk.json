@@ -28,19 +28,19 @@
         "popularity": "popularity"
       },
       "long_label": {
-        "type": "Question Type",
-        "value": "Proposed Value",
-        "country": "Product Country",
-        "brand": "Product Brand",
+        "type": "Тип запитання",
+        "value": "Пропонована вартість",
+        "country": "Країна походження продукту",
+        "brand": "Торгова марка продукту",
         "popularity": "Сортувати за популярністю",
         "edit": ""
       },
       "placeholders": {
-        "value": "Value (fanta, en:organic,...)",
-        "brand": "auchan, danone, herta, ..."
+        "value": "Змінна (fanta, en:organic,...)",
+        "brand": "Ашан, Данон, Герта, тощо"
       },
       "actions": {
-        "edit": "Edit Filters",
+        "edit": "Редагувати фільтри",
         "cancel": "Відмінити",
         "apply": "Застосувати"
       }
