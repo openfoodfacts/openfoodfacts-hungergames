@@ -28,16 +28,16 @@
         "popularity": "Beliebtheit"
       },
       "long_label": {
-        "type": "Question Type",
-        "value": "Proposed Value",
-        "country": "Product Country",
-        "brand": "Product Brand",
+        "type": "Fragentyp",
+        "value": "Vorgeschlagener Wert",
+        "country": "Produziert in",
+        "brand": "Marke des Produkts",
         "popularity": "Nach Beliebtheit sortieren",
         "edit": ""
       },
       "placeholders": {
-        "value": "Value (fanta, en:organic,...)",
-        "brand": "auchan, danone, herta, ..."
+        "value": "Wert (fanta, de:bio,...)",
+        "brand": "Aldi, Landliebe, Rügenwalder Mühle..."
       },
       "actions": {
         "edit": "Filter bearbeiten",

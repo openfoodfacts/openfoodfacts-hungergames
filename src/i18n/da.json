@@ -28,19 +28,19 @@
         "popularity": "popularitet"
       },
       "long_label": {
-        "type": "Question Type",
-        "value": "Proposed Value",
-        "country": "Product Country",
-        "brand": "Product Brand",
+        "type": "Spørgsmålstype",
+        "value": "Foreslået værdi",
+        "country": "Produktland",
+        "brand": "Produktmærke",
         "popularity": "Sortér efter popularitet",
         "edit": ""
       },
       "placeholders": {
-        "value": "Value (fanta, en:organic,...)",
-        "brand": "auchan, danone, herta, ..."
+        "value": "Værdi (fanta, da: organisk,...)",
+        "brand": "auchan, danone, herta,..."
       },
       "actions": {
-        "edit": "Edit Filters",
+        "edit": "Redigér filtre",
         "cancel": "Annullér",
         "apply": "Anvend"
       }
