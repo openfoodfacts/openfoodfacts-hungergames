@@ -111,10 +111,10 @@
         </div>
         <div class="ui actions">
           <button class="ui button" @click="resetForm">
-            {{ $t("questions.actions.cancel") }}
+            {{ $t("questions.actions.filters.cancel") }}
           </button>
           <button class="ui primary button" @click="validateForm">
-            {{ $t("questions.actions.apply") }}
+            {{ $t("questions.actions.filters.apply") }}
           </button>
         </div>
       </div>
