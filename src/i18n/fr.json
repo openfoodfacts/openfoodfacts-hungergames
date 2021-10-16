@@ -28,19 +28,19 @@
         "popularity": "popularité"
       },
       "long_label": {
-        "type": "Question Type",
-        "value": "Proposed Value",
-        "country": "Product Country",
-        "brand": "Product Brand",
+        "type": "Type de question",
+        "value": "Valeur proposée",
+        "country": "Pays du produit",
+        "brand": "Marque du produit",
         "popularity": "Trier par popularité",
         "edit": ""
       },
       "placeholders": {
-        "value": "Value (fanta, en:organic,...)",
+        "value": "Valeur (fanta, fr:bio,...)",
         "brand": "auchan, danone, herta, ..."
       },
       "actions": {
-        "edit": "Edit Filters",
+        "edit": "Modifier les filtres",
         "cancel": "Annuler",
         "apply": "Appliquer"
       }
