@@ -28,19 +28,19 @@
         "popularity": "populariteit"
       },
       "long_label": {
-        "type": "Question Type",
-        "value": "Proposed Value",
-        "country": "Product Country",
-        "brand": "Product Brand",
+        "type": "Vraagtype",
+        "value": "Voorgestelde waarde",
+        "country": "Productieland",
+        "brand": "Productmerk",
         "popularity": "Sorteren op populariteit",
         "edit": ""
       },
       "placeholders": {
-        "value": "Value (fanta, en:organic,...)",
+        "value": "Waarde (fanta, en:bio,...)",
         "brand": "auchan, danone, herta, ..."
       },
       "actions": {
-        "edit": "Edit Filters",
+        "edit": "Filters bewerken",
         "cancel": "Annuleer",
         "apply": "Toepassen"
       }
@@ -54,7 +54,7 @@
     "insights": "Inzichten",
     "nutritions": "Voedingswaarden",
     "settings": "Instellingen",
-    "eco-score": "Eco-score"
+    "eco-score": "Eco-Score"
   },
   "insights": {
     "insights": "Inzichten",
@@ -117,7 +117,7 @@
   "helper": {
     "welcome": {
       "page1": {
-        "title": "Welcome",
+        "title": "Welkom",
         "text1": "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
         "text2": "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
         "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
@@ -134,7 +134,7 @@
     },
     "logos": {
       "page1": {
-        "title": "Selection",
+        "title": "Selectie",
         "text1": "Select the crops of a same logo by clicking on them",
         "text2": "Selected logos go to the top of the page, you can unselect them by clicking again on them"
       },
@@ -148,10 +148,10 @@
         "text1": "Indicate the type of logo (label, brand, QRcode, ...)",
         "text2": "If it is a label or a brand logo, indicate which one it is",
         "text3": "Now you can submit your selection",
-        "text4": "Thank you :)"
+        "text4": "Bedankt :)"
       }
     },
-    "previous": "Prev",
+    "previous": "Vorige",
     "next": "Volgende",
     "close": "Sluit"
   },
@@ -163,22 +163,22 @@
       "selectValue": "Select the nutritional value of: "
     },
     "steps": {
-      "1": "Crop",
+      "1": "Bijsnijden",
       "2": "Special values",
-      "3": "Nutriments Selection",
+      "3": "Selectie van voedingsstoffen",
       "4": "Values Selection"
     },
-    "next": "Next Step",
-    "prev": "Prev Step",
-    "skip": "Skip this product",
+    "next": "Volgende stap",
+    "prev": "Vorige stap",
+    "skip": "Dit product overslaan",
     "validate": "Validate Table",
-    "unselect_picture": "No nutrition info",
-    "basis": "data for: ",
+    "unselect_picture": "Geen voedingsinformatie",
+    "basis": "gegevens voor: ",
     "servingSize": "serving size",
     "value": "waarde",
     "nutriments": {
       "nutriment_energy-kj": "Energie (kJ)",
-      "nutriment_energy-kcal": "Energy (kCal)",
+      "nutriment_energy-kcal": "Energie (kcal)",
       "nutriment_fat": "Vet",
       "nutriment_saturated-fat": "Verzadigd vet",
       "nutriment_carbohydrates": "Koolhydraten",
@@ -191,14 +191,14 @@
     "history": {
       "title": "Session History",
       "status": "status",
-      "product name": "product name",
-      "view": "view page",
-      "edit": "edit page",
-      "SKIP": "ignored",
-      "VALIDATED": "edited",
+      "product name": "productnaam",
+      "view": "pagina bekijken",
+      "edit": "pagina bewerken",
+      "SKIP": "genegeerd",
+      "VALIDATED": "bewerkt",
       "WRONG_IMAGE": "unselected picture",
-      "close": "close",
-      "open": "open history"
+      "close": "sluiten",
+      "open": "geschiedenis openen"
     }
   }
 }

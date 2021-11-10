@@ -10,12 +10,12 @@
     "no": "Не",
     "skip": "Skip",
     "yes": "Да",
-    "no_questions_remaining": "No questions remaining",
+    "no_questions_remaining": "Няма повече въпроси",
     "countries": "Държави",
-    "view": "View",
+    "view": "Преглед",
     "edit": "Редактирай",
-    "hide_images": "Hide images (faster loading)",
-    "display_images": "Display images",
+    "hide_images": "Скриване на изображения (по-бързо зареждане)",
+    "display_images": "Покажи изображения",
     "annotations": "Annotations",
     "last_annotations": "Last annotations",
     "remaining_annotations": "Remaining:",
@@ -42,7 +42,7 @@
       "actions": {
         "edit": "Edit Filters",
         "cancel": "Отмени",
-        "apply": "Apply"
+        "apply": "Потвърди"
       }
     }
   },
@@ -54,7 +54,7 @@
     "insights": "Insights",
     "nutritions": "Хранителни факти",
     "settings": "Настройки",
-    "eco-score": "Eco-score"
+    "eco-score": "Еко оценка"
   },
   "insights": {
     "insights": "Insights",
@@ -72,22 +72,22 @@
     "category": "Категория",
     "expiration_date": "Срок на годност",
     "packager_code": "Packager code",
-    "skipped": "Skipped (-1)",
-    "rejected": "Rejected (0)",
-    "accepted": "Accepted (1)",
+    "skipped": "Игнорирано (-1)",
+    "rejected": "Отхвърлено (0)",
+    "accepted": "Прието (1)",
     "search": "Търсене",
     "count": "Count",
     "id": "Id",
     "value": "Стойност",
     "created_at": "Създаден на",
     "completed_at": "Completed at",
-    "automatic": "Automatic"
+    "automatic": "Автоматично"
   },
   "logos": {
     "annotation": "Annotation: ",
     "annotations": "Logo annotations",
     "select_all": "Избери всички",
-    "unselect_all": "Unselect all",
+    "unselect_all": "Размаркирай всичко",
     "distance": "Разстояние:",
     "value": "Стойност",
     "submit": "Потвърди",
@@ -96,7 +96,7 @@
     "brand": "Марка",
     "packager_code": "Packager code",
     "packaging": "Опаковка",
-    "qr_code": "QR code",
+    "qr_code": "QR код",
     "category": "Категория",
     "nutrition_label": "Nutrition label",
     "store": "Магазин",
@@ -104,8 +104,8 @@
     "id": "Logo ID:",
     "barcode": "Barcode:",
     "full_image": "Full image",
-    "update": "Update",
-    "no_found": "No logo found",
+    "update": "Актуализация",
+    "no_found": "Няма намерено лого",
     "search": "Търсене",
     "number_of_results": "Брой резултати:"
   },
@@ -117,7 +117,7 @@
   "helper": {
     "welcome": {
       "page1": {
-        "title": "Welcome",
+        "title": "Добре дошли",
         "text1": "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
         "text2": "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
         "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
@@ -134,7 +134,7 @@
     },
     "logos": {
       "page1": {
-        "title": "Selection",
+        "title": "Избор",
         "text1": "Select the crops of a same logo by clicking on them",
         "text2": "Selected logos go to the top of the page, you can unselect them by clicking again on them"
       },
@@ -148,7 +148,7 @@
         "text1": "Indicate the type of logo (label, brand, QRcode, ...)",
         "text2": "If it is a label or a brand logo, indicate which one it is",
         "text3": "Now you can submit your selection",
-        "text4": "Thank you :)"
+        "text4": "Благодарим ти :)"
       }
     },
     "previous": "Prev",
@@ -168,11 +168,11 @@
       "3": "Nutriments Selection",
       "4": "Values Selection"
     },
-    "next": "Next Step",
-    "prev": "Prev Step",
+    "next": "Следваща стъпка",
+    "prev": "Предишна стъпка",
     "skip": "Skip this product",
     "validate": "Validate Table",
-    "unselect_picture": "No nutrition info",
+    "unselect_picture": "Няма хранителна стойност",
     "basis": "data for: ",
     "servingSize": "serving size",
     "value": "value",
@@ -197,7 +197,7 @@
       "SKIP": "ignored",
       "VALIDATED": "edited",
       "WRONG_IMAGE": "unselected picture",
-      "close": "close",
+      "close": "затвори",
       "open": "open history"
     }
   }

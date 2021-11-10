@@ -40,7 +40,7 @@
         "brand": "auchan, danone, herta, ..."
       },
       "actions": {
-        "edit": "Edit Filters",
+        "edit": "필터 수정",
         "cancel": "취소",
         "apply": "적용"
       }
@@ -54,7 +54,7 @@
     "insights": "인사이트",
     "nutritions": "영양 성분 표시",
     "settings": "설정",
-    "eco-score": "Eco-score"
+    "eco-score": "친환경 점수"
   },
   "insights": {
     "insights": "인사이트",
@@ -117,7 +117,7 @@
   "helper": {
     "welcome": {
       "page1": {
-        "title": "Welcome",
+        "title": "환영합니다",
         "text1": "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
         "text2": "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
         "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
@@ -134,7 +134,7 @@
     },
     "logos": {
       "page1": {
-        "title": "Selection",
+        "title": "선택",
         "text1": "Select the crops of a same logo by clicking on them",
         "text2": "Selected logos go to the top of the page, you can unselect them by clicking again on them"
       },
@@ -148,10 +148,10 @@
         "text1": "Indicate the type of logo (label, brand, QRcode, ...)",
         "text2": "If it is a label or a brand logo, indicate which one it is",
         "text3": "Now you can submit your selection",
-        "text4": "Thank you :)"
+        "text4": "감사합니다 :)"
       }
     },
-    "previous": "Prev",
+    "previous": "이전",
     "next": "다음",
     "close": "닫기"
   },
@@ -165,11 +165,11 @@
     "steps": {
       "1": "Crop",
       "2": "Special values",
-      "3": "Nutriments Selection",
+      "3": "영양소 선택",
       "4": "Values Selection"
     },
-    "next": "Next Step",
-    "prev": "Prev Step",
+    "next": "다음 단계",
+    "prev": "이전 단계",
     "skip": "Skip this product",
     "validate": "Validate Table",
     "unselect_picture": "No nutrition info",
@@ -178,7 +178,7 @@
     "value": "값",
     "nutriments": {
       "nutriment_energy-kj": "에너지 (kJ)",
-      "nutriment_energy-kcal": "Energy (kCal)",
+      "nutriment_energy-kcal": "열량 (kcal)",
       "nutriment_fat": "지방",
       "nutriment_saturated-fat": "포화 지방",
       "nutriment_carbohydrates": "탄수화물",
@@ -190,14 +190,14 @@
     },
     "history": {
       "title": "Session History",
-      "status": "status",
-      "product name": "product name",
-      "view": "view page",
-      "edit": "edit page",
+      "status": "상태",
+      "product name": "제품명",
+      "view": "페이지 보기",
+      "edit": "페이지 수정",
       "SKIP": "ignored",
       "VALIDATED": "edited",
       "WRONG_IMAGE": "unselected picture",
-      "close": "close",
+      "close": "닫기",
       "open": "open history"
     }
   }

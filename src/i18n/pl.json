@@ -28,19 +28,19 @@
         "popularity": "popularność"
       },
       "long_label": {
-        "type": "Question Type",
-        "value": "Proposed Value",
-        "country": "Product Country",
-        "brand": "Product Brand",
+        "type": "Rodzaj Pytania",
+        "value": "Proponowana Wartość",
+        "country": "Kraj Produkcji",
+        "brand": "Marka Produktu",
         "popularity": "Sortuj według popularności",
         "edit": ""
       },
       "placeholders": {
         "value": "Value (fanta, en:organic,...)",
-        "brand": "auchan, danone, herta, ..."
+        "brand": "Auchan, Danone, Herta, ..."
       },
       "actions": {
-        "edit": "Edit Filters",
+        "edit": "Edytuj Filtry",
         "cancel": "Anuluj",
         "apply": "Zastosuj"
       }
@@ -124,17 +124,17 @@
       },
       "page2": {
         "title": "Pytania",
-        "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
-        "text2": "Do not hesitate to skip a question if you're not sure, there are plenty of others"
+        "text1": "Nasza sztuczna inteligencja ma do Ciebie wiele pytań. Twoim zadaniem będzie potwierdzić lub zaprzeczyć informacjom wykrytym na obrazach.",
+        "text2": "W razie wątpliwości nie wahaj się pomijać pytań, jest wiele innych"
       },
       "page3": {
         "title": "Logos",
-        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
+        "text1": "Świat produktów jest pełen znaków. Wyjaśnij naszej sztucznej inteligencji, które z nich są takie same."
       }
     },
     "logos": {
       "page1": {
-        "title": "Selection",
+        "title": "Zaznaczenie",
         "text1": "Select the crops of a same logo by clicking on them",
         "text2": "Selected logos go to the top of the page, you can unselect them by clicking again on them"
       },
