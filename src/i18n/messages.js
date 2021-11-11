@@ -15,7 +15,7 @@ import id from './id'
 import pt from './pt'
 import ru from './ru'
 import sv from './sv'
-import ue from './uk'
+import uk from './uk'
 import vi from './vi'
 
 export default {
