@@ -28,21 +28,21 @@
         "popularity": "népszerűség"
       },
       "long_label": {
-        "type": "Question Type",
-        "value": "Proposed Value",
-        "country": "Product Country",
-        "brand": "Product Brand",
+        "type": "Kérdés típusa",
+        "value": "Javasolt érték",
+        "country": "Termék országa",
+        "brand": "Termék márkája",
         "popularity": "Rendezés népszerűség szerint",
         "edit": ""
       },
       "placeholders": {
-        "value": "Value (fanta, en:organic,...)",
-        "brand": "auchan, danone, herta, ..."
+        "value": "Érték (fanta, en:organic, …)",
+        "brand": "Auchan, Danone, Aldi, …"
       },
       "actions": {
-        "edit": "Edit Filters",
+        "edit": "Szűrők módosítása",
         "cancel": "Mégse",
-        "apply": "Apply"
+        "apply": "Alkalmaz"
       }
     }
   },
@@ -54,14 +54,14 @@
     "insights": "Betekintés",
     "nutritions": "Tápértékadatok",
     "settings": "Beállítások",
-    "eco-score": "Eco-score"
+    "eco-score": "Eco-Score"
   },
   "insights": {
     "insights": "Betekintés",
     "barcode": "Vonalkód",
     "barcode_placeholder": "vonalkód",
     "value_tag": "Érték címke",
-    "value_placeholder": "ex: en:mueslis, bjorg,...",
+    "value_placeholder": "pl: en:mueslis, bjorg…",
     "type": "Típus",
     "annotated": "Annotált",
     "annotation": "Annotáció",
@@ -117,24 +117,24 @@
   "helper": {
     "welcome": {
       "page1": {
-        "title": "Welcome",
-        "text1": "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
-        "text2": "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
-        "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
+        "title": "Üdvözöljük!",
+        "text1": "A Hunger Games minijátékok gyűjteménye, amelyek számos módon hozzájárulnak az Open Food Facts-hez. Kategorizálja a termékeket, hogy ki lehessen számolni a Nutri-Score és Eco-Score értéküket, segítsen érvényesíteni a címkéket az Eco-Score-hoz, adjon hozzá márkákat és súlyokat, segítsen logófelismerő rendszerünknek megtanulni az észlelt logókat.",
+        "text2": "Ez néhány izgalmas dolog, amit megtehet vele. Ügyeljen arra, hogy csatlakozva legyen az Open Food Facts oldalhoz, hogy jóváírja hozzájárulásait. Ha hibázik, kérjük, szánjon időt a javításra a webhelyre kattintva.",
+        "text3": "Ha kétségei vannak a játékkal kapcsolatban, az oldal jobb felső sarkában talál egy súgót, valamint elérhet minket a #hunger-games slack csatornán"
       },
       "page2": {
         "title": "Kérdések",
-        "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
-        "text2": "Do not hesitate to skip a question if you're not sure, there are plenty of others"
+        "text1": "A Mesterséges Intelligenciánknak rengeteg kérdése van Önhöz. Erősítse meg, vagy cáfolja azokat az információkat, amiket az MI a képeken észlelt.",
+        "text2": "Ne habozzon kihagyni egy kérdést, ha nem biztos benne, sok más kérdés van még"
       },
       "page3": {
         "title": "Logos",
-        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
+        "text1": "A termékek világa tele van logókkal. Tanítsa meg az MI-nek, hogy melyek ugyanazok."
       }
     },
     "logos": {
       "page1": {
-        "title": "Selection",
+        "title": "Kiválasztás",
         "text1": "Select the crops of a same logo by clicking on them",
         "text2": "Selected logos go to the top of the page, you can unselect them by clicking again on them"
       },
@@ -144,14 +144,14 @@
         "text2": "If the crop contains only a partial part of a logo you can select it"
       },
       "page3": {
-        "title": "Validate",
-        "text1": "Indicate the type of logo (label, brand, QRcode, ...)",
-        "text2": "If it is a label or a brand logo, indicate which one it is",
-        "text3": "Now you can submit your selection",
-        "text4": "Thank you :)"
+        "title": "Érvényesítés",
+        "text1": "Jelezze a logó típusát (címke, márka, QR-kód, …)",
+        "text2": "Ha ez egy címke vagy márkalogó, jelezze, melyik",
+        "text3": "Most elküldheti a választását",
+        "text4": "Köszönjük :)"
       }
     },
-    "previous": "Prev",
+    "previous": "Előző",
     "next": "Következő",
     "close": "Bezár"
   },
@@ -160,7 +160,7 @@
       "cropTheTable": "Crop the image to simplify your annotation",
       "verifyNutrimentDetected": "Indicate if the nutriment detected is correct",
       "selectMissingNutriments": "Add missing nutriments (you can click even if the word has no box)",
-      "selectValue": "Select the nutritional value of: "
+      "selectValue": "Válassza ki a tápértékét: "
     },
     "steps": {
       "1": "Crop",
@@ -168,32 +168,32 @@
       "3": "Nutriments Selection",
       "4": "Values Selection"
     },
-    "next": "Next Step",
-    "prev": "Prev Step",
-    "skip": "Skip this product",
+    "next": "Következő lépés",
+    "prev": "Előző lépés",
+    "skip": "Hagyja ki ezt a terméket",
     "validate": "Validate Table",
     "unselect_picture": "No nutrition info",
     "basis": "data for: ",
-    "servingSize": "serving size",
+    "servingSize": "adag",
     "value": "érték",
     "nutriments": {
       "nutriment_energy-kj": "Energia (kJ)",
-      "nutriment_energy-kcal": "Energy (kCal)",
+      "nutriment_energy-kcal": "Energia (kcal)",
       "nutriment_fat": "Zsír",
       "nutriment_saturated-fat": "Telített zsír",
       "nutriment_carbohydrates": "Szénhidrát",
       "nutriment_sugars": "Cukrok",
       "nutriment_proteins": "Fehérje",
-      "nutriment_fiber": "Fibers",
+      "nutriment_fiber": "Rostok",
       "nutriment_salt": "Só",
       "nutriment_sodium": "Nátrium"
     },
     "history": {
-      "title": "Session History",
-      "status": "status",
-      "product name": "product name",
-      "view": "view page",
-      "edit": "edit page",
+      "title": "Munkamenet előzmények",
+      "status": "állapot",
+      "product name": "termék neve",
+      "view": "oldal megtekintése",
+      "edit": "oldal szerkesztése",
       "SKIP": "ignored",
       "VALIDATED": "edited",
       "WRONG_IMAGE": "unselected picture",

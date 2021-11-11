@@ -10,16 +10,16 @@
     "no": "Нет",
     "skip": "Пропустить",
     "yes": "Да",
-    "no_questions_remaining": "No questions remaining",
+    "no_questions_remaining": "Вопросов не осталось",
     "countries": "Страны",
     "view": "Вид",
     "edit": "Изменить",
     "hide_images": "Скрыть изображения (более быстрая загрузка)",
     "display_images": "Показывать изображения",
     "annotations": "Заметки",
-    "last_annotations": "Last annotations",
+    "last_annotations": "Последние аннотации",
     "remaining_annotations": "Осталось:",
-    "annotated_annotations": "Annotated",
+    "annotated_annotations": "Помеченный",
     "filters": {
       "short_label": {
         "value": "значение",
@@ -28,19 +28,19 @@
         "popularity": "популярность"
       },
       "long_label": {
-        "type": "Question Type",
-        "value": "Proposed Value",
-        "country": "Product Country",
-        "brand": "Product Brand",
+        "type": "Тип вопроса",
+        "value": "Предлагаемое значение",
+        "country": "Страна продукта",
+        "brand": "Марка продукта",
         "popularity": "Сортировка по популярности",
         "edit": ""
       },
       "placeholders": {
-        "value": "Value (fanta, en:organic,...)",
-        "brand": "auchan, danone, herta, ..."
+        "value": "Ценность(фанта, ru: органический)",
+        "brand": "ашан, данон, херта, ..."
       },
       "actions": {
-        "edit": "Edit Filters",
+        "edit": "Редактировать фильтры",
         "cancel": "Отмена",
         "apply": "Применить"
       }
@@ -48,24 +48,24 @@
   },
   "menu": {
     "games": "Игры",
-    "questions": "Questions",
+    "questions": "Вопросы",
     "logos": "Logos",
     "manage": "Управление",
-    "insights": "Insights",
+    "insights": "Прогнозы",
     "nutritions": "Пищевая и энергетическая ценность",
     "settings": "Настройки",
     "eco-score": "Eco-score"
   },
   "insights": {
-    "insights": "Insights",
+    "insights": "Прогнозы",
     "barcode": "Штрих-код",
     "barcode_placeholder": "штрих-код",
-    "value_tag": "Value tag",
-    "value_placeholder": "ex: en:mueslis, bjorg,...",
+    "value_tag": "Тег значения",
+    "value_placeholder": "например: муеслис, бъерг,...",
     "type": "Тип",
-    "annotated": "Annotated",
-    "annotation": "Annotation",
-    "not_annotated": "Not annotated",
+    "annotated": "Помеченный",
+    "annotation": "Заметка",
+    "not_annotated": "Не аннотированный",
     "all": "Все",
     "label": "Маркировка",
     "product_weight": "Вес продукта",
@@ -81,11 +81,11 @@
     "value": "Значение",
     "created_at": "Дата создания",
     "completed_at": "Дата завершения",
-    "automatic": "Automatic"
+    "automatic": "Автоматический"
   },
   "logos": {
-    "annotation": "Annotation: ",
-    "annotations": "Logo annotations",
+    "annotation": "Заметка: ",
+    "annotations": "Аннотация логотипа",
     "select_all": "Выбрать все",
     "unselect_all": "Снять выделение",
     "distance": "Расстояние:",
@@ -98,10 +98,10 @@
     "packaging": "Упаковка",
     "qr_code": "QR-код",
     "category": "Категория",
-    "nutrition_label": "Nutrition label",
+    "nutrition_label": "Этикетка пищевой ценности",
     "store": "Магазин",
-    "detail": "Logo detail",
-    "id": "Logo ID:",
+    "detail": "Детали логотипа",
+    "id": "ID логотипа:",
     "barcode": "Штрих-код:",
     "full_image": "Полное изображение",
     "update": "Обновить",
@@ -123,13 +123,13 @@
         "text3": "Если у Вас есть сомнения по поводу этой игры, у Вас есть помощник в правом верхнем углу страницы. Также, Вы можете связаться с нами в Slack через канал #hunger-games"
       },
       "page2": {
-        "title": "Questions",
+        "title": "Вопросы",
         "text1": "У нашего ИИ есть множество вопросов для Вас. Здесь Вам необходимо определить, правильно ли была определена информация на изображении.",
         "text2": "Не стесняйтесь пропустить вопрос, если вы не уверены — есть множество других вопросов"
       },
       "page3": {
         "title": "Logos",
-        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
+        "text1": "Мир продуктов полон логотипов. Объясните нашему ИИ, какие из них одинаковы."
       }
     },
     "logos": {
@@ -140,56 +140,56 @@
       },
       "page2": {
         "title": "Предупреждение",
-        "text1": "If the crop contains multiple logo do not select it.",
-        "text2": "If the crop contains only a partial part of a logo you can select it"
+        "text1": "Если срез содержит несколько логотипов, не выбирайте его.",
+        "text2": "Если срез содержит только часть логотипа, вы можете выбрать его"
       },
       "page3": {
-        "title": "Validate",
-        "text1": "Indicate the type of logo (label, brand, QRcode, ...)",
-        "text2": "If it is a label or a brand logo, indicate which one it is",
-        "text3": "Now you can submit your selection",
-        "text4": "Thank you :)"
+        "title": "Подтвердить",
+        "text1": "Укажите тип логотипа (этикетка, марка, QR-код, ...)",
+        "text2": "Если это этикетка или логотип марка, укажите какой",
+        "text3": "Теперь вы можете отправить свой выбор",
+        "text4": "Спасибо :)"
       }
     },
-    "previous": "Prev",
+    "previous": "Предыдущий",
     "next": "Следующий",
     "close": "Закрыть"
   },
   "nutrition": {
     "instructions": {
-      "cropTheTable": "Crop the image to simplify your annotation",
-      "verifyNutrimentDetected": "Indicate if the nutriment detected is correct",
-      "selectMissingNutriments": "Add missing nutriments (you can click even if the word has no box)",
-      "selectValue": "Select the nutritional value of: "
+      "cropTheTable": "Обрежьте изображение, чтобы упростить свою аннотацию",
+      "verifyNutrimentDetected": "Укажите, правильно ли определена пищевая ценность",
+      "selectMissingNutriments": "Добавьте недостающие питательные вещества (вы можете щелкнуть, даже если у слова нет квадрата)",
+      "selectValue": "Выберите пищевую ценность: "
     },
     "steps": {
-      "1": "Crop",
-      "2": "Special values",
-      "3": "Nutriments Selection",
-      "4": "Values Selection"
+      "1": "Обрезать",
+      "2": "Особые значения",
+      "3": "Выбор питательных веществ",
+      "4": "Выбор значений"
     },
-    "next": "Next Step",
-    "prev": "Prev Step",
-    "skip": "Skip this product",
-    "validate": "Validate Table",
-    "unselect_picture": "No nutrition info",
-    "basis": "data for: ",
-    "servingSize": "serving size",
+    "next": "Следующий Шаг",
+    "prev": "Предыдущий шаг",
+    "skip": "Пропустить этот продукт",
+    "validate": "Проверить таблицу",
+    "unselect_picture": "Нет информации о пищевой ценности",
+    "basis": "данные для: ",
+    "servingSize": "размер порции",
     "value": "значение",
     "nutriments": {
       "nutriment_energy-kj": "Энергетическая ценность (кДж)",
-      "nutriment_energy-kcal": "Energy (kCal)",
+      "nutriment_energy-kcal": "Энергия (кКал)",
       "nutriment_fat": "Жир",
       "nutriment_saturated-fat": "Насыщенные жиры",
       "nutriment_carbohydrates": "Углеводы",
       "nutriment_sugars": "Сахара",
       "nutriment_proteins": "Белки",
-      "nutriment_fiber": "Fibers",
+      "nutriment_fiber": "Волокна",
       "nutriment_salt": "Соль",
       "nutriment_sodium": "Натрий"
     },
     "history": {
-      "title": "Session History",
+      "title": "История сессий",
       "status": "status",
       "product name": "product name",
       "view": "view page",

@@ -30,8 +30,8 @@
       "long_label": {
         "type": "Question Type",
         "value": "Proposed Value",
-        "country": "Product Country",
-        "brand": "Product Brand",
+        "country": "País do Produto",
+        "brand": "Marca do Produto",
         "popularity": "Ordenar por popularidade",
         "edit": ""
       },
@@ -40,7 +40,7 @@
         "brand": "auchan, danone, herta, ..."
       },
       "actions": {
-        "edit": "Edit Filters",
+        "edit": "Editar Filtros",
         "cancel": "Cancelar",
         "apply": "Candidatar"
       }
@@ -160,25 +160,25 @@
       "cropTheTable": "Recorte a imagem para simplificar sua anotação",
       "verifyNutrimentDetected": "Indique se o nutrimento detectado está correto",
       "selectMissingNutriments": "Adicionar nutrientes faltantes (você pode clicar mesmo se a palavra não tiver caixa de seleção)",
-      "selectValue": "Select the nutritional value of: "
+      "selectValue": "Selecione o valor nutricional de: "
     },
     "steps": {
-      "1": "Crop",
+      "1": "Recortar",
       "2": "Valores especiais",
       "3": "Seleção de Nutrientes",
       "4": "Seleção de Valores"
     },
-    "next": "Next Step",
-    "prev": "Prev Step",
+    "next": "Próximo Passo",
+    "prev": "Passo Anterior",
     "skip": "Pular este produto",
     "validate": "Validar Tabela",
     "unselect_picture": "Sem informações nutricionais",
-    "basis": "data for: ",
+    "basis": "dados para: ",
     "servingSize": "serving size",
     "value": "valor",
     "nutriments": {
       "nutriment_energy-kj": "Energia (kJ)",
-      "nutriment_energy-kcal": "Energy (kCal)",
+      "nutriment_energy-kcal": "Energia (kCal)",
       "nutriment_fat": "Gordura",
       "nutriment_saturated-fat": "Gordura saturada",
       "nutriment_carbohydrates": "Carboidratos",

@@ -28,19 +28,19 @@
         "popularity": "mức phổ biến"
       },
       "long_label": {
-        "type": "Question Type",
-        "value": "Proposed Value",
-        "country": "Product Country",
-        "brand": "Product Brand",
+        "type": "Loại câu hỏi",
+        "value": "Giá trị đề xuất",
+        "country": "Nước sản xuất",
+        "brand": "Thương hiệu sản xuất",
         "popularity": "Sắp xếp theo mức độ phổ biến",
         "edit": ""
       },
       "placeholders": {
-        "value": "Value (fanta, en:organic,...)",
+        "value": "Giá trị (fanta, en: organic,...)",
         "brand": "auchan, danone, herta, ..."
       },
       "actions": {
-        "edit": "Edit Filters",
+        "edit": "Chỉnh sửa bộ lọc",
         "cancel": "Huỷ",
         "apply": "Áp dụng"
       }
@@ -54,7 +54,7 @@
     "insights": "Thông tin chi tiết",
     "nutritions": "Giá trị dinh dưỡng",
     "settings": "Cài đặt",
-    "eco-score": "Eco-score"
+    "eco-score": "Eco-Score"
   },
   "insights": {
     "insights": "Thông tin chi tiết",
@@ -139,7 +139,7 @@
         "text2": "Các biểu trưng đã chọn sẽ lên đầu trang, bạn có thể bỏ chọn chúng bằng cách nhấp lại vào chúng"
       },
       "page2": {
-        "title": "Warning",
+        "title": "Cảnh báo",
         "text1": "Nếu vùng cắt chứa nhiều logo, đừng chọn nó.",
         "text2": "Nếu vùng cắt chỉ chứa một phần của logo, bạn có thể chọn nó"
       },
@@ -151,7 +151,7 @@
         "text4": "Cảm ơn bạn :)"
       }
     },
-    "previous": "Prev",
+    "previous": "Trước",
     "next": "Kế tiếp",
     "close": "Đóng"
   },
