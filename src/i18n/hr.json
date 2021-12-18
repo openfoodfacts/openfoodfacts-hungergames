@@ -10,15 +10,15 @@
     "no": "No",
     "skip": "Skip",
     "yes": "Yes",
-    "no_questions_remaining": "No questions remaining",
+    "no_questions_remaining": "Nema preostalih pitanja",
     "countries": "Countries",
-    "view": "View",
+    "view": "Pogledaj",
     "edit": "Edit",
-    "hide_images": "Hide images (faster loading)",
-    "display_images": "Display images",
+    "hide_images": "Sakrij slike (brže učitavanje)",
+    "display_images": "Prikaži slike",
     "annotations": "Annotations",
     "last_annotations": "Last annotations",
-    "remaining_annotations": "Remaining:",
+    "remaining_annotations": "Preostalo:",
     "annotated_annotations": "Annotated",
     "filters": {
       "short_label": {
@@ -28,9 +28,9 @@
         "popularity": "popularity"
       },
       "long_label": {
-        "type": "Question Type",
-        "value": "Proposed Value",
-        "country": "Product Country",
+        "type": "Vrsta pitanja",
+        "value": "Predložena vrijednost",
+        "country": "Zemlja porijekla",
         "brand": "Product Brand",
         "popularity": "Sort by popularity",
         "edit": ""
@@ -47,19 +47,19 @@
     }
   },
   "menu": {
-    "games": "Games",
-    "questions": "Questions",
+    "games": "Igre",
+    "questions": "Pitanja",
     "logos": "Logos",
     "manage": "Manage",
-    "insights": "Insights",
+    "insights": "Statistika",
     "nutritions": "Nutritivne vrijednosti",
     "settings": "Settings",
     "eco-score": "Eco-score"
   },
   "insights": {
-    "insights": "Insights",
+    "insights": "Statistika",
     "barcode": "Bar kod",
-    "barcode_placeholder": "barcode",
+    "barcode_placeholder": "barkod",
     "value_tag": "Value tag",
     "value_placeholder": "ex: en:mueslis, bjorg,...",
     "type": "Type",
@@ -67,10 +67,10 @@
     "annotation": "Annotation",
     "not_annotated": "Not annotated",
     "all": "All",
-    "label": "Label",
+    "label": "Oznaka",
     "product_weight": "Product weight",
     "category": "Category",
-    "expiration_date": "Expiration date",
+    "expiration_date": "Rok trajanja",
     "packager_code": "Packager code",
     "skipped": "Skipped (-1)",
     "rejected": "Rejected (0)",
@@ -92,7 +92,7 @@
     "value": "Value",
     "submit": "Submit",
     "type": "Type",
-    "label": "Label",
+    "label": "Oznaka",
     "brand": "Brand",
     "packager_code": "Packager code",
     "packaging": "Packaging",
@@ -123,7 +123,7 @@
         "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
       },
       "page2": {
-        "title": "Questions",
+        "title": "Pitanja",
         "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
         "text2": "Do not hesitate to skip a question if you're not sure, there are plenty of others"
       },

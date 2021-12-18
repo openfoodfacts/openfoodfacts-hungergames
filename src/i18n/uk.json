@@ -16,16 +16,16 @@
     "edit": "Редагувати",
     "hide_images": "Приховати зображення (швидше завантажити)",
     "display_images": "Відображення зображень",
-    "annotations": "Annotations",
+    "annotations": "Коментарі",
     "last_annotations": "Останні анотації\n",
     "remaining_annotations": "Залишок:",
     "annotated_annotations": "Коментарі",
     "filters": {
       "short_label": {
-        "value": "value",
+        "value": "вартість",
         "country": "країна",
         "brand": "виробник",
-        "popularity": "popularity"
+        "popularity": "поширеність"
       },
       "long_label": {
         "type": "Тип запитання",
@@ -49,12 +49,12 @@
   "menu": {
     "games": "Ігри",
     "questions": "Запитання",
-    "logos": "Logos",
+    "logos": "Логотипи",
     "manage": "Керування",
     "insights": "Статистика",
     "nutritions": "Харчова цінність",
     "settings": "Налаштування",
-    "eco-score": "Eco-score"
+    "eco-score": "Показник впливу на довкілля"
   },
   "insights": {
     "insights": "Статистика",
@@ -128,7 +128,7 @@
         "text2": "Не думайте довго над тим, щоб пропустити запитання, якщо ви не впевнені, є багато інших"
       },
       "page3": {
-        "title": "Logos",
+        "title": "Логотипи",
         "text1": "Світ продуктів повний логотипів. Поясни нашому ШІ які з них однакові."
       }
     },
@@ -152,7 +152,7 @@
       }
     },
     "previous": "Попередній",
-    "next": "Next",
+    "next": "Далі",
     "close": "Закрити"
   },
   "nutrition": {
@@ -174,8 +174,8 @@
     "validate": "Перевірте таблицю",
     "unselect_picture": "Інформація про харчування відсутня",
     "basis": "дані для: ",
-    "servingSize": "serving size",
-    "value": "value",
+    "servingSize": "розмір порції",
+    "value": "вартість",
     "nutriments": {
       "nutriment_energy-kj": "Енергетична цінність (kJ)",
       "nutriment_energy-kcal": "Енергетична цінність (kcal)",
@@ -184,21 +184,21 @@
       "nutriment_carbohydrates": "Вуглеводи",
       "nutriment_sugars": "Цукор",
       "nutriment_proteins": "Білки",
-      "nutriment_fiber": "Fibers",
+      "nutriment_fiber": "Волокна",
       "nutriment_salt": "Сіль",
       "nutriment_sodium": "Натрій"
     },
     "history": {
-      "title": "Session History",
-      "status": "status",
-      "product name": "product name",
-      "view": "view page",
-      "edit": "edit page",
-      "SKIP": "ignored",
-      "VALIDATED": "edited",
-      "WRONG_IMAGE": "unselected picture",
-      "close": "close",
-      "open": "open history"
+      "title": "Історія Сеансу",
+      "status": "статус",
+      "product name": "назва продукту",
+      "view": "переглянути сторінку",
+      "edit": "редагувати сторінку",
+      "SKIP": "проігноровано",
+      "VALIDATED": "відредаговано",
+      "WRONG_IMAGE": "не вибране зображення",
+      "close": "закрити",
+      "open": "відкрити історію"
     }
   }
 }

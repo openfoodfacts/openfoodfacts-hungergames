@@ -5,16 +5,16 @@
     "brand": "brand",
     "brands": "Brands",
     "ingredients": "Ingredients",
-    "product_weight": "peso del producto",
+    "product_weight": "product weight",
     "popularity_sort": "Sort by popularity",
     "no": "No",
     "skip": "Skip",
     "yes": "Yes",
-    "no_questions_remaining": "No quedan preguntas",
-    "countries": "Paises",
-    "view": "Vista",
+    "no_questions_remaining": "No questions remaining",
+    "countries": "Countries",
+    "view": "View",
     "edit": "Edit",
-    "hide_images": "Esconder imágenes",
+    "hide_images": "Hide images (faster loading)",
     "display_images": "Display images",
     "annotations": "Annotations",
     "last_annotations": "Last annotations",
@@ -47,10 +47,10 @@
     }
   },
   "menu": {
-    "games": "Juegos",
-    "questions": "Preguntas",
+    "games": "Games",
+    "questions": "Questions",
     "logos": "Logos",
-    "manage": "Administrar",
+    "manage": "Manage",
     "insights": "Insights",
     "nutritions": "Nutrition facts",
     "settings": "Settings",
@@ -59,7 +59,7 @@
   "insights": {
     "insights": "Insights",
     "barcode": "Barcode",
-    "barcode_placeholder": "código de barras",
+    "barcode_placeholder": "barcode",
     "value_tag": "Value tag",
     "value_placeholder": "ex: en:mueslis, bjorg,...",
     "type": "Type",
@@ -107,7 +107,7 @@
     "update": "Update",
     "no_found": "No logo found",
     "search": "Search",
-    "number_of_results": "Número de resultados:"
+    "number_of_results": "Number of results:"
   },
   "settings": {
     "settings": "Settings",
@@ -123,7 +123,7 @@
         "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
       },
       "page2": {
-        "title": "Preguntas",
+        "title": "Questions",
         "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
         "text2": "Do not hesitate to skip a question if you're not sure, there are plenty of others"
       },
