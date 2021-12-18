@@ -28,15 +28,15 @@
         "popularity": "인기도"
       },
       "long_label": {
-        "type": "Question Type",
-        "value": "Proposed Value",
-        "country": "Product Country",
-        "brand": "Product Brand",
+        "type": "질문 유형",
+        "value": "제안된 가치",
+        "country": "제조국",
+        "brand": "제품 제조사",
         "popularity": "인기순 정렬",
         "edit": ""
       },
       "placeholders": {
-        "value": "Value (fanta, en:organic,...)",
+        "value": "가치 (환타, 영어:오가닉,...)",
         "brand": "auchan, danone, herta, ..."
       },
       "actions": {
@@ -118,18 +118,18 @@
     "welcome": {
       "page1": {
         "title": "환영합니다",
-        "text1": "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
-        "text2": "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
+        "text1": "Hunger Games는 다양한 방식으로 Open Food Facts에 기여하는 데 도움이 되는 미니 게임 모음입니다. 제품을 분류하여 Nutri-Score 및 Eco-Score를 받고, Eco-Score에 대한 레이블의 유효성을 확인하고, 브랜드 및 가중치를 추가하고, 로고 인식 시스템이 감지한 로고에 대해 학습하도록 돕습니다.",
+        "text2": "이것들은 여러분이 할 수 있는 흥미진진한 일들 중 일부입니다. 기여에 대한 크레딧을 받으려면 Open Food Facts 웹사이트에 연결해야 합니다. 실수했다면 시간을 내어 웹사이트로 이동하여 수정하시기 바랍니다.",
         "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
       },
       "page2": {
         "title": "질문",
-        "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
-        "text2": "Do not hesitate to skip a question if you're not sure, there are plenty of others"
+        "text1": "우리 AI는 당신에게 많은 질문을 하고 있습니다. 여기에서 AI가 이미지에서 감지한 정보를 확인하거나 거부해야 합니다.",
+        "text2": "모르는 경우 질문을 건너뛰는 것을 망설이지 마십시오. 다른 질문이 많이 있습니다."
       },
       "page3": {
         "title": "로고",
-        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
+        "text1": "제품의 세계는 로고로 가득 차 있습니다. 어떤 것이 똑같은지 AI에게 설명하십시오."
       }
     },
     "logos": {

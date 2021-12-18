@@ -28,15 +28,15 @@
         "popularity": "popularidade"
       },
       "long_label": {
-        "type": "Question Type",
-        "value": "Proposed Value",
+        "type": "Tipo de Questão",
+        "value": "Valor proposto",
         "country": "País do Produto",
         "brand": "Marca do Produto",
         "popularity": "Ordenar por popularidade",
         "edit": ""
       },
       "placeholders": {
-        "value": "Value (fanta, en:organic,...)",
+        "value": "Valor (fanta, en: orgânico, ...)",
         "brand": "auchan, danone, herta, ..."
       },
       "actions": {
@@ -174,7 +174,7 @@
     "validate": "Validar Tabela",
     "unselect_picture": "Sem informações nutricionais",
     "basis": "dados para: ",
-    "servingSize": "serving size",
+    "servingSize": "tamanho da porção",
     "value": "valor",
     "nutriments": {
       "nutriment_energy-kj": "Energia (kJ)",

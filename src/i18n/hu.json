@@ -5,19 +5,19 @@
     "brand": "márkanév",
     "brands": "Márkanevek",
     "ingredients": "Összetevők",
-    "product_weight": "termék súly",
+    "product_weight": "termék súlya",
     "popularity_sort": "Rendezés népszerűség szerint",
     "no": "Nem",
     "skip": "Skip",
     "yes": "Igen",
     "no_questions_remaining": "Nincs több kérdés",
     "countries": "Országok",
-    "view": "Megtekint",
+    "view": "Megtekintés",
     "edit": "Szerkesztés",
     "hide_images": "Képek elrejtése (gyorsabb betöltés)",
     "display_images": "Képek megjelenítése",
     "annotations": "Annotations",
-    "last_annotations": "Legutóbbi annotációk",
+    "last_annotations": "Legutóbbi megjegyzések",
     "remaining_annotations": "Hátralévő:",
     "annotated_annotations": "Annotált",
     "filters": {
@@ -135,13 +135,13 @@
     "logos": {
       "page1": {
         "title": "Kiválasztás",
-        "text1": "Select the crops of a same logo by clicking on them",
-        "text2": "Selected logos go to the top of the page, you can unselect them by clicking again on them"
+        "text1": "Válassza ki ugyanannak a logónak a kivágott képeit rájuk kattintva",
+        "text2": "A kiválasztott logók az oldal tetejére kerülnek, a kijelölésüket az ismételt kattintással törölheti"
       },
       "page2": {
         "title": "Figyelmeztetés",
-        "text1": "If the crop contains multiple logo do not select it.",
-        "text2": "If the crop contains only a partial part of a logo you can select it"
+        "text1": "Ha a vágás több logót tartalmaz, ne jelölje ki.",
+        "text2": "Ha a kivágás a logónak csak egy részét tartalmazza, kiválaszthatja azt"
       },
       "page3": {
         "title": "Érvényesítés",
@@ -157,23 +157,23 @@
   },
   "nutrition": {
     "instructions": {
-      "cropTheTable": "Crop the image to simplify your annotation",
-      "verifyNutrimentDetected": "Indicate if the nutriment detected is correct",
-      "selectMissingNutriments": "Add missing nutriments (you can click even if the word has no box)",
+      "cropTheTable": "Vágja körül a képet a kommentár egyszerűsítéséhez",
+      "verifyNutrimentDetected": "Jelezze, hogy az észlelt tápanyag helyes-e",
+      "selectMissingNutriments": "Adja hozzá a hiányzó tápanyagokat (akkor is kattinthat, ha a szónak nincs doboza)",
       "selectValue": "Válassza ki a tápértékét: "
     },
     "steps": {
-      "1": "Crop",
-      "2": "Special values",
-      "3": "Nutriments Selection",
-      "4": "Values Selection"
+      "1": "Körülvágás",
+      "2": "Különleges értékek",
+      "3": "Tápanyagok kiválasztása",
+      "4": "Értékek kiválasztása"
     },
     "next": "Következő lépés",
     "prev": "Előző lépés",
     "skip": "Hagyja ki ezt a terméket",
-    "validate": "Validate Table",
-    "unselect_picture": "No nutrition info",
-    "basis": "data for: ",
+    "validate": "Táblázat érvényesítése",
+    "unselect_picture": "Nincs táplálkozási információ",
+    "basis": "adatok ehhez: ",
     "servingSize": "adag",
     "value": "érték",
     "nutriments": {
@@ -194,11 +194,11 @@
       "product name": "termék neve",
       "view": "oldal megtekintése",
       "edit": "oldal szerkesztése",
-      "SKIP": "ignored",
-      "VALIDATED": "edited",
-      "WRONG_IMAGE": "unselected picture",
-      "close": "close",
-      "open": "open history"
+      "SKIP": "figyelmen kívül hagyva",
+      "VALIDATED": "szerkesztve",
+      "WRONG_IMAGE": "nem kiválasztott kép",
+      "close": "bezár",
+      "open": "előzmények megnyitása"
     }
   }
 }
