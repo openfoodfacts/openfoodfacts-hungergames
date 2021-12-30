@@ -17,6 +17,8 @@ import ru from './ru'
 import sv from './sv'
 import uk from './uk'
 import vi from './vi'
+import bg from './bg'
+import pl from './pl'
 
 export default {
   en,
@@ -38,4 +40,6 @@ export default {
   sv,
   uk,
   vi,
+  bg,
+  pl,
 }
