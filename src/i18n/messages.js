@@ -19,6 +19,8 @@ import uk from './uk'
 import vi from './vi'
 import bg from './bg'
 import pl from './pl'
+import hr from './hr'
+import ko from './ko'
 
 export default {
   en,
@@ -42,4 +44,6 @@ export default {
   vi,
   bg,
   pl,
+  hr,
+  ko,
 }
