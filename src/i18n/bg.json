@@ -23,7 +23,7 @@
     "filters": {
       "short_label": {
         "value": "стойност",
-        "country": "държава",
+        "country": "страна",
         "brand": "марка",
         "popularity": "популярност"
       },

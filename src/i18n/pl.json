@@ -163,42 +163,42 @@
       "selectValue": "Select the nutritional value of: "
     },
     "steps": {
-      "1": "Crop",
-      "2": "Special values",
-      "3": "Nutriments Selection",
-      "4": "Values Selection"
+      "1": "Przytnij",
+      "2": "Wartości specjalne",
+      "3": "Wybór składników odżywczych",
+      "4": "Wybór wartości"
     },
-    "next": "Next Step",
-    "prev": "Prev Step",
-    "skip": "Skip this product",
-    "validate": "Validate Table",
-    "unselect_picture": "No nutrition info",
-    "basis": "data for: ",
-    "servingSize": "serving size",
+    "next": "Dalej",
+    "prev": "Wstecz",
+    "skip": "Pomiń ten produkt",
+    "validate": "Zatwierdź tabelę",
+    "unselect_picture": "Brak informacji żywieniowych",
+    "basis": "dane dla: ",
+    "servingSize": "wielkość porcji",
     "value": "wartość",
     "nutriments": {
       "nutriment_energy-kj": "Energia (kJ)",
-      "nutriment_energy-kcal": "Energy (kCal)",
+      "nutriment_energy-kcal": "Energia (kcal)",
       "nutriment_fat": "Tłuszcz",
       "nutriment_saturated-fat": "Tłuszcz nasycony",
       "nutriment_carbohydrates": "Węglowodany",
       "nutriment_sugars": "Cukry",
       "nutriment_proteins": "Proteiny",
-      "nutriment_fiber": "Fibers",
+      "nutriment_fiber": "Błonnik",
       "nutriment_salt": "Sól",
       "nutriment_sodium": "Sód"
     },
     "history": {
-      "title": "Session History",
+      "title": "Historia sesji",
       "status": "status",
-      "product name": "product name",
-      "view": "view page",
-      "edit": "edit page",
-      "SKIP": "ignored",
-      "VALIDATED": "edited",
-      "WRONG_IMAGE": "unselected picture",
-      "close": "close",
-      "open": "open history"
+      "product name": "nazwa produktu",
+      "view": "zobacz stronę",
+      "edit": "edytuj stronę",
+      "SKIP": "zignorowane",
+      "VALIDATED": "edytowane",
+      "WRONG_IMAGE": "niezaznaczone zdjęcie",
+      "close": "zamknij",
+      "open": "otwórz historię"
     }
   }
 }
