@@ -21,6 +21,7 @@ import bg from './bg'
 import pl from './pl'
 import hr from './hr'
 import ko from './ko'
+import et from './et'
 
 export default {
   en,
@@ -46,4 +47,5 @@ export default {
   pl,
   hr,
   ko,
+  et,
 }
