@@ -9,7 +9,7 @@
     "deploy": "bash deploy.sh"
   },
   "dependencies": {
-    "@yaireo/tagify": "^4.8.1",
+    "@yaireo/tagify": "^4.9.5",
     "axios": "^0.25.0",
     "fastest-levenshtein": "^1.0.12",
     "semantic-ui-vue": "^0.11.0",
