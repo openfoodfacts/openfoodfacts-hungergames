@@ -7,18 +7,7 @@
         <div class="ui hidden divider"></div>
         <div v-if="currentQuestion">
           <h3>{{ currentQuestion.question }}</h3>
-          <div v-if="valueTagQuestionsURL.length">
-            <router-link :to="valueTagQuestionsURL" target="_blank">
-              <div class="ui big label">
-                {{ currentQuestion.value }}
-                <i
-                  style="margin-left: 0.5rem"
-                  class="external alternate icon small blue"
-                ></i>
-              </div>
-            </router-link>
-          </div>
-          <div v-else>
+          <div>
             <div class="ui big label">{{ currentQuestion.value }}</div>
           </div>
           <div class="ui divider hidden"></div>
@@ -93,7 +82,7 @@
     </div>
     <div class="three wide column annotation-column">
       <AnnotationCounter
-        :remainingCount="remainingQuestionCount"
+        :remainingCount="productIds.length"
         :lastAnnotations="lastAnnotations"
         :sessionAnnotatedCount="sessionAnnotatedCount"
       />
@@ -107,39 +96,8 @@ import robotoffService from "../robotoff";
 import { NO_QUESTION_LEFT } from "../const";
 import Product from "../components/Product";
 import LoadingSpinner from "../components/LoadingSpinner";
-import QuestionFilter from "../components/QuestionFilter/index";
-import { getInitialFilterValues } from "../components/QuestionFilter/filterHelpers";
-
 import AnnotationCounter from "../components/AnnotationCounter";
-
-const reformatTagMapping = {
-  " ": "-",
-  "'": "-",
-  "&": "",
-  à: "a",
-  â: "a",
-  ä: "a",
-  é: "e",
-  è: "e",
-  ê: "e",
-  ë: "e",
-  î: "i",
-  ï: "i",
-  ô: "o",
-  ö: "o",
-  û: "u",
-  ù: "u",
-  ü: "u",
-};
-
-const reformatValueTag = (value) => {
-  let output = value.trim().toLowerCase();
-  for (const [search, replace] of Object.entries(reformatTagMapping)) {
-    output = output.replace(new RegExp(search, "g"), replace);
-  }
-  output = output.replace(/-{2,}/g, "-");
-  return output;
-};
+import productIds from "./questions.js";
 
 export default {
   name: "QuestionView",
@@ -148,18 +106,17 @@ export default {
     AnnotationCounter,
     LoadingSpinner,
     Cropper,
-    QuestionFilter,
   },
   data: function() {
     return {
       valueTagTimeout: null,
       questionBuffer: [],
       currentQuestion: null,
-      remainingQuestionCount: 0,
+      remainingQuestionCount: productIds.length,
       lastAnnotations: [],
       sessionAnnotatedCount: 0,
       seenInsightIds: new Set(),
-      filters: { ...getInitialFilterValues() },
+      productIds,
     };
   },
   watch: {
@@ -197,58 +154,32 @@ export default {
     },
   },
   methods: {
-    loadQuestions: function(clean = false) {
+    loadQuestions: async function(clean = false) {
       if (clean) {
         this.questionBuffer = [];
       }
-      const sortBy = this.filters.sortByPopularity ? "popular" : "random";
-      const count = 10;
-      robotoffService
-        .questions(
-          sortBy,
-          this.filters.selectedInsightType,
-          this.filters.valueTag,
-          reformatValueTag(this.filters.brandFilter),
-          this.filters.countryFilter !== "en:world"
-            ? this.filters.countryFilter
-            : null,
-          count
-        )
-        .then((result) => {
-          this.remainingQuestionCount = result.data.count;
-          if (result.data.questions.length == 0) {
-            if (!this.questionBuffer.includes(NO_QUESTION_LEFT)) {
-              if (clean) {
-                this.questionBuffer = [NO_QUESTION_LEFT];
-              } else {
-                this.questionBuffer = [
-                  ...this.questionBuffer,
-                  NO_QUESTION_LEFT,
-                ];
-              }
-            }
-            return;
-          }
+      console.log("loadQuestions");
+      while (this.productIds.length > 0 && this.questionBuffer < 5) {
+        const productIndex = Math.floor(this.productIds.length * Math.random());
+        const [code] = this.productIds.splice(productIndex, 1);
 
-          const dataToAdd = [];
-          result.data.questions.forEach((q) => {
-            if (!this.seenInsightIds.has(q.insight_id)) {
-              dataToAdd.push(q);
-              this.seenInsightIds.add(q.insight_id);
-            }
-          });
-          if (
-            result.data.questions.length < count &&
-            (clean || !this.questionBuffer.includes(NO_QUESTION_LEFT))
-          ) {
-            dataToAdd.push(NO_QUESTION_LEFT);
-          }
-          if (clean) {
-            this.questionBuffer = [...dataToAdd];
-          } else {
-            this.questionBuffer = [...this.questionBuffer, ...dataToAdd];
+        const result = await robotoffService.questionsByProductCode(code);
+        console.log(result);
+        this.remainingQuestionCount = result.data.count;
+
+        const dataToAdd = [];
+        result.data.questions.forEach((q) => {
+          if (!this.seenInsightIds.has(q.insight_id)) {
+            dataToAdd.push(q);
+            this.seenInsightIds.add(q.insight_id);
           }
         });
+        this.questionBuffer = [...this.questionBuffer, ...dataToAdd];
+      }
+
+      if (this.questionBuffer.length === 0 && this.productIds.length === 0) {
+        this.questionBuffer = [NO_QUESTION_LEFT];
+      }
     },
 
     updateLastAnnotations(question, annotation) {
@@ -297,22 +228,6 @@ export default {
       } else {
         return null;
       }
-    },
-    valueTagQuestionsURL: function() {
-      if (
-        this.currentQuestion !== null &&
-        this.currentQuestion !== NO_QUESTION_LEFT &&
-        this.filters.selectedInsightType === "brand"
-      ) {
-        const urlParams = new URLSearchParams();
-        urlParams.append("type", this.filters.selectedInsightType);
-        urlParams.append(
-          "value_tag",
-          reformatValueTag(this.currentQuestion.value)
-        );
-        return `/questions?${urlParams.toString()}`;
-      }
-      return "";
     },
   },
   mounted() {
