@@ -16,6 +16,7 @@ import LogoAnnotationView from "./views/LogoAnnotationView.vue";
 import LogoUpdateView from "./views/LogoUpdateView.vue";
 import EcoScoreMenu from "./views/EcoScoreMenu.vue";
 import SecretTool from "./views/secretTool.vue";
+import SubsetQuestionView from "./views/SubsetQuestionView.vue";
 import "viewerjs/dist/viewer.css";
 import SuiVue from "semantic-ui-vue";
 import messages from "./i18n/messages";
@@ -50,6 +51,7 @@ const routes = [
   { path: "/logos", component: LogoAnnotationView },
   { path: "/logos/search", component: LogoSearchView },
   { path: "/logos/:id", component: LogoUpdateView },
+  { path: "/subsetQuestion", component: SubsetQuestionView },
 ];
 
 const router = new VueRouter({

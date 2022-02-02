@@ -15,6 +15,16 @@ export default {
     )
   },
 
+  questionsByProductCode(code) {
+    return axios.get(
+      `${ROBOTOFF_API_URL}/questions/${code}`    
+    ).then(result => {
+      let questions = result.data.questions;
+      result.data.questions = questions.filter(question => question.source_image_url);
+      return result;
+    })
+  },
+
   questions(sortBy, insightTypes, valueTag, brands, country, count = 10) {
     const lang = getLang();
     return axios.get(
