@@ -302,13 +302,13 @@ export default {
       if (
         this.currentQuestion !== null &&
         this.currentQuestion !== NO_QUESTION_LEFT &&
-        this.filters.selectedInsightType === "brand"
+        this.currentQuestion.value_tag
       ) {
         const urlParams = new URLSearchParams();
         urlParams.append("type", this.filters.selectedInsightType);
         urlParams.append(
           "value_tag",
-          reformatValueTag(this.currentQuestion.value)
+          reformatValueTag(this.currentQuestion.value_tag)
         );
         return `/questions?${urlParams.toString()}`;
       }
