@@ -1,23 +1,24 @@
 <template>
   <div>
+
     <Menu />
-    <Login />
     <sui-segment attached="bottom">
       <router-view />
     </sui-segment>
+
   </div>
 </template>
 
 <script>
+
 import Menu from "./components/Menu";
-import Login from "./components/Login";
 
 export default {
   name: "app",
-  components: { Menu, Login },
+  components: { Menu },
   data: function() {
     return {};
-  },
+  }
 };
 </script>
 
@@ -27,6 +28,6 @@ export default {
 }
 
 .segment {
-  border: none !important;
+  border: none!important;
 }
 </style>
