@@ -218,6 +218,7 @@ import {
   getConvexPoints,
   isInRectangle,
 } from "../utils/tableAnotation.js";
+import { IS_DEVELOPMENT_MODE } from "../const.js";
 
 const messages = {
   "-1": "Déplacer le rectangle pour le faire contenir le tableau",
@@ -422,16 +423,29 @@ export default {
         };
       });
 
-      axios.post(
-        `https://robotoff.openfoodfacts.org/api/v1/insights/annotate`,
-        new URLSearchParams(
-          `insight_id=${this.insightId}&annotation=1&data=${JSON.stringify({
-            textAnnotations: rep,
-            crop: this.cropRectangle,
-            dataQuality: this.dataQuality[0],
-          })}`
-        )
-      );
+      if (IS_DEVELOPMENT_MODE) {
+        console.log(
+          `Validated, https://robotoff.openfoodfacts.org/api/v1/insights/annotate`,
+          new URLSearchParams(
+            `insight_id=${this.insightId}&annotation=1&data=${JSON.stringify({
+              textAnnotations: rep,
+              crop: this.cropRectangle,
+              dataQuality: this.dataQuality[0],
+            })}`
+          )
+        );
+      } else {
+        axios.post(
+          `https://robotoff.openfoodfacts.org/api/v1/insights/annotate`,
+          new URLSearchParams(
+            `insight_id=${this.insightId}&annotation=1&data=${JSON.stringify({
+              textAnnotations: rep,
+              crop: this.cropRectangle,
+              dataQuality: this.dataQuality[0],
+            })}`
+          )
+        );
+      }
 
       this.skip();
     },
