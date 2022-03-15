@@ -122,6 +122,7 @@ import axios from "axios";
 import nutrimentsDefaultUnit from "../data/nutritions";
 import { OFF_URL } from "../const";
 import offService from "../off";
+import { IS_DEVELOPMENT_MODE } from "../const.js";
 // import { annotate as robotoffAnnotate } from "../robotoff";
 // import Product from "../components/Product";
 // import AnnotationCounter from "../components/AnnotationCounter";
@@ -207,12 +208,16 @@ export default {
         .split("/")
         .pop()
         .split(".")[0]; //get the first part of the image off/.../nutrition_fr.400.jpg => nutrition_fr
-
-      axios.post(
+      if(IS_DEVELOPMENT_MODE){
+        console.log(`Product Deleted, ${OFF_URL}/cgi/product_image_unselect.pl?`,
+        new URLSearchParams(`code=${this.productBuffer[0].code}&id=${imageId}`)
+        )
+      } else {
+        axios.post(
         `${OFF_URL}/cgi/product_image_unselect.pl?`,
         new URLSearchParams(`code=${this.productBuffer[0].code}&id=${imageId}`)
       );
-
+      }
       // this.productBuffer.shift();
     },
     validate() {
@@ -236,7 +241,23 @@ export default {
           unit: this.currentProductData[nutrimentId].unit,
         }));
 
-      axios.post(
+      if (IS_DEVELOPMENT_MODE) {
+        console.log(
+          `Validated, ${OFF_URL}/cgi/product_jqm2.pl?`,
+          new URLSearchParams(
+            `${toFill
+              .map((data) => `${data.name}=${data.quantity}&`)
+              .join("")}${toFill
+              .map((data) =>
+                data.unit ? `${data.name}_unit=${data.unit}&` : ""
+              )
+              .join("")}${toDelete.map((name) => `${name}=""&`).join("")}code=${
+              this.productBuffer[0]["code"]
+            }`
+          )
+        );
+      } else{
+        axios.post(
         `${OFF_URL}/cgi/product_jqm2.pl?`,
         new URLSearchParams(
           `${toFill
@@ -248,6 +269,7 @@ export default {
           }`
         )
       ); // The status of the response is not displayed so no need to wait the response
+      }
     },
     resetProductData() {
       const data = {};

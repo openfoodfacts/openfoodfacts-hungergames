@@ -1,18 +1,28 @@
 import axios from 'axios';
-import { ROBOTOFF_API_URL } from "./const"
+import { ROBOTOFF_API_URL, IS_DEVELOPMENT_MODE } from "./const"
 import { getLang } from "./settings";
 import { removeEmptyKeys } from './utils'
 
 export default {
 
   annotate(insightId, annotation) {
-    return axios.post(
-      `${ROBOTOFF_API_URL}/insights/annotate`,
-      new URLSearchParams(
-        `insight_id=${insightId}&annotation=${annotation}&update=1`,
-      ),
-      { withCredentials: true },
-    )
+    if (IS_DEVELOPMENT_MODE) {
+      console.log(
+        `Annotated, ${ROBOTOFF_API_URL}/insights/annotate`,
+        new URLSearchParams(
+          `insight_id=${insightId}&annotation=${annotation}&update=1`
+        ),
+        { withCredentials: true }
+      );
+    } else {
+      return axios.post(
+        `${ROBOTOFF_API_URL}/insights/annotate`,
+        new URLSearchParams(
+          `insight_id=${insightId}&annotation=${annotation}&update=1`
+        ),
+        { withCredentials: true }
+      );
+    }
   },
 
   questionsByProductCode(code) {

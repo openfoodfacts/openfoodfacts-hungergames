@@ -63,6 +63,7 @@ import offService from "../off";
 import LogoCardGrid from "../components/LogoCardGrid";
 import { getURLParam } from "../utils";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { IS_DEVELOPMENT_MODE } from "../const.js";
 
 
 const transformLogo = logo => {
@@ -156,16 +157,21 @@ export default {
         type: this.typeInput
       }))
       this.loading = true;
-      robotoffService
-        .annotateLogos(annotations)
-        .then(() => {
-          this.loading = false;
-          this.targetLogoId = "";
-          this.loadLogos();
-        })
-        .catch(() => {
-          this.loading = false;
-        })
+      if (IS_DEVELOPMENT_MODE) {
+        console.log(annotations);
+        this.loadLogos();
+      } else {
+        robotoffService
+          .annotateLogos(annotations)
+          .then(() => {
+            this.loading = false;
+            this.targetLogoId = "";
+            this.loadLogos();
+          })
+          .catch(() => {
+            this.loading = false;
+          });
+      }
       this.valueInput = "";
       this.typeInput = "";
     },
