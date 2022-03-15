@@ -28,7 +28,7 @@
 
 <script>
 import axios from "axios";
-import { OFF_URL, ROBOTOFF_API_URL } from "../const";
+import { OFF_URL, ROBOTOFF_API_URL, IS_DEVELOPMENT_MODE } from "../const";
 
 const getIngredients = async code => {
   const {
@@ -39,12 +39,20 @@ const getIngredients = async code => {
   if (!ingredients_text_from_image) {
     return null;
   }
-  const {
+  if(IS_DEVELOPMENT_MODE){
+    const {
+    data: { corrected, corrections }
+    }
+    console.log(`Getting ingredients, `${ROBOTOFF_API_URL}/api/v1/predict/ingredients/spellcheck`,
+    new URLSearchParams(`text=${ingredients_text_from_image}`)`)
+  } else {
+    const {
     data: { corrected, corrections }
   } = await axios.post(
     `${ROBOTOFF_API_URL}/api/v1/predict/ingredients/spellcheck`,
     new URLSearchParams(`text=${ingredients_text_from_image}`)
   );
+  }
   return {
     ingredientOriginal: ingredients_text_from_image,
     ingredientCorrections: corrections,
@@ -130,7 +138,15 @@ export default {
   methods: {
     updateIngredients(skip) {
       if (!skip) {
-        axios.post(
+        if (IS_DEVELOPMENT_MODE){
+          console.log(`Ingredients updated, ${OFF_URL}/cgi/product_jqm2.pl?`,
+          new URLSearchParams(
+            `ingredients_text_${"fr"}=${this.ingredientsInput}&code=${
+              this.currentProduct.code
+            }`
+          ))
+        } else {
+          axios.post(
           `${OFF_URL}/cgi/product_jqm2.pl?`,
           new URLSearchParams(
             `ingredients_text_${"fr"}=${this.ingredientsInput}&code=${
@@ -138,6 +154,7 @@ export default {
             }`
           )
         );
+        }
       }
       this.validateInput = "";
       this.updateCurrentProduct();
