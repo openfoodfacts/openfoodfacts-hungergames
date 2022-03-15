@@ -97,7 +97,8 @@ export default {
       }
       this.loading = true;
       if(IS_DEVELOPMENT_MODE){
-        console.log(`Updated!`)
+        console.log(`Updated`)
+        this.loading = false;
       } else {
         robotoffService
         .updateLogo(this.logoId, value, this.annotationType)
