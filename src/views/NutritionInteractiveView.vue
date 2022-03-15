@@ -256,7 +256,7 @@
 import axios from "axios";
 import nutrimentsDefaultUnit from "../data/nutritions";
 import tableExtraction from "../utils/tableExtraction";
-import { OFF_URL } from "../const"; //OFF_IMAGE_URL
+import { OFF_URL, IS_DEVELOPMENT_MODE } from "../const"; //OFF_IMAGE_URL
 import offService from "../off";
 import { Cropper } from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
@@ -733,7 +733,17 @@ export default {
       this.loading = false;
     },
     unselectPicture: function() {
-      axios.post(
+      if (IS_DEVELOPMENT_MODE){
+        console.log(`Picture unselected, https://world.openfoodfacts.org/cgi/product_image_unselect.pl?`,
+        new URLSearchParams(
+          `code=${this.productBuffer[0]["code"]}&id=nutrition${
+            this.productBuffer[0].image_nutrition_url
+              .split("nutrition")[1]
+              .split(".")[0]
+          }`
+        ))
+      } else{
+        axios.post(
         `https://world.openfoodfacts.org/cgi/product_image_unselect.pl?`,
         new URLSearchParams(
           `code=${this.productBuffer[0]["code"]}&id=nutrition${
@@ -743,6 +753,7 @@ export default {
           }`
         )
       );
+      }
       this.skipProduct("WRONG_IMAGE");
     },
     skipProduct(status = "SKIP") {
@@ -812,6 +823,18 @@ export default {
           unit: "",
         }));
       const basisText = this.getBasisTextForAPI();
+      if (IS_DEVELOPMENT_MODE){
+        console.log(`Validated, ${OFF_URL}/cgi/product_jqm2.pl?`,
+        new URLSearchParams(
+          `${withData
+            .map((data) => `${data.name}=${data.quantity}&`)
+            .join("")}${withData
+            .map((data) => (data.unit ? `${data.name}_unit=${data.unit}&` : ""))
+            .join("")}${withoutData.map((name) => `${name}=""&`).join("")}${
+            basisText ? `${basisText}&` : ""
+          }code=${this.productBuffer[0]["code"]}`
+        ))
+      }
       axios.post(
         `${OFF_URL}/cgi/product_jqm2.pl?`,
         new URLSearchParams(
