@@ -41,6 +41,7 @@
 import LoadingSpinner from "../components/LoadingSpinner";
 import robotoffService from "../robotoff";
 import offService from "../off";
+import { IS_DEVELOPMENT_MODE } from "../const.js";
 
 const getImageURL = logo => offService.getImageUrl(logo.image.source_image);
 
@@ -95,7 +96,10 @@ export default {
         value = "";
       }
       this.loading = true;
-      robotoffService
+      if(IS_DEVELOPMENT_MODE){
+        console.log(`Updated!`)
+      } else {
+        robotoffService
         .updateLogo(this.logoId, value, this.annotationType)
         .then(() => {
           this.loading = false;
@@ -104,6 +108,7 @@ export default {
         .catch(() => {
           this.loading = false;
         })
+      }
     }
   },
   mounted() {
