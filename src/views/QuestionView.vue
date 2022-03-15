@@ -104,7 +104,7 @@
 <script>
 import { Cropper } from "vue-advanced-cropper";
 import robotoffService from "../robotoff";
-import { NO_QUESTION_LEFT, IS_DEVELOPMENT_MODE } from "../const";
+import { NO_QUESTION_LEFT } from "../const";
 import Product from "../components/Product";
 import LoadingSpinner from "../components/LoadingSpinner";
 import QuestionFilter from "../components/QuestionFilter/index";
@@ -263,11 +263,7 @@ export default {
     },
     annotate: function(annotation) {
       if (annotation !== -1) {
-        if(IS_DEVELOPMENT_MODE){
-          console.log(this.currentQuestion.insight_id, annotation)
-        } else {
-          robotoffService.annotate(this.currentQuestion.insight_id, annotation);
-        }
+        robotoffService.annotate(this.currentQuestion.insight_id, annotation);
         this.updateLastAnnotations(this.currentQuestion, annotation);
         this.remainingQuestionCount -= 1;
         this.sessionAnnotatedCount += 1;

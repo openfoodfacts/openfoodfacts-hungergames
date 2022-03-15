@@ -43,7 +43,6 @@
 <script>
 import robotoffService from "../robotoff";
 import LoadingSpinner from "../components/LoadingSpinner";
-import { IS_DEVELOPMENT_MODE } from "../const.js";
 
 const NO_QUESTION_LEFT = "NO_QUESTION_LEFT";
 const LOADING = "LOADING";
@@ -75,11 +74,7 @@ export default {
 
       validatedInsights.forEach((insight_id, index) => {
         setTimeout(function() {
-          if(IS_DEVELOPMENT_MODE){
-          console.log(insight_id, 1)
-          } else {
           robotoffService.annotate(insight_id, 1);
-          }
         }, index * 100);
       });
       this.questions = [];
