@@ -40,9 +40,6 @@ const getIngredients = async code => {
     return null;
   }
   if(IS_DEVELOPMENT_MODE){
-    const {
-    data: { corrected, corrections }
-    }
     console.log(`Getting ingredients, `${ROBOTOFF_API_URL}/api/v1/predict/ingredients/spellcheck`,
     new URLSearchParams(`text=${ingredients_text_from_image}`)`)
   } else {
