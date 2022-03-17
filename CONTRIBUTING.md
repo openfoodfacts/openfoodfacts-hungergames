@@ -6,7 +6,7 @@ When contributing to this repository, please first discuss the change you wish t
 
 ## Code of Conduct
 
-This project and everyone participating in it is governed by the [Open Food Facts Code of Conduct](https://github.com/openfoodfacts/openfoodfacts-hungergames/blob/master/CODE_OF_CONDUCT.md), please follow it in all your interaction with the project. By participating, you are expected to uphold this code. Please report unacceptable behavior/abuse to abuse@openfoodfacts.org
+This project and everyone participating in it is governed by the [Open Food Facts Code of Conduct](https://world.openfoodfacts.org/code-of-conduct), please follow it in all your interaction with the project. By participating, you are expected to uphold this code. Please report unacceptable behavior/abuse to abuse@openfoodfacts.org
 
 ## Pull Request Process
 
