@@ -29,8 +29,9 @@ $ git remote add upstream https://github.com/openfoodfacts/openfoodfacts-hungerg
 $ git fetch upstream
 $ git merge upstream/master
 ## Step 2: Create and Publish Working Branch
-$ git checkout -b <type>/<issue|issue-number>/{<additional-fixes>}
-$ git push origin <type>/<issue|issue-number>/{<additional-fixes>}
+$ git checkout -b <type>/<issue-issueNumber>/{<additional-fixes>}
+# Example: fix/issue-21
+$ git push origin <type>/<issue-issueNumber>/{<additional-fixes>}
 ## Types:
 # wip - Work in Progress; long term work; mainstream changes;
 # feat - New Feature; future planned; non-mainstream changes;
@@ -55,9 +56,9 @@ $ git commit -m "your-commit-message" -m "your-commit-description"
 $ git fetch upstream
 $ git merge upstream/master
 # Push changes to your forked repository
-$ git push origin <type>/<issue|issue-number>/{<additional-fixes>}
+$ git push origin <type>/<issue-issueNumber>/{<additional-fixes>}
 ## Creating the PR using GitHub Website
-# Create Pull Request from <type>/<issue|issue-number>/{<additional-fixes>} branch in your forked repository to the master branch in the upstream repository
+# Create Pull Request from <type>/<issue-issueNumber>/{<additional-fixes>} branch in your forked repository to the master branch in the upstream repository
 # After creating PR, add a Reviewer (Any Admin) and yourself as the assignee
 # Link Pull Request to appropriate Issue, or Project+Milestone (if no issue created)
 # IMPORTANT: Do Not Merge the PR unless specifically asked to by an admin.
@@ -67,8 +68,8 @@ $ git push origin <type>/<issue|issue-number>/{<additional-fixes>}
 
 ```bash
 # Delete branch from forked repo
-$ git branch -d <type>/<issue|issue-number>/{<additional-fixes>}
-$ git push --delete origin <type>/<issue|issue-number>/{<additional-fixes>}
+$ git branch -d <type>/<issue-issueNumber>/{<additional-fixes>}
+$ git push --delete origin <type>/<issue-issueNumber>/{<additional-fixes>}
 # Fetch and merge with upstream/master
 $ git checkout master
 $ git pull upstream
