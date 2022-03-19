@@ -125,7 +125,7 @@ import nutrimentsDefaultUnit from "../data/nutritions";
 import { OFF_URL } from "../const";
 import offService from "../off";
 import { IS_DEVELOPMENT_MODE } from "../const.js";
-import robotoff from "../robotoff";
+import robotoffService from "../robotoff";
 
 // import { annotate as robotoffAnnotate } from "../robotoff";
 // import Product from "../components/Product";
@@ -135,9 +135,9 @@ const getProducts = async (nbOfPages) => {
   const randomPage = Math.floor(Math.random() * nbOfPages);
   const {
     data: { products },
-  } = await axios(
-    `${OFF_URL}/state/photos-validated/state/nutrition-facts-to-be-completed/${randomPage}.json?fields=code,lang,image_nutrition_url,product_name`
-  );
+      } = await axios(
+      `${OFF_URL}/state/photos-validated/state/nutrition-facts-to-be-completed/${randomPage}.json?fields=code,lang,image_nutrition_url,product_name`
+    );
   return products;
 };
 
@@ -303,9 +303,9 @@ export default {
     },
     
     getNutritionValue: async function(){
-      const newProducts = await getProducts(20);  
-      alert("called")    
-      return robotoff.getNutritionValueFromImage(newProducts[0].code, newProducts[0].product.nutrition_pt.imgid);
+      const newProducts = await getProducts(10);  
+      //alert( newProducts[0].image_nutrition_url)  ;  
+      return robotoffService.getNutritionValueFromImage(newProducts[0].image_nutrition_url);
     }
     
   },
