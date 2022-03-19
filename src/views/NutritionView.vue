@@ -22,6 +22,8 @@
           max-width: 300px;"
           />
         </viewer>
+        <button @click="getNutritionValue()">Tests</button>
+
       </div>
     </div>
     <div class="ten wide column centered">
@@ -123,6 +125,8 @@ import nutrimentsDefaultUnit from "../data/nutritions";
 import { OFF_URL } from "../const";
 import offService from "../off";
 import { IS_DEVELOPMENT_MODE } from "../const.js";
+import robotoff from "../robotoff";
+
 // import { annotate as robotoffAnnotate } from "../robotoff";
 // import Product from "../components/Product";
 // import AnnotationCounter from "../components/AnnotationCounter";
@@ -297,6 +301,13 @@ export default {
           ];
       }
     },
+    
+    getNutritionValue: async function(){
+      const newProducts = await getProducts(20);  
+      alert("called")    
+      return robotoff.getNutritionValueFromImage(newProducts[0].code, newProducts[0].product.nutrition_pt.imgid);
+    }
+    
   },
   watch: {
     productBuffer: function(newProductBuffer, oldProductBuffer) {
@@ -315,6 +326,7 @@ export default {
   },
   mounted: function() {
     this.addProducts();
+    this.getNutritionValue();
 
     const vm = this;
     window.addEventListener("keyup", function(event) {
@@ -326,6 +338,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 .shadow {
