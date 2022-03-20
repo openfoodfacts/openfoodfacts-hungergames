@@ -136,7 +136,7 @@ const getProducts = async (nbOfPages) => {
   const {
     data: { products },
       } = await axios(
-      `${OFF_URL}/state/photos-validated/state/nutrition-facts-to-be-completed/${randomPage}.json?fields=code,lang,image_nutrition_url,product_name`
+      `${OFF_URL}/state/photos-validated/state/nutrition-facts-to-be-completed/${randomPage}.json?fields=code,lang,image_nutrition_url,product_name,images`
     );
   return products;
 };
@@ -304,8 +304,8 @@ export default {
     
     getNutritionValue: async function(){
       const newProducts = await getProducts(10);  
-      //alert( newProducts[0].image_nutrition_url)  ;  
-      return robotoffService.getNutritionValueFromImage(newProducts[0].image_nutrition_url);
+      //alert(JSON.stringify(newProducts[0].code)) ;  
+      return robotoffService.getNutritionValueFromImage(newProducts[0].code, newProducts[0].image_nutrition_url);
     }
     
   },

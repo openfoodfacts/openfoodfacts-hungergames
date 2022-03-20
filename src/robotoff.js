@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ROBOTOFF_API_URL, IS_DEVELOPMENT_MODE } from "./const"
+import { ROBOTOFF_API_URL, IS_DEVELOPMENT_MODE, OFF_API_URL } from "./const"
 import { getLang } from "./settings";
 import { removeEmptyKeys } from './utils'
 
@@ -128,15 +128,19 @@ export default {
     )
   },
 
-  getNutritionValueFromImage(imageOcrUrl) {
-    console.log(' in robotoff.getNutritionValueFromImage')
-    var subStringUrl = imageUrl.substr(0, imageUrl.lastIndexOf("/"));
-    var url = `${ROBOTOFF_API_URL}/predict/nutrient?ocr_url=${subStringUrl}`
+  getNutritionValueFromImage(code, imageOcrUrl) {
+    var ocrUrlSubString = imageOcrUrl.substr(0, imageOcrUrl.lastIndexOf("/"));
 
-    alert("url = "+url)
-  
+    console.log(`${OFF_API_URL}/product/${code}.json?fields=product_name,images`)
+    
+    return axios.get(
+      `${OFF_API_URL}/product/${code}.json?fields=product_name,images`
+
+    ).then(result => {
       return axios.get(
-        url
+        `${ROBOTOFF_API_URL}/predict/nutrient?ocr_url=${ocrUrlSubString}/${result.images.nutrition_pt}.json`    
       )
+    })
+  
   }
 }
