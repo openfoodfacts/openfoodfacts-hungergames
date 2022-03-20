@@ -131,7 +131,7 @@ export default {
   getNutritionValueFromImage(imageOcrUrl) {
     console.log(' in robotoff.getNutritionValueFromImage')
     var subStringUrl = imageUrl.substr(0, imageUrl.lastIndexOf("/"));
-    var url = `${ROBOTOFF_API_URL}/predict/nutrient?ocr_url=${subStringUrl}/10.json`
+    var url = `${ROBOTOFF_API_URL}/predict/nutrient?ocr_url=${subStringUrl}`
 
     alert("url = "+url)
   
