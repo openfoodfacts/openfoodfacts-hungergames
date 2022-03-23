@@ -304,8 +304,7 @@ export default {
     
     getNutritionValue: async function(){
       const newProducts = await getProducts(10);  
-      //alert(JSON.stringify(newProducts[0].code)) ;  
-      return robotoffService.getNutritionValueFromImage(newProducts[0].code, newProducts[0].image_nutrition_url);
+      return robotoffService.getNutritionValueFromImage(newProducts[0].code, newProducts[0].lang, newProducts[0].image_nutrition_url);
     }
     
   },

@@ -128,18 +128,32 @@ export default {
     )
   },
 
-  getNutritionValueFromImage(code, imageOcrUrl) {
-    var ocrUrlSubString = imageOcrUrl.substr(0, imageOcrUrl.lastIndexOf("/"));
+  getNutritionValueFromImage(productCode, language, imageOcrUrl) {
 
-    console.log(`${OFF_API_URL}/product/${code}.json?fields=product_name,images`)
+    var ocrUrlSubString = imageOcrUrl.split("/");
+
+    let keyName = `nutrition_${language}`;
     
     return axios.get(
-      `${OFF_API_URL}/product/${code}.json?fields=product_name,images`
+      `${OFF_API_URL}/product/${productCode}.json?fields=product_name,images`
 
     ).then(result => {
+
+      for (var key in result.data.product.images) {
+        if (Object.prototype.hasOwnProperty.call(result.data.product.images, keyName)) {
+            if (/nutrition_[a-z]/.test(keyName)) {
+                var imgid= result.data.product.images[key].imgid; 
+            }            
+        }
+      }
+
+      let productCodeForUrl = ocrUrlSubString[5]+"/"+ocrUrlSubString[6]+"/"+ocrUrlSubString[7]+"/"+ocrUrlSubString[8];
+      
+      console.log(`${ROBOTOFF_API_URL}/predict/nutrient?ocr_url=https://images.openfoodfacts.org/images/products/${productCodeForUrl}/${imgid}.json`)
       return axios.get(
-        `${ROBOTOFF_API_URL}/predict/nutrient?ocr_url=${ocrUrlSubString}/${result.images.nutrition_pt}.json`    
+        `${ROBOTOFF_API_URL}/predict/nutrient?ocr_url=https://images.openfoodfacts.org/images/products/${productCodeForUrl}/${imgid}.json`    
       )
+
     })
   
   }
