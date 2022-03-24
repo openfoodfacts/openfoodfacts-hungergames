@@ -50,6 +50,8 @@
               style="flex-grow:1"
               :error="isInvalid(currentProductData[nutritiveValue.id]['data'])"
               v-model="currentProductData[nutritiveValue.id]['data']"
+              v-if="nutritionData.length"
+              v-text="nutritionData[0].data.nutrients.energy[0].value"
             />
 
             <sui-dropdown
@@ -65,7 +67,7 @@
 
             <span class="unit" v-else>{{
               getNutrimentUnits(nutritiveValue.id)[0]
-            }}</span>
+            }} </span>
           </sui-table-cell>
           <sui-table-cell>
             <sui-checkbox
@@ -156,6 +158,7 @@ export default {
       loading: false,
       productBuffer: [],
       currentProductData: {},
+      nutritionData: {}
     };
   },
   computed: {
@@ -304,7 +307,10 @@ export default {
     
     getNutritionValue: async function(){
       const newProducts = await getProducts(10);  
-      return robotoffService.getNutritionValueFromImage(newProducts[0].code, newProducts[0].lang, newProducts[0].image_nutrition_url);
+      let nutritionFromRobotService = await robotoffService.getNutritionValueFromImage(newProducts[0].code, newProducts[0].lang, newProducts[0].image_nutrition_url);
+      this.nutritionData = nutritionFromRobotService.data.nutrients;
+      console.log("nut data= ", JSON.stringify(this.nutritionData));
+      return this.nutritionData;      
     }
     
   },
