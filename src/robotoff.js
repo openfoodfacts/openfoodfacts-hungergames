@@ -141,12 +141,13 @@ export default {
 
       for (var key in result.data.product.images) {
         if (Object.prototype.hasOwnProperty.call(result.data.product.images, keyName)) {
-            if (/nutrition_[a-z]/.test(keyName)) {
+            if (/nutrition_[a-z][a-z]/.test(keyName)) {
                 var imgid= result.data.product.images[key].imgid; 
             }            
         }
       }
 
+      console.log("imgid= ",imgid)
       let productCodeForUrl = ocrUrlSubString[5]+"/"+ocrUrlSubString[6]+"/"+ocrUrlSubString[7]+"/"+ocrUrlSubString[8];
       
       console.log(`${ROBOTOFF_API_URL}/predict/nutrient?ocr_url=https://images.openfoodfacts.org/images/products/${productCodeForUrl}/${imgid}.json`)
