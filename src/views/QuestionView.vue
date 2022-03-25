@@ -52,7 +52,7 @@
           <div v-if="valueTagQuestionsURL.length">
             <a :href="valueTagOFFURL" target="_blank">
               <div class="ui big label">
-                View {{ this.filters.selectedInsightType }} on Open Food Facts
+                View {{this.filters.selectedInsightType}} on Open Food Facts
                 <i
                   style="margin-left: 0.5rem"
                   class="external alternate icon small blue"
