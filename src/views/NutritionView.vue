@@ -22,8 +22,6 @@
           max-width: 300px;"
           />
         </viewer>
-        <button @click="getNutritionValue()">Tests</button>
-
       </div>
     </div>
     <div class="ten wide column centered">
@@ -41,17 +39,14 @@
           v-for="nutritiveValue in currentProductData"
           :key="nutritiveValue.id"
         >
-          <sui-table-cell>{{
-            $t(`nutrition.nutriments.${nutritiveValue.id}`)
-          }}</sui-table-cell>
+          <sui-table-cell>
+            {{$t(`nutrition.nutriments.${nutritiveValue.id}`) }} </sui-table-cell>
           <sui-table-cell style="display: flex">
             <sui-input
               :disabled="!nutritiveValue.visible"
               style="flex-grow:1"
               :error="isInvalid(currentProductData[nutritiveValue.id]['data'])"
               v-model="currentProductData[nutritiveValue.id]['data']"
-              v-if="nutritionData.length"
-              v-text="nutritionData[0].data.nutrients.energy[0].value"
             />
 
             <sui-dropdown
@@ -208,6 +203,7 @@ export default {
     },
     skipProduct() {
       this.productBuffer.shift();
+      this.resetProductData();
     },
     deleteProduct() {
       const imageUrl = this.productBuffer[0]["image_nutrition_url"];
@@ -278,16 +274,48 @@ export default {
       ); // The status of the response is not displayed so no need to wait the response
       }
     },
-    resetProductData() {
-      const data = {};
+    async resetProductData() {
+      const data = {};      
+      
+      await this.getNutritionValue();
 
       for (const nutrimentId of Object.keys(nutrimentsDefaultUnit)) {
+       
         data[nutrimentId] = {
           id: nutrimentId,
           data: "",
           unit: nutrimentsDefaultUnit[nutrimentId],
           visible: true,
         };
+
+        let keyToMatch = nutrimentId.split("_")[1];
+
+        if(this.nutritionData.length){
+          if(keyToMatch.match(/energy-kj.*/) && "energy-kj" in this.nutritionData[0].data.nutrients){
+            data[nutrimentId].data=this.nutritionData[0].data.nutrients.energy[0].value;
+          }
+          else if(keyToMatch.match(/saturated-fat.*/) && "protein" in this.nutritionData[0].data.nutrients){
+            data[nutrimentId].data=this.nutritionData[0].data.nutrients.saturated_fat[0].value;
+          }
+          else if(keyToMatch.match(/sugar.*/) && "sugar" in this.nutritionData[0].data.nutrients){
+              data[nutrimentId].data=this.nutritionData[0].data.nutrients.sugar[0].value;
+          }
+          else if(keyToMatch.match(/carbohydrate.*/) && "carbohydrate" in this.nutritionData[0].data.nutrients){
+              data[nutrimentId].data=this.nutritionData[0].data.nutrients.carbohydrate[0].value;
+          }
+          else if(keyToMatch.match(/protein.*/) && "protein" in this.nutritionData[0].data.nutrients){
+              data[nutrimentId].data=this.nutritionData[0].data.nutrients.protein[0].value;
+          }
+          else if(keyToMatch.match(/salt.*/) && "salt" in this.nutritionData[0].data.nutrients){
+              data[nutrimentId].data=this.nutritionData[0].data.nutrients.salt[0].value;
+          }
+          else if(keyToMatch.match(/fiber.*/) && "fiber" in this.nutritionData[0].data.nutrients){
+              data[nutrimentId].data=this.nutritionData[0].data.nutrients.fiber[0].value;
+          }
+        }
+        else{
+          this.nutritionData={} // to clear old data
+        }
       }
       this.currentProductData = data;
     },
@@ -309,7 +337,6 @@ export default {
       const newProducts = await getProducts(10);  
       let nutritionFromRobotService = await robotoffService.getNutritionValueFromImage(newProducts[0].code, newProducts[0].lang, newProducts[0].image_nutrition_url);
       this.nutritionData = nutritionFromRobotService.data.nutrients;
-      console.log("nut data= ", JSON.stringify(this.nutritionData));
       return this.nutritionData;      
     }
     
@@ -331,7 +358,6 @@ export default {
   },
   mounted: function() {
     this.addProducts();
-    this.getNutritionValue();
 
     const vm = this;
     window.addEventListener("keyup", function(event) {
