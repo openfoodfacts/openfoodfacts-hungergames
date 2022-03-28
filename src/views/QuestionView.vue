@@ -49,7 +49,7 @@
             }"
           />
           <div class="ui divider hidden"></div>
-          <div v-if="valueTagQuestionsURL.length">
+          <div v-if="valueTagOFFURL">
             <a :href="valueTagOFFURL" target="_blank">
               <div class="ui big label">
                 View {{this.filters.selectedInsightType}} on Open Food Facts
