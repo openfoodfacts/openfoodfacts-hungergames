@@ -304,21 +304,28 @@ export default {
     },
     
     getNutritionData: async function(){
-      let nutritionFromRobotService = await robotoffService.getNutritionValueFromImage(this.productBuffer[0]['code'], this.productBuffer[0]['lang'], this.productBuffer[0]['image_nutrition_url']);
+      const {lang, image_nutrition_url, images} = this.productBuffer[0];
+      let nutritionFromRobotService = await robotoffService.getNutritionValueFromImage(lang, image_nutrition_url, images);
       this.nutritionData = nutritionFromRobotService.data.nutrients;
       return this.nutritionData;      
     },
 
     setNutritionData: function(){
-
       for (const nutrimentId of Object.keys(this.currentProductData)) {
         let keyToMatch = nutrimentId.split("_")[1];
 
         if(this.nutritionData.length){
-          if(keyToMatch.match(/energy-kj.*/) && "energy-kj" in this.nutritionData[0].data.nutrients){
+
+          if(keyToMatch.match(/energy-kj/)  && "energy-kj" in this.nutritionData[0].data.nutrients){
             this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.energy[0].value
           }
-          else if(keyToMatch.match(/saturated-fat.*/) && "protein" in this.nutritionData[0].data.nutrients){
+          else if(keyToMatch.match(/energy-kcal/)  && "energy" in this.nutritionData[0].data.nutrients){
+            this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.energy[0].value
+          }
+          else if(keyToMatch.match(/fat.*/) && "fat" in this.nutritionData[0].data.nutrients){
+            this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.fat[0].value;
+          }
+          else if(keyToMatch.match(/saturated-fat.*/) && "saturated_fat" in this.nutritionData[0].data.nutrients){
             this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.saturated_fat[0].value;
           }
           else if(keyToMatch.match(/sugar.*/) && "sugar" in this.nutritionData[0].data.nutrients){
@@ -326,7 +333,7 @@ export default {
           }
           else if(keyToMatch.match(/carbohydrate.*/) && "carbohydrate" in this.nutritionData[0].data.nutrients){
             this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.carbohydrate[0].value;
-          }
+         }
           else if(keyToMatch.match(/protein.*/) && "protein" in this.nutritionData[0].data.nutrients){
             this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.protein[0].value;
           }
@@ -336,8 +343,8 @@ export default {
           else if(keyToMatch.match(/fiber.*/) && "fiber" in this.nutritionData[0].data.nutrients){
             this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.fiber[0].value;
           }
-        }
-      }
+        }// if
+      }// for
     },    
   },
   watch: {

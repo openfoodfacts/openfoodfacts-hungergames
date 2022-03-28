@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ROBOTOFF_API_URL, IS_DEVELOPMENT_MODE, OFF_API_URL } from "./const"
+import { ROBOTOFF_API_URL, IS_DEVELOPMENT_MODE } from "./const"
 import { getLang } from "./settings";
 import { removeEmptyKeys } from './utils'
 
@@ -128,31 +128,29 @@ export default {
     )
   },
 
-  getNutritionValueFromImage(productCode, language, imageOcrUrl) {
-
+  getNutritionValueFromImage(language, imageOcrUrl, images) {
     var ocrUrlSubString = imageOcrUrl.split("/");
 
-    let keyName = `nutrition_${language}`;
-    
+    // setting a default value, assuming length of ocrUrlSubString is 7, 
+    // and product code is 8 characters long
+    var productCodeForOcrUrl = ocrUrlSubString[5]; 
+
+    let nutritionKeyWithLangSuffix = `nutrition_${language}`;
+
+    for (var key in images) {
+      if (nutritionKeyWithLangSuffix == key) {
+          var imgid = images[nutritionKeyWithLangSuffix].imgid; 
+      }           
+    }
+
+    if(ocrUrlSubString.length>7){
+      // the productCode is 13 characters long
+      productCodeForOcrUrl = ocrUrlSubString[5]+"/"+ocrUrlSubString[6]+"/"+ocrUrlSubString[7]+"/"+ocrUrlSubString[8];
+    }
+
     return axios.get(
-      `${OFF_API_URL}/product/${productCode}.json?fields=product_name,images`
+      `${ROBOTOFF_API_URL}/predict/nutrient?ocr_url=https://images.openfoodfacts.org/images/products/${productCodeForOcrUrl}/${imgid}.json` 
+    )
 
-    ).then(result => {
-
-      for (var key in result.data.product.images) {
-        if (Object.prototype.hasOwnProperty.call(result.data.product.images, keyName)) {
-            if (/nutrition_[a-z][a-z]/.test(keyName)) {
-                var imgid= result.data.product.images[key].imgid; 
-            }            
-        }
-      }
-      let productCodeForUrl = ocrUrlSubString[5]+"/"+ocrUrlSubString[6]+"/"+ocrUrlSubString[7]+"/"+ocrUrlSubString[8];
-      
-      return axios.get(
-        `${ROBOTOFF_API_URL}/predict/nutrient?ocr_url=https://images.openfoodfacts.org/images/products/${productCodeForUrl}/${imgid}.json`    
-      )
-
-    })
-  
   }
 }
