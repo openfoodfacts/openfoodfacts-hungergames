@@ -287,7 +287,7 @@ export default {
       }
       this.currentProductData = data;
       this.nutritionData = await this.getNutritionData();
-      await this.setNutritionData();
+      this.setNutritionData();
     },
     getNutrimentUnits(nutrimentId) {
       switch (nutrimentId) {
