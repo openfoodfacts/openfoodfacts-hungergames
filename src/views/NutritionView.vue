@@ -324,15 +324,22 @@ export default {
 
         if(!(correctName in this.currentProductData))
         {
-          const data = {
+          console.log(`${correctName} does not exists` );
+
+          const newElement = {
             id: nutrimentId,
             data: "",
             unit: this.nutritionData[0].data.nutrients[nutrimentId][0].unit,
             visible: true,
           };
-          this.currentProductData[correctName] = data;
+          this.currentProductData[correctName] = newElement;
         }// if
+        else{
+          console.log(`${correctName} exists` );
+        }
         this.currentProductData[correctName].data = this.nutritionData[0].data.nutrients[nutrimentId][0].value;     
+              console.table("this.currentProductData= ",this.currentProductData);
+
       }// for
     },    
   },
