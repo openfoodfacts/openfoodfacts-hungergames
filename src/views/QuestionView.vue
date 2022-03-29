@@ -17,6 +17,11 @@
                 ></i>
               </div>
             </router-link>
+            <a :href="valueTagOFFURL" target="_blank">
+              <div>
+                {{ $t("questions.see_examples") }} {{ this.filters.selectedInsightType }}
+              </div>
+            </a>
           </div>
           <div v-else>
             <div class="ui big label">{{ currentQuestion.value }}</div>
@@ -49,19 +54,6 @@
             }"
           />
           <div class="ui divider hidden"></div>
-          <div v-if="valueTagOFFURL">
-            <a :href="valueTagOFFURL" target="_blank">
-              <div class="ui big label">
-                View {{this.filters.selectedInsightType}} on Open Food Facts
-                <i
-                  style="margin-left: 0.5rem"
-                  class="external alternate icon small blue"
-                ></i>
-              </div>
-            </a>
-            <div class="ui divider hidden"></div>
-          </div>
-
           <div>
             <button
               data-inverted
