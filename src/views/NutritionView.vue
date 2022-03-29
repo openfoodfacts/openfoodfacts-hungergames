@@ -310,40 +310,58 @@ export default {
       return this.nutritionData;      
     },
 
+    // setNutritionData: function(){
+    //   for (const nutrimentId of Object.keys(this.currentProductData)) {
+    //     let keyToMatch = nutrimentId.split("_")[1];
+    //     if(this.nutritionData.length){
+    //       if(keyToMatch.match(/energy-kj/)  && "energy-kj" in this.nutritionData[0].data.nutrients){
+    //         this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.energy[0].value
+    //       }
+    //       else if(keyToMatch.match(/energy-kcal/)  && "energy" in this.nutritionData[0].data.nutrients){
+    //         this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.energy[0].value
+    //       }
+    //       else if(keyToMatch.match(/fat.*/) && "fat" in this.nutritionData[0].data.nutrients){
+    //         this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.fat[0].value;
+    //       }
+    //       else if(keyToMatch.match(/saturated-fat.*/) && "saturated_fat" in this.nutritionData[0].data.nutrients){
+    //         this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.saturated_fat[0].value;
+    //       }
+    //       else if(keyToMatch.match(/sugar.*/) && "sugar" in this.nutritionData[0].data.nutrients){
+    //         this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.sugar[0].value;
+    //       }
+    //       else if(keyToMatch.match(/carbohydrate.*/) && "carbohydrate" in this.nutritionData[0].data.nutrients){
+    //         this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.carbohydrate[0].value;
+    //      }
+    //       else if(keyToMatch.match(/protein.*/) && "protein" in this.nutritionData[0].data.nutrients){
+    //         this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.protein[0].value;
+    //       }
+    //       else if(keyToMatch.match(/salt.*/) && "salt" in this.nutritionData[0].data.nutrients){
+    //         this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.salt[0].value
+    //       }
+    //       else if(keyToMatch.match(/fiber.*/) && "fiber" in this.nutritionData[0].data.nutrients){
+    //         this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.fiber[0].value;
+    //       }
+    //     }// if
+    //   }// for
+    // },    
+
     setNutritionData: function(){
-      for (const nutrimentId of Object.keys(this.currentProductData)) {
-        let keyToMatch = nutrimentId.split("_")[1];
+      for (const nutrimentId of Object.keys(this.nutritionData[0].data.nutrients)) {
+        let nutrimentKey = nutrimentId.replace(/_/g, '-');
+        // two letter nutrimentId's are separated by underscore ("_") in robotoff
+        // while in nutritions.json they are separated with hypen ("-")
+        nutrimentKey = "nutriment_"+nutrimentKey;
+        if(nutrimentKey in this.currentProductData)
+        {
+          console.log(`${nutrimentKey} exists`);
+          // when key exists update the key with nutrition value
+        }
+        else{
+          console.log(`${nutrimentKey} does not exits`);
+          // when key does not exists in this.currentProductData, add the new key
 
-        if(this.nutritionData.length){
-
-          if(keyToMatch.match(/energy-kj/)  && "energy-kj" in this.nutritionData[0].data.nutrients){
-            this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.energy[0].value
-          }
-          else if(keyToMatch.match(/energy-kcal/)  && "energy" in this.nutritionData[0].data.nutrients){
-            this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.energy[0].value
-          }
-          else if(keyToMatch.match(/fat.*/) && "fat" in this.nutritionData[0].data.nutrients){
-            this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.fat[0].value;
-          }
-          else if(keyToMatch.match(/saturated-fat.*/) && "saturated_fat" in this.nutritionData[0].data.nutrients){
-            this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.saturated_fat[0].value;
-          }
-          else if(keyToMatch.match(/sugar.*/) && "sugar" in this.nutritionData[0].data.nutrients){
-            this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.sugar[0].value;
-          }
-          else if(keyToMatch.match(/carbohydrate.*/) && "carbohydrate" in this.nutritionData[0].data.nutrients){
-            this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.carbohydrate[0].value;
-         }
-          else if(keyToMatch.match(/protein.*/) && "protein" in this.nutritionData[0].data.nutrients){
-            this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.protein[0].value;
-          }
-          else if(keyToMatch.match(/salt.*/) && "salt" in this.nutritionData[0].data.nutrients){
-            this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.salt[0].value
-          }
-          else if(keyToMatch.match(/fiber.*/) && "fiber" in this.nutritionData[0].data.nutrients){
-            this.currentProductData[nutrimentId].data = this.nutritionData[0].data.nutrients.fiber[0].value;
-          }
-        }// if
+        }
+        // this.currentProductData[nutrimentKey].data = this.nutritionData[0].data.nutrients[nutrimentId][0].value;     
       }// for
     },    
   },
