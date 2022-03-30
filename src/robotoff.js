@@ -148,10 +148,8 @@ export default {
       productCodeForOcrUrl = ocrUrlSubString[5]+"/"+ocrUrlSubString[6]+"/"+ocrUrlSubString[7]+"/"+ocrUrlSubString[8];
     }
 
-    console.log(`${ROBOTOFF_API_URL}/predict/nutrient?ocr_url=https://images.openfoodfacts.org/images/products/${productCodeForOcrUrl}/${imgid}.json`);
-    let testURL = `https://robotoff.openfoodfacts.org/api/v1/predict/nutrient?ocr_url=https://images.openfoodfacts.org/images/products/484/002/200/4572/4.json`;
     return axios.get(
-      testURL // `${ROBOTOFF_API_URL}/predict/nutrient?ocr_url=https://images.openfoodfacts.org/images/products/${productCodeForOcrUrl}/${imgid}.json` 
+      `${ROBOTOFF_API_URL}/predict/nutrient?ocr_url=https://images.openfoodfacts.org/images/products/${productCodeForOcrUrl}/${imgid}.json` 
     )
 
   }
