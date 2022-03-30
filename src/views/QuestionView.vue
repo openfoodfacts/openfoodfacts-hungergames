@@ -17,6 +17,11 @@
                 ></i>
               </div>
             </router-link>
+            <a :href="valueTagOFFURL" target="_blank">
+              <div>
+                {{ $t("questions.see_examples") }} {{ this.filters.selectedInsightType }}
+              </div>
+            </a>
           </div>
           <div v-else>
             <div class="ui big label">{{ currentQuestion.value }}</div>
@@ -49,7 +54,6 @@
             }"
           />
           <div class="ui divider hidden"></div>
-
           <div>
             <button
               data-inverted
@@ -104,7 +108,7 @@
 <script>
 import { Cropper } from "vue-advanced-cropper";
 import robotoffService from "../robotoff";
-import { NO_QUESTION_LEFT } from "../const";
+import { NO_QUESTION_LEFT, OFF_URL } from "../const";
 import Product from "../components/Product";
 import LoadingSpinner from "../components/LoadingSpinner";
 import QuestionFilter from "../components/QuestionFilter/index";
@@ -311,6 +315,18 @@ export default {
           reformatValueTag(this.currentQuestion.value_tag)
         );
         return `/questions?${urlParams.toString()}`;
+      }
+      return "";
+    },
+    valueTagOFFURL: function() {
+      if (
+        this.currentQuestion !== null &&
+        this.currentQuestion !== NO_QUESTION_LEFT &&
+        this.currentQuestion.value_tag
+      ) {
+        return `${OFF_URL}/${
+          this.filters.selectedInsightType
+        }/${reformatValueTag(this.currentQuestion.value_tag)}`;
       }
       return "";
     },
