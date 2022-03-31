@@ -318,7 +318,7 @@ export default {
         let nutrimentKey = nutrimentId.replace(/_/g, '-');
         let correctName = correctNaming(nutrimentKey);
 
-        if(nutrimentId=="energy"){
+        if(nutrimentId === "energy"){
           correctName = `nutriment_energy-${this.nutritionData[0].data.nutrients[nutrimentId][0].unit}`;
         }
 
