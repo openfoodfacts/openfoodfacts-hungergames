@@ -333,8 +333,8 @@ export default {
           this.currentProductData[correctName] = newElement;
         }
         this.currentProductData[correctName].data = this.nutritionData[0].data.nutrients[nutrimentId][0].value;     
-      }// for
-    },    
+      }
+    },
   },
   watch: {
     productBuffer: function(newProductBuffer, oldProductBuffer) {
