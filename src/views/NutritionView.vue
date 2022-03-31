@@ -286,7 +286,6 @@ export default {
         };
       }
       this.currentProductData = data;
-      this.nutritionData = await this.getNutritionData();
       this.setNutritionData();
     },
     getNutrimentUnits(nutrimentId) {
@@ -310,9 +309,11 @@ export default {
       return this.nutritionData;      
     },   
 
-    setNutritionData: function(){
+    setNutritionData: async function(){
       const namingCorrection = {sugar: 'sugars', protein: 'proteins', carbohydrate: 'carbohydrates'};
       const correctNaming = (robotoffNaming) => `nutriment_${namingCorrection[robotoffNaming] || robotoffNaming}`
+
+      this.nutritionData = await this.getNutritionData();
 
       for (const nutrimentId of Object.keys(this.nutritionData[0].data.nutrients)) {
         let nutrimentKey = nutrimentId.replace(/_/g, '-');
