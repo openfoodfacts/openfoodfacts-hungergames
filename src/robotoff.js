@@ -126,5 +126,31 @@ export default {
     return axios.get(
       `${ROBOTOFF_API_URL}/images/logos?logo_ids=${logoIds.join(",")}`
     )
+  },
+
+  getNutritionValueFromImage(language, imageOcrUrl, images) {
+    var ocrUrlSubString = imageOcrUrl.split("/");
+
+    // setting a default value, assuming length of ocrUrlSubString is 7, 
+    // and product code is 8 characters long
+    var productCodeForOcrUrl = ocrUrlSubString[5]; 
+
+    let nutritionKeyWithLangSuffix = `nutrition_${language}`;
+
+    for (var key in images) {
+      if (nutritionKeyWithLangSuffix == key) {
+          var imgid = images[nutritionKeyWithLangSuffix].imgid; 
+      }           
+    }
+
+    if(ocrUrlSubString.length>7){
+      // the productCode is 13 characters long
+      productCodeForOcrUrl = ocrUrlSubString[5]+"/"+ocrUrlSubString[6]+"/"+ocrUrlSubString[7]+"/"+ocrUrlSubString[8];
+    }
+
+    return axios.get(
+      `${ROBOTOFF_API_URL}/predict/nutrient?ocr_url=https://images.openfoodfacts.org/images/products/${productCodeForOcrUrl}/${imgid}.json` 
+    )
+
   }
 }
