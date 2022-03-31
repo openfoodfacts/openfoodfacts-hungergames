@@ -274,8 +274,8 @@ export default {
       ); // The status of the response is not displayed so no need to wait the response
       }
     },
-    async resetProductData() {
-      const data = {};      
+    resetProductData() {
+      const data = {};
 
       for (const nutrimentId of Object.keys(nutrimentsDefaultUnit)) {       
         data[nutrimentId] = {
