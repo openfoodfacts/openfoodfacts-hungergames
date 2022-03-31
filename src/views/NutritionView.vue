@@ -331,7 +331,7 @@ export default {
             visible: true,
           };
           this.currentProductData[correctName] = newElement;
-        }// if
+        }
         this.currentProductData[correctName].data = this.nutritionData[0].data.nutrients[nutrimentId][0].value;     
       }// for
     },    
