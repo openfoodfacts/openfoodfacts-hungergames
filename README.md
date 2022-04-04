@@ -41,6 +41,9 @@ npm run lint
 https://wiki.openfoodfacts.org/Hunger_Games
 https://docs.google.com/document/d/1k_llVzpOhx6hZZJydYgeywlRz9MX8iCb9THk4tzw0uw/edit#heading=h.8h7z9zl1zdcv
 
+### Translations
+You can translate Hunger Games at xxx. If you have added or modified a string, you should update the crowdin-trigger branch from main. This will trigger import within Crowdin, and 1 hour later, it will create a new pull request with added or modified strings in all language files, plus all added or modified translations.
+
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
