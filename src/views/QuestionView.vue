@@ -160,6 +160,7 @@ export default {
       questionBuffer: [],
       currentQuestion: null,
       remainingQuestionCount: 0,
+      page: 1,
       lastAnnotations: [],
       sessionAnnotatedCount: 0,
       seenInsightIds: new Set(),
@@ -196,6 +197,9 @@ export default {
         (newBuffer.length == 9 || newBuffer.length < 4) &&
         !newBuffer.includes(NO_QUESTION_LEFT)
       ) {
+        if (newBuffer.length == 1) {
+          this.page += 1;
+        }
         this.loadQuestions(false);
       }
     },
@@ -216,7 +220,8 @@ export default {
           this.filters.countryFilter !== "en:world"
             ? this.filters.countryFilter
             : null,
-          count
+          count,
+          this.page
         )
         .then((result) => {
           this.remainingQuestionCount = result.data.count;
@@ -242,7 +247,7 @@ export default {
             }
           });
           if (
-            result.data.questions.length < count &&
+            result.data.count < count &&
             (clean || !this.questionBuffer.includes(NO_QUESTION_LEFT))
           ) {
             dataToAdd.push(NO_QUESTION_LEFT);
