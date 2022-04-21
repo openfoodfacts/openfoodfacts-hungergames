@@ -39,9 +39,8 @@
           v-for="nutritiveValue in currentProductData"
           :key="nutritiveValue.id"
         >
-          <sui-table-cell>{{
-            $t(`nutrition.nutriments.${nutritiveValue.id}`)
-          }}</sui-table-cell>
+          <sui-table-cell>
+            {{$t(`nutrition.nutriments.${nutritiveValue.id}`) }} </sui-table-cell>
           <sui-table-cell style="display: flex">
             <sui-input
               :disabled="!nutritiveValue.visible"
@@ -63,7 +62,7 @@
 
             <span class="unit" v-else>{{
               getNutrimentUnits(nutritiveValue.id)[0]
-            }}</span>
+            }} </span>
           </sui-table-cell>
           <sui-table-cell>
             <sui-checkbox
@@ -123,6 +122,8 @@ import nutrimentsDefaultUnit from "../data/nutritions";
 import { OFF_URL } from "../const";
 import offService from "../off";
 import { IS_DEVELOPMENT_MODE } from "../const.js";
+import robotoffService from "../robotoff";
+
 // import { annotate as robotoffAnnotate } from "../robotoff";
 // import Product from "../components/Product";
 // import AnnotationCounter from "../components/AnnotationCounter";
@@ -131,9 +132,9 @@ const getProducts = async (nbOfPages) => {
   const randomPage = Math.floor(Math.random() * nbOfPages);
   const {
     data: { products },
-  } = await axios(
-    `${OFF_URL}/state/photos-validated/state/nutrition-facts-to-be-completed/${randomPage}.json?fields=code,lang,image_nutrition_url,product_name`
-  );
+      } = await axios(
+      `${OFF_URL}/state/photos-validated/state/nutrition-facts-to-be-completed/${randomPage}.json?fields=code,lang,image_nutrition_url,product_name,images`
+    );
   return products;
 };
 
@@ -152,6 +153,7 @@ export default {
       loading: false,
       productBuffer: [],
       currentProductData: {},
+      nutritionData: {},
     };
   },
   computed: {
@@ -201,6 +203,7 @@ export default {
     },
     skipProduct() {
       this.productBuffer.shift();
+      this.resetProductData();
     },
     deleteProduct() {
       const imageUrl = this.productBuffer[0]["image_nutrition_url"];
@@ -274,7 +277,7 @@ export default {
     resetProductData() {
       const data = {};
 
-      for (const nutrimentId of Object.keys(nutrimentsDefaultUnit)) {
+      for (const nutrimentId of Object.keys(nutrimentsDefaultUnit)) {       
         data[nutrimentId] = {
           id: nutrimentId,
           data: "",
@@ -283,6 +286,7 @@ export default {
         };
       }
       this.currentProductData = data;
+      this.setNutritionData();
     },
     getNutrimentUnits(nutrimentId) {
       switch (nutrimentId) {
@@ -295,6 +299,41 @@ export default {
             { text: "g", value: "g" },
             { text: "mg", value: "mg" },
           ];
+      }
+    },
+    
+    getNutritionData: async function(){
+      const {lang, image_nutrition_url, images} = this.productBuffer[0];
+      let nutritionFromRobotService = await robotoffService.getNutritionValueFromImage(lang, image_nutrition_url, images);
+      this.nutritionData = nutritionFromRobotService.data.nutrients;
+      return this.nutritionData;      
+    },   
+
+    setNutritionData: async function(){
+      const namingCorrection = {sugar: 'sugars', protein: 'proteins', carbohydrate: 'carbohydrates'};
+      const correctNaming = (robotoffNaming) => `nutriment_${namingCorrection[robotoffNaming] || robotoffNaming}`
+
+      this.nutritionData = await this.getNutritionData();
+
+      for (const nutrimentId of Object.keys(this.nutritionData[0].data.nutrients)) {
+        let nutrimentKey = nutrimentId.replace(/_/g, '-');
+        let correctName = correctNaming(nutrimentKey);
+
+        if(nutrimentId === "energy"){
+          correctName = `nutriment_energy-${this.nutritionData[0].data.nutrients[nutrimentId][0].unit}`;
+        }
+
+        if(!(correctName in this.currentProductData))
+        {
+          const newElement = {
+            id: `nutriment_${nutrimentKey}`,
+            data: "",
+            unit: this.nutritionData[0].data.nutrients[nutrimentId][0].unit,
+            visible: true,
+          };
+          this.currentProductData[correctName] = newElement;
+        }
+        this.currentProductData[correctName].data = this.nutritionData[0].data.nutrients[nutrimentId][0].value;     
       }
     },
   },
@@ -326,6 +365,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 .shadow {
