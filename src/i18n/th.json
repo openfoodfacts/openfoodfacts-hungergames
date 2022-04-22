@@ -7,6 +7,7 @@
     "ingredients": "ส่วนผสม",
     "product_weight": "product weight",
     "popularity_sort": "Sort by popularity",
+    "see_examples": "See examples of this ",
     "no": "ไม่ใช่",
     "skip": "Skip",
     "yes": "ถูกต้อง",
@@ -42,7 +43,7 @@
       "actions": {
         "edit": "Edit Filters",
         "cancel": "ยกเลิก",
-        "apply": "Apply"
+        "apply": "ใช้"
       }
     }
   },

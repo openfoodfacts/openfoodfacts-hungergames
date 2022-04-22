@@ -7,6 +7,7 @@
     "ingredients": "Thành phần",
     "product_weight": "trọng lượng sản phẩm",
     "popularity_sort": "Sắp xếp theo mức độ phổ biến",
+    "see_examples": "See examples of this ",
     "no": "Không",
     "skip": "Skip",
     "yes": "Có",
@@ -78,7 +79,7 @@
     "search": "Tìm kiếm",
     "count": "Đếm",
     "id": "Id",
-    "value": "Value",
+    "value": "Giá trị",
     "created_at": "Được tạo lúc",
     "completed_at": "Hoàn thành lúc",
     "automatic": "Tự động"
@@ -89,7 +90,7 @@
     "select_all": "Chọn tất cả",
     "unselect_all": "Bỏ chọn tất cả",
     "distance": "Khoảng Cách:",
-    "value": "Value",
+    "value": "Giá trị",
     "submit": "Gửi",
     "type": "Type",
     "label": "Nhãn",
@@ -129,7 +130,7 @@
       },
       "page3": {
         "title": "Logos",
-        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
+        "text1": "Thế giới của các sản phẩm có rất nhiều các loại logo. Hãy giúp AI của chúng tôi nhận biết những logo nào giống nhau."
       }
     },
     "logos": {

@@ -7,6 +7,7 @@
     "ingredients": "Složení",
     "product_weight": "hmotnost výrobku",
     "popularity_sort": "Třídit dle oblíbenosti",
+    "see_examples": "See examples of this ",
     "no": "Ne",
     "skip": "Skip",
     "yes": "Ano",
@@ -42,7 +43,7 @@
       "actions": {
         "edit": "Edit Filters",
         "cancel": "Zrušit",
-        "apply": "Apply"
+        "apply": "Použít"
       }
     }
   },
