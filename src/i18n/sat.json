@@ -7,6 +7,7 @@
     "ingredients": "Ingredients",
     "product_weight": "product weight",
     "popularity_sort": "Sort by popularity",
+    "see_examples": "See examples of this ",
     "no": "ᱵᱟᱝ",
     "skip": "Skip",
     "yes": "ᱴᱷᱤᱠ",
@@ -112,7 +113,7 @@
   "settings": {
     "settings": "Settings",
     "language": "Language",
-    "save": "ᱥᱟᱸᱪᱟᱣ"
+    "save": "ᱥᱟᱱᱪᱟᱣ"
   },
   "helper": {
     "welcome": {

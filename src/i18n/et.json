@@ -7,6 +7,7 @@
     "ingredients": "Koostisosad",
     "product_weight": "toote kaal",
     "popularity_sort": "Sordi populaarsuse alusel",
+    "see_examples": "See examples of this ",
     "no": "Ei",
     "skip": "Skip",
     "yes": "Jah",
@@ -36,7 +37,7 @@
         "edit": ""
       },
       "placeholders": {
-        "value": "Väärtus (fanta, en:organic,...)",
+        "value": "Väärtus (fanta, en: organic,...)",
         "brand": "auchan, danone, herta, ..."
       },
       "actions": {

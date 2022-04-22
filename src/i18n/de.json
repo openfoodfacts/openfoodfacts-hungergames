@@ -7,6 +7,7 @@
     "ingredients": "Zutaten",
     "product_weight": "Produktgewicht",
     "popularity_sort": "Nach Beliebtheit sortieren",
+    "see_examples": "See examples of this ",
     "no": "Nein",
     "skip": "Überspringen",
     "yes": "Ja",
@@ -30,7 +31,7 @@
       "long_label": {
         "type": "Fragentyp",
         "value": "Vorgeschlagener Wert",
-        "country": "Produziert in",
+        "country": "Produktionsland",
         "brand": "Marke des Produkts",
         "popularity": "Nach Beliebtheit sortieren",
         "edit": ""

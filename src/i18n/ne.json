@@ -7,9 +7,10 @@
     "ingredients": "आवश्यक सामग्रीहरू",
     "product_weight": "product weight",
     "popularity_sort": "Sort by popularity",
-    "no": "No",
+    "see_examples": "See examples of this ",
+    "no": "होइन",
     "skip": "Skip",
-    "yes": "Yes",
+    "yes": "हाे",
     "no_questions_remaining": "No questions remaining",
     "countries": "Countries",
     "view": "View",
@@ -42,7 +43,7 @@
       "actions": {
         "edit": "Edit Filters",
         "cancel": "Cancel",
-        "apply": "Apply"
+        "apply": "लागू गर्नुहोस्"
       }
     }
   },

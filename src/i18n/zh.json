@@ -7,6 +7,7 @@
     "ingredients": "成分",
     "product_weight": "product weight",
     "popularity_sort": "Sort by popularity",
+    "see_examples": "See examples of this ",
     "no": "否",
     "skip": "Skip",
     "yes": "是",
@@ -42,7 +43,7 @@
       "actions": {
         "edit": "Edit Filters",
         "cancel": "取消",
-        "apply": "Apply"
+        "apply": "應用"
       }
     }
   },

@@ -7,6 +7,7 @@
     "ingredients": "Składniki",
     "product_weight": "waga produktu",
     "popularity_sort": "Sortuj według popularności",
+    "see_examples": "See examples of this ",
     "no": "Nie",
     "skip": "Pomiń",
     "yes": "Tak",
@@ -36,7 +37,7 @@
         "edit": ""
       },
       "placeholders": {
-        "value": "Value (fanta, en:organic,...)",
+        "value": "Wartość (fanta, organiczny...)",
         "brand": "Auchan, Danone, Herta, ..."
       },
       "actions": {
@@ -54,7 +55,7 @@
     "insights": "Spostrzeżenia",
     "nutritions": "Wartości odżywcze",
     "settings": "Ustawienia",
-    "eco-score": "Eco-score"
+    "eco-score": "Eco-Score"
   },
   "insights": {
     "insights": "Spostrzeżenia",
@@ -73,7 +74,7 @@
     "expiration_date": "Data wygaśnięcia",
     "packager_code": "Kod opakowania",
     "skipped": "Pominięto (-1)",
-    "rejected": "Odrzucony (0)",
+    "rejected": "Odrzucono (0)",
     "accepted": "Zaakceptowano (1)",
     "search": "Wyszukiwanie",
     "count": "Licznik",
@@ -117,10 +118,10 @@
   "helper": {
     "welcome": {
       "page1": {
-        "title": "Welcome",
-        "text1": "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
-        "text2": "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
-        "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
+        "title": "Hejka",
+        "text1": "Hunger Games to zbiór minigier, które pomagają w tworzeniu Open Food Facts. Kategoryzuj produkt, aby uzyskać ocenę Nutri-Score i Eco-Score, pomóż w walidacji etykiet pod kątem oceny ekologicznej, dodaj marki i wagi, pomóż naszemu systemowi rozpoznawać logotypy.",
+        "text2": "To tylko niektóre z ekscytujących rzeczy, które będziesz mógł zrobić. Upewnij się, że jesteś połączony z Open Food Facts, aby zostać nagrodzonym za swój wkład. Jeśli popełnisz błąd, poświęć trochę czasu, aby go poprawić na stronie internetowej.",
+        "text3": "W razie wątpliwości co do gry, masz pomocnika w prawym górnym rogu strony i możesz skontaktować się z nami na luziku na kanale #hunger-games"
       },
       "page2": {
         "title": "Pytania",
@@ -135,32 +136,32 @@
     "logos": {
       "page1": {
         "title": "Zaznaczenie",
-        "text1": "Select the crops of a same logo by clicking on them",
-        "text2": "Selected logos go to the top of the page, you can unselect them by clicking again on them"
+        "text1": "Wybierz kadr loga, klikając je",
+        "text2": "Wybrane loga trafiają na górę strony, możesz je odznaczyć klikając je ponownie"
       },
       "page2": {
         "title": "Ostrzeżenie",
-        "text1": "If the crop contains multiple logo do not select it.",
-        "text2": "If the crop contains only a partial part of a logo you can select it"
+        "text1": "Jeśli kadr zawiera wiele log, nie wybieraj go.",
+        "text2": "Jeśli kadr zawiera tylko część logo, możesz je zaznaczyć"
       },
       "page3": {
-        "title": "Validate",
-        "text1": "Indicate the type of logo (label, brand, QRcode, ...)",
+        "title": "Zweryfikuj",
+        "text1": "Wskaż rodzaj loga (etykieta, marka, kod QR...)",
         "text2": "Polski",
-        "text3": "Now you can submit your selection",
-        "text4": "Thank you :)"
+        "text3": "Teraz możesz zgłosić swój wybór",
+        "text4": "Dzięki 😉"
       }
     },
-    "previous": "Prev",
+    "previous": "Poprz.",
     "next": "Następny",
     "close": "Zamknij"
   },
   "nutrition": {
     "instructions": {
-      "cropTheTable": "Crop the image to simplify your annotation",
-      "verifyNutrimentDetected": "Indicate if the nutriment detected is correct",
-      "selectMissingNutriments": "Add missing nutriments (you can click even if the word has no box)",
-      "selectValue": "Select the nutritional value of: "
+      "cropTheTable": "Przytnij obraz, aby uprościć adnotację",
+      "verifyNutrimentDetected": "Zaznacz, czy wykryty składnik odżywczy jest prawidłowy",
+      "selectMissingNutriments": "Dodaj brakujące składniki odżywcze (możesz kliknąć również jeśli słowo nie ma ramki)",
+      "selectValue": "Wybierz wartość odżywczą: "
     },
     "steps": {
       "1": "Przytnij",

@@ -7,6 +7,7 @@
     "ingredients": "İçindekiler",
     "product_weight": "ürün ağırlığı",
     "popularity_sort": "Popülerliğe göre sırala",
+    "see_examples": "See examples of this ",
     "no": "Hayır",
     "skip": "Atla",
     "yes": "Evet",
@@ -28,10 +29,10 @@
         "popularity": "popülerlik"
       },
       "long_label": {
-        "type": "Question Type",
-        "value": "Proposed Value",
-        "country": "Product Country",
-        "brand": "Product Brand",
+        "type": "Soru Tipi",
+        "value": "Önerilen Değer",
+        "country": "Ürünün Ülkesi",
+        "brand": "Ürünün Markası",
         "popularity": "Popülerliğe göre sırala",
         "edit": ""
       },
@@ -40,7 +41,7 @@
         "brand": "auchan, danone, herta, ..."
       },
       "actions": {
-        "edit": "Edit Filters",
+        "edit": "Süzgeçleri Düzenle",
         "cancel": "İptal",
         "apply": "Uygula"
       }
