@@ -26,7 +26,7 @@
         "value": "hodnota",
         "country": "země",
         "brand": "značka",
-        "popularity": "popularity"
+        "popularity": "oblíbenost"
       },
       "long_label": {
         "type": "Question Type",
@@ -79,7 +79,7 @@
     "search": "Vyhledat",
     "count": "Count",
     "id": "Id",
-    "value": "Value",
+    "value": "Hodnota",
     "created_at": "Created at",
     "completed_at": "Completed at",
     "automatic": "Automatic"
@@ -90,7 +90,7 @@
     "select_all": "Select all",
     "unselect_all": "Unselect all",
     "distance": "Distance:",
-    "value": "Value",
+    "value": "Hodnota",
     "submit": "Submit",
     "type": "Type",
     "label": "Štítek",
