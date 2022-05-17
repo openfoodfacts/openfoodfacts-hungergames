@@ -1,14 +1,15 @@
 {
   "questions": {
     "category": "категорія",
-    "label": "етикетка\n",
+    "label": "етикетка",
     "brand": "виробник",
     "brands": "Виробники",
     "ingredients": "Інгредієнти",
     "product_weight": "вага товару",
     "popularity_sort": "Сортувати за популярністю",
+    "see_examples": "See examples of this ",
     "no": "Ні",
-    "skip": "Skip",
+    "skip": "Пропустити",
     "yes": "Так",
     "no_questions_remaining": "Не залишилось питань",
     "countries": "Країн",

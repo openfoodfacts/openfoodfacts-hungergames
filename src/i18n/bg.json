@@ -7,19 +7,20 @@
     "ingredients": "Съставки",
     "product_weight": "тегло на продукта",
     "popularity_sort": "Сортирай по популярност",
+    "see_examples": "See examples of this ",
     "no": "Не",
     "skip": "Пропусни",
     "yes": "Да",
     "no_questions_remaining": "Няма повече въпроси",
-    "countries": "Държави",
+    "countries": "Страни",
     "view": "Преглед",
     "edit": "Редактирай",
     "hide_images": "Скриване на снимки (по-бързо зареждане)",
     "display_images": "Покажи снимки",
-    "annotations": "Annotations",
+    "annotations": "Пояснения",
     "last_annotations": "Последни пояснения",
     "remaining_annotations": "Остава:",
-    "annotated_annotations": "Annotated",
+    "annotated_annotations": "Пояснено",
     "filters": {
       "short_label": {
         "value": "стойност",
@@ -42,30 +43,30 @@
       "actions": {
         "edit": "Редакция на филтри",
         "cancel": "Отмени",
-        "apply": "Потвърди"
+        "apply": "Приложи"
       }
     }
   },
   "menu": {
     "games": "Игри",
     "questions": "Въпроси",
-    "logos": "Logos",
+    "logos": "Лога",
     "manage": "Управление",
-    "insights": "Insights",
-    "nutritions": "Хранителни факти",
+    "insights": "Задълбочен анализ",
+    "nutritions": "Хранителни стойности",
     "settings": "Настройки",
     "eco-score": "Eco-score"
   },
   "insights": {
-    "insights": "Insights",
+    "insights": "Задълбочен анализ",
     "barcode": "Баркод",
     "barcode_placeholder": "баркод",
-    "value_tag": "Value tag",
-    "value_placeholder": "ex: en:mueslis, bjorg,...",
+    "value_tag": "Етикет за стойност",
+    "value_placeholder": "пример: en:muslis...",
     "type": "Вид",
-    "annotated": "Annotated",
-    "annotation": "Annotation",
-    "not_annotated": "Not annotated",
+    "annotated": "Пояснено",
+    "annotation": "Анотация",
+    "not_annotated": "Без анотация",
     "all": "Всички",
     "label": "Етикет",
     "product_weight": "Тегло на продукта",
@@ -76,16 +77,16 @@
     "rejected": "Отхвърлено (0)",
     "accepted": "Прието (1)",
     "search": "Търсене",
-    "count": "Count",
+    "count": "Брой",
     "id": "Id",
     "value": "Стойност",
-    "created_at": "Създаден на",
-    "completed_at": "Completed at",
+    "created_at": "Създадено на",
+    "completed_at": "Завършено на",
     "automatic": "Автоматично"
   },
   "logos": {
-    "annotation": "Annotation: ",
-    "annotations": "Logo annotations",
+    "annotation": "Бележка: ",
+    "annotations": "Пояснение към лого",
     "select_all": "Избери всички",
     "unselect_all": "Размаркирай всичко",
     "distance": "Разстояние:",
@@ -98,10 +99,10 @@
     "packaging": "Опаковка",
     "qr_code": "QR код",
     "category": "Категория",
-    "nutrition_label": "Nutrition label",
+    "nutrition_label": "Етикет за хранителна стойност",
     "store": "Магазин",
-    "detail": "Logo detail",
-    "id": "Logo ID:",
+    "detail": "Детайл за логото",
+    "id": "ID на лого:",
     "barcode": "Баркод:",
     "full_image": "Пълно изображение",
     "update": "Актуализация",
@@ -118,24 +119,24 @@
     "welcome": {
       "page1": {
         "title": "Добре дошъл",
-        "text1": "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
-        "text2": "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
-        "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
+        "text1": "Hunger Games е колекция от мини-игри, които допринасят за Open Food Facts по много начини. Категоризирай продукт, за да получиш Nutri-Score и Eco-Score, помогни за потвърждаването на етикетите за Eco-Score, добави марки и тегло, помогни на нашата система за разпознаване на лога да научи за логата които открива.",
+        "text2": "Това са някои от вълнуващите неща, които ще можеш да правиш. Увери се, че си свързан с уебсайта Open Food Facts, за да получиш кредит за приноса си. Ако направиш грешка, моля, отдели време да я поправиш, като се насочиш към уебсайта.",
+        "text3": "В случай на съмнение относно играта, имаш помощник в горния десен ъгъл на страницата и можеш да се свържеш с нас в slack канала #hunger-games"
       },
       "page2": {
         "title": "Въпроси",
-        "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
+        "text1": "Нашият Изкуствен интелект има много въпроси към теб. Тук ще трябва да потвърдиш или отхвърлиш информацията, които той откри на снимките.",
         "text2": "Не се колебай да пропуснеш въпрос, ако не си сигурен, има много други"
       },
       "page3": {
-        "title": "Logos",
-        "text1": "Светът на продуктите е пълен с лога. Обясни на нашия AI кои са еднакви."
+        "title": "Лога",
+        "text1": "Светът на продуктите е пълен с лога. Обясни на нашия ИИ кои са еднакви."
       }
     },
     "logos": {
       "page1": {
         "title": "Избор",
-        "text1": "Select the crops of a same logo by clicking on them",
+        "text1": "Избери изрязани снимки със същото лого, като щракнеш върху тях",
         "text2": "Избраните лога отиват в горната част на страницата, можеш да отмениш избора им, като щракнеш отново върху тях"
       },
       "page2": {
@@ -151,29 +152,29 @@
         "text4": "Благодарим ти :)"
       }
     },
-    "previous": "Prev",
-    "next": "Next",
+    "previous": "Предишна",
+    "next": "Следваща",
     "close": "Затвори"
   },
   "nutrition": {
     "instructions": {
       "cropTheTable": "Изрежи снимката, за да опростиш пояснението си",
-      "verifyNutrimentDetected": "Indicate if the nutriment detected is correct",
-      "selectMissingNutriments": "Add missing nutriments (you can click even if the word has no box)",
-      "selectValue": "Select the nutritional value of: "
+      "verifyNutrimentDetected": "Посочи дали откритото хранително вещество е правилно",
+      "selectMissingNutriments": "Добави липсващите хранителни вещества (можеш да щракнеш, дори ако думата няма поле)",
+      "selectValue": "Избери хранителната стойност на: "
     },
     "steps": {
       "1": "Изрежи",
-      "2": "Special values",
-      "3": "Nutriments Selection",
-      "4": "Values Selection"
+      "2": "Специални стойности",
+      "3": "Избор на хранителни вещества",
+      "4": "Избор на стойности"
     },
     "next": "Следваща стъпка",
     "prev": "Предишна стъпка",
     "skip": "Пропусни този продукт",
     "validate": "Потвърди таблицата",
     "unselect_picture": "Няма хранителна стойност",
-    "basis": "data for: ",
+    "basis": "данни за: ",
     "servingSize": "размер на порция",
     "value": "стойност",
     "nutriments": {
@@ -182,17 +183,17 @@
       "nutriment_fat": "Мазнини",
       "nutriment_saturated-fat": "Наситени мазнини",
       "nutriment_carbohydrates": "Въглехидрати",
-      "nutriment_sugars": "Захар",
-      "nutriment_proteins": "Протеини",
+      "nutriment_sugars": "Захари",
+      "nutriment_proteins": "Белтъци",
       "nutriment_fiber": "Влакна",
       "nutriment_salt": "Сол",
       "nutriment_sodium": "Натрий"
     },
     "history": {
-      "title": "Session History",
+      "title": "История на сесиите",
       "status": "статус",
       "product name": "име на продукта",
-      "view": "view page",
+      "view": "преглед на страницата",
       "edit": "редактирай страницата",
       "SKIP": "игнорирано",
       "VALIDATED": "редактирано",
