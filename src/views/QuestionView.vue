@@ -176,6 +176,7 @@ export default {
           JSON.stringify(newFilters) !== JSON.stringify(oldFilters)
         ) {
           // when filters change reload questions
+          this.page=1;
           this.loadQuestions(true);
         }
       },
