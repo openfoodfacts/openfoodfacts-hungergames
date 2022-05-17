@@ -21,7 +21,9 @@
     </sui-dropdown>
 
     <sui-menu-item class="item mobile hidden">
-      <img src="~/../assets/logo.png" />
+      <a href="https://world.openfoodfacts.org/" target="_blank">
+        <img src="~/../assets/logo.png" class="logo" />
+      </a>
     </sui-menu-item>
 
     <router-link
@@ -51,7 +53,7 @@ const intialSettings = localSettings.fetch();
 localSettings.update("tuto-done", true);
 
 export default {
-  data: function () {
+  data: function() {
     return {
       menu: [
         { label: this.$t("menu.games") },
@@ -69,17 +71,17 @@ export default {
   },
   components: { Helper },
   computed: {
-    menuItems: function () {
+    menuItems: function() {
       return this.menu.filter((item) => {
         return item.to;
       });
     },
   },
   methods: {
-    closeHelper: function () {
+    closeHelper: function() {
       this.helperIsOpen = false;
     },
-    openHelper: function () {
+    openHelper: function() {
       this.helperIsOpen = true;
     },
   },
@@ -93,5 +95,8 @@ export default {
 .helpButton:hover {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.05);
+}
+.logo {
+  width: 2.5em;
 }
 </style>
