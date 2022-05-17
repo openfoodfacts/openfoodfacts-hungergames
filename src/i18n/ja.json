@@ -7,6 +7,7 @@
     "ingredients": "原材料",
     "product_weight": "製品の重量",
     "popularity_sort": "人気順",
+    "see_examples": "このサンプルを見る ",
     "no": "いいえ",
     "skip": "Skip",
     "yes": "はい",
@@ -28,19 +29,19 @@
         "popularity": "人気"
       },
       "long_label": {
-        "type": "Question Type",
-        "value": "Proposed Value",
-        "country": "Product Country",
-        "brand": "Product Brand",
+        "type": "質問タイプ",
+        "value": "提案された値",
+        "country": "生産国",
+        "brand": "製品ブランド",
         "popularity": "人気順",
         "edit": ""
       },
       "placeholders": {
-        "value": "Value (fanta, en:organic,...)",
+        "value": "値(ファンタ, ja: オーガニック,…)",
         "brand": "auchan, danone, herta, ..."
       },
       "actions": {
-        "edit": "Edit Filters",
+        "edit": "フィルターを編集",
         "cancel": "取消",
         "apply": "適用"
       }
@@ -54,7 +55,7 @@
     "insights": "情報",
     "nutritions": "栄養成分表",
     "settings": "設定",
-    "eco-score": "Eco-score"
+    "eco-score": "エコスコア"
   },
   "insights": {
     "insights": "情報",
@@ -117,88 +118,88 @@
   "helper": {
     "welcome": {
       "page1": {
-        "title": "Welcome",
-        "text1": "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
-        "text2": "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
-        "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
+        "title": "ようこそ",
+        "text1": "Hunger Gamesは、さまざまな方法でOpenFoodFactsに貢献するのに役立つミニゲームのコレクションです。製品を分類してニュートリスコアとエコスコアを取得し、エコスコアのラベルを検証し、ブランドと重みを追加し、ロゴ認識システムが検出したロゴについて学習できるようにします。",
+        "text2": "これらはあなたができるエキサイティングなことの一部です。あなたの貢献のクレジットを取得するには、OpenFoodFactsのWebサイトに接続していることを確認してください。間違えた場合は、ウェブサイトにアクセスして修正してください。",
+        "text3": "ゲームについて疑問がある場合は、ページの右上にヘルパーがあります。Slackの＃hunger-gamesチャンネルで私たちに連絡できます。"
       },
       "page2": {
         "title": "質問",
-        "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
-        "text2": "Do not hesitate to skip a question if you're not sure, there are plenty of others"
+        "text1": "私たちのAIにはたくさんの質問があります。ここでは、彼女が画像で検出した情報を確認または拒否する必要があります。",
+        "text2": "よくわからない場合は、遠慮なく質問をスキップしてください。他にもたくさんあります。"
       },
       "page3": {
         "title": "Logos",
-        "text1": "The world of products is full of logos. Explain to our AI which ones are the same."
+        "text1": "製品の世界はロゴでいっぱいです。どれが同じかをAIに説明してください。"
       }
     },
     "logos": {
       "page1": {
-        "title": "Selection",
-        "text1": "Select the crops of a same logo by clicking on them",
-        "text2": "Selected logos go to the top of the page, you can unselect them by clicking again on them"
+        "title": "選択",
+        "text1": "同じロゴの切り抜きをクリックして選択します",
+        "text2": "選択したロゴはページの上部に表示されます。もう一度クリックすると選択を解除できます。"
       },
       "page2": {
         "title": "警告",
-        "text1": "If the crop contains multiple logo do not select it.",
-        "text2": "If the crop contains only a partial part of a logo you can select it"
+        "text1": "切り抜きに複数のロゴが含まれている場合は、選択しないでください。",
+        "text2": "切り抜きにロゴの一部だけが含まれている場合は、選択できます"
       },
       "page3": {
-        "title": "Validate",
-        "text1": "Indicate the type of logo (label, brand, QRcode, ...)",
-        "text2": "If it is a label or a brand logo, indicate which one it is",
-        "text3": "Now you can submit your selection",
-        "text4": "Thank you :)"
+        "title": "検証",
+        "text1": "ロゴの種類（ラベル、ブランド、QRコードなど）を示します",
+        "text2": "ラベルまたはブランドロゴの場合は、それがどちらであるかを示してください",
+        "text3": "これで選択内容を登録できます",
+        "text4": "ありがとうございました！"
       }
     },
-    "previous": "Prev",
+    "previous": "前へ",
     "next": "次",
     "close": "閉じる"
   },
   "nutrition": {
     "instructions": {
-      "cropTheTable": "Crop the image to simplify your annotation",
-      "verifyNutrimentDetected": "Indicate if the nutriment detected is correct",
-      "selectMissingNutriments": "Add missing nutriments (you can click even if the word has no box)",
-      "selectValue": "Select the nutritional value of: "
+      "cropTheTable": "画像を切り抜いて注釈を簡単にします",
+      "verifyNutrimentDetected": "検出された栄養素が正しいかどうかを示します",
+      "selectMissingNutriments": "不足している栄養素を追加します（単語にボックスがなくてもクリックできます）",
+      "selectValue": "次の栄養価を選択します: "
     },
     "steps": {
-      "1": "Crop",
-      "2": "Special values",
-      "3": "Nutriments Selection",
-      "4": "Values Selection"
+      "1": "切り抜き",
+      "2": "特別な値",
+      "3": "栄養成分の選択",
+      "4": "値の選択"
     },
-    "next": "Next Step",
-    "prev": "Prev Step",
-    "skip": "Skip this product",
-    "validate": "Validate Table",
-    "unselect_picture": "No nutrition info",
-    "basis": "data for: ",
-    "servingSize": "serving size",
+    "next": "次のステップ",
+    "prev": "前のステップ",
+    "skip": "この製品をスキップする",
+    "validate": "表を検証する",
+    "unselect_picture": "栄養情報なし",
+    "basis": "データの目的： ",
+    "servingSize": "一人前の分量",
     "value": "値",
     "nutriments": {
       "nutriment_energy-kj": "エネルギー (kJ)",
-      "nutriment_energy-kcal": "Energy (kCal)",
+      "nutriment_energy-kcal": "エネルギー (kCal)",
       "nutriment_fat": "脂肪",
       "nutriment_saturated-fat": "飽和脂肪酸",
       "nutriment_carbohydrates": "炭水化物",
       "nutriment_sugars": "砂糖",
       "nutriment_proteins": "タンパク質",
-      "nutriment_fiber": "Fibers",
+      "nutriment_fiber": "繊維",
       "nutriment_salt": "食塩",
       "nutriment_sodium": "ナトリウム"
     },
     "history": {
-      "title": "Session History",
-      "status": "status",
-      "product name": "product name",
-      "view": "view page",
-      "edit": "edit page",
-      "SKIP": "ignored",
-      "VALIDATED": "edited",
-      "WRONG_IMAGE": "unselected picture",
-      "close": "close",
-      "open": "open history"
+      "title": "セッション履歴",
+      "status": "状態",
+      "product name": "製品名",
+      "view": "ページを見る",
+      "edit": "ページの編集",
+      "SKIP": "無視済み",
+      "VALIDATED": "編集済み",
+      "WRONG_IMAGE": "未選択の画像",
+      "close": "閉じる",
+      "open": "履歴を開く"
     }
   }
 }

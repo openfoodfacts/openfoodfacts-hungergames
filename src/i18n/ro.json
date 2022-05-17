@@ -7,6 +7,7 @@
     "ingredients": "Ingrediente",
     "product_weight": "greutatea produsului",
     "popularity_sort": "Sortați după popularitate",
+    "see_examples": "Vedeți exemple în acest sens ",
     "no": "Nu",
     "skip": "Omitere",
     "yes": "Da",
@@ -29,7 +30,7 @@
       },
       "long_label": {
         "type": "Tip de întrebare",
-        "value": "Valoarea propusă",
+        "value": "Valoare propusă",
         "country": "Țara produsului",
         "brand": "Marca de produs",
         "popularity": "Sortați după popularitate",

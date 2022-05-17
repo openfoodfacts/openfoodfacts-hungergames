@@ -7,6 +7,7 @@
     "ingredients": "উপকরণসমূহ",
     "product_weight": "product weight",
     "popularity_sort": "Sort by popularity",
+    "see_examples": "See examples of this ",
     "no": "না",
     "skip": "Skip",
     "yes": "হ্যাঁ",
@@ -42,7 +43,7 @@
       "actions": {
         "edit": "Edit Filters",
         "cancel": "Cancel",
-        "apply": "Apply"
+        "apply": "এ্যাপ্লাই করুন"
       }
     }
   },

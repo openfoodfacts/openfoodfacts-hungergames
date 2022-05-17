@@ -7,6 +7,7 @@
     "ingredients": "Összetevők",
     "product_weight": "termék súlya",
     "popularity_sort": "Rendezés népszerűség szerint",
+    "see_examples": "Lásd erre a példákat ",
     "no": "Nem",
     "skip": "Skip",
     "yes": "Igen",
@@ -75,7 +76,7 @@
     "skipped": "Kihagyva (-1)",
     "rejected": "Elutasítva (0)",
     "accepted": "Elfogadva (1)",
-    "search": "Keres",
+    "search": "Keresés",
     "count": "Mennyiség",
     "id": "Id",
     "value": "Érték",
@@ -106,7 +107,7 @@
     "full_image": "Teljes kép",
     "update": "Frissítés",
     "no_found": "Nem található logó",
-    "search": "Keres",
+    "search": "Keresés",
     "number_of_results": "Találatok száma:"
   },
   "settings": {

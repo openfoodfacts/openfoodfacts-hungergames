@@ -7,6 +7,7 @@
     "ingredients": "Ingredienser",
     "product_weight": "produktens vikt",
     "popularity_sort": "Sortera efter popularitet",
+    "see_examples": "See examples of this ",
     "no": "Nej",
     "skip": "Hoppa over",
     "yes": "Ja",
@@ -28,19 +29,19 @@
         "popularity": "popularitet"
       },
       "long_label": {
-        "type": "Question Type",
-        "value": "Proposed Value",
-        "country": "Product Country",
-        "brand": "Product Brand",
+        "type": "Frågetyp",
+        "value": "Föreslaget värde",
+        "country": "Produktland",
+        "brand": "Produktmärke",
         "popularity": "Sortera efter popularitet",
         "edit": ""
       },
       "placeholders": {
-        "value": "Value (fanta, en:organic,...)",
-        "brand": "auchan, danone, herta, ..."
+        "value": "Värde (fanta, sv:ekologiskt,...)",
+        "brand": "arla, gevalia, risenta, ..."
       },
       "actions": {
-        "edit": "Edit Filters",
+        "edit": "Redigera filter",
         "cancel": "Annulera",
         "apply": "Verkställ"
       }
@@ -54,7 +55,7 @@
     "insights": "Insikter",
     "nutritions": "Näringsfakta",
     "settings": "Inställningar",
-    "eco-score": "Eco-score"
+    "eco-score": "Eco-Score"
   },
   "insights": {
     "insights": "Insikter",
@@ -118,9 +119,9 @@
     "welcome": {
       "page1": {
         "title": "Välkommen",
-        "text1": "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
-        "text2": "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
-        "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
+        "text1": "Hunger Games är en samling minispel som bidrar till Open Food Facts på många sätt. Kategorisera en produkt för att få Nutri-Score och Eco-Score, hjälpa till att validera etiketter för Eco-Score, lägg till varumärken och vikter, hjälpa vårt logotypigenkänningssystem att lära sig om logotyperna det upptäckte.",
+        "text2": "Det är några av de spännande saker som du kommer att kunna göra. Se till att vara ansluten till webbplatsen Open Food Facts för att få erkännande för dina bidrag. Om du gör ett misstag, ta dig tid att rätta till det genom att gå till webbplatsen.",
+        "text3": "Om du är osäker på spelet har du en hjälpreda uppe till höger på sidan, och du kan nå oss på slack i kanalen #hunger-games"
       },
       "page2": {
         "title": "Frågor",
@@ -140,8 +141,8 @@
       },
       "page2": {
         "title": "Varning",
-        "text1": "If the crop contains multiple logo do not select it.",
-        "text2": "If the crop contains only a partial part of a logo you can select it"
+        "text1": "Om beskärningen innehåller flera logotyper, välj den inte.",
+        "text2": "Om beskärningenn endast innehåller en del av en logotyp kan du välja den"
       },
       "page3": {
         "title": "Validera",
@@ -163,10 +164,10 @@
       "selectValue": "Välj näringsvärde för: "
     },
     "steps": {
-      "1": "Crop",
+      "1": "Beskär",
       "2": "Särskilda värden",
-      "3": "Nutriments Selection",
-      "4": "Values Selection"
+      "3": "Val av näringsämnen",
+      "4": "Valda värden"
     },
     "next": "Nästa Steg",
     "prev": "Föregående steg",

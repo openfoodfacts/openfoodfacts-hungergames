@@ -1,0 +1,5 @@
+github_actions:
+- .github/**/*
+
+nutrition game:
+- src/views/NutritionView.vue
