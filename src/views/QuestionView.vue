@@ -261,6 +261,9 @@ export default {
           } else {
             this.questionBuffer = [...this.questionBuffer, ...dataToAdd];
           }
+          if(this.questionBuffer.length==0 && sortBy=="popular"){
+            this.page+=1
+          }
         });
     },
 
