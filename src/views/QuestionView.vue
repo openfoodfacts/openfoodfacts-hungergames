@@ -19,7 +19,8 @@
             </router-link>
             <a :href="valueTagOFFURL" target="_blank">
               <div>
-                {{ $t("questions.see_examples") }} {{ this.filters.selectedInsightType }}
+                {{ $t("questions.see_examples") }}
+                {{ this.filters.selectedInsightType }}
               </div>
             </a>
           </div>
@@ -197,9 +198,6 @@ export default {
         (newBuffer.length == 9 || newBuffer.length < 4) &&
         !newBuffer.includes(NO_QUESTION_LEFT)
       ) {
-        if (newBuffer.length == 1) {
-          this.page += 1;
-        }
         this.loadQuestions(false);
       }
     },
@@ -211,6 +209,9 @@ export default {
       }
       const sortBy = this.filters.sortByPopularity ? "popular" : "random";
       const count = 10;
+      if (this.page < 1) {
+        this.page = 1;
+      }
       robotoffService
         .questions(
           sortBy,
@@ -225,6 +226,10 @@ export default {
         )
         .then((result) => {
           this.remainingQuestionCount = result.data.count;
+          if (this.remainingQuestionCount / count + 1 < this.page) {
+            this.page = 1;
+            this.loadQuestions(false);
+          }
           if (result.data.questions.length == 0) {
             if (!this.questionBuffer.includes(NO_QUESTION_LEFT)) {
               if (clean) {
