@@ -228,22 +228,7 @@ export default {
           this.remainingQuestionCount = result.data.count;
           if (this.remainingQuestionCount / count + 1 < this.page) {
             this.page = 1;
-            this.loadQuestions(false);
           }
-          if (result.data.questions.length == 0) {
-            if (!this.questionBuffer.includes(NO_QUESTION_LEFT)) {
-              if (clean) {
-                this.questionBuffer = [NO_QUESTION_LEFT];
-              } else {
-                this.questionBuffer = [
-                  ...this.questionBuffer,
-                  NO_QUESTION_LEFT,
-                ];
-              }
-            }
-            return;
-          }
-
           const dataToAdd = [];
           result.data.questions.forEach((q) => {
             if (!this.seenInsightIds.has(q.insight_id)) {
@@ -256,6 +241,20 @@ export default {
             (clean || !this.questionBuffer.includes(NO_QUESTION_LEFT))
           ) {
             dataToAdd.push(NO_QUESTION_LEFT);
+          }
+          if (this.page == Math.ceil(this.remainingQuestionCount / count)) {
+            if (!this.questionBuffer.includes(NO_QUESTION_LEFT)) {
+              if (clean) {
+                this.questionBuffer = [NO_QUESTION_LEFT];
+              } else {
+                this.questionBuffer = [...this.questionBuffer, ...dataToAdd];
+                this.questionBuffer = [
+                  ...this.questionBuffer,
+                  NO_QUESTION_LEFT,
+                ];
+              }
+            }
+            return;
           }
           if (clean) {
             this.questionBuffer = [...dataToAdd];
