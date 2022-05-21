@@ -7,7 +7,7 @@
     "ingredients": "Složení",
     "product_weight": "hmotnost výrobku",
     "popularity_sort": "Třídit dle oblíbenosti",
-    "see_examples": "See examples of this ",
+    "see_examples": "Viz příklady tohoto ",
     "no": "Ne",
     "skip": "Přeskočit",
     "yes": "Ano",
@@ -62,18 +62,18 @@
     "barcode": "Čárový kód",
     "barcode_placeholder": "čárový kód",
     "value_tag": "Value tag",
-    "value_placeholder": "ex: en:mueslis, bjorg,...",
+    "value_placeholder": "např.: en:mueslis, bjorg,...",
     "type": "Typ",
     "annotated": "Komentováno",
-    "annotation": "Annotation",
-    "not_annotated": "Not annotated",
-    "all": "All",
+    "annotation": "Poznámky",
+    "not_annotated": "Bez poznámek",
+    "all": "Vše",
     "label": "Štítek",
-    "product_weight": "Product weight",
+    "product_weight": "Hmotnost produktu",
     "category": "Kategorie",
-    "expiration_date": "Expiration date",
+    "expiration_date": "Datum spotřeby",
     "packager_code": "Kód balírny",
-    "skipped": "Skipped (-1)",
+    "skipped": "Přeskočeno (-1)",
     "rejected": "Rejected (0)",
     "accepted": "Accepted (1)",
     "search": "Vyhledat",
@@ -106,9 +106,9 @@
     "barcode": "Barcode:",
     "full_image": "Full image",
     "update": "Update",
-    "no_found": "No logo found",
+    "no_found": "Nebylo nalezeno žádné logo",
     "search": "Vyhledat",
-    "number_of_results": "Number of results:"
+    "number_of_results": "Počet výsledků:"
   },
   "settings": {
     "settings": "Nastavení",
@@ -118,15 +118,15 @@
   "helper": {
     "welcome": {
       "page1": {
-        "title": "Welcome",
-        "text1": "Hunger Games is a collection of mini-games that help contribute to Open Food Facts in many ways. Categorize a product to get the Nutri-Score and Eco-Score, help validate labels for the Eco-Score, add brands and weights, help our logo recognition system learn about the logos it detected.",
-        "text2": "Those are some of the exciting things you'll be able to do. Make sure to be connected to the Open Food Facts website to get credit for your contributions. If you make a mistake, please take the time to correct it by heading to the website.",
-        "text3": "In case of doubt about the game, you have an helper at the top right of the page, and you can reach us on slack at the #hunger-games channel"
+        "title": "Vítejte",
+        "text1": "Hunger Games je sbírka miniher, které pomáhají mnoha způsoby přispět k Open Food Facts. Zařaďte produkt do kategorií, abyste získali Nutri-Score a Eco-Score, pomozte ověřit štítky pro Eco-Score, přidejte značky a váhy, pomozte našemu systému rozpoznávání loga zjistit loga, která detekoval.",
+        "text2": "To jsou některé ze vzrušujících věcí, které budete moci dělat. Ujistěte se, že jste připojeni k webu Open Food Facts, abyste získali kredit za své příspěvky. Pokud uděláte chybu, věnujte prosím čas opravě a přejděte na webovou stránku.",
+        "text3": "V případě pochybností o hře máte pomocníka v pravé horní části stránky a můžete nás kontaktovat na slacku na kanálu #hunger-games"
       },
       "page2": {
         "title": "Otázky",
-        "text1": "Our AI has a lot of questions for you. Here you will have to confirm or deny the information she detected on images.",
-        "text2": "Do not hesitate to skip a question if you're not sure, there are plenty of others"
+        "text1": "Naše AI má na vás spoustu otázek. Zde budete muset potvrdit nebo zamítnout informace, které zjistila na snímcích.",
+        "text2": "Pokud si nejste jisti, neváhejte otázku přeskočit, existuje spousta dalších"
       },
       "page3": {
         "title": "Loga",
@@ -135,21 +135,21 @@
     },
     "logos": {
       "page1": {
-        "title": "Selection",
-        "text1": "Select the crops of a same logo by clicking on them",
-        "text2": "Selected logos go to the top of the page, you can unselect them by clicking again on them"
+        "title": "Výběr",
+        "text1": "Vyberte oříznutí stejného loga kliknutím na ně",
+        "text2": "Vybraná loga jdou do horní části stránky, jejich výběr můžete zrušit opětovným kliknutím na ně"
       },
       "page2": {
         "title": "Varování",
-        "text1": "If the crop contains multiple logo do not select it.",
-        "text2": "If the crop contains only a partial part of a logo you can select it"
+        "text1": "Pokud oříznutí obsahuje více log, nevybírejte je.",
+        "text2": "Pokud oříznutí obsahuje pouze část loga, můžete jej vybrat"
       },
       "page3": {
-        "title": "Validate",
-        "text1": "Indicate the type of logo (label, brand, QRcode, ...)",
-        "text2": "If it is a label or a brand logo, indicate which one it is",
-        "text3": "Now you can submit your selection",
-        "text4": "Thank you :)"
+        "title": "Ověřit",
+        "text1": "Uveďte typ loga (štítek, značka, QRcode, ...)",
+        "text2": "Pokud se jedná o štítek nebo logo značky, uveďte, o které se jedná",
+        "text3": "Nyní můžete odeslat svůj výběr",
+        "text4": "Děkujeme :)"
       }
     },
     "previous": "Předchozí",
@@ -158,23 +158,23 @@
   },
   "nutrition": {
     "instructions": {
-      "cropTheTable": "Crop the image to simplify your annotation",
-      "verifyNutrimentDetected": "Indicate if the nutriment detected is correct",
-      "selectMissingNutriments": "Add missing nutriments (you can click even if the word has no box)",
-      "selectValue": "Select the nutritional value of: "
+      "cropTheTable": "Oříznutím obrázku zjednodušíte anotaci",
+      "verifyNutrimentDetected": "Uveďte, zda je zjištěná výživa správná",
+      "selectMissingNutriments": "Přidejte chybějící živiny (můžete kliknout, i když slovo nemá žádné pole)",
+      "selectValue": "Vyberte nutriční hodnotu: "
     },
     "steps": {
-      "1": "Crop",
+      "1": "Oříznout",
       "2": "Zvláštní hodnoty",
-      "3": "Nutriments Selection",
-      "4": "Values Selection"
+      "3": "Výběr živin",
+      "4": "Výběr hodnot"
     },
     "next": "Další krok",
     "prev": "Předchozí krok",
     "skip": "Přeskočit tento produkt",
     "validate": "Ověřit tabulku",
     "unselect_picture": "Žádné nutriční informace",
-    "basis": "data for: ",
+    "basis": "údaje pro: ",
     "servingSize": "velikost porce",
     "value": "hodnota",
     "nutriments": {
@@ -191,15 +191,15 @@
     },
     "history": {
       "title": "Historie relace",
-      "status": "status",
-      "product name": "product name",
-      "view": "view page",
-      "edit": "edit page",
-      "SKIP": "ignored",
-      "VALIDATED": "edited",
-      "WRONG_IMAGE": "unselected picture",
-      "close": "close",
-      "open": "open history"
+      "status": "stav",
+      "product name": "název produktu",
+      "view": "zobrazit stránku",
+      "edit": "upravit stránku",
+      "SKIP": "ignorováno",
+      "VALIDATED": "upraveno",
+      "WRONG_IMAGE": "nevybraný obrázek",
+      "close": "zavřít",
+      "open": "otevřít historii"
     }
   }
 }
