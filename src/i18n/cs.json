@@ -103,9 +103,9 @@
     "store": "Prodejna",
     "detail": "Detail loga",
     "id": "Logo ID:",
-    "barcode": "Barcode:",
-    "full_image": "Full image",
-    "update": "Update",
+    "barcode": "Čárový kód:",
+    "full_image": "Plná velikost obrázku",
+    "update": "Aktualizace",
     "no_found": "Nebylo nalezeno žádné logo",
     "search": "Vyhledat",
     "number_of_results": "Počet výsledků:"
