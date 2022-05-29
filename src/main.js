@@ -6,6 +6,7 @@ import VueMatomo from "vue-matomo";
 import "./semantic-ui-utils/main.css";
 import App from "./App.vue";
 import QuestionView from "./views/QuestionView.vue";
+import NotFound from './views/NotFound.vue'
 import NutritionView from "./views/NutritionView.vue";
 import NutritionInteractiveView from "./views/NutritionInteractiveView.vue";
 import TableAnnotation from "./views/TableAnnotation.vue";
@@ -52,6 +53,7 @@ const routes = [
   { path: "/logos/search", component: LogoSearchView },
   { path: "/logos/:id", component: LogoUpdateView },
   { path: "/subsetQuestion", component: SubsetQuestionView },
+  { path: '*', name: 'Not Found', component: NotFound}
 ];
 
 const router = new VueRouter({
