@@ -176,7 +176,7 @@ export default {
           JSON.stringify(newFilters) !== JSON.stringify(oldFilters)
         ) {
           // when filters change reload questions
-          this.page=1;
+          this.page = 1;
           this.loadQuestions(true);
         }
       },
@@ -227,7 +227,10 @@ export default {
         )
         .then((result) => {
           this.remainingQuestionCount = result.data.count;
-          if (this.remainingQuestionCount / count + 1 < this.page) {
+          const lastAvailablePageIndex = Math.ceil(
+            this.remainingQuestionCount / count
+          );
+          if (lastAvailablePageIndex + 1 < this.page) {
             this.page = 1;
           }
           const dataToAdd = [];
@@ -243,14 +246,14 @@ export default {
           ) {
             dataToAdd.push(NO_QUESTION_LEFT);
           }
-          if (this.page == Math.ceil(this.remainingQuestionCount / count)) {
+          if (this.page == lastAvailablePageIndex) {
             if (!this.questionBuffer.includes(NO_QUESTION_LEFT)) {
               if (clean) {
                 this.questionBuffer = [NO_QUESTION_LEFT];
               } else {
-                this.questionBuffer = [...this.questionBuffer, ...dataToAdd];
                 this.questionBuffer = [
                   ...this.questionBuffer,
+                  ...dataToAdd,
                   NO_QUESTION_LEFT,
                 ];
               }
@@ -262,8 +265,8 @@ export default {
           } else {
             this.questionBuffer = [...this.questionBuffer, ...dataToAdd];
           }
-          if(this.questionBuffer.length==0 && sortBy=="popular"){
-            this.page+=1
+          if (dataToAdd.length === 0 && sortBy == "popular") {
+            this.page += 1;
           }
         });
     },
