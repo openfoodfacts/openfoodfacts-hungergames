@@ -17,7 +17,7 @@
     "fastest-levenshtein": "^1.0.12",
     "semantic-ui-vue": "^0.11.0",
     "v-viewer": "^1.6.4",
-    "vue": "^2.6.6",
+    "vue": "^3.2.37",
     "vue-advanced-cropper": "~1.7.0",
     "vue-i18n": "^8.27.0",
     "vue-matomo": "^4.1.0",
