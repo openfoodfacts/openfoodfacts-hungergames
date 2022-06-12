@@ -36,7 +36,7 @@
       {{ item.label }}
     </router-link>
 
-    <sui-menu-menu position="right">
+    <sui-menu-menu style="margin-inline-start: auto;">
       <sui-menu-item v-on:click="openHelper" class="helpButton">
         <sui-icon name="help" />
       </sui-menu-item>
