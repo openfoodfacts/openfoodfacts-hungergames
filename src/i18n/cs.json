@@ -37,7 +37,7 @@
         "edit": ""
       },
       "placeholders": {
-        "value": "Hodnota (fanta, en:organic,...)",
+        "value": "Hodnota (fanta, cs:přírodní,...)",
         "brand": "auchan, danone, herta, ..."
       },
       "actions": {
@@ -62,7 +62,7 @@
     "barcode": "Čárový kód",
     "barcode_placeholder": "čárový kód",
     "value_tag": "Value tag",
-    "value_placeholder": "např.: en:mueslis, bjorg,...",
+    "value_placeholder": "např.: cz:müsli, cereálie,...",
     "type": "Typ",
     "annotated": "Komentováno",
     "annotation": "Poznámky",
@@ -201,5 +201,10 @@
       "close": "zavřít",
       "open": "otevřít historii"
     }
+  },
+  "notfound": {
+    "nopage": "Whoops! The page you're looking for can't be found.",
+    "redirect1": "Want to play some games?",
+    "redirect2": "Click here"
   }
 }
