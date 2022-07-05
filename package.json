@@ -11,7 +11,7 @@
   "dependencies": {
     "@vue/cli-plugin-babel": "^5.0.4",
     "@vue/cli-plugin-eslint": "^5.0.4",
-    "@vue/cli-service": "^5.0.4",
+    "@vue/cli-service": "^5.0.7",
     "@yaireo/tagify": "^4.9.7",
     "axios": "^0.27.0",
     "fastest-levenshtein": "^1.0.12",
