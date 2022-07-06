@@ -1,5 +1,11 @@
 # Hunger Games
 
+> ⚠️ Warning
+> 
+> This repository has been archived.
+>
+> To get up to date information, please visit the [current production repository](https://github.com/openfoodfacts/hunger-games)
+
 One click annotator, built with vue.js.
 Hunger Games is a series of mini-apps that let users contribute data to Open Food Facts, in a rather fun way using Vue.js. You are very welcome to write one on the field you want.<br>
 [![Open Food Facts](https://static.openfoodfacts.org/images/misc/openfoodfacts-logo-en.svg)](https://world.openfoodfacts.org/)
