@@ -19,6 +19,7 @@
               <option value="category">{{$t("logos.category")}}</option>
               <option value="nutrition_label">{{$t("logos.nutrition_label")}}</option>
               <option value="store">{{$t("logos.store")}}</option>
+              <option value="other">{{$t("logos.other")}}</option>
             </select>
           </div>
           <div class="field">
