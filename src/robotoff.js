@@ -35,12 +35,12 @@ export default {
     })
   },
 
-  questions(sortBy, insightTypes, valueTag, brands, country, count = 10) {
+  questions(sortBy, insightTypes, valueTag, brands, country, count = 10, page) {
     const lang = getLang();
     return axios.get(
       `${ROBOTOFF_API_URL}/questions/${sortBy}`, {
       params: removeEmptyKeys({
-        count, lang, insight_types: insightTypes, value_tag: valueTag, brands, country
+        page, count, lang, insight_types: insightTypes, value_tag: valueTag, brands, country
       })
     }
     ).then(result => {

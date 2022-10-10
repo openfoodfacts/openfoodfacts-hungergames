@@ -19,7 +19,8 @@
             </router-link>
             <a :href="valueTagOFFURL" target="_blank">
               <div>
-                {{ $t("questions.see_examples") }} {{ this.filters.selectedInsightType }}
+                {{ $t("questions.see_examples") }}
+                {{ this.filters.selectedInsightType }}
               </div>
             </a>
           </div>
@@ -160,6 +161,7 @@ export default {
       questionBuffer: [],
       currentQuestion: null,
       remainingQuestionCount: 0,
+      page: 1,
       lastAnnotations: [],
       sessionAnnotatedCount: 0,
       seenInsightIds: new Set(),
@@ -174,6 +176,7 @@ export default {
           JSON.stringify(newFilters) !== JSON.stringify(oldFilters)
         ) {
           // when filters change reload questions
+          this.page = 1;
           this.loadQuestions(true);
         }
       },
@@ -207,6 +210,9 @@ export default {
       }
       const sortBy = this.filters.sortByPopularity ? "popular" : "random";
       const count = 10;
+      if (this.page < 1) {
+        this.page = 1;
+      }
       robotoffService
         .questions(
           sortBy,
@@ -216,24 +222,17 @@ export default {
           this.filters.countryFilter !== "en:world"
             ? this.filters.countryFilter
             : null,
-          count
+          count,
+          this.page
         )
         .then((result) => {
           this.remainingQuestionCount = result.data.count;
-          if (result.data.questions.length == 0) {
-            if (!this.questionBuffer.includes(NO_QUESTION_LEFT)) {
-              if (clean) {
-                this.questionBuffer = [NO_QUESTION_LEFT];
-              } else {
-                this.questionBuffer = [
-                  ...this.questionBuffer,
-                  NO_QUESTION_LEFT,
-                ];
-              }
-            }
-            return;
+          const lastAvailablePageIndex = Math.ceil(
+            this.remainingQuestionCount / count
+          );
+          if (lastAvailablePageIndex + 1 < this.page) {
+            this.page = 1;
           }
-
           const dataToAdd = [];
           result.data.questions.forEach((q) => {
             if (!this.seenInsightIds.has(q.insight_id)) {
@@ -242,15 +241,32 @@ export default {
             }
           });
           if (
-            result.data.questions.length < count &&
+            result.data.count < count &&
             (clean || !this.questionBuffer.includes(NO_QUESTION_LEFT))
           ) {
             dataToAdd.push(NO_QUESTION_LEFT);
+          }
+          if (this.page == lastAvailablePageIndex) {
+            if (!this.questionBuffer.includes(NO_QUESTION_LEFT)) {
+              if (clean) {
+                this.questionBuffer = [NO_QUESTION_LEFT];
+              } else {
+                this.questionBuffer = [
+                  ...this.questionBuffer,
+                  ...dataToAdd,
+                  NO_QUESTION_LEFT,
+                ];
+              }
+            }
+            return;
           }
           if (clean) {
             this.questionBuffer = [...dataToAdd];
           } else {
             this.questionBuffer = [...this.questionBuffer, ...dataToAdd];
+          }
+          if (dataToAdd.length === 0 && sortBy == "popular") {
+            this.page += 1;
           }
         });
     },
